@@ -27,17 +27,20 @@ function ClickingGame({ lesson }) {
   const spawnIntervalRef = useRef(2000);
   const targetLifetimeRef = useRef(4000);
   
-  // Progressive difficulty settings
-  const [targetSize, setTargetSize] = useState(100);
-  const [spawnInterval, setSpawnInterval] = useState(2000);
-  const [targetLifetime, setTargetLifetime] = useState(4000);
+  // Determine if this is the harder version (reception lesson 2)
+  const isHardMode = lesson && lesson.yearId === 'reception' && lesson.lessonNumber === 2 && lesson.subjectId === 'technology';
   
-  const initialTargetSize = 100;
-  const minTargetSize = 30;
-  const initialSpawnInterval = 2000;
-  const minSpawnInterval = 500;
-  const initialTargetLifetime = 4000;
-  const minTargetLifetime = 1500;
+  // Progressive difficulty settings
+  const [targetSize, setTargetSize] = useState(isHardMode ? 70 : 100);
+  const [spawnInterval, setSpawnInterval] = useState(isHardMode ? 1500 : 2000);
+  const [targetLifetime, setTargetLifetime] = useState(isHardMode ? 3000 : 4000);
+  
+  const initialTargetSize = isHardMode ? 70 : 100;
+  const minTargetSize = isHardMode ? 20 : 30;
+  const initialSpawnInterval = isHardMode ? 1500 : 2000;
+  const minSpawnInterval = isHardMode ? 400 : 500;
+  const initialTargetLifetime = isHardMode ? 3000 : 4000;
+  const minTargetLifetime = isHardMode ? 1000 : 1500;
 
   useEffect(() => {
     return () => {
@@ -190,10 +193,19 @@ function ClickingGame({ lesson }) {
   const accuracy = hits + misses === 0 ? 0 : (hits / (hits + misses)) * 100;
 
   const getGrade = () => {
-    if (score >= 300) return { name: 'Platinum', color: '#E5E4E2' };
-    if (score >= 200) return { name: 'Gold', color: '#FFD700' };
-    if (score >= 100) return { name: 'Silver', color: '#C0C0C0' };
-    return { name: 'Bronze', color: '#CD7F32' };
+    if (isHardMode) {
+      // Harder version has higher thresholds
+      if (score >= 350) return { name: 'Platinum', color: '#E5E4E2' };
+      if (score >= 250) return { name: 'Gold', color: '#FFD700' };
+      if (score >= 150) return { name: 'Silver', color: '#C0C0C0' };
+      return { name: 'Bronze', color: '#CD7F32' };
+    } else {
+      // Normal version thresholds
+      if (score >= 300) return { name: 'Platinum', color: '#E5E4E2' };
+      if (score >= 200) return { name: 'Gold', color: '#FFD700' };
+      if (score >= 100) return { name: 'Silver', color: '#C0C0C0' };
+      return { name: 'Bronze', color: '#CD7F32' };
+    }
   };
 
   const grade = getGrade();

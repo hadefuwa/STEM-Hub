@@ -846,91 +846,24 @@ Let's learn about the history of where we live!
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 1,
-      title: "Introduction to Coding",
-      emoji: '💻',
-      content: `# Introduction to Coding 💻
+      title: "Blockly Puzzle",
+      emoji: '🧩',
+      content: `# Blockly Puzzle 🧩
 
+Learn to code with Blockly Games!
 
+In Puzzle, you'll learn the basics of programming by connecting blocks together to solve puzzles.
 
-Coding is like giving instructions to a computer!
+## Instructions
 
+- Drag blocks from the toolbox to the workspace
+- Connect blocks together to create programs
+- Click "Run" to see your program in action
+- Complete each puzzle to move to the next level
 
-
-## What is Coding?
-
-
-
-Coding is writing instructions that tell a computer what to do.
-
-
-
-## Simple Instructions
-
-
-
-Just like you follow instructions:
-
-- "Put on your shoes" 👟
-
-- "Brush your teeth" 🦷
-
-- "Eat your breakfast" 🍳
-
-
-
-Computers follow code instructions:
-
-- "Move forward"
-
-- "Turn right"
-
-- "Say hello"
-
-
-
-## Coding Blocks
-
-
-
-Some coding uses blocks that you can move around:
-
-- Move blocks
-
-- Turn blocks
-
-- Color blocks
-
-- Sound blocks
-
-
-
-## Fun Activities
-
-
-
-- Try block-based coding games
-
-- Give instructions to a friend
-
-- Write simple code commands
-
-- Play coding games online
-
-
-
-## Remember
-
-
-
-- Coding is giving instructions
-
-- Computers follow code exactly
-
-- Coding can be fun!
-
-- Start simple and learn more!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+Have fun learning to code!`,
+      quizId: null,
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -939,85 +872,24 @@ Some coding uses blocks that you can move around:
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 2,
-      title: "Using a Mouse and Keyboard",
-      emoji: '⌨️',
-      content: `# Using a Mouse and Keyboard ⌨️
+      title: "Blockly Maze",
+      emoji: '🗺️',
+      content: `# Blockly Maze 🗺️
 
+Navigate through mazes using code!
 
+In Maze, you'll learn to use loops and conditionals to guide a character through mazes.
 
-Let's learn to use computer tools properly!
+## Instructions
 
+- Use movement blocks to navigate
+- Try using loops to repeat actions
+- Use conditionals to make decisions
+- Complete each maze to unlock the next one
 
-
-## The Mouse
-
-
-
-- **Left Click** - Select and open things
-
-- **Right Click** - See more options
-
-- **Scroll Wheel** - Move up and down
-
-- **Drag** - Move things around
-
-
-
-## The Keyboard
-
-
-
-- **Letters** - Type words
-
-- **Numbers** - Type numbers
-
-- **Space Bar** - Make spaces
-
-- **Enter** - Start a new line
-
-
-
-## Practice
-
-
-
-1. Click on icons
-
-2. Type your name
-
-3. Scroll through pages
-
-4. Drag and drop items
-
-
-
-## Fun Activities
-
-
-
-- Practice clicking games
-
-- Type simple words
-
-- Play keyboard games
-
-- Create a document
-
-
-
-## Remember
-
-
-
-- Practice makes perfect
-
-- Be gentle with equipment
-
-- Take your time
-
-- Have fun learning!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+Challenge yourself to use fewer blocks!`,
+      quizId: null,
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -1026,93 +898,130 @@ Let's learn to use computer tools properly!
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 3,
-      title: "Creating Digital Stories",
-      emoji: '📖',
-      content: `# Creating Digital Stories 📖
+      title: "Blockly Bird",
+      emoji: '🐦',
+      content: `# Blockly Bird 🐦
 
+Help the bird catch worms!
 
+In Bird, you'll learn about conditionals and loops by helping a bird catch worms while avoiding obstacles.
 
-Let's make stories on the computer!
+## Instructions
 
+- Use conditionals to check for worms
+- Use loops to repeat actions
+- Guide the bird to catch all the worms
+- Avoid obstacles and complete each level
 
-
-## What is a Digital Story?
-
-
-
-A digital story is a story you create using technology!
-
-
-
-## Parts of a Story
-
-
-
-- **Beginning** - How it starts 📖
-
-- **Middle** - What happens 📚
-
-- **End** - How it finishes 📕
-
-
-
-## Adding Pictures
-
-
-
-- Draw your own pictures 🎨
-
-- Use clip art
-
-- Add photos
-
-- Make it colorful!
-
-
-
-## Adding Words
-
-
-
-- Write your story
-
-- Type it on the computer
-
-- Add speech bubbles
-
-- Make it interesting!
-
-
-
-## Fun Activities
-
-
-
-- Write a story about yourself
-
-- Add pictures to your story
-
-- Share your story with others
-
-- Make a storybook
-
-
-
-## Remember
-
-
-
-- Stories have a beginning, middle, and end
-
-- Pictures make stories more fun
-
-- You can be creative!
-
-- Digital stories are fun to make!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+Think carefully about your code!`,
+      quizId: null,
+      assessmentType: null,
       categoryId: null,
-    })
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'technology',
+      lessonNumber: 4,
+      title: "Blockly Turtle",
+      emoji: '🐢',
+      content: `# Blockly Turtle 🐢
+
+Draw pictures with code!
+
+In Turtle, you'll learn to draw shapes and patterns by programming a turtle to move and draw.
+
+## Instructions
+
+- Use movement blocks to move the turtle
+- Use drawing blocks to create lines
+- Try using loops to create patterns
+- Experiment with angles and distances
+
+Create beautiful art with code!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'technology',
+      lessonNumber: 5,
+      title: "Blockly Movie",
+      emoji: '🎬',
+      content: `# Blockly Movie 🎬
+
+Create animations with code!
+
+In Movie, you'll learn to create animations by programming characters to move and interact.
+
+## Instructions
+
+- Use blocks to control character movement
+- Create sequences of actions
+- Use timing blocks to control speed
+- Make your own animated stories
+
+Bring your stories to life!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'technology',
+      lessonNumber: 6,
+      title: "Blockly Pond Tutor",
+      emoji: '🦆',
+      content: `# Blockly Pond Tutor 🦆
+
+Learn JavaScript with visual blocks!
+
+In Pond Tutor, you'll learn JavaScript programming concepts using visual blocks that translate to real code.
+
+## Instructions
+
+- Follow the tutorial to learn JavaScript
+- See how blocks translate to code
+- Complete exercises to practice
+- Build your programming skills
+
+Learn real programming concepts!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'technology',
+      lessonNumber: 7,
+      title: "Blockly Pond",
+      emoji: '🌊',
+      content: `# Blockly Pond 🌊
+
+Write JavaScript code to compete!
+
+In Pond, you'll write JavaScript code to compete in a duck racing game.
+
+## Instructions
+
+- Write JavaScript code directly
+- Use functions and variables
+- Optimize your code for speed
+- Compete with others or yourself
+
+Master JavaScript programming!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
 
   ];
 }

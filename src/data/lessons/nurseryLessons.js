@@ -309,6 +309,84 @@ Click the button below to start the game!`,
     new Lesson({
       id: lessonId++,
       yearId: 'nursery',
+      subjectId: 'technology',
+      lessonNumber: 3,
+      title: "WASD Game",
+      emoji: '⌨️',
+      content: `# WASD Game ⌨️
+
+Welcome to the WASD Keyboard Game!
+
+Press the matching keys as letters appear on screen. Use W, A, S, D keys only!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'technology',
+      lessonNumber: 4,
+      title: "A-Z Game",
+      emoji: '🔤',
+      content: `# A-Z Game 🔤
+
+Welcome to the A-Z Keyboard Game!
+
+Type the letters A to Z in order as they appear on screen.`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'technology',
+      lessonNumber: 5,
+      title: "Numbers Game",
+      emoji: '🔢',
+      content: `# Numbers Game 🔢
+
+Welcome to the Numbers Keyboard Game!
+
+Type the numbers 0 to 9 in order as they appear on screen.`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'technology',
+      lessonNumber: 6,
+      title: "Symbols Game",
+      emoji: '🔣',
+      content: `# Symbols Game 🔣
+
+Welcome to the Symbols Keyboard Game!
+
+Type the symbols using Shift + number keys:
+- ! = Shift + 1
+- " = Shift + 2
+- £ = Shift + 3
+- $ = Shift + 4
+- % = Shift + 5
+- ^ = Shift + 6
+- & = Shift + 7
+- * = Shift + 8
+- ( = Shift + 9
+- ) = Shift + 0`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
       subjectId: 'english',
       lessonNumber: 1,
       title: "Learning the Alphabet",

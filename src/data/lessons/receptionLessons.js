@@ -957,83 +957,13 @@ Let's learn about famous people from stories!
       yearId: 'reception',
       subjectId: 'technology',
       lessonNumber: 1,
-      title: "Using a Computer",
-      emoji: '💻',
-      content: `# Using a Computer 💻
+      title: "Digital Drawing",
+      emoji: '🎨',
+      content: `# Digital Drawing 🎨
 
-
-
-Computers help us learn and play!
-
-
-
-## Parts of a Computer
-
-
-
-- **Screen** - Shows pictures and words 📺
-
-- **Keyboard** - Has letters and numbers ⌨️
-
-- **Mouse** - Helps us click and move 🖱️
-
-- **Buttons** - Turn the computer on and off 🔘
-
-
-
-## What Can We Do?
-
-
-
-- Play learning games 🎮
-
-- Watch videos 📹
-
-- Draw pictures 🎨
-
-- Learn new things 📚
-
-
-
-## Computer Safety
-
-
-
-- Ask a grown-up before using
-
-- Don't click on strange things
-
-- Take breaks from the screen
-
-- Be gentle with the computer
-
-
-
-## Fun Activities
-
-
-
-- Practice using the mouse
-
-- Type your name on the keyboard
-
-- Play educational games
-
-- Draw on the computer
-
-
-
-## Remember
-
-
-
-- Computers are tools to help us learn
-
-- Always ask for help if needed
-
-- Have fun exploring!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+Draw a square on the canvas!`,
+      quizId: null,
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -1046,81 +976,9 @@ Computers help us learn and play!
       emoji: '🎨',
       content: `# Digital Drawing 🎨
 
-
-
-Let's draw pictures on the computer!
-
-
-
-## Drawing Tools
-
-
-
-- **Paintbrush** - Draw lines and shapes 🖌️
-
-- **Colors** - Choose different colors 🎨
-
-- **Shapes** - Draw circles, squares, triangles ⭕
-
-- **Eraser** - Fix mistakes 🧹
-
-
-
-## What Can We Draw?
-
-
-
-- Your family 👨‍👩‍👧‍👦
-
-- Your favorite animal 🐱
-
-- Your house 🏠
-
-- Your favorite toy 🧸
-
-
-
-## Practice
-
-
-
-1. Open a drawing program
-
-2. Choose your colors
-
-3. Draw your picture
-
-4. Save your work!
-
-
-
-## Fun Activities
-
-
-
-- Draw a self-portrait
-
-- Draw your family
-
-- Draw your favorite story
-
-- Make a colorful picture
-
-
-
-## Remember
-
-
-
-- Digital drawing is fun!
-
-- You can undo mistakes
-
-- Save your artwork
-
-- Practice makes perfect!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+Draw a triangle on the canvas!`,
+      quizId: null,
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -1129,85 +987,58 @@ Let's draw pictures on the computer!
       yearId: 'reception',
       subjectId: 'technology',
       lessonNumber: 3,
-      title: "Staying Safe Online",
-      emoji: '🛡️',
-      content: `# Staying Safe Online 🛡️
+      title: "Digital Drawing",
+      emoji: '🎨',
+      content: `# Digital Drawing 🎨
 
+Draw a rectangle on the canvas!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
 
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'technology',
+      lessonNumber: 4,
+      title: "Digital Drawing",
+      emoji: '🎨',
+      content: `# Digital Drawing 🎨
 
-It's important to be safe when using technology!
+Draw a pentagon on the canvas!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
 
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'technology',
+      lessonNumber: 5,
+      title: "Digital Drawing",
+      emoji: '🎨',
+      content: `# Digital Drawing 🎨
 
+Draw a hexagon on the canvas!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
 
-## Safety Rules
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'technology',
+      lessonNumber: 6,
+      title: "Digital Drawing",
+      emoji: '🎨',
+      content: `# Digital Drawing 🎨
 
-
-
-1. **Always ask a grown-up** before going online
-
-2. **Never share your name** with strangers
-
-3. **Don't click on pop-ups** or strange links
-
-4. **Tell a grown-up** if something makes you feel uncomfortable
-
-
-
-## Safe Things to Do
-
-
-
-- Play approved games ✅
-
-- Watch educational videos ✅
-
-- Learn with apps ✅
-
-- Draw and create ✅
-
-
-
-## Things to Avoid
-
-
-
-- Talking to strangers ❌
-
-- Sharing personal information ❌
-
-- Clicking unknown links ❌
-
-- Being online without permission ❌
-
-
-
-## Fun Activities
-
-
-
-- Practice asking for permission
-
-- Learn about safe websites
-
-- Talk about online safety
-
-- Make a safety poster
-
-
-
-## Remember
-
-
-
-- Safety comes first!
-
-- Always ask for help
-
-- Grown-ups are there to protect you
-
-- Technology is fun when used safely!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+Draw an octagon on the canvas!`,
+      quizId: null,
+      assessmentType: null,
       categoryId: null,
     })
 

@@ -4,13 +4,15 @@ import useDataStore from '../store/dataStore';
 import MarkdownWithYouTube from '../components/MarkdownWithYouTube';
 import ClickingGame from '../components/ClickingGame';
 import KeyboardGame from '../components/KeyboardGame';
+import DrawingGame from '../components/DrawingGame';
+import BlocklyEmbed from '../components/BlocklyEmbed';
+import InfoButton from '../components/InfoButton';
 
 function LessonViewScreen() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
   const lesson = useDataStore(state => state.getLesson(parseInt(lessonId)));
   const trackLessonAccess = useDataStore(state => state.trackLessonAccess);
-  const getSubjectProgress = useDataStore(state => state.getSubjectProgress);
   
   // Track lesson access when component mounts
   useEffect(() => {
@@ -19,8 +21,6 @@ function LessonViewScreen() {
     }
   }, [lesson, trackLessonAccess]);
   
-  const subjectProgress = lesson ? getSubjectProgress(lesson.subjectId) : null;
-
   if (!lesson) {
     return (
       <div style={{ padding: '20px', textAlign: 'center' }}>
@@ -34,71 +34,28 @@ function LessonViewScreen() {
 
   return (
     <div style={{
-      maxWidth: '1000px',
-      margin: '0 auto',
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
       padding: '20px',
+      width: '100%',
+      overflow: 'hidden',
+      minHeight: 0,
+      alignItems: 'center',
     }}>
-      {/* Subject Progress Stats */}
-      {subjectProgress && (
-        <div style={{
-          marginBottom: '20px',
-          padding: '15px 20px',
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '10px',
-          }}>
-            <h3 style={{
-              margin: 0,
-              fontSize: '16px',
-              color: '#333',
-              fontWeight: '600',
-            }}>
-              Subject Progress
-            </h3>
-            <span style={{
-              fontSize: '18px',
-              fontWeight: 'bold',
-              color: '#007bff',
-            }}>
-              {Math.round(subjectProgress.progressPercentage)}%
-            </span>
-          </div>
-          <div style={{
-            width: '100%',
-            height: '8px',
-            backgroundColor: '#e0e0e0',
-            borderRadius: '4px',
-            overflow: 'hidden',
-          }}>
-            <div style={{
-              width: `${subjectProgress.progressPercentage}%`,
-              height: '100%',
-              backgroundColor: '#007bff',
-              transition: 'width 0.3s',
-            }} />
-          </div>
-          <div style={{
-            marginTop: '8px',
-            fontSize: '14px',
-            color: '#666',
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}>
-            <span>{subjectProgress.completedCount} of {subjectProgress.totalLessons} lessons completed</span>
-          </div>
-        </div>
-      )}
-      
+      <div style={{
+        width: '100%',
+        maxWidth: '1000px',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        minHeight: 0,
+      }}>
       {/* Header */}
       <div style={{
-        marginBottom: '30px',
-        paddingBottom: '20px',
+        flexShrink: 0,
+        marginBottom: '20px',
+        paddingBottom: '15px',
         borderBottom: '2px solid #e0e0e0',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
@@ -125,6 +82,10 @@ function LessonViewScreen() {
       {/* Lesson Content with YouTube Embeds or Special Components */}
       {lesson.title === 'Clicking Game' ? (
         <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
           backgroundColor: 'white',
           padding: '30px',
           borderRadius: '8px',
@@ -132,14 +93,70 @@ function LessonViewScreen() {
         }}>
           <ClickingGame lesson={lesson} />
         </div>
-      ) : lesson.title === 'Keyboard Game' ? (
+      ) : lesson.title === 'Keyboard Game' || lesson.title === 'WASD Game' || lesson.title === 'A-Z Game' || lesson.title === 'Numbers Game' || lesson.title === 'Symbols Game' ? (
         <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
           backgroundColor: 'white',
           padding: '30px',
           borderRadius: '8px',
           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         }}>
           <KeyboardGame lesson={lesson} />
+        </div>
+      ) : lesson.title === 'Digital Drawing' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '30px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <DrawingGame lesson={lesson} />
+        </div>
+      ) : lesson.title?.startsWith('Blockly') ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          overflow: 'hidden',
+          position: 'relative',
+        }}>
+          {/* Info button with instructions */}
+          <InfoButton content={lesson.content} title={lesson.title} />
+          
+          {/* Blockly game - takes full space */}
+          <div style={{ 
+            flex: 1,
+            minHeight: 0,
+            padding: '20px 30px',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            {(() => {
+              // Map lesson titles to their HTML file paths
+              const blocklyGameMap = {
+                'Blockly Puzzle': '/blockly-games/en/puzzle.html',
+                'Blockly Maze': '/blockly-games/en/maze.html',
+                'Blockly Bird': '/blockly-games/en/bird.html',
+                'Blockly Turtle': '/blockly-games/en/turtle.html',
+                'Blockly Movie': '/blockly-games/en/movie.html',
+                'Blockly Pond Tutor': '/blockly-games/en/pond-tutor.html',
+                'Blockly Pond': '/blockly-games/en/pond-duck.html',
+              };
+              const gameUrl = blocklyGameMap[lesson.title] || '/blockly-games/en/puzzle.html';
+              return <BlocklyEmbed url={gameUrl} height="100%" isLocal={true} />;
+            })()}
+          </div>
         </div>
       ) : (
         <div style={{
@@ -156,7 +173,8 @@ function LessonViewScreen() {
       {/* Quiz Button */}
       {lesson.quizId && (
         <div style={{
-          marginTop: '30px',
+          flexShrink: 0,
+          marginTop: '20px',
           display: 'flex',
           justifyContent: 'center',
         }}>
@@ -177,6 +195,7 @@ function LessonViewScreen() {
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 }

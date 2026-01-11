@@ -7,7 +7,7 @@ import { extractYouTubeVideosFromContent } from '../utils/youtube';
  * Markdown component that automatically embeds YouTube videos
  * Replaces YouTube links with embedded video players
  */
-function MarkdownWithYouTube({ content }) {
+function MarkdownWithYouTube({ content, removeTitle = true }) {
   if (!content) return null;
 
   // Extract all YouTube videos from content
@@ -23,6 +23,27 @@ function MarkdownWithYouTube({ content }) {
     // Replace the markdown link with placeholder (keep newlines for proper parsing)
     processedContent = processedContent.replace(video.fullMatch, placeholder);
   });
+
+  // Remove the first heading (title) if removeTitle is true
+  if (removeTitle) {
+    const lines = processedContent.split('\n');
+    let titleRemoved = false;
+    processedContent = lines
+      .filter((line, index) => {
+        // Skip the first line if it starts with #
+        if (!titleRemoved && line.trim().startsWith('#')) {
+          titleRemoved = true;
+          return false;
+        }
+        // Skip the next line if it's empty and we just removed a title
+        if (titleRemoved && index === 1 && line.trim() === '') {
+          return false;
+        }
+        return true;
+      })
+      .join('\n')
+      .trim();
+  }
 
   // Custom renderer for ReactMarkdown that handles YouTube placeholders
   const components = {

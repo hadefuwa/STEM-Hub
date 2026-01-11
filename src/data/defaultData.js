@@ -9,6 +9,7 @@ import { getYear3Lessons } from './lessons/year3Lessons.js';
 import { getYear4Lessons } from './lessons/year4Lessons.js';
 import { getYear5Lessons } from './lessons/year5Lessons.js';
 import { getYear6Lessons } from './lessons/year6Lessons.js';
+import { getDefaultQuizzes } from './defaultQuizzes.js';
 
 /**
  * Get default data structure
@@ -18,7 +19,7 @@ export const getDefaultData = () => {
   return {
     students: [],
     lessons: getDefaultLessons(),
-    quizzes: getDefaultQuizzes(),
+    quizzes: getDefaultQuizzesData(),
     progress: [],
     videoResources: [],
   };
@@ -79,24 +80,10 @@ function getDefaultLessons() {
   return allLessons.map(l => l.toJSON());
 }
 
-function getDefaultQuizzes() {
-  // Placeholder quiz for testing
-  return [
-    {
-      id: 1,
-      title: 'Sample Quiz',
-      category: 'general',
-      ageGroup: 5,
-      questions: [
-        {
-          id: 1,
-          quizId: 1,
-          questionText: 'What is 2 + 2?',
-          options: ['3', '4', '5', '6'],
-          correctAnswerIndex: 1,
-        },
-      ],
-    },
-  ];
+function getDefaultQuizzesData() {
+  // Get all quizzes starting from ID 1
+  const quizzes = getDefaultQuizzes(1, 1);
+  // Convert to JSON format
+  return quizzes.map(q => q.toJSON());
 }
 

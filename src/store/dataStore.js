@@ -35,6 +35,26 @@ const useDataStore = create((set, get) => ({
       // Convert to AppData instance
       const appData = AppData.fromJSON(loadedData);
 
+      // If no lessons exist, this is a fresh install - use default data directly
+      if (!appData.lessons || appData.lessons.length === 0) {
+        console.log('[DataStore] No lessons found, using default data');
+        const defaultData = AppData.fromJSON(getDefaultData());
+        set({ 
+          data: defaultData, 
+          initialized: true, 
+          loading: false 
+        });
+        // Save the default data
+        if (window.electronAPI) {
+          try {
+            await window.electronAPI.saveData(defaultData.toJSON());
+          } catch (error) {
+            console.error('Error saving default data:', error);
+          }
+        }
+        return;
+      }
+
       // Merge default lessons (add any missing lessons)
       await state._mergeDefaultLessons(appData);
 
@@ -55,84 +75,107 @@ const useDataStore = create((set, get) => ({
   },
 
   // Merge default lessons into existing data
+  // Always replaces lessons and quizzes with default data to ensure updates are applied
+  // Preserves user data: students and progress
   _mergeDefaultLessons: async (appData) => {
     const defaultData = AppData.fromJSON(getDefaultData());
+    
+    // Check if lessons or quizzes have changed by comparing counts, IDs, and content
+    const existingLessonCount = appData.lessons.length;
+    const defaultLessonCount = defaultData.lessons.length;
+    const existingQuizCount = appData.quizzes.length;
+    const defaultQuizCount = defaultData.quizzes.length;
+    
+    // Compare lesson IDs to detect new/removed lessons
     const existingLessonIds = new Set(appData.lessons.map(l => l.id));
+    const defaultLessonIds = new Set(defaultData.lessons.map(l => l.id));
+    const lessonIdsMatch = existingLessonIds.size === defaultLessonIds.size && 
+      [...defaultLessonIds].every(id => existingLessonIds.has(id));
+    
+    // Compare quiz IDs to detect new/removed quizzes
     const existingQuizIds = new Set(appData.quizzes.map(q => q.id));
+    const defaultQuizIds = new Set(defaultData.quizzes.map(q => q.id));
+    const quizIdsMatch = existingQuizIds.size === defaultQuizIds.size && 
+      [...defaultQuizIds].every(id => existingQuizIds.has(id));
     
-    // Create a map of existing lessons by year/subject/lessonNumber for better matching
-    const existingLessonsMap = new Map();
-    appData.lessons.forEach(lesson => {
-      const key = `${lesson.yearId}|${lesson.subjectId}|${lesson.lessonNumber}`;
-      existingLessonsMap.set(key, lesson);
-    });
-
-    let hasChanges = false;
-
-    // Add missing lessons - check both by ID and by year/subject/lessonNumber
-    for (const defaultLesson of defaultData.lessons) {
-      const key = `${defaultLesson.yearId}|${defaultLesson.subjectId}|${defaultLesson.lessonNumber}`;
-      const existingByKey = existingLessonsMap.get(key);
+    // Check if lesson content has changed by comparing all lessons
+    // This catches updates to existing lessons (e.g., content changes, title changes)
+    let lessonsContentChanged = false;
+    if (lessonIdsMatch && existingLessonCount === defaultLessonCount) {
+      // Compare all lessons to detect content changes
+      for (const defaultLesson of defaultData.lessons) {
+        const existingLesson = appData.lessons.find(l => l.id === defaultLesson.id);
+        if (!existingLesson) {
+          lessonsContentChanged = true;
+          break;
+        }
+        // Compare key properties that might change
+        if (existingLesson.title !== defaultLesson.title ||
+            existingLesson.content !== defaultLesson.content ||
+            existingLesson.emoji !== defaultLesson.emoji ||
+            existingLesson.lessonNumber !== defaultLesson.lessonNumber ||
+            existingLesson.subjectId !== defaultLesson.subjectId ||
+            existingLesson.yearId !== defaultLesson.yearId) {
+          lessonsContentChanged = true;
+          break;
+        }
+      }
+    }
+    
+    // Check if quiz content has changed
+    let quizzesContentChanged = false;
+    if (quizIdsMatch && existingQuizCount === defaultQuizCount) {
+      for (const defaultQuiz of defaultData.quizzes) {
+        const existingQuiz = appData.quizzes.find(q => q.id === defaultQuiz.id);
+        if (!existingQuiz) {
+          quizzesContentChanged = true;
+          break;
+        }
+        // Compare key properties
+        if (existingQuiz.title !== defaultQuiz.title ||
+            JSON.stringify(existingQuiz.questions) !== JSON.stringify(defaultQuiz.questions)) {
+          quizzesContentChanged = true;
+          break;
+        }
+      }
+    }
+    
+    const hasChanges = !lessonIdsMatch || !quizIdsMatch || 
+                       lessonsContentChanged || quizzesContentChanged ||
+                       existingLessonCount !== defaultLessonCount || 
+                       existingQuizCount !== defaultQuizCount;
+    
+    if (hasChanges) {
+      console.log('[DataStore] Default lessons/quizzes have changed, updating data.json');
+      console.log(`[DataStore] Lessons: ${existingLessonCount} -> ${defaultLessonCount}`);
+      console.log(`[DataStore] Quizzes: ${existingQuizCount} -> ${defaultQuizCount}`);
+      if (lessonsContentChanged) {
+        console.log('[DataStore] Lesson content has been updated');
+      }
+      if (quizzesContentChanged) {
+        console.log('[DataStore] Quiz content has been updated');
+      }
       
-      // Add if not found by ID AND not found by year/subject/lessonNumber
-      if (!existingLessonIds.has(defaultLesson.id) && !existingByKey) {
-        appData.lessons.push(defaultLesson);
-        hasChanges = true;
-      } else if (existingByKey && existingByKey.title !== defaultLesson.title) {
-        // Update existing lesson if title changed (e.g., clicking game was added)
-        const index = appData.lessons.findIndex(l => l.id === existingByKey.id);
-        if (index !== -1) {
-          appData.lessons[index] = defaultLesson;
-          hasChanges = true;
+      // Replace lessons and quizzes with default data
+      // This ensures new lessons are always included and existing lessons are updated
+      appData.lessons = [...defaultData.lessons];
+      appData.quizzes = [...defaultData.quizzes];
+      
+      // Preserve user data (students and progress remain unchanged)
+      // Progress references lesson IDs, so it will still work with updated lessons
+      
+      // Save the updated data
+      if (window.electronAPI) {
+        try {
+          const jsonData = appData.toJSON();
+          await window.electronAPI.saveData(jsonData);
+          console.log('[DataStore] Data.json updated successfully with latest lessons and quizzes');
+        } catch (error) {
+          console.error('Error saving updated data:', error);
         }
       }
-    }
-    
-    // Deduplicate lessons - remove any duplicates based on year/subject/lessonNumber/categoryId
-    // Keep the first occurrence, but prefer default lessons if they exist
-    const seenKeys = new Set();
-    const deduplicatedLessons = [];
-    const defaultLessonsMap = new Map();
-    defaultData.lessons.forEach(dl => {
-      const key = `${dl.yearId}|${dl.subjectId}|${dl.lessonNumber}|${dl.categoryId || ''}`;
-      defaultLessonsMap.set(key, dl);
-    });
-    
-    for (const lesson of appData.lessons) {
-      const key = `${lesson.yearId}|${lesson.subjectId}|${lesson.lessonNumber}|${lesson.categoryId || ''}`;
-      if (!seenKeys.has(key)) {
-        seenKeys.add(key);
-        // Prefer default lesson if it exists for this key
-        const defaultLesson = defaultLessonsMap.get(key);
-        if (defaultLesson) {
-          deduplicatedLessons.push(defaultLesson);
-        } else {
-          deduplicatedLessons.push(lesson);
-        }
-      }
-    }
-    
-    if (deduplicatedLessons.length !== appData.lessons.length) {
-      appData.lessons = deduplicatedLessons;
-      hasChanges = true;
-    }
-
-    // Add missing quizzes
-    for (const defaultQuiz of defaultData.quizzes) {
-      if (!existingQuizIds.has(defaultQuiz.id)) {
-        appData.quizzes.push(defaultQuiz);
-        hasChanges = true;
-      }
-    }
-
-    // Save if changes were made
-    if (hasChanges && window.electronAPI) {
-      try {
-        const jsonData = appData.toJSON();
-        await window.electronAPI.saveData(jsonData);
-      } catch (error) {
-        console.error('Error saving merged data:', error);
-      }
+    } else {
+      console.log('[DataStore] No changes detected in default lessons/quizzes');
     }
   },
 
@@ -399,13 +442,13 @@ const useDataStore = create((set, get) => ({
     let currentYearId = null;
     let currentLessonNumber = null;
     
+    // Count ALL completed lessons, not just consecutive ones
     for (const lesson of allLessons) {
       if (state.hasCompletedLesson(userId, lesson.yearId, lesson.subjectId, lesson.lessonNumber)) {
         completedCount++;
+        // Track the last completed lesson
         currentYearId = lesson.yearId;
         currentLessonNumber = lesson.lessonNumber;
-      } else {
-        break; // Found first uncompleted lesson
       }
     }
     

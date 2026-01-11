@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
 
 function TopNavigation() {
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
@@ -142,6 +145,56 @@ function TopNavigation() {
     }
   };
 
+  const handleMarkCompleted = async () => {
+    if (passwordInput !== 'password123') {
+      setPasswordError('Incorrect password. Please try again.');
+      return;
+    }
+
+    // Wait a moment for lesson data to load if needed
+    let currentLesson = lesson || (lessonId ? getLesson(lessonId) : null);
+    
+    if (!currentLesson && lessonId) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      currentLesson = getLesson(lessonId);
+    }
+
+    if (!currentLesson) {
+      setPasswordError('Could not find lesson. Please try again.');
+      return;
+    }
+
+    try {
+      const userId = getUserId();
+      const progressId = getNextProgressId();
+      const progress = new Progress({
+        id: progressId,
+        studentId: userId,
+        activityType: 'Lesson',
+        activityId: currentLesson.id,
+        yearId: currentLesson.yearId,
+        subjectId: currentLesson.subjectId,
+        lessonNumber: currentLesson.lessonNumber,
+        isCompleted: true,
+        completedAt: new Date(),
+        score: 100,
+      });
+      await addProgress(progress);
+      await saveData();
+      
+      // Close modal and reset
+      setShowPasswordModal(false);
+      setPasswordInput('');
+      setPasswordError('');
+      
+      // Refresh the page to show updated completion status
+      window.location.reload();
+    } catch (error) {
+      console.error('Error marking lesson as completed:', error);
+      setPasswordError('An error occurred. Please try again.');
+    }
+  };
+
   const handleBack = () => {
     if (location.pathname === '/') {
       // Already on homepage, do nothing
@@ -201,21 +254,131 @@ function TopNavigation() {
       </div>
       
       {isLessonPage && (
-        <button
-          onClick={handleSkipLesson}
-          style={{
-            padding: '8px 20px',
-            backgroundColor: '#ffc107',
-            color: '#333',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '14px',
-            fontWeight: 'bold',
-          }}
-        >
-          Skip Lesson →
-        </button>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <button
+            onClick={() => setShowPasswordModal(true)}
+            style={{
+              padding: '8px 20px',
+              backgroundColor: '#6c757d',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold',
+            }}
+          >
+            🔒 Mark Completed
+          </button>
+          <button
+            onClick={handleSkipLesson}
+            style={{
+              padding: '8px 20px',
+              backgroundColor: '#ffc107',
+              color: '#333',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: 'bold',
+            }}
+          >
+            Skip Lesson →
+          </button>
+        </div>
+      )}
+      
+      {/* Password Modal */}
+      {showPasswordModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+            maxWidth: '400px',
+            width: '90%',
+          }}>
+            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>Parental Override</h3>
+            <p style={{ marginBottom: '15px', color: '#666' }}>
+              Enter password to mark this lesson as completed:
+            </p>
+            <input
+              type="password"
+              value={passwordInput}
+              onChange={(e) => {
+                setPasswordInput(e.target.value);
+                setPasswordError('');
+              }}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  handleMarkCompleted();
+                }
+              }}
+              placeholder="Enter password"
+              style={{
+                width: '100%',
+                padding: '10px',
+                fontSize: '16px',
+                border: '1px solid #ddd',
+                borderRadius: '4px',
+                marginBottom: '10px',
+              }}
+              autoFocus
+            />
+            {passwordError && (
+              <p style={{ color: '#dc3545', marginBottom: '10px', fontSize: '14px' }}>
+                {passwordError}
+              </p>
+            )}
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+              <button
+                onClick={() => {
+                  setShowPasswordModal(false);
+                  setPasswordInput('');
+                  setPasswordError('');
+                }}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#6c757d',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleMarkCompleted}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#28a745',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                }}
+              >
+                Mark Completed
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

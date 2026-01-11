@@ -19,7 +19,7 @@ A cross-platform homeschool learning management application built with **React**
 - **📱 Cross-Platform**: Runs on Windows, macOS, and Linux
 
 ### Upcoming Features
-- **🔊 Text-to-Speech (TTS)**: Read quiz questions and answers aloud (see [TTS_IMPLEMENTATION_PLAN.md](./TTS_IMPLEMENTATION_PLAN.md))
+- **🔊 Text-to-Speech (TTS)**: Read quiz questions and answers aloud (see [TTS_IMPLEMENTATION_PLAN.md](./docs/TTS_IMPLEMENTATION_PLAN.md))
 - Enhanced accessibility features
 - More interactive learning games
 
@@ -154,10 +154,9 @@ homeschool-hub-electron/
 │   └── videos/          # Local video files
 ├── scripts/              # Utility scripts
 │   └── convert-*.js     # Data conversion scripts
-├── lib/                  # Flutter/Dart code (legacy/alternative version)
+├── docs/                 # Documentation and planning documents
 ├── package.json          # Node.js dependencies and scripts
-├── vite.config.js       # Vite configuration
-└── TTS_IMPLEMENTATION_PLAN.md  # Text-to-Speech implementation plan
+└── vite.config.js       # Vite configuration
 ```
 
 ## 💾 Data Storage
@@ -223,7 +222,7 @@ The app supports hot module replacement in development mode. Changes to React co
 - [x] Basic lesson and quiz functionality
 - [x] Progress tracking
 - [x] Video integration
-- [ ] **Text-to-Speech (TTS)** - See [TTS_IMPLEMENTATION_PLAN.md](./TTS_IMPLEMENTATION_PLAN.md)
+- [ ] **Text-to-Speech (TTS)** - See [TTS_IMPLEMENTATION_PLAN.md](./docs/TTS_IMPLEMENTATION_PLAN.md)
 - [ ] Enhanced accessibility features
 - [ ] More interactive games
 - [ ] Export/import progress
@@ -231,9 +230,9 @@ The app supports hot module replacement in development mode. Changes to React co
 
 ## 📖 Documentation
 
-- [TTS Implementation Plan](./TTS_IMPLEMENTATION_PLAN.md) - Detailed plan for adding text-to-speech functionality
-- [Electron Setup Guide](./ELECTRON_SETUP.md) - Electron-specific setup instructions
-- [Conversion Plan](./CONVERSION_PLAN.md) - Migration and conversion documentation
+- [TTS Implementation Plan](./docs/TTS_IMPLEMENTATION_PLAN.md) - Detailed plan for adding text-to-speech functionality
+- [Electron Setup Guide](./docs/ELECTRON_SETUP.md) - Electron-specific setup instructions
+- [Conversion Plan](./docs/CONVERSION_PLAN.md) - Migration and conversion documentation
 
 ## 🐛 Troubleshooting
 
@@ -274,4 +273,4 @@ For questions or issues, please open an issue on GitHub.
 
 ---
 
-**Note**: This app also includes Flutter/Dart code in the `lib/` directory, which represents an alternative implementation. The current active version uses React with Electron.
+**Note**: This app was originally built with Flutter/Dart but has been migrated to React with Electron. The legacy code has been removed.

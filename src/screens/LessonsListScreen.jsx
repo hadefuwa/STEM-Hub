@@ -17,6 +17,9 @@ function LessonsListScreen() {
     subjectId ? state.getAllLessonsForSubject(subjectId) : []
   );
   
+  // Subscribe to progress data to ensure re-renders when progress changes
+  const progress = useDataStore(state => state.data?.progress || []);
+  
   const subjectProgress = useDataStore(state => 
     subjectId ? state.getSubjectProgress(subjectId) : null
   );
@@ -40,10 +43,18 @@ function LessonsListScreen() {
 
   return (
     <div style={{
-      maxWidth: '1200px',
-      margin: '0 auto',
+      flex: 1,
+      overflowY: 'auto',
       padding: '20px',
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '1200px',
+      }}>
       <div style={{
         marginBottom: '30px',
       }}>
@@ -291,6 +302,7 @@ function LessonsListScreen() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

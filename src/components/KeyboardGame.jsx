@@ -10,11 +10,29 @@ const ARROWS = {
   right: '➡️',
 };
 
+const WASD_LETTERS = {
+  up: 'W',
+  down: 'S',
+  left: 'A',
+  right: 'D',
+};
+
 const KEY_MAPPINGS = {
   'ArrowUp': 'up',
   'ArrowDown': 'down',
   'ArrowLeft': 'left',
   'ArrowRight': 'right',
+  'w': 'up',
+  'W': 'up',
+  's': 'down',
+  'S': 'down',
+  'a': 'left',
+  'A': 'left',
+  'd': 'right',
+  'D': 'right',
+};
+
+const WASD_KEY_MAPPINGS = {
   'w': 'up',
   'W': 'up',
   's': 'down',
@@ -32,32 +50,159 @@ function KeyboardGame({ lesson }) {
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
+  
+  // Determine game modes
+  const isWASDMode = lesson && lesson.yearId === 'nursery' && lesson.lessonNumber === 3 && lesson.subjectId === 'technology';
+  const isAZMode = lesson && lesson.yearId === 'nursery' && lesson.lessonNumber === 4 && lesson.subjectId === 'technology';
+  const isNumbersMode = lesson && lesson.yearId === 'nursery' && lesson.lessonNumber === 5 && lesson.subjectId === 'technology';
+  const isSymbolsMode = lesson && lesson.yearId === 'nursery' && lesson.lessonNumber === 6 && lesson.subjectId === 'technology';
+  
+  // A-Z letters array
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
+  
+  // Numbers array (0-9)
+  const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  const [currentNumberIndex, setCurrentNumberIndex] = useState(0);
+  
+  // Symbols that require shift
+  const symbols = ['!', '"', '£', '$', '%', '^', '&', '*', '(', ')'];
+  const symbolKeyMappings = {
+    '!': '1',
+    '"': '2',
+    '£': '3',
+    '$': '4',
+    '%': '5',
+    '^': '6',
+    '&': '7',
+    '*': '8',
+    '(': '9',
+    ')': '0',
+  };
+  const [currentSymbolIndex, setCurrentSymbolIndex] = useState(0);
+  
   const [score, setScore] = useState(0);
   const [correctKeys, setCorrectKeys] = useState(0);
   const [wrongKeys, setWrongKeys] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(45);
+  const [arrowCount, setArrowCount] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [currentArrow, setCurrentArrow] = useState(null);
+  const [currentLetter, setCurrentLetter] = useState(null);
+  const [currentNumber, setCurrentNumber] = useState(null);
+  const [currentSymbol, setCurrentSymbol] = useState(null);
   const [arrowId, setArrowId] = useState(null);
-  const gameTimerRef = useRef(null);
   const arrowTimerRef = useRef(null);
   const isPlayingRef = useRef(false);
   const isGameOverRef = useRef(false);
   const arrowIntervalRef = useRef(2000);
   const arrowLifetimeRef = useRef(2500);
+  const arrowCountRef = useRef(0);
   
   const initialArrowInterval = 2000; // Start at 2 seconds
-  const minArrowInterval = 800; // Get down to 0.8 seconds (much faster)
+  const fastArrowInterval = 1000; // After 8 arrows, speed up to 1 second
   const initialArrowLifetime = 2500; // Arrows stay for 2.5 seconds initially
-  const minArrowLifetime = 1200; // Get down to 1.2 seconds (much faster)
+  const fastArrowLifetime = 1500; // After 8 arrows, arrows stay for 1.5 seconds
 
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (!isPlayingRef.current || isGameOverRef.current) return;
       
       const key = e.key;
-      const direction = KEY_MAPPINGS[key];
+      const isShiftPressed = e.shiftKey;
+      
+      // Handle A-Z mode
+      if (isAZMode && currentLetter) {
+        const expectedKey = currentLetter.toUpperCase();
+        if (key.toUpperCase() === expectedKey) {
+          // Correct letter pressed
+          setCorrectKeys(prev => prev + 1);
+          setScore(prev => prev + 10);
+          setCurrentLetter(null);
+          
+          if (arrowTimerRef.current) {
+            clearTimeout(arrowTimerRef.current);
+          }
+          
+          // Move to next letter
+          if (currentLetterIndex < alphabet.length - 1) {
+            spawnNextLetter();
+          } else {
+            // Completed all letters
+            setTimeout(() => {
+              endGame();
+            }, 0);
+          }
+        } else if (key.length === 1 && /[A-Za-z]/.test(key)) {
+          // Wrong letter pressed
+          setWrongKeys(prev => prev + 1);
+        }
+        return;
+      }
+      
+      // Handle numbers mode
+      if (isNumbersMode && currentNumber) {
+        if (key === currentNumber) {
+          // Correct number pressed
+          setCorrectKeys(prev => prev + 1);
+          setScore(prev => prev + 10);
+          setCurrentNumber(null);
+          
+          if (arrowTimerRef.current) {
+            clearTimeout(arrowTimerRef.current);
+          }
+          
+          // Move to next number
+          if (currentNumberIndex < numbers.length - 1) {
+            spawnNextNumber();
+          } else {
+            // Completed all numbers
+            setTimeout(() => {
+              endGame();
+            }, 0);
+          }
+        } else if (/[0-9]/.test(key)) {
+          // Wrong number pressed
+          setWrongKeys(prev => prev + 1);
+        }
+        return;
+      }
+      
+      // Handle symbols mode
+      if (isSymbolsMode && currentSymbol) {
+        const expectedKey = symbolKeyMappings[currentSymbol];
+        if (isShiftPressed && key === expectedKey) {
+          // Correct symbol pressed with shift
+          setCorrectKeys(prev => prev + 1);
+          setScore(prev => prev + 10);
+          setCurrentSymbol(null);
+          
+          if (arrowTimerRef.current) {
+            clearTimeout(arrowTimerRef.current);
+          }
+          
+          // Move to next symbol
+          if (currentSymbolIndex < symbols.length - 1) {
+            spawnNextSymbol();
+          } else {
+            // Completed all symbols
+            setTimeout(() => {
+              endGame();
+            }, 0);
+          }
+        } else if (key === expectedKey && !isShiftPressed) {
+          // Correct key but missing shift
+          setWrongKeys(prev => prev + 1);
+        } else if (/[0-9]/.test(key) || key === 'Shift') {
+          // Wrong key pressed
+          setWrongKeys(prev => prev + 1);
+        }
+        return;
+      }
+      
+      // Handle arrow/WASD modes
+      const keyMappings = isWASDMode ? WASD_KEY_MAPPINGS : KEY_MAPPINGS;
+      const direction = keyMappings[key];
       
       if (direction && currentArrow === direction) {
         // Correct key pressed
@@ -71,12 +216,25 @@ function KeyboardGame({ lesson }) {
           clearTimeout(arrowTimerRef.current);
         }
         
-        // Schedule next arrow after interval
-        setTimeout(() => {
-          if (isPlayingRef.current && !isGameOverRef.current) {
+        // Schedule next arrow after interval (if not at 15 arrows yet)
+        // For WASD mode, show next letter immediately (no delay)
+        if (arrowCountRef.current < 15) {
+          if (isWASDMode) {
+            // Immediately show next letter for WASD mode
             spawnNextArrow();
+          } else {
+            setTimeout(() => {
+              if (isPlayingRef.current && !isGameOverRef.current) {
+                spawnNextArrow();
+              }
+            }, arrowIntervalRef.current);
           }
-        }, arrowIntervalRef.current);
+        } else {
+          // Game over after 15 arrows
+          setTimeout(() => {
+            endGame();
+          }, 0);
+        }
       } else if (direction) {
         // Wrong key pressed
         setWrongKeys(prev => prev + 1);
@@ -86,57 +244,118 @@ function KeyboardGame({ lesson }) {
     window.addEventListener('keydown', handleKeyPress);
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
-      if (gameTimerRef.current) clearInterval(gameTimerRef.current);
       if (arrowTimerRef.current) clearTimeout(arrowTimerRef.current);
     };
-  }, [currentArrow]);
+  }, [currentArrow, currentLetter, currentNumber, currentSymbol, currentLetterIndex, currentNumberIndex, currentSymbolIndex, isAZMode, isNumbersMode, isSymbolsMode, isWASDMode]);
 
   const startGame = () => {
     // Clear any existing timers
-    if (gameTimerRef.current) clearInterval(gameTimerRef.current);
     if (arrowTimerRef.current) clearTimeout(arrowTimerRef.current);
     
-    setIsPlaying(true);
-    setIsGameOver(false);
+    // Batch all state updates together to avoid multiple re-renders
     isPlayingRef.current = true;
     isGameOverRef.current = false;
+    arrowIntervalRef.current = initialArrowInterval;
+    arrowLifetimeRef.current = initialArrowLifetime;
+    
+    // Use a single state update batch
+    setIsPlaying(true);
+    setIsGameOver(false);
     setScore(0);
     setCorrectKeys(0);
     setWrongKeys(0);
-    setTimeRemaining(45);
+    arrowCountRef.current = 0;
+    setArrowCount(0);
     setCurrentArrow(null);
+    setCurrentLetter(null);
+    setCurrentNumber(null);
+    setCurrentSymbol(null);
+    setCurrentLetterIndex(0);
+    setCurrentNumberIndex(0);
+    setCurrentSymbolIndex(0);
     setArrowId(null);
-    arrowIntervalRef.current = initialArrowInterval;
-    arrowLifetimeRef.current = initialArrowLifetime;
 
-    // Game countdown timer - strict 45 second limit
-    gameTimerRef.current = setInterval(() => {
-      setTimeRemaining(prev => {
-        const newTime = prev - 1;
-        if (newTime <= 0) {
-          // Immediately end game when time reaches 0
-          endGame();
-          return 0;
-        }
-        // Update difficulty - more aggressive progression
-        const progress = (45 - newTime) / 45.0;
-        // Use exponential curve for more aggressive difficulty increase
-        const easedProgress = progress * progress; // Quadratic easing for faster progression
-        const newInterval = initialArrowInterval - (initialArrowInterval - minArrowInterval) * easedProgress;
-        const newLifetime = initialArrowLifetime - (initialArrowLifetime - minArrowLifetime) * easedProgress;
-        arrowIntervalRef.current = Math.max(newInterval, minArrowInterval);
-        arrowLifetimeRef.current = Math.max(newLifetime, minArrowLifetime);
-        return newTime;
-      });
-    }, 1000);
-
-    // Spawn first arrow immediately
-    setTimeout(() => spawnNextArrow(), 100);
+    // Spawn first item based on mode
+    setTimeout(() => {
+      if (isAZMode) {
+        spawnNextLetter();
+      } else if (isNumbersMode) {
+        spawnNextNumber();
+      } else if (isSymbolsMode) {
+        spawnNextSymbol();
+      } else {
+        spawnNextArrow();
+      }
+    }, 100);
+  };
+  
+  const spawnNextLetter = () => {
+    if (!isPlayingRef.current || isGameOverRef.current) return;
+    
+    if (currentLetterIndex >= alphabet.length) {
+      setTimeout(() => {
+        endGame();
+      }, 0);
+      return;
+    }
+    
+    const letter = alphabet[currentLetterIndex];
+    setCurrentLetter(letter);
+    setCurrentLetterIndex(prev => prev + 1);
+  };
+  
+  const spawnNextNumber = () => {
+    if (!isPlayingRef.current || isGameOverRef.current) return;
+    
+    if (currentNumberIndex >= numbers.length) {
+      setTimeout(() => {
+        endGame();
+      }, 0);
+      return;
+    }
+    
+    const number = numbers[currentNumberIndex];
+    setCurrentNumber(number);
+    setCurrentNumberIndex(prev => prev + 1);
+  };
+  
+  const spawnNextSymbol = () => {
+    if (!isPlayingRef.current || isGameOverRef.current) return;
+    
+    if (currentSymbolIndex >= symbols.length) {
+      setTimeout(() => {
+        endGame();
+      }, 0);
+      return;
+    }
+    
+    const symbol = symbols[currentSymbolIndex];
+    setCurrentSymbol(symbol);
+    setCurrentSymbolIndex(prev => prev + 1);
   };
 
   const spawnNextArrow = () => {
     if (!isPlayingRef.current || isGameOverRef.current) return;
 
+    // Don't spawn if we've already shown 15 arrows
+    if (arrowCountRef.current >= 15) {
+      setTimeout(() => {
+        endGame();
+      }, 0);
+      return;
+    }
+    
+    // Increment arrow count
+    arrowCountRef.current += 1;
+    setArrowCount(arrowCountRef.current);
+    
+    // Update speed after 8 arrows
+    if (arrowCountRef.current >= 8) {
+      arrowIntervalRef.current = fastArrowInterval;
+      arrowLifetimeRef.current = fastArrowLifetime;
+    }
+    
+    // Spawn the arrow
     const directions = ['up', 'down', 'left', 'right'];
     const randomDirection = directions[Math.floor(Math.random() * directions.length)];
     const newArrowId = Date.now() + Math.random();
@@ -146,22 +365,33 @@ function KeyboardGame({ lesson }) {
 
     // Remove arrow after lifetime if not pressed
     arrowTimerRef.current = setTimeout(() => {
-      setCurrentArrow(prev => {
-        if (prev === randomDirection) {
+      setCurrentArrow(prevArrow => {
+        if (prevArrow === randomDirection) {
           setWrongKeys(prevWrong => prevWrong + 1);
           return null;
         }
-        return prev;
+        return prevArrow;
       });
       setArrowId(null);
       
-      // Schedule next arrow after interval
-      if (isPlayingRef.current && !isGameOverRef.current) {
+      // Check if we should spawn next arrow or end game
+      if (arrowCountRef.current >= 15) {
+        // End game after 15 arrows
         setTimeout(() => {
-          if (isPlayingRef.current && !isGameOverRef.current) {
-            spawnNextArrow();
-          }
-        }, arrowIntervalRef.current);
+          endGame();
+        }, 0);
+      } else if (isPlayingRef.current && !isGameOverRef.current) {
+        // Schedule next arrow after interval
+        // For WASD mode, show next letter immediately (no delay)
+        if (isWASDMode) {
+          spawnNextArrow();
+        } else {
+          setTimeout(() => {
+            if (isPlayingRef.current && !isGameOverRef.current) {
+              spawnNextArrow();
+            }
+          }, arrowIntervalRef.current);
+        }
       }
     }, arrowLifetimeRef.current);
   };
@@ -173,13 +403,12 @@ function KeyboardGame({ lesson }) {
     setIsGameOver(true);
     isPlayingRef.current = false;
     isGameOverRef.current = true;
-    if (gameTimerRef.current) clearInterval(gameTimerRef.current);
     if (arrowTimerRef.current) clearTimeout(arrowTimerRef.current);
     setCurrentArrow(null);
     setArrowId(null);
 
-    // Mark lesson as complete if score is good enough - use setTimeout to ensure it's not during render
-    if (lesson && finalScore >= 150) {
+    // Mark lesson as complete - use setTimeout to ensure it's not during render
+    if (lesson) {
       setTimeout(() => {
         const userId = getUserId();
         const progressId = getNextProgressId();
@@ -215,21 +444,60 @@ function KeyboardGame({ lesson }) {
 
   const grade = getGrade();
 
-  // Auto-start the game when component mounts
-  useEffect(() => {
-    // Small delay to ensure component is fully mounted and render is complete
-    const timer = setTimeout(() => {
-      if (!isPlayingRef.current && !isGameOverRef.current) {
-        // Use requestAnimationFrame to ensure we're not in the middle of a render
-        requestAnimationFrame(() => {
-          if (!isPlayingRef.current && !isGameOverRef.current) {
-            startGame();
-          }
-        });
-      }
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // Show start screen if game hasn't started
+  if (!isPlaying && !isGameOver) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        padding: '40px',
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          backgroundColor: 'white',
+          padding: '40px',
+          borderRadius: '12px',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+          textAlign: 'center',
+          maxWidth: '500px',
+        }}>
+          <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>⌨️</h1>
+          <h2 style={{ marginBottom: '20px', fontSize: '28px' }}>
+            {isAZMode ? 'A-Z Game' : isNumbersMode ? 'Numbers Game' : isSymbolsMode ? 'Symbols Game' : 'Keyboard Game'}
+          </h2>
+          <p style={{ marginBottom: '30px', fontSize: '16px', color: '#666' }}>
+            {isAZMode ? (
+              <>Type the letters A to Z in order!<br />Complete all 26 letters.</>
+            ) : isNumbersMode ? (
+              <>Type the numbers 0 to 9 in order!<br />Complete all 10 numbers.</>
+            ) : isSymbolsMode ? (
+              <>Type the symbols using Shift + number keys!<br />Complete all 10 symbols.</>
+            ) : (
+              <>Press the correct arrow keys as they appear!<br />Game ends after 15 arrows.</>
+            )}
+          </p>
+          <button
+            onClick={startGame}
+            style={{
+              padding: '15px 40px',
+              fontSize: '20px',
+              backgroundColor: '#007bff',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+            }}
+          >
+            Start Game
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   if (isGameOver) {
     return (
@@ -238,8 +506,9 @@ function KeyboardGame({ lesson }) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '60vh',
+        height: '100%',
         padding: '40px',
+        overflow: 'hidden',
       }}>
         <div style={{
           backgroundColor: 'white',
@@ -325,6 +594,9 @@ function KeyboardGame({ lesson }) {
       width: '100%',
       height: '100%',
       position: 'relative',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
     }}>
       {/* Stats Bar */}
       <div style={{
@@ -340,9 +612,9 @@ function KeyboardGame({ lesson }) {
           <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{score}</div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '14px', color: '#666' }}>Time</div>
-          <div style={{ fontSize: '20px', fontWeight: 'bold', color: timeRemaining <= 5 ? '#dc3545' : '#333' }}>
-            {timeRemaining}s
+          <div style={{ fontSize: '14px', color: '#666' }}>{isWASDMode ? 'Keys' : 'Arrows'}</div>
+          <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#333' }}>
+            {arrowCount}/15
           </div>
         </div>
         <div style={{ textAlign: 'center' }}>
@@ -365,27 +637,24 @@ function KeyboardGame({ lesson }) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '400px',
+        flex: 1,
         backgroundColor: '#f8f9fa',
         border: '2px solid #e0e0e0',
         borderRadius: '8px',
         padding: '40px',
+        overflow: 'hidden',
       }}>
-        {currentArrow ? (
+        {(currentArrow || currentLetter || currentNumber || currentSymbol) && (
           <div style={{
             fontSize: '200px',
             animation: 'pulse 0.5s ease-in-out',
             textAlign: 'center',
+            fontWeight: 'bold',
           }}>
-            {ARROWS[currentArrow]}
-          </div>
-        ) : (
-          <div style={{
-            fontSize: '48px',
-            color: '#999',
-            textAlign: 'center',
-          }}>
-            Get ready...
+            {currentLetter && currentLetter}
+            {currentNumber && currentNumber}
+            {currentSymbol && currentSymbol}
+            {currentArrow && (isWASDMode ? WASD_LETTERS[currentArrow] : ARROWS[currentArrow])}
           </div>
         )}
         <div style={{
@@ -394,11 +663,24 @@ function KeyboardGame({ lesson }) {
           color: '#666',
           textAlign: 'center',
         }}>
+          {currentLetter && (
+            <div>Press {currentLetter}</div>
+          )}
+          {currentNumber && (
+            <div>Press {currentNumber}</div>
+          )}
+          {currentSymbol && (
+            <div>Press Shift + {symbolKeyMappings[currentSymbol]} for {currentSymbol}</div>
+          )}
           {currentArrow && (
             <div>
-              Press {currentArrow === 'up' ? '↑ or W' : 
-                     currentArrow === 'down' ? '↓ or S' : 
-                     currentArrow === 'left' ? '← or A' : '→ or D'}
+              {isWASDMode ? (
+                `Press ${WASD_LETTERS[currentArrow]}`
+              ) : (
+                `Press ${currentArrow === 'up' ? '↑ or W' : 
+                       currentArrow === 'down' ? '↓ or S' : 
+                       currentArrow === 'left' ? '← or A' : '→ or D'}`
+              )}
             </div>
           )}
         </div>

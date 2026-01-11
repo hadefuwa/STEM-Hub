@@ -36,10 +36,18 @@ function SubjectSelectionScreen() {
 
   return (
     <div style={{ 
-      padding: '20px', 
-      maxWidth: '1200px', 
-      margin: '0 auto' 
+      flex: 1,
+      overflowY: 'auto',
+      padding: '20px',
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '1200px',
+      }}>
       <h1 style={{ 
         textAlign: 'center', 
         marginBottom: '20px',
@@ -171,6 +179,7 @@ function SubjectSelectionScreen() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

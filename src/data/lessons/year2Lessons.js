@@ -45,77 +45,7 @@ Count from 1 to 20!`,
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 1,
-      title: "Clicking Game",
-      emoji: '🎯',
-      content: `# Clicking Game 🎯
-
-
-
-Welcome to the Accuracy Clicking Game!
-
-
-
-## How to Play
-
-
-
-- Click on the red circles as they appear on the screen
-
-- The circles start large and get smaller and faster as time goes on
-
-- You have 30 seconds to score as many points as possible
-
-- Each circle you click gives you 10 points
-
-
-
-## Scoring System
-
-
-
-- **Bronze**: 0-99 points
-
-- **Silver**: 100-199 points
-
-- **Gold**: 200-299 points
-
-- **Platinum**: 300+ points
-
-
-
-## Ready to Play?
-
-
-
-Click the button below to start the game!`,
-      quizId: null,
-      assessmentType: null,
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'technology',
-      lessonNumber: 2,
-      title: "Keyboard Game",
-      emoji: '⌨️',
-      content: `# Keyboard Game ⌨️
-
-Welcome to the Keyboard Game!
-
-Press the matching keys as arrows appear on screen.`,
-      quizId: null,
-      assessmentType: null,
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'technology',
-      lessonNumber: 3,
+      lessonNumber: 4,
       title: "Arduino Lesson 1: Understanding void setup()",
       emoji: '🔌',
       content: `# Arduino Lesson 1: Understanding void setup()
@@ -209,131 +139,6 @@ Serial.begin(9600);   // Start serial at 9600 baud
 - If setup is missing, your code will not compile
 
 - You can only have one setup function per sketch`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'technology',
-      lessonNumber: 4,
-      title: "Arduino Lesson 2: Understanding void loop()",
-      emoji: '🔄',
-      content: `# Arduino Lesson 2: Understanding void loop()
-
-
-
-## Introduction to loop()
-
-
-
-The \`loop()\` function is the heart of an Arduino program. After \`setup()\` finishes, \`loop()\` runs continuously until the Arduino is powered off.
-
-
-
-## What is void loop()?
-
-
-
-The \`loop()\` function contains the main program logic that runs repeatedly in an infinite cycle.
-
-
-
-## Syntax
-
-
-
-\`\`\`cpp
-
-void loop() {
-
-// Your main program code goes here
-
-// This code runs over and over again
-
-}
-
-\`\`\`
-
-
-
-## Key Points
-
-
-
-1. **Runs continuously**: The loop function executes repeatedly, creating an infinite loop
-
-2. **Main program logic**: This is where your program's primary functionality lives
-
-3. **Required**: Every Arduino sketch must have a loop function, even if it's empty
-
-4. **Execution order**: Setup runs once, then loop runs forever
-
-
-
-## How It Works
-
-
-
-\`\`\`
-
-Power On → setup() runs once → loop() runs → loop() runs → loop() runs → ...
-
-\`\`\`
-
-
-
-## Common Uses
-
-
-
-- Reading sensor values
-
-- Controlling outputs (LEDs, motors, etc.)
-
-- Processing data
-
-- Responding to inputs
-
-
-
-## Example
-
-
-
-\`\`\`cpp
-
-void loop() {
-
-digitalWrite(13, HIGH);   // Turn LED on
-
-delay(1000);              // Wait 1 second
-
-digitalWrite(13, LOW);    // Turn LED off
-
-delay(1000);              // Wait 1 second
-
-// This creates a blinking LED
-
-}
-
-\`\`\`
-
-
-
-## Important Notes
-
-
-
-- Loop runs forever until power is removed
-
-- Each iteration of loop should complete quickly for responsive programs
-
-- Avoid using \`delay()\` for too long if you need to respond to inputs quickly
-
-- The loop function must exist, even if empty`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: null,
@@ -3407,6 +3212,160 @@ Let's compare the ancient civilizations we've learned about!
 - They influenced us today
 
 - We can learn from them all!`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 13,
+      title: "HTML Programming: SVG Graphics",
+      emoji: '🎨',
+      content: `# HTML Programming: SVG Graphics 🎨
+
+Learn how to create beautiful graphics using HTML and SVG!
+
+## What is SVG?
+
+SVG stands for **Scalable Vector Graphics**. It's a way to create images using code instead of drawing them. SVG images can be made bigger or smaller without losing quality!
+
+## Why Use SVG?
+
+- **Scalable**: Can be resized without losing quality
+- **Code-based**: Written in HTML/XML
+- **Interactive**: Can be animated and styled with CSS
+- **Lightweight**: Often smaller file sizes than images
+
+## Embedding SVG in HTML
+
+You can embed SVG elements directly into your HTML pages. Let's start with a simple example!
+
+## Example 1: Drawing a Circle
+
+Here's how to create a simple circle using SVG:
+
+\`\`\`html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My first SVG</h1>
+
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+</svg>
+
+</body>
+</html>
+\`\`\`
+
+### SVG Code Explanation
+
+Let's break down each part:
+
+1. **\`<svg>\` element**: This is the root element that contains all SVG graphics
+   - \`width="100"\`: Sets the width to 100 pixels
+   - \`height="100"\`: Sets the height to 100 pixels
+   - \`xmlns="http://www.w3.org/2000/svg"\`: This is required! It tells the browser this is SVG code
+
+2. **\`<circle>\` element**: Used to draw a circle
+   - \`cx="50"\`: The x-coordinate of the circle's center (50 pixels from the left)
+   - \`cy="50"\`: The y-coordinate of the circle's center (50 pixels from the top)
+   - \`r="40"\`: The radius of the circle (40 pixels)
+   - \`stroke="green"\`: The color of the circle's outline (green)
+   - \`stroke-width="4"\`: The thickness of the outline (4 pixels)
+   - \`fill="yellow"\`: The color inside the circle (yellow)
+
+## Example 2: Multiple Shapes
+
+You can combine multiple shapes to create more complex graphics:
+
+\`\`\`html
+<!DOCTYPE html>
+<html>
+<body>
+
+<svg width="150" height="100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="green" />
+  <circle cx="75" cy="50" r="40" fill="yellow" />
+  <text x="75" y="60" font-size="30" text-anchor="middle" fill="red">SVG</text>
+</svg>
+
+</body>
+</html>
+\`\`\`
+
+### Breaking Down This Example
+
+1. **\`<rect>\` element**: Draws a rectangle
+   - \`width="100%"\`: Makes the rectangle as wide as the SVG container
+   - \`height="100%"\`: Makes the rectangle as tall as the SVG container
+   - \`fill="green"\`: Fills the rectangle with green color
+
+2. **\`<circle>\` element**: Draws a circle (same as before)
+   - This circle is drawn on top of the rectangle
+
+3. **\`<text>\` element**: Adds text to your SVG
+   - \`x="75"\`: Horizontal position of the text
+   - \`y="60"\`: Vertical position of the text
+   - \`font-size="30"\`: Size of the text (30 pixels)
+   - \`text-anchor="middle"\`: Centers the text at the x position
+   - \`fill="red"\`: Color of the text (red)
+
+## Important SVG Rules
+
+Since SVG is written in XML, remember these important rules:
+
+1. **All elements must be properly closed**
+   - Use \`<circle />\` or \`<circle></circle>\`
+   - Self-closing tags need the \`/\` before the \`>\`
+
+2. **XML is case-sensitive**
+   - Write all SVG elements in lowercase: \`<svg>\`, not \`<SVG>\`
+   - Attributes are also case-sensitive
+
+3. **Always use quotes for attributes**
+   - Good: \`width="100"\`
+   - Bad: \`width=100\`
+
+## Common SVG Elements
+
+Here are some basic SVG elements you can use:
+
+- **\`<circle>\`**: Draws a circle
+- **\`<rect>\`**: Draws a rectangle
+- **\`<line>\`**: Draws a line
+- **\`<text>\`**: Adds text
+- **\`<ellipse>\`**: Draws an ellipse (oval)
+- **\`<polygon>\`**: Draws a polygon (shape with multiple sides)
+
+## Try It Yourself!
+
+1. Create a new HTML file
+2. Copy one of the examples above
+3. Save it with a \`.html\` extension
+4. Open it in a web browser
+5. Try changing the colors, sizes, and positions!
+
+## Practice Exercise
+
+Create an SVG that shows:
+- A blue rectangle as the background
+- A red circle in the center
+- White text that says "Hello SVG!"
+
+## What's Next?
+
+Once you master basic SVG shapes, you can learn about:
+- More complex shapes (polygons, paths)
+- Colors and gradients
+- Animations
+- Interactive SVG elements
+
+Have fun creating graphics with code! 🎨`,
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: null,

@@ -33,14 +33,28 @@ function App() {
 
   return (
     <BrowserRouter>
-      <TopNavigation />
-      <Routes>
-        <Route path="/" element={<SubjectSelectionScreen />} />
-        <Route path="/lessons" element={<LessonsListScreen />} />
-        <Route path="/lesson/:lessonId" element={<LessonViewScreen />} />
-        <Route path="/quiz/:quizId" element={<QuizScreen />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        height: '100vh', 
+        overflow: 'hidden' 
+      }}>
+        <TopNavigation />
+        <div style={{ 
+          flex: 1, 
+          overflow: 'hidden', 
+          display: 'flex', 
+          flexDirection: 'column' 
+        }}>
+          <Routes>
+            <Route path="/" element={<SubjectSelectionScreen />} />
+            <Route path="/lessons" element={<LessonsListScreen />} />
+            <Route path="/lesson/:lessonId" element={<LessonViewScreen />} />
+            <Route path="/quiz/:quizId" element={<QuizScreen />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }

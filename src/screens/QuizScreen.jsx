@@ -372,10 +372,18 @@ function QuizScreen() {
 
   return (
     <div style={{
-      maxWidth: '800px',
-      margin: '0 auto',
+      flex: 1,
+      overflowY: 'auto',
       padding: '20px',
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '800px',
+      }}>
       {/* Header */}
       <div style={{
         marginBottom: '30px',
@@ -724,6 +732,7 @@ function QuizScreen() {
         >
           {currentQuestionIndex < totalQuestions - 1 ? 'Next →' : 'Submit Quiz'}
         </button>
+      </div>
       </div>
     </div>
   );
