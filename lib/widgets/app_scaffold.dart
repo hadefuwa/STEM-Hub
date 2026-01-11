@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'app_header.dart';
 import 'app_footer.dart';
 import 'app_drawer.dart';
+import 'top_nav_bar.dart';
 import '../utils/constants.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -10,6 +11,7 @@ class AppScaffold extends StatelessWidget {
   final bool showMenuButton;
   final bool showBackButton;
   final bool showFooter;
+  final bool showTopNav;
   final List<Widget>? actions;
   final GlobalKey<ScaffoldState>? scaffoldKey;
 
@@ -20,6 +22,7 @@ class AppScaffold extends StatelessWidget {
     this.showMenuButton = true,
     this.showBackButton = false,
     this.showFooter = true,
+    this.showTopNav = true,
     this.actions,
     this.scaffoldKey,
   });
@@ -41,6 +44,7 @@ class AppScaffold extends StatelessWidget {
       drawer: showMenuButton ? const AppDrawer() : null,
       body: Column(
         children: [
+          if (showTopNav) const TopNavBar(),
           Expanded(
             child: body,
           ),

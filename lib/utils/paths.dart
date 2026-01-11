@@ -5,7 +5,9 @@ class AppPaths {
   static const String home = '/';
   static const String years = '/years';
   static const String subjects = '/subjects';
+  static const String categories = '/categories';
   static const String lessons = '/lessons';
+  static const String sequentialLessons = '/sequential-lessons';
   static const String lessonView = '/lesson';
   static const String quiz = '/quiz';
   static const String results = '/results';
@@ -17,5 +19,6 @@ class AppPaths {
   static const String video = '/video';
   static const String progress = '/progress';
   static const String clickingGame = '/clicking-game';
+  static const String keyboardGame = '/keyboard-game';
 }
 

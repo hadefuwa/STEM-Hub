@@ -17,10 +17,10 @@ class MainScreen extends StatelessWidget {
       title: 'Home',
       body: GridView.count(
         crossAxisCount: crossAxisCount,
-        padding: const EdgeInsets.all(16),
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 1.0, // Make cards square
+        padding: const EdgeInsets.all(20),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 1.2, // More compact, wider cards
         children: [
           CategoryCard(
             emoji: '👶',
@@ -63,6 +63,12 @@ class MainScreen extends StatelessWidget {
             title: '15-16 Years',
             color: Colors.purple,
             onTap: () => context.go('${AppPaths.subjects}?yearId=year6'),
+          ),
+          CategoryCard(
+            emoji: '📊',
+            title: 'Results',
+            color: AppColors.progress,
+            onTap: () => context.go(AppPaths.results),
           ),
         ],
       ),

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../data/data_store.dart';
 import '../models/year.dart';
 import '../models/subject.dart';
+import '../models/lesson.dart';
 import '../utils/constants.dart';
 import '../utils/paths.dart';
 import '../widgets/app_scaffold.dart';
@@ -11,11 +12,13 @@ import '../widgets/app_scaffold.dart';
 class LessonsScreen extends StatelessWidget {
   final String yearId;
   final String subjectId;
+  final String? categoryId;
 
   const LessonsScreen({
     super.key,
     required this.yearId,
     required this.subjectId,
+    this.categoryId,
   });
 
   @override
@@ -28,10 +31,18 @@ class LessonsScreen extends StatelessWidget {
         : null;
 
     // Get available lesson numbers (1-99, only show if lesson exists)
-    final availableLessons = dataStore.getAvailableLessonNumbers(yearId, subjectId);
+    final availableLessons = dataStore.getAvailableLessonNumbers(yearId, subjectId, categoryId: categoryId);
+
+    // Build title with optional category
+    String title = '${year?.name ?? ""} - ${subject?.name ?? ""}';
+    final categoryName = categoryId != null ? _getCategoryName(categoryId!) : null;
+    if (categoryName != null) {
+      title = '$title - $categoryName';
+    }
 
     return AppScaffold(
-      title: '${year?.name ?? ""} - ${subject?.name ?? ""}',
+      title: title,
+      showBackButton: true,
       body: availableLessons.isEmpty
           ? Center(
               child: Column(
@@ -58,12 +69,12 @@ class LessonsScreen extends StatelessWidget {
                     crossAxisCount: crossAxisCount,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 1.0,
+                    childAspectRatio: 0.85, // Adjusted to accommodate title text
                   ),
                   itemCount: availableLessons.length,
                   itemBuilder: (context, index) {
                     final lessonNumber = availableLessons[index];
-                    final lesson = dataStore.getLessonByNumber(yearId, subjectId, lessonNumber);
+                    final lesson = dataStore.getLessonByNumber(yearId, subjectId, lessonNumber, categoryId: categoryId);
                     final isCompleted = currentStudent != null && lesson != null
                         ? dataStore.hasCompletedLesson(
                             currentStudent.id,
@@ -74,11 +85,12 @@ class LessonsScreen extends StatelessWidget {
                         : false;
 
                     return _LessonTile(
+                      lesson: lesson,
                       lessonNumber: lessonNumber,
                       isCompleted: isCompleted,
                       onTap: () {
                         if (lesson != null) {
-                          context.go('${AppPaths.lessonView}?id=${lesson.id}');
+                          context.push('${AppPaths.lessonView}?id=${lesson.id}');
                         }
                       },
                     );
@@ -88,14 +100,27 @@ class LessonsScreen extends StatelessWidget {
             ),
     );
   }
+
+  String _getCategoryName(String categoryId) {
+    switch (categoryId) {
+      case 'fusion360':
+        return 'Fusion 360';
+      case 'python':
+        return 'Python';
+      default:
+        return categoryId;
+    }
+  }
 }
 
 class _LessonTile extends StatelessWidget {
+  final Lesson? lesson;
   final int lessonNumber;
   final bool isCompleted;
   final VoidCallback onTap;
 
   const _LessonTile({
+    this.lesson,
     required this.lessonNumber,
     required this.isCompleted,
     required this.onTap,
@@ -121,25 +146,43 @@ class _LessonTile extends StatelessWidget {
                 ? Colors.green.withOpacity(0.1)
                 : AppColors.cardBackground,
           ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (isCompleted)
-                  const Icon(Icons.check_circle, color: Colors.green, size: 20)
-                else
-                  const Icon(Icons.book, color: AppColors.header, size: 20),
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (isCompleted)
+                const Icon(Icons.check_circle, color: Colors.green, size: 20)
+              else if (lesson?.emoji != null)
+                Text(
+                  lesson!.emoji,
+                  style: const TextStyle(fontSize: 24),
+                )
+              else
+                const Icon(Icons.book, color: AppColors.header, size: 20),
+              const SizedBox(height: 4),
+              Text(
+                'Lesson $lessonNumber',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: isCompleted ? Colors.green : AppColors.header,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              if (lesson?.title != null) ...[
                 const SizedBox(height: 4),
                 Text(
-                  '$lessonNumber',
+                  lesson!.title,
                   style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: isCompleted ? Colors.green : AppColors.header,
+                    fontSize: 11,
+                    color: isCompleted ? Colors.green.shade700 : Colors.grey.shade700,
                   ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
-            ),
+            ],
           ),
         ),
       ),

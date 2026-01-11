@@ -1,6 +1,9 @@
 import 'package:go_router/go_router.dart';
 import '../screens/years_dashboard_screen.dart';
 import '../screens/subjects_screen.dart';
+import '../screens/subject_selection_screen.dart';
+import '../screens/sequential_lessons_screen.dart';
+import '../screens/categories_screen.dart';
 import '../screens/lessons_screen.dart';
 import '../screens/lesson_view_screen.dart';
 import '../screens/quiz_screen.dart';
@@ -14,12 +17,26 @@ import '../screens/video_list_screen.dart';
 import '../screens/video_screen.dart';
 import '../screens/progress_screen.dart';
 import '../screens/clicking_game_screen.dart';
+import '../screens/keyboard_game_screen.dart';
 import '../utils/paths.dart';
 
 GoRouter createAppRouter() {
   return GoRouter(
-    initialLocation: AppPaths.years,
+    initialLocation: AppPaths.home,
     routes: [
+      // New sequential progression flow (subject-first)
+      GoRoute(
+        path: AppPaths.home,
+        builder: (context, state) => const SubjectSelectionScreen(),
+      ),
+      GoRoute(
+        path: AppPaths.sequentialLessons,
+        builder: (context, state) {
+          final subjectId = state.uri.queryParameters['subjectId'] ?? '';
+          return SequentialLessonsScreen(subjectId: subjectId);
+        },
+      ),
+      // Old structure routes (kept for admin mode and backward compatibility)
       // New structure routes
       GoRoute(
         path: AppPaths.years,
@@ -33,13 +50,26 @@ GoRouter createAppRouter() {
         },
       ),
       GoRoute(
+        path: AppPaths.categories,
+        builder: (context, state) {
+          final yearId = state.uri.queryParameters['yearId'] ?? '';
+          final subjectId = state.uri.queryParameters['subjectId'] ?? '';
+          return CategoriesScreen(
+            yearId: yearId,
+            subjectId: subjectId,
+          );
+        },
+      ),
+      GoRoute(
         path: AppPaths.lessons,
         builder: (context, state) {
           final yearId = state.uri.queryParameters['yearId'] ?? '';
           final subjectId = state.uri.queryParameters['subjectId'] ?? '';
+          final categoryId = state.uri.queryParameters['categoryId'];
           return LessonsScreen(
             yearId: yearId,
             subjectId: subjectId,
+            categoryId: categoryId,
           );
         },
       ),
@@ -137,7 +167,21 @@ GoRouter createAppRouter() {
       ),
       GoRoute(
         path: AppPaths.clickingGame,
-        builder: (context, state) => const ClickingGameScreen(),
+        builder: (context, state) {
+          final lessonId = state.uri.queryParameters['lessonId'] != null
+              ? int.tryParse(state.uri.queryParameters['lessonId']!)
+              : null;
+          return ClickingGameScreen(lessonId: lessonId);
+        },
+      ),
+      GoRoute(
+        path: AppPaths.keyboardGame,
+        builder: (context, state) {
+          final lessonId = state.uri.queryParameters['lessonId'] != null
+              ? int.tryParse(state.uri.queryParameters['lessonId']!)
+              : null;
+          return KeyboardGameScreen(lessonId: lessonId);
+        },
       ),
     ],
   );

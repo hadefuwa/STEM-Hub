@@ -26,25 +26,37 @@ class SubjectsScreen extends StatelessWidget {
 
     return AppScaffold(
       title: year?.name ?? 'Subjects',
+      showBackButton: true,
       body: GridView.count(
         crossAxisCount: crossAxisCount,
-        padding: const EdgeInsets.all(16),
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 1.0, // Make cards square
+        padding: const EdgeInsets.all(20),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 1.2, // More compact, wider cards
         children: Subject.allSubjects.map((subject) {
           // Check if there are lessons for this year and subject
           final availableLessons = dataStore.getAvailableLessonNumbers(yearId, subject.id);
           final hasLessons = availableLessons.isNotEmpty;
+          
+          // Check if this year/subject has categories (e.g., year 3 technology)
+          final hasCategories = dataStore.hasCategories(yearId, subject.id);
           
           return CategoryCard(
             emoji: subject.emoji,
             title: subject.name,
             color: _getSubjectColor(subject.id),
             isEnabled: hasLessons,
-            onTap: hasLessons ? () => context.go(
-              '${AppPaths.lessons}?yearId=$yearId&subjectId=${subject.id}',
-            ) : null,
+            onTap: hasLessons
+                ? () {
+                    if (hasCategories) {
+                      // Navigate to categories screen
+                      context.push('${AppPaths.categories}?yearId=$yearId&subjectId=${subject.id}');
+                    } else {
+                      // Navigate directly to lessons
+                      context.push('${AppPaths.lessons}?yearId=$yearId&subjectId=${subject.id}');
+                    }
+                  }
+                : null,
           );
         }).toList(),
       ),

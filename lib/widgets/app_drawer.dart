@@ -149,11 +149,11 @@ class AppDrawer extends StatelessWidget {
 
           const Divider(),
 
-          // Settings & Management Section
+          // Results Section
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
-              'Settings & Management',
+              'Results',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -162,26 +162,12 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
 
-          if (currentStudent != null)
-            ListTile(
-              leading: const Icon(Icons.bar_chart, color: AppColors.progress),
-              title: const Text('Results'),
-              subtitle: const Text('View all results and statistics'),
-              onTap: () {
-                context.go(AppPaths.results);
-                Navigator.pop(context);
-              },
-            ),
-
           ListTile(
-            leading: Icon(
-              currentStudent == null ? Icons.person_add : Icons.swap_horiz,
-              color: AppColors.header,
-            ),
-            title: Text(currentStudent == null ? 'Add Student' : 'Change Student'),
-            subtitle: const Text('Manage students'),
+            leading: const Icon(Icons.bar_chart, color: AppColors.progress),
+            title: const Text('Results'),
+            subtitle: const Text('View all results and statistics'),
             onTap: () {
-              context.go(AppPaths.studentSelection);
+              context.go(AppPaths.results);
               Navigator.pop(context);
             },
           ),

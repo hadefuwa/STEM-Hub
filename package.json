@@ -1,0 +1,60 @@
+{
+  "name": "homeschool-hub",
+  "version": "1.0.0",
+  "description": "A cross-platform homeschool learning management application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "flutter build web && electron-builder",
+    "build:web": "flutter build web",
+    "package": "electron-builder",
+    "dist": "npm run build:web && electron-builder"
+  },
+  "keywords": [
+    "homeschool",
+    "education",
+    "learning",
+    "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.homeschoolhub.app",
+    "productName": "Homeschool Hub",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "build/web/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/web/icons/Icon-512.png"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "build/web/icons/Icon-512.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/web/icons/Icon-512.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
+

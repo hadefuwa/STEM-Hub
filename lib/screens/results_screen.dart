@@ -11,36 +11,15 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dataStore = Provider.of<DataStore>(context);
-    final currentStudent = dataStore.data.students.isNotEmpty
-        ? dataStore.data.students.first
-        : null;
-
-    if (currentStudent == null) {
-      return AppScaffold(
-        title: 'Results',
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.bar_chart, size: 64, color: Colors.grey),
-              const SizedBox(height: 16),
-              const Text(
-                'Add a student to view results',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    final stats = dataStore.getStudentStatistics(currentStudent.id);
-    final allProgress = dataStore.getProgressForStudent(currentStudent.id);
+    // Listen to changes in DataStore to refresh when data updates
+    final dataStore = Provider.of<DataStore>(context, listen: true);
+    
+    final stats = dataStore.getAppWideStatistics();
+    final allProgress = dataStore.getAllProgress();
     final completedProgress = allProgress.where((p) => p.isCompleted).toList();
 
     return AppScaffold(
-      title: '${currentStudent.name}\'s Results',
+      title: 'Results',
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -173,34 +152,105 @@ class ResultsScreen extends StatelessWidget {
             ],
 
             // Recent Activity
-            if (completedProgress.isNotEmpty) ...[
-              Text(
-                'Recent Activity',
-                style: AppTextStyles.subtitle,
-              ),
-              const SizedBox(height: 8),
-              ...completedProgress.take(10).map((progress) {
+            Text(
+              'Recent Activity',
+              style: AppTextStyles.subtitle,
+            ),
+            const SizedBox(height: 8),
+            if (completedProgress.isEmpty)
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        const Icon(Icons.history, size: 48, color: Colors.grey),
+                        const SizedBox(height: 16),
+                        Text(
+                          'No activity yet',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Complete lessons and quizzes to see your activity here',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey[500],
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            else
+              ...completedProgress.take(20).map((progress) {
                 String activityName = 'Activity ${progress.activityId}';
                 String typeIcon = '📚';
+                String? subtitleText;
                 
-                if (progress.activityType == 'Quiz' || progress.activityType == 'Test' || progress.activityType == 'Challenge') {
-                  typeIcon = '📝';
-                  activityName = '${progress.activityType} ${progress.activityId}';
-                } else if (progress.activityType == 'Lesson') {
+                // Try to get the actual lesson or quiz name
+                if (progress.activityType == 'Lesson') {
                   typeIcon = '📖';
-                  if (progress.lessonNumber != null) {
+                  final lesson = dataStore.getLesson(progress.activityId);
+                  if (lesson != null) {
+                    activityName = lesson.title;
+                    final year = Year.getById(lesson.yearId);
+                    final subject = Subject.getById(lesson.subjectId);
+                    subtitleText = '${year?.name ?? lesson.yearId} • ${subject?.name ?? lesson.subjectId}';
+                    if (progress.completedAt != null) {
+                      subtitleText += ' • ${_formatDate(progress.completedAt!)}';
+                    }
+                  } else if (progress.lessonNumber != null) {
                     activityName = 'Lesson ${progress.lessonNumber}';
+                    if (progress.yearId != null && progress.subjectId != null) {
+                      final year = Year.getById(progress.yearId!);
+                      final subject = Subject.getById(progress.subjectId!);
+                      subtitleText = '${year?.name ?? progress.yearId} • ${subject?.name ?? progress.subjectId}';
+                      if (progress.completedAt != null) {
+                        subtitleText += ' • ${_formatDate(progress.completedAt!)}';
+                      }
+                    } else if (progress.completedAt != null) {
+                      subtitleText = 'Completed ${_formatDate(progress.completedAt!)}';
+                    }
+                  } else if (progress.completedAt != null) {
+                    subtitleText = 'Completed ${_formatDate(progress.completedAt!)}';
                   }
+                } else if (progress.activityType == 'Quiz' || progress.activityType == 'Test' || progress.activityType == 'Challenge') {
+                  typeIcon = '📝';
+                  final quiz = dataStore.getQuiz(progress.activityId);
+                  if (quiz != null) {
+                    activityName = quiz.title;
+                    subtitleText = progress.activityType;
+                    if (progress.completedAt != null) {
+                      subtitleText += ' • ${_formatDate(progress.completedAt!)}';
+                    }
+                  } else {
+                    activityName = '${progress.activityType} ${progress.activityId}';
+                    if (progress.completedAt != null) {
+                      subtitleText = 'Completed ${_formatDate(progress.completedAt!)}';
+                    }
+                  }
+                } else if (progress.completedAt != null) {
+                  subtitleText = 'Completed ${_formatDate(progress.completedAt!)}';
                 }
 
                 return Card(
                   margin: const EdgeInsets.only(bottom: 8),
                   child: ListTile(
                     leading: Text(typeIcon, style: const TextStyle(fontSize: 24)),
-                    title: Text(activityName),
-                    subtitle: progress.completedAt != null
+                    title: Text(
+                      activityName,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: subtitleText != null
                         ? Text(
-                            'Completed ${_formatDate(progress.completedAt!)}',
+                            subtitleText,
                             style: const TextStyle(fontSize: 12),
                           )
                         : null,
@@ -213,7 +263,6 @@ class ResultsScreen extends StatelessWidget {
                   ),
                 );
               }).toList(),
-            ],
           ],
         ),
       ),

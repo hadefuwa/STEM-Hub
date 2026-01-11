@@ -7,7 +7,7 @@ class AppColors {
   static const fusion360 = Color(0xFFF38181);
   static const progress = Color(0xFFFFD93D);
   static const header = Color(0xFF4A90E2);
-  static const background = Color(0xFFF5F5F5);
+  static const background = Color(0xFFF8F9FA);
   static const cardBackground = Colors.white;
 }
 
@@ -56,16 +56,16 @@ class AppConstants {
 /// Responsive utility functions for PC-first design
 class ResponsiveUtils {
   /// Get the number of columns for category cards based on screen width
-  /// PC-first: More columns on larger screens
+  /// PC-first: More columns on larger screens for compact modern design
   static int getCategoryCardColumns(double width) {
     if (width >= AppConstants.largeDesktopBreakpoint) {
-      return 5; // Very large screens: 5 columns
+      return 8; // Very large screens: 8 columns
     } else if (width >= AppConstants.desktopBreakpoint) {
-      return 4; // Desktop: 4 columns
+      return 6; // Desktop: 6 columns
     } else if (width >= AppConstants.tabletBreakpoint) {
-      return 3; // Large tablet: 3 columns
+      return 4; // Large tablet: 4 columns
     } else {
-      return 2; // Tablet/Mobile: 2 columns
+      return 3; // Tablet/Mobile: 3 columns
     }
   }
   

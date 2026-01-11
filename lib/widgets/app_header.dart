@@ -30,17 +30,34 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
         ? dataStore.data.students.first
         : null;
     
-    // Check if we can go back - automatically show back button if we can go back
-    // unless explicitly disabled
+    // Check if we can go back - show back button if explicitly requested or if navigation stack allows it
     final canGoBack = context.canPop();
-    final shouldShowBackButton = (showBackButton || canGoBack) && canGoBack;
+    final shouldShowBackButton = showBackButton || canGoBack;
     final shouldShowMenuButton = showMenuButton && !shouldShowBackButton;
 
     return AppBar(
-      title: Text(title ?? AppConstants.appName),
-      backgroundColor: AppColors.header,
-      elevation: 2,
+      title: Text(
+        title ?? AppConstants.appName,
+        style: const TextStyle(
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
+      ),
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.header,
+              AppColors.header.withOpacity(0.85),
+            ],
+          ),
+        ),
+      ),
+      elevation: 0,
       centerTitle: true,
+      shadowColor: AppColors.header.withOpacity(0.3),
       leading: shouldShowBackButton
           ? IconButton(
               icon: const Icon(Icons.arrow_back),
@@ -61,6 +78,34 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
                 )
               : null,
       actions: [
+        // Admin mode toggle
+        Consumer<DataStore>(
+          builder: (context, dataStore, _) {
+            return Tooltip(
+              message: dataStore.adminMode ? 'Admin Mode: ON' : 'Admin Mode: OFF',
+              child: IconButton(
+                icon: Icon(
+                  dataStore.adminMode ? Icons.admin_panel_settings : Icons.admin_panel_settings_outlined,
+                  color: dataStore.adminMode ? Colors.orange : Colors.white70,
+                ),
+                onPressed: () {
+                  dataStore.toggleAdminMode();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        dataStore.adminMode 
+                          ? '🔓 Admin Mode Enabled - You can access all lessons'
+                          : '🔒 Admin Mode Disabled - Sequential progression enforced',
+                      ),
+                      backgroundColor: dataStore.adminMode ? Colors.orange : Colors.grey,
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
         if (currentStudent != null)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

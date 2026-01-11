@@ -20,9 +20,10 @@ dependencies:
   # State management
   provider: ^6.1.1
   
-  # Video player (using url_launcher to open YouTube in browser - no NuGet needed)
+  # Video player
   url_launcher: ^6.2.4
-  
+  video_player: ^2.8.0
+
   # Utilities
   intl: ^0.19.0
   flutter_markdown: ^0.6.18
@@ -34,4 +35,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/videos/fusion360/
 

@@ -35,11 +35,11 @@ class MyApp extends StatelessWidget {
           seedColor: AppColors.header,
           brightness: Brightness.light,
         ),
-        scaffoldBackgroundColor: AppColors.background,
+        scaffoldBackgroundColor: const Color(0xFFF8F9FA),
         cardTheme: CardThemeData(
           elevation: 2,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConstants.cardBorderRadius),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
         appBarTheme: const AppBarTheme(
@@ -48,12 +48,20 @@ class MyApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            elevation: 2,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            elevation: 3,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(10),
             ),
+            shadowColor: Colors.black26,
           ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          filled: true,
+          fillColor: Colors.white,
         ),
       ),
       routerConfig: router,

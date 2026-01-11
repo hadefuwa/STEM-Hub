@@ -21,10 +21,10 @@ class YearsDashboardScreen extends StatelessWidget {
       title: 'Select Year',
       body: GridView.count(
         crossAxisCount: crossAxisCount,
-        padding: const EdgeInsets.all(16),
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 1.0, // Make cards square
+        padding: const EdgeInsets.all(20),
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 1.2, // More compact, wider cards
         children: Year.allYears.map((year) {
           // Check if there are any lessons for this year
           final lessons = dataStore.getLessons(yearId: year.id);
@@ -35,7 +35,7 @@ class YearsDashboardScreen extends StatelessWidget {
             title: year.name,
             color: _getYearColor(year.id),
             isEnabled: hasLessons,
-            onTap: hasLessons ? () => context.go('${AppPaths.subjects}?yearId=${year.id}') : null,
+            onTap: hasLessons ? () => context.push('${AppPaths.subjects}?yearId=${year.id}') : null,
           );
         }).toList(),
       ),

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:math';
 import 'dart:async';
 import '../utils/constants.dart';
 import '../widgets/app_scaffold.dart';
+import '../data/data_store.dart';
+import '../models/progress.dart';
 
 class ClickingGameScreen extends StatefulWidget {
-  const ClickingGameScreen({super.key});
+  final int? lessonId;
+  
+  const ClickingGameScreen({super.key, this.lessonId});
 
   @override
   State<ClickingGameScreen> createState() => _ClickingGameScreenState();
@@ -180,6 +185,59 @@ class _ClickingGameScreenState extends State<ClickingGameScreen> {
     });
     gameTimer?.cancel();
     targetTimer?.cancel();
+    
+    // Automatically mark lesson as complete if student gets gold or better
+    final grade = getGrade();
+    if (grade == GameGrade.gold || grade == GameGrade.platinum) {
+      _markLessonComplete();
+    }
+  }
+  
+  Future<void> _markLessonComplete() async {
+    if (widget.lessonId == null) return;
+    
+    final dataStore = Provider.of<DataStore>(context, listen: false);
+    final currentStudent = dataStore.data.students.isNotEmpty
+        ? dataStore.data.students.first
+        : null;
+    
+    if (currentStudent == null) return;
+    
+    final lesson = dataStore.getLesson(widget.lessonId!);
+    if (lesson == null) return;
+    
+    // Check if already completed
+    if (dataStore.hasCompletedActivity(
+      currentStudent.id,
+      'Lesson',
+      lesson.id,
+    )) {
+      return;
+    }
+    
+    // Mark lesson as complete
+    final progress = Progress(
+      id: dataStore.getNextProgressId(),
+      studentId: currentStudent.id,
+      activityType: 'Lesson',
+      activityId: lesson.id,
+      isCompleted: true,
+      completedAt: DateTime.now(),
+      yearId: lesson.yearId,
+      subjectId: lesson.subjectId,
+      lessonNumber: lesson.lessonNumber,
+    );
+    await dataStore.addProgress(progress);
+    
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('🎉 Congratulations! You got ${getGradeName(getGrade())}! Lesson marked as complete!'),
+          backgroundColor: Colors.green,
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
   }
 
   double get accuracy {
@@ -226,6 +284,7 @@ class _ClickingGameScreenState extends State<ClickingGameScreen> {
   Widget build(BuildContext context) {
     return AppScaffold(
       title: 'Accuracy Clicking Game',
+      showBackButton: true,
       showFooter: false, // Game needs full screen
       body: Stack(
         children: [

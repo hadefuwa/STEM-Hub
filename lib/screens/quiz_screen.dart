@@ -130,7 +130,8 @@ class _QuizScreenState extends State<QuizScreen> {
                 Navigator.of(context).pop();
                 if (lesson != null) {
                   // Go back to lessons page
-                  context.go('${AppPaths.lessons}?yearId=${lesson.yearId}&subjectId=${lesson.subjectId}');
+                  final categoryParam = lesson.categoryId != null ? '&categoryId=${lesson.categoryId}' : '';
+                  context.go('${AppPaths.lessons}?yearId=${lesson.yearId}&subjectId=${lesson.subjectId}$categoryParam');
                 } else {
                   context.go(AppPaths.home);
                 }
@@ -167,6 +168,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return AppScaffold(
       title: quiz.title,
+      showBackButton: true,
       body: Column(
         children: [
           // Progress indicator

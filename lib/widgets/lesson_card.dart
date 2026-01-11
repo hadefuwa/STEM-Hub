@@ -23,10 +23,9 @@ class LessonCard extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: _getSubjectColor(lesson.subjectId),
           child: Text(
-            '${lesson.lessonNumber}',
+            lesson.emoji,
             style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+              fontSize: 24,
             ),
           ),
         ),

@@ -28,6 +28,12 @@ All features from the original WinUI 3 version have been preserved and enhanced 
 
 ## Prerequisites
 
+### For Electron (Recommended)
+- **Node.js** (v16 or higher) and npm
+- **Flutter SDK** (latest stable version)
+- **Dart SDK** (comes with Flutter)
+
+### For Flutter Native Desktop
 - Flutter SDK (latest stable version)
 - Dart SDK (comes with Flutter)
 - Platform-specific SDKs:
@@ -41,69 +47,121 @@ All features from the original WinUI 3 version have been preserved and enhanced 
 
 1. **Clone or navigate to the project directory:**
    ```bash
-   cd homeschool-hub-flutter
+   cd homeschool-hub-electron
    ```
 
-2. **Install dependencies:**
+2. **Install Flutter dependencies:**
    ```bash
    flutter pub get
    ```
 
-3. **Verify Flutter setup:**
+3. **Install Electron dependencies:**
+   ```bash
+   npm install
+   ```
+
+4. **Verify Flutter setup:**
    ```bash
    flutter doctor
    ```
 
+5. **Build Flutter web app (required for Electron):**
+   ```bash
+   flutter build web
+   ```
+
 ## Running the App
 
-### Windows
+### Electron (Recommended for Desktop)
+The app has been converted to Electron for easy desktop distribution:
+
+1. **Install Node.js dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Build Flutter web app:**
+   ```bash
+   flutter build web
+   ```
+
+3. **Run Electron app:**
+   ```bash
+   npm start
+   ```
+
+4. **Package for distribution:**
+   ```bash
+   npm run dist
+   ```
+
+### Flutter Native Desktop
+
+#### Windows
 ```bash
 flutter run -d windows
 ```
 
-### macOS
+#### macOS
 ```bash
 flutter run -d macos
 ```
 
-### Linux
+#### Linux
 ```bash
 flutter run -d linux
 ```
 
-### iOS (macOS only)
+### Mobile Platforms
+
+#### iOS (macOS only)
 ```bash
 flutter run -d ios
 ```
 
-### Android
+#### Android
 ```bash
 flutter run -d android
 ```
 
 ## Building for Release
 
-### Windows
+### Electron (Recommended)
+Build and package the Electron app for distribution:
+```bash
+npm run dist
+```
+
+This will:
+1. Build the Flutter web app
+2. Package it into an Electron app
+3. Create installers for Windows (NSIS), macOS (DMG), and Linux (AppImage)
+
+Output will be in the `dist/` directory.
+
+### Flutter Native
+
+#### Windows
 ```bash
 flutter build windows --release
 ```
 
-### macOS
+#### macOS
 ```bash
 flutter build macos --release
 ```
 
-### Linux
+#### Linux
 ```bash
 flutter build linux --release
 ```
 
-### iOS
+#### iOS
 ```bash
 flutter build ios --release
 ```
 
-### Android
+#### Android
 ```bash
 flutter build apk --release
 # or for app bundle:
