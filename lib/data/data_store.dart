@@ -101,19 +101,36 @@ class DataStore extends ChangeNotifier {
   }
 
   /// Merges default lessons into existing data, adding any lessons that don't exist
+  /// Also removes lessons that no longer exist in default data
   /// Does NOT update existing lessons to preserve user progress
   Future<void> _mergeDefaultLessons() async {
     print('DEBUG _mergeDefaultLessons: Starting merge...');
     final defaultData = DefaultData.getDefaultData();
+    final defaultLessonIds = defaultData.lessons.map((l) => l.id).toSet();
     final existingLessonIds = _data.lessons.map((l) => l.id).toSet();
 
     print('DEBUG _mergeDefaultLessons: Default data has ${defaultData.lessons.length} total lessons');
     print('DEBUG _mergeDefaultLessons: Existing data has ${_data.lessons.length} lessons');
 
-    // Add any default lessons that don't exist in current data
-    // Do NOT update existing lessons to avoid corrupting data
     bool hasChanges = false;
     int newLessonsAdded = 0;
+    int removedLessons = 0;
+
+    // Remove lessons that no longer exist in default data
+    final lessonsToRemove = _data.lessons.where((l) => !defaultLessonIds.contains(l.id)).toList();
+    for (final lesson in lessonsToRemove) {
+      _data.lessons.remove(lesson);
+      // Also remove progress for removed lessons
+      _data.progress.removeWhere((p) => 
+        p.activityType == 'Lesson' && p.activityId == lesson.id
+      );
+      hasChanges = true;
+      removedLessons++;
+      print('DEBUG _mergeDefaultLessons: Removing lesson ID ${lesson.id}: ${lesson.title}');
+    }
+
+    // Add any default lessons that don't exist in current data
+    // Do NOT update existing lessons to avoid corrupting data
     for (final defaultLesson in defaultData.lessons) {
       if (!existingLessonIds.contains(defaultLesson.id)) {
         _data.lessons.add(defaultLesson);
@@ -123,8 +140,17 @@ class DataStore extends ChangeNotifier {
       }
     }
 
-    // Also merge quizzes
+    // Also merge quizzes - remove quizzes that no longer exist
+    final defaultQuizIds = defaultData.quizzes.map((q) => q.id).toSet();
     final existingQuizIds = _data.quizzes.map((q) => q.id).toSet();
+    
+    final quizzesToRemove = _data.quizzes.where((q) => !defaultQuizIds.contains(q.id)).toList();
+    for (final quiz in quizzesToRemove) {
+      _data.quizzes.remove(quiz);
+      hasChanges = true;
+      print('DEBUG _mergeDefaultLessons: Removing quiz ID ${quiz.id}: ${quiz.title}');
+    }
+    
     for (final defaultQuiz in defaultData.quizzes) {
       if (!existingQuizIds.contains(defaultQuiz.id)) {
         _data.quizzes.add(defaultQuiz);
@@ -132,9 +158,9 @@ class DataStore extends ChangeNotifier {
       }
     }
 
-    // Save if we added new lessons/quizzes
+    // Save if we made any changes
     if (hasChanges) {
-      print('DEBUG _mergeDefaultLessons: Added $newLessonsAdded new lessons');
+      print('DEBUG _mergeDefaultLessons: Added $newLessonsAdded new lessons, removed $removedLessons lessons');
       await saveData();
       notifyListeners();
     } else {

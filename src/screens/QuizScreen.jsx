@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
+import * as TTS from '../utils/textToSpeech';
 
 function QuizScreen() {
   const { quizId } = useParams();
@@ -9,11 +10,63 @@ function QuizScreen() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
+  
+  // TTS state
+  const [ttsEnabled, setTtsEnabled] = useState(() => TTS.getPreferences().enabled);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [autoRead, setAutoRead] = useState(() => TTS.getPreferences().autoRead);
+  const [readAnswers, setReadAnswers] = useState(() => TTS.getPreferences().readAnswers);
+  const ttsSupported = TTS.isSupported();
+  
   const addProgress = useDataStore(state => state.addProgress);
   const saveData = useDataStore(state => state.saveData);
   const getNextLessonForSubject = useDataStore(state => state.getNextLessonForSubject);
   const getUserId = useDataStore(state => state.getUserId);
   const data = useDataStore(state => state.data);
+  
+  // Ref to track if component is mounted
+  const isMountedRef = useRef(true);
+  
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      // Cleanup: stop TTS when component unmounts
+      TTS.stop();
+    };
+  }, []);
+  
+  // Auto-read question when it changes (if auto-read is enabled)
+  useEffect(() => {
+    if (!ttsSupported || !ttsEnabled || !autoRead || showResults) {
+      return;
+    }
+    
+    const currentQuestion = quiz?.questions[currentQuestionIndex];
+    if (currentQuestion) {
+      // Small delay to ensure UI is updated
+      const timer = setTimeout(() => {
+        if (isMountedRef.current) {
+          readQuestion();
+        }
+      }, 300);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentQuestionIndex, ttsEnabled, autoRead, showResults]);
+  
+  // Update speaking state periodically
+  useEffect(() => {
+    if (!ttsSupported || !ttsEnabled) return;
+    
+    const interval = setInterval(() => {
+      setIsSpeaking(TTS.isSpeaking());
+      setIsPaused(TTS.isPaused());
+    }, 100);
+    
+    return () => clearInterval(interval);
+  }, [ttsSupported, ttsEnabled]);
 
   if (!quiz) {
     return (
@@ -28,14 +81,88 @@ function QuizScreen() {
   const currentQuestion = quiz.questions[currentQuestionIndex];
   const totalQuestions = quiz.questions.length;
 
+  // TTS handlers
+  const readQuestion = async () => {
+    if (!ttsSupported || !ttsEnabled || !currentQuestion) return;
+    
+    try {
+      TTS.stop(); // Stop any current speech
+      await TTS.speak(currentQuestion.questionText);
+      setIsSpeaking(true);
+    } catch (error) {
+      console.error('Error reading question:', error);
+    }
+  };
+  
+  const readAnswer = async (answerText) => {
+    if (!ttsSupported || !ttsEnabled || !readAnswers) return;
+    
+    try {
+      TTS.stop();
+      await TTS.speak(answerText);
+      setIsSpeaking(true);
+    } catch (error) {
+      console.error('Error reading answer:', error);
+    }
+  };
+  
+  const handleTTSPlay = () => {
+    if (isPaused) {
+      TTS.resume();
+      setIsPaused(false);
+    } else {
+      readQuestion();
+    }
+  };
+  
+  const handleTTSPause = () => {
+    TTS.pause();
+    setIsPaused(true);
+  };
+  
+  const handleTTSStop = () => {
+    TTS.stop();
+    setIsSpeaking(false);
+    setIsPaused(false);
+  };
+  
+  const toggleTTS = () => {
+    const newEnabled = !ttsEnabled;
+    setTtsEnabled(newEnabled);
+    TTS.setEnabled(newEnabled);
+    if (!newEnabled) {
+      TTS.stop();
+      setIsSpeaking(false);
+      setIsPaused(false);
+    }
+  };
+  
+  const toggleAutoRead = () => {
+    const newAutoRead = !autoRead;
+    setAutoRead(newAutoRead);
+    TTS.setAutoRead(newAutoRead);
+  };
+  
+  const toggleReadAnswers = () => {
+    const newReadAnswers = !readAnswers;
+    setReadAnswers(newReadAnswers);
+    TTS.setReadAnswers(newReadAnswers);
+  };
+
   const handleAnswerSelect = (answerIndex) => {
     setSelectedAnswers({
       ...selectedAnswers,
       [currentQuestion.id]: answerIndex,
     });
+    
+    // Read the selected answer if enabled
+    if (readAnswers && currentQuestion.options[answerIndex]) {
+      readAnswer(currentQuestion.options[answerIndex]);
+    }
   };
 
   const handleNext = () => {
+    TTS.stop(); // Stop TTS when navigating
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
@@ -45,12 +172,14 @@ function QuizScreen() {
   };
 
   const handlePrevious = () => {
+    TTS.stop(); // Stop TTS when navigating
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 
   const calculateScore = async () => {
+    TTS.stop(); // Stop TTS when submitting quiz
     let correct = 0;
     quiz.questions.forEach(question => {
       if (selectedAnswers[question.id] === question.correctAnswerIndex) {
@@ -253,19 +382,149 @@ function QuizScreen() {
         paddingBottom: '20px',
         borderBottom: '2px solid #e0e0e0',
       }}>
-        <button
-          onClick={() => navigate(-1)}
-          style={{
-            marginBottom: '15px',
-            padding: '8px 16px',
-            backgroundColor: '#f5f5f5',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          ← Back
-        </button>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          marginBottom: '15px',
+        }}>
+          <button
+            onClick={() => {
+              TTS.stop();
+              navigate(-1);
+            }}
+            style={{
+              padding: '8px 16px',
+              backgroundColor: '#f5f5f5',
+              border: '1px solid #ddd',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+          >
+            ← Back
+          </button>
+          
+          {/* TTS Controls */}
+          {ttsSupported && (
+            <div style={{
+              display: 'flex',
+              gap: '8px',
+              alignItems: 'center',
+            }}>
+              {/* TTS Toggle */}
+              <button
+                onClick={toggleTTS}
+                title={ttsEnabled ? 'Disable Text-to-Speech' : 'Enable Text-to-Speech'}
+                style={{
+                  padding: '8px 12px',
+                  backgroundColor: ttsEnabled ? '#007bff' : '#6c757d',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                }}
+              >
+                🔊 {ttsEnabled ? 'TTS On' : 'TTS Off'}
+              </button>
+              
+              {ttsEnabled && (
+                <>
+                  {/* Play/Pause Button */}
+                  {isPaused || !isSpeaking ? (
+                    <button
+                      onClick={handleTTSPlay}
+                      title="Play/Resume"
+                      style={{
+                        padding: '8px 12px',
+                        backgroundColor: '#28a745',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        fontSize: '16px',
+                      }}
+                    >
+                      ▶️
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleTTSPause}
+                      title="Pause"
+                      style={{
+                        padding: '8px 12px',
+                        backgroundColor: '#ffc107',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        fontSize: '16px',
+                      }}
+                    >
+                      ⏸️
+                    </button>
+                  )}
+                  
+                  {/* Stop Button */}
+                  <button
+                    onClick={handleTTSStop}
+                    title="Stop"
+                    disabled={!isSpeaking && !isPaused}
+                    style={{
+                      padding: '8px 12px',
+                      backgroundColor: '#dc3545',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: (!isSpeaking && !isPaused) ? 'not-allowed' : 'pointer',
+                      opacity: (!isSpeaking && !isPaused) ? 0.5 : 1,
+                      fontSize: '16px',
+                    }}
+                  >
+                    ⏹️
+                  </button>
+                  
+                  {/* Read Question Button */}
+                  <button
+                    onClick={readQuestion}
+                    title="Read Question Aloud"
+                    style={{
+                      padding: '8px 12px',
+                      backgroundColor: '#17a2b8',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      fontSize: '14px',
+                    }}
+                  >
+                    📖 Read
+                  </button>
+                  
+                  {/* Auto-read Toggle */}
+                  <button
+                    onClick={toggleAutoRead}
+                    title={autoRead ? 'Disable Auto-read' : 'Enable Auto-read'}
+                    style={{
+                      padding: '8px 12px',
+                      backgroundColor: autoRead ? '#28a745' : '#6c757d',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                    }}
+                  >
+                    {autoRead ? '🔄 Auto' : '⏸️ Manual'}
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+        </div>
         
         <h1 style={{
           margin: 0,
@@ -280,6 +539,15 @@ function QuizScreen() {
           fontSize: '16px',
         }}>
           Question {currentQuestionIndex + 1} of {totalQuestions}
+          {ttsEnabled && isSpeaking && (
+            <span style={{
+              marginLeft: '10px',
+              color: '#007bff',
+              fontSize: '14px',
+            }}>
+              🔊 Reading...
+            </span>
+          )}
         </p>
       </div>
 
@@ -308,13 +576,69 @@ function QuizScreen() {
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         marginBottom: '20px',
       }}>
-        <h2 style={{
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
           marginBottom: '20px',
-          fontSize: '20px',
-          color: '#333',
         }}>
-          {currentQuestion.questionText}
-        </h2>
+          <h2 style={{
+            margin: 0,
+            fontSize: '20px',
+            color: '#333',
+            flex: 1,
+          }}>
+            {currentQuestion.questionText}
+          </h2>
+          {ttsEnabled && (
+            <button
+              onClick={readQuestion}
+              title="Read Question Aloud"
+              style={{
+                marginLeft: '15px',
+                padding: '6px 12px',
+                backgroundColor: '#17a2b8',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '12px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              🔊 Read
+            </button>
+          )}
+        </div>
+        
+        {/* Read Answers Toggle */}
+        {ttsEnabled && (
+          <div style={{
+            marginBottom: '15px',
+            padding: '10px',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '4px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+          }}>
+            <label style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              cursor: 'pointer',
+              fontSize: '14px',
+            }}>
+              <input
+                type="checkbox"
+                checked={readAnswers}
+                onChange={toggleReadAnswers}
+                style={{ cursor: 'pointer' }}
+              />
+              <span>Read answers when selected</span>
+            </label>
+          </div>
+        )}
 
         <div style={{
           display: 'flex',

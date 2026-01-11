@@ -198,51 +198,6 @@ J says "juh" like in Jam 🍓
       assessmentType: null,
       categoryId: null,
     }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'nursery',
-      subjectId: 'history',
-      lessonNumber: 1,
-      title: 'My Family History',
-      emoji: '👨‍👩‍👧‍👦',
-      content: `# My Family History 👨‍👩‍👧‍👦
-
-Everyone has a family! Let's learn about yours!
-
-## What is a Family?
-
-A family is people who love and care for each other!
-
-- Mummy and Daddy 👨‍👩‍👧‍👦
-- Brothers and Sisters 👫
-- Grandparents 👴👵
-- Aunts and Uncles 👨‍👨‍👧
-- Cousins 👨‍👩‍👦
-
-## Family Photos
-
-Look at old family photos together!
-- Who is in the picture?
-- What were they doing?
-- How old were they?
-
-## Fun Activities
-
-- Draw a picture of your family
-- Ask grown-ups about when they were little
-- Look at baby photos
-- Make a family tree with pictures
-
-## Remember
-
-- Families are special
-- Everyone has a family history
-- Stories from the past are important!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
   ];
 }
 

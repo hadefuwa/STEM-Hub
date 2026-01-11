@@ -15,6 +15,7 @@ function TopNavigation() {
   const saveData = useDataStore(state => state.saveData);
   const getLesson = useDataStore(state => state.getLesson);
   const hasCompletedLesson = useDataStore(state => state.hasCompletedLesson);
+  const data = useDataStore(state => state.data);
   
   // Determine if we're on a lesson page
   const isLessonPage = location.pathname.startsWith('/lesson/');
@@ -33,7 +34,7 @@ function TopNavigation() {
     
     if (!currentLesson) {
       console.error('No lesson found to skip. LessonId:', lessonId);
-      console.error('Available lessons:', get().data?.lessons?.length || 0);
+      console.error('Available lessons:', data?.lessons?.length || 0);
       // Navigate to home if we can't find the lesson
       navigate('/');
       return;

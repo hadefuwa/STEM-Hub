@@ -96,10 +96,27 @@ const useDataStore = create((set, get) => ({
   // Merge default lessons
   mergeDefaultLessons: async (appData) => {
     const defaultData = getDefaultData();
+    const defaultLessonIds = new Set(defaultData.lessons.map(l => l.id));
     const existingLessonIds = new Set(appData.lessons.map(l => l.id));
+    const defaultQuizIds = new Set(defaultData.quizzes.map(q => q.id));
     const existingQuizIds = new Set(appData.quizzes.map(q => q.id));
     
     let hasChanges = false;
+    let removedLessons = 0;
+    
+    // Remove lessons that no longer exist in default data
+    const lessonsToRemove = appData.lessons.filter(l => !defaultLessonIds.has(l.id));
+    for (const lesson of lessonsToRemove) {
+      const index = appData.lessons.findIndex(l => l.id === lesson.id);
+      if (index !== -1) {
+        appData.lessons.splice(index, 1);
+        // Also remove progress for removed lessons
+        appData.progress = appData.progress.filter(p => p.lessonId !== lesson.id);
+        hasChanges = true;
+        removedLessons++;
+        console.log('Removing lesson:', lesson.id, lesson.title);
+      }
+    }
     
     // If no lessons exist, add all default lessons
     if (appData.lessons.length === 0 && defaultData.lessons.length > 0) {
@@ -112,6 +129,17 @@ const useDataStore = create((set, get) => ({
           appData.lessons.push(Lesson.fromJSON(defaultLesson));
           hasChanges = true;
         }
+      }
+    }
+    
+    // Remove quizzes that no longer exist in default data
+    const quizzesToRemove = appData.quizzes.filter(q => !defaultQuizIds.has(q.id));
+    for (const quiz of quizzesToRemove) {
+      const index = appData.quizzes.findIndex(q => q.id === quiz.id);
+      if (index !== -1) {
+        appData.quizzes.splice(index, 1);
+        hasChanges = true;
+        console.log('Removing quiz:', quiz.id, quiz.title);
       }
     }
     
@@ -129,6 +157,7 @@ const useDataStore = create((set, get) => ({
     }
     
     if (hasChanges) {
+      console.log(`Merge complete: Removed ${removedLessons} lessons`);
       set({ data: appData });
       await get().saveData();
     }
