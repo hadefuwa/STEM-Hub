@@ -36,7 +36,8 @@
             event.message.includes('play()') ||
             event.message.includes('play() request') ||
             event.message.includes('pause()') ||
-            event.message.includes('interrupted')
+            event.message.includes('interrupted') ||
+            event.message.includes('dragEvent is not defined')
         )) {
           event.preventDefault();
           return;

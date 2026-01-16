@@ -23,6 +23,9 @@ A cross-platform homeschool learning management application built with **React**
 - Enhanced accessibility features
 - More interactive learning games
 
+### Auto-Updates
+- **🔄 Automatic Updates**: The app automatically checks for and installs updates (see [AUTO_UPDATE_SETUP.md](./docs/AUTO_UPDATE_SETUP.md))
+
 ## 🛠️ Tech Stack
 
 - **Frontend Framework**: React 18.2.0

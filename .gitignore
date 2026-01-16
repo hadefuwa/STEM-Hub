@@ -31,3 +31,6 @@ dist-electron/
 # OS
 .DS_Store
 Thumbs.db
+
+# Secrets
+electron/update-config.js

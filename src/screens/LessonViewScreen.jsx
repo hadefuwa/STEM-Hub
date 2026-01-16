@@ -17,7 +17,49 @@ import FlappyBirdGame from '../components/FlappyBirdGame';
 import BubblePopGame from '../components/BubblePopGame';
 import SnakeGame from '../components/SnakeGame';
 import TargetPracticeGame from '../components/TargetPracticeGame';
+import SubtractionDragGame from '../components/SubtractionDragGame';
+import ShapePatternGame from '../components/ShapePatternGame';
+import MoneyDragGame from '../components/MoneyDragGame';
+import ClockGame from '../components/ClockGame';
 import { Progress } from '../models/Progress';
+
+// Error Boundary component
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    // Suppress dragEvent errors from Blockly games
+    if (error && error.message && error.message.includes('dragEvent is not defined')) {
+      this.setState({ hasError: false });
+      return;
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // Suppress dragEvent errors
+      if (this.state.error && this.state.error.message && this.state.error.message.includes('dragEvent is not defined')) {
+        return this.props.children;
+      }
+      return (
+        <div style={{ padding: '40px', textAlign: 'center' }}>
+          <h2 style={{ color: '#dc3545' }}>Something went wrong</h2>
+          <p>Please try refreshing the page.</p>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 function LessonViewScreen() {
   const { lessonId } = useParams();
@@ -371,7 +413,69 @@ function LessonViewScreen() {
           borderRadius: '8px',
           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         }}>
-          <MathGame lesson={lesson} />
+          <ErrorBoundary>
+            <MathGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Subtraction Stories' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <SubtractionDragGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Shapes and Patterns' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <ShapePatternGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Money Math' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <MoneyDragGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Time and Clocks' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <ClockGame lesson={lesson} />
+          </ErrorBoundary>
         </div>
       ) : (
         <div style={{

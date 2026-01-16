@@ -23,11 +23,19 @@ Let's learn our times tables!
 
 
 
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
 ## What is Multiplication?
 
 
 
-Multiplication is a quick way to add the same number many times.
+Multiplication is a quick way to add the same number many times!
 
 
 
@@ -35,137 +43,19 @@ Multiplication is a quick way to add the same number many times.
 
 
 
-## The 2 Times Table
-
-
-
-- 2 × 1 = 2
-
-- 2 × 2 = 4
-
-- 2 × 3 = 6
-
-- 2 × 4 = 8
-
-- 2 × 5 = 10
-
-- 2 × 6 = 12
-
-- 2 × 7 = 14
-
-- 2 × 8 = 16
-
-- 2 × 9 = 18
-
-- 2 × 10 = 20
-
-
-
-## The 5 Times Table
-
-
-
-- 5 × 1 = 5
-
-- 5 × 2 = 10
-
-- 5 × 3 = 15
-
-- 5 × 4 = 20
-
-- 5 × 5 = 25
-
-- 5 × 6 = 30
-
-- 5 × 7 = 35
-
-- 5 × 8 = 40
-
-- 5 × 9 = 45
-
-- 5 × 10 = 50
-
-
-
 ## Practice
 
 
 
-Try these:
+- Learn the 2 times table
 
-- 2 × 6 = ?
+- Learn the 5 times table
 
-- 5 × 4 = ?
+- Learn the 10 times table
 
-- 2 × 9 = ?
-
-- 5 × 7 = ?
-
-
-
-<!-- QUESTION_START -->
-What is 2 × 6?
-<!-- OPTIONS -->
-10|11|12|13
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-2 × 6 = 12! This means 2 + 2 + 2 + 2 + 2 + 2 = 12, or 6 + 6 = 12.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is 5 × 4?
-<!-- OPTIONS -->
-18|19|20|21
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-5 × 4 = 20! This means 5 + 5 + 5 + 5 = 20, or 4 + 4 + 4 + 4 + 4 = 20.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is 2 × 9?
-<!-- OPTIONS -->
-16|17|18|19
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-2 × 9 = 18! This means 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 + 2 = 18, or 9 + 9 = 18.
-<!-- QUESTION_END -->
-
-
-
-## Fun Activities
-
-
-
-- Practice times tables every day
-
-- Use objects to help you understand
-
-- Make times table flashcards
-
-- Play multiplication games
-
-
-
-## Remember
-
-
-
-- Multiplication is repeated addition
-
-- Practice makes perfect
-
-- Start with 2s and 5s
-
-- You can do it!`,
+- Play the multiplication game!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -180,7 +70,7 @@ What is 2 × 9?
 
 
 
-Division is sharing or grouping numbers!
+Let's learn about division!
 
 
 
@@ -188,100 +78,94 @@ Division is sharing or grouping numbers!
 
 
 
-Division is the opposite of multiplication. It means sharing equally.
+Division is sharing or grouping numbers!
+
+When we divide, we split a number into equal groups.
 
 
 
-12 ÷ 3 = 4 (12 shared into 3 groups = 4 in each group)
+## Examples
 
 
 
-## Division Facts
+8 ÷ 2 = 4
+
+This means: 8 shared equally into 2 groups = 4 in each group
 
 
 
-- 10 ÷ 2 = 5
+10 ÷ 5 = 2
 
-- 15 ÷ 3 = 5
-
-- 20 ÷ 4 = 5
-
-- 25 ÷ 5 = 5
+This means: 10 shared equally into 5 groups = 2 in each group
 
 
 
-## Sharing Equally
+12 ÷ 3 = 4
+
+This means: 12 shared equally into 3 groups = 4 in each group
 
 
 
-If you have 12 sweets and 3 friends:
-
-- 12 ÷ 3 = 4
-
-- Each friend gets 4 sweets
-
-
-
-## Grouping
-
-
-
-If you have 20 pencils and put 4 in each box:
-
-- 20 ÷ 4 = 5
-
-- You need 5 boxes
-
-
-
-## Practice
-
-
-
-Try these:
-
-- 8 ÷ 2 = ?
-
-- 15 ÷ 5 = ?
-
-- 18 ÷ 3 = ?
-
-- 20 ÷ 4 = ?
+## Practice Questions
 
 
 
 <!-- QUESTION_START -->
-What is 8 ÷ 2?
+If you have 8 cookies and share them equally between 2 friends, how many cookies does each friend get?
 <!-- OPTIONS -->
-2|3|4|5
+2 cookies|3 cookies|4 cookies|5 cookies
 <!-- CORRECT -->
 2
 <!-- EXPLANATION -->
-8 ÷ 2 = 4! If you have 8 sweets and share them equally between 2 friends, each friend gets 4 sweets.
+8 ÷ 2 = 4. Each friend gets 4 cookies!
 <!-- QUESTION_END -->
 
 
 
 <!-- QUESTION_START -->
-What is 15 ÷ 5?
+What is 10 ÷ 5?
 <!-- OPTIONS -->
-2|3|4|5
+1|2|3|5
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-15 ÷ 5 = 3! If you have 15 pencils and put 5 in each box, you need 3 boxes.
+10 ÷ 5 = 2. When you divide 10 into 5 equal groups, each group has 2.
 <!-- QUESTION_END -->
 
 
 
 <!-- QUESTION_START -->
-What is 20 ÷ 4?
+If you have 12 apples and put them into 3 baskets equally, how many apples are in each basket?
+<!-- OPTIONS -->
+3 apples|4 apples|5 apples|6 apples
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+12 ÷ 3 = 4. Each basket will have 4 apples!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 15 ÷ 3?
 <!-- OPTIONS -->
 3|4|5|6
 <!-- CORRECT -->
 2
 <!-- EXPLANATION -->
-20 ÷ 4 = 5! If you have 20 items and share them into 4 equal groups, each group has 5 items.
+15 ÷ 3 = 5. When you divide 15 into 3 equal groups, each group has 5.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+If you have 20 stickers and share them equally between 4 friends, how many stickers does each friend get?
+<!-- OPTIONS -->
+3 stickers|4 stickers|5 stickers|6 stickers
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+20 ÷ 4 = 5. Each friend gets 5 stickers!
 <!-- QUESTION_END -->
 
 
@@ -290,27 +174,11 @@ What is 20 ÷ 4?
 
 
 
-- Share objects equally
+- Share objects equally with friends
 
 - Practice division problems
 
-- Use drawings to help
-
-- Play division games
-
-
-
-## Remember
-
-
-
-- Division is sharing or grouping
-
-- It's the opposite of multiplication
-
-- Practice with real objects
-
-- You're learning well!`,
+- Draw pictures to help you divide!`,
       quizId: quizId++,
       assessmentType: 'interactive',
       categoryId: null,
@@ -331,21 +199,19 @@ Let's learn about fractions!
 
 
 
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
 ## What is a Fraction?
 
 
 
-A fraction shows part of a whole.
-
-
-
-## Parts of a Fraction
-
-
-
-- **Numerator** (top number) - How many parts you have
-
-- **Denominator** (bottom number) - How many parts make a whole
+A fraction shows part of a whole!
 
 
 
@@ -353,27 +219,11 @@ A fraction shows part of a whole.
 
 
 
-**Half** - ½
+- Half (½) - One part out of two
 
-- One part out of two
+- Quarter (¼) - One part out of four
 
-- If you cut something in half, you get two equal parts
-
-
-
-**Quarter** - ¼
-
-- One part out of four
-
-- If you cut something into quarters, you get four equal parts
-
-
-
-**Third** - ⅓
-
-- One part out of three
-
-- If you cut something into thirds, you get three equal parts
+- Third (⅓) - One part out of three
 
 
 
@@ -389,17 +239,509 @@ A fraction shows part of a whole.
 
 
 
-## Practice
+## Fun Activities
 
 
 
-- Draw a shape and color half
+- Practice with fractions
 
-- Draw a shape and color a quarter
+- Draw fraction pictures
 
-- Share objects into fractions
+- Play the fraction game!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
 
-- Write fractions for pictures
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Subtraction Stories",
+      emoji: '📖',
+      content: `# Subtraction Stories 📖
+
+
+
+Let's solve subtraction problems through fun stories with pictures!
+
+
+
+## Story 1: The Cookie Jar 🍪
+
+
+
+Emma had 12 cookies in her cookie jar. Her friend Tom came over and ate 5 cookies. How many cookies are left?
+
+
+
+**Visual Representation:**
+
+
+
+🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪  (12 cookies)
+
+
+
+Tom ate 5 cookies: ❌ ❌ ❌ ❌ ❌
+
+
+
+**Let's solve it step by step:**
+
+
+
+**Start:**     🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪  = 12
+
+**Eaten:**     ❌ ❌ ❌ ❌ ❌                      = -5
+
+**Left:**      🍪 🍪 🍪 🍪 🍪 🍪 🍪              = 7
+
+
+
+**Answer:** 12 - 5 = **7 cookies left!** 🎉
+
+
+
+## Story 2: The Toy Box 🧸
+
+
+
+Jake had 15 toy cars. He gave 8 toy cars to his little sister. How many toy cars does Jake have now?
+
+
+
+**Visual Representation:**
+
+
+
+🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗  (15 toy cars)
+
+
+
+Given away: 🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁  (8 toy cars)
+
+
+
+**Visual Calculation:**
+
+
+
+**Start:**     🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗 🚗  = 15
+
+**Given:**     🎁 🎁 🎁 🎁 🎁 🎁 🎁 🎁                      = -8
+
+**Left:**      🚗 🚗 🚗 🚗 🚗 🚗 🚗                          = 7
+
+
+
+**Answer:** 15 - 8 = **7 toy cars left!** 🎉
+
+
+
+## Story 3: The Garden Flowers 🌸
+
+
+
+There were 20 flowers in the garden. The wind blew away 6 flowers. How many flowers are still in the garden?
+
+
+
+**Visual Representation:**
+
+
+
+🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸  (20 flowers)
+
+
+
+Blown away: 💨 💨 💨 💨 💨 💨  (6 flowers)
+
+
+
+**Visual Calculation:**
+
+
+
+**Start:**     🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸  = 20
+
+**Blown:**     💨 💨 💨 💨 💨 💨                                      = -6
+
+**Left:**      🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸 🌸            = 14
+
+
+
+**Answer:** 20 - 6 = **14 flowers remaining!** 🌸
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Sarah had 18 stickers. She used 9 stickers to decorate her notebook. How many stickers does Sarah have left?
+<!-- OPTIONS -->
+7 stickers|8 stickers|9 stickers|10 stickers
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+18 - 9 = 9. Sarah has 9 stickers left!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+A library had 25 books on the shelf. Students borrowed 7 books. How many books are still on the shelf?
+<!-- OPTIONS -->
+16 books|17 books|18 books|19 books
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+25 - 7 = 18. There are 18 books still on the shelf!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+There were 14 birds in a tree. 5 birds flew away. How many birds are still in the tree?
+<!-- OPTIONS -->
+7 birds|8 birds|9 birds|10 birds
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+14 - 5 = 9. There are 9 birds still in the tree!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is 16 - 8?
+<!-- OPTIONS -->
+6|7|8|9
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+16 - 8 = 8. When you take away 8 from 16, you get 8!
+<!-- QUESTION_END -->
+
+
+
+## Tips for Subtraction
+
+
+
+- Draw pictures to help you visualize
+
+- Count backwards if it helps
+
+- Use your fingers to count
+
+- Check your answer by adding: if 12 - 5 = 7, then 7 + 5 should equal 12!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "Shapes and Patterns",
+      emoji: '🔷',
+      content: `# Shapes and Patterns 🔷
+
+
+
+Let's explore shapes and discover patterns with visual examples!
+
+
+
+## Common Shapes
+
+
+
+### Square ⬜
+
+
+
+**Visual Properties:**
+
+
+
+⬜⬜⬜
+
+⬜⬜⬜
+
+⬜⬜⬜
+
+
+
+- Has **4 equal sides** ↔️ ↔️ ↔️ ↔️
+
+- Has **4 corners** (vertices) 📍 📍 📍 📍
+
+- All angles are the same (90°)
+
+- **Examples:** 🪟 windows, 🧩 tiles, 📱 picture frames
+
+
+
+### Circle ⭕
+
+
+
+**Visual Properties:**
+
+
+
+    ⭕
+
+  ⭕ ⭕ ⭕
+
+    ⭕
+
+
+
+- **Round shape** - perfectly curved
+
+- **No corners** - smooth all around
+
+- All points are the same distance from the center
+
+- **Examples:** 🎡 wheels, 🪙 coins, 🍽️ plates
+
+
+
+### Triangle 🔺
+
+
+
+**Visual Properties:**
+
+
+
+    🔺
+
+   🔺 🔺
+
+  🔺 🔺 🔺
+
+
+
+- Has **3 sides** ↔️ ↙️ ↗️
+
+- Has **3 corners** (vertices) 📍 📍 📍
+
+- Can be different sizes: 🔺 🔺🔺 🔺🔺🔺
+
+- **Examples:** 🏠 roof tops, 🍕 pizza slices, 🚦 road signs
+
+
+
+### Rectangle ▬
+
+
+
+**Visual Properties:**
+
+
+
+▬▬▬▬▬▬
+
+▬▬▬▬▬▬
+
+▬▬▬▬▬▬
+
+
+
+- Has **4 sides** ↔️ ↔️ ↕️ ↕️
+
+- Opposite sides are equal
+
+- Has **4 corners** 📍 📍 📍 📍
+
+- **Examples:** 🚪 doors, 📚 books, 📱 phones
+
+
+
+## Patterns in Shapes
+
+
+
+### Visual Pattern 1: Shape Sequence
+
+
+
+Look at this pattern:
+
+
+
+🔷 ⬜ 🔷 ⬜ 🔷 ⬜ ?
+
+
+
+**What comes next?** That's right - **🔷**!
+
+
+
+The pattern repeats: **diamond, square, diamond, square...**
+
+
+
+### Visual Pattern 2: Color and Shape
+
+
+
+🔴 🔵 🔴 🔵 🔴 🔵 ?
+
+
+
+**What comes next?** **🔴** (red circle)!
+
+
+
+### Visual Pattern 3: Size Pattern
+
+
+
+🔺 🔺🔺 🔺 🔺🔺 🔺 ?
+
+
+
+**What comes next?** **🔺🔺🔺** (big triangle)!
+
+
+
+## Number Patterns with Visuals
+
+
+
+### Pattern 1: Counting by 2s
+
+
+
+**Visual Representation:**
+
+
+
+2  →  🟢🟢
+
+4  →  🟢🟢🟢🟢
+
+6  →  🟢🟢🟢🟢🟢🟢
+
+8  →  🟢🟢🟢🟢🟢🟢🟢🟢
+
+10 →  🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
+
+
+
+**Number pattern:** 2, 4, 6, 8, 10, 12, 14...
+
+**Rule:** Add 2 each time! ➕2
+
+
+
+### Pattern 2: Counting by 5s
+
+
+
+**Visual Representation:**
+
+
+
+5  →  ⭐⭐⭐⭐⭐
+
+10 →  ⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐
+
+15 →  ⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐
+
+20 →  ⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐ ⭐⭐⭐⭐⭐
+
+
+
+**Number pattern:** 5, 10, 15, 20, 25, 30...
+
+**Rule:** Add 5 each time! ➕5
+
+
+
+### Pattern 3: Counting by 10s
+
+
+
+**Visual Representation:**
+
+
+
+10 →  🔟
+
+20 →  🔟🔟
+
+30 →  🔟🔟🔟
+
+40 →  🔟🔟🔟🔟
+
+
+
+**Number pattern:** 10, 20, 30, 40, 50, 60...
+
+**Rule:** Add 10 each time! ➕10
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What shape has 3 sides and 3 corners?
+<!-- OPTIONS -->
+Square|Circle|Triangle|Rectangle
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+A triangle has 3 sides and 3 corners (vertices)!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Look at this pattern: 5, 10, 15, 20, ? What number comes next?
+<!-- OPTIONS -->
+21|22|25|30
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The pattern is counting by 5s. After 20 comes 25!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What shape is round with no corners?
+<!-- OPTIONS -->
+Square|Circle|Triangle|Rectangle
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A circle is round and has no corners!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Look at this pattern: 2, 4, 6, 8, ? What number comes next?
+<!-- OPTIONS -->
+9|10|11|12
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The pattern is counting by 2s. After 8 comes 10!
+<!-- QUESTION_END -->
 
 
 
@@ -407,63 +749,541 @@ A fraction shows part of a whole.
 
 
 
-- Cut paper into fractions
+- Look for shapes around your house
 
-- Share food into fractions
+- Create your own patterns
 
-- Draw fraction pictures
+- Draw patterns with shapes and colors
 
-- Practice with real objects
+- Find patterns in nature!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 6,
+      title: "Money Math",
+      emoji: '💰',
+      content: `# Money Math 💰
 
 
 
-## Remember
+Let's learn to count and use money with visual examples!
 
 
 
-- Fractions show parts of a whole
+## UK Coins
 
-- The top number is how many parts
 
-- The bottom number is total parts
 
-- Fractions are everywhere!
+### Coins We Use (Visual Guide)
+
+
+
+**Small Coins (Copper):**
+
+- **1p** 🪙 - Smallest coin, copper color
+
+- **2p** 🪙🪙 - Copper color, slightly bigger
+
+
+
+**Silver Coins:**
+
+- **5p** ⚪ - Small silver coin
+
+- **10p** ⚪⚪ - Silver coin
+
+- **20p** ⚪⚪⚪⚪ - Silver coin, seven-sided
+
+- **50p** ⚪⚪⚪⚪⚪ - Silver coin, seven-sided
+
+
+
+**Large Coins:**
+
+- **£1** 🟡 - Gold-colored coin (100p)
+
+- **£2** 🟡🟡 - Silver and gold coin (200p)
+
+
+
+## Counting Money
+
+
+
+### Example 1: Counting Coins (Visual)
+
+
+
+You have these coins: 10p + 10p + 5p + 2p + 1p
+
+
+
+**Visual Representation:**
+
+
+
+⚪⚪  +  ⚪⚪  +  ⚪  +  🪙🪙  +  🪙
+
+10p     10p     5p      2p       1p
+
+
+
+**Step-by-Step Calculation:**
+
+
+
+**Step 1:** Add 10p coins
+
+⚪⚪ + ⚪⚪ = 20p
+
+**Step 2:** Add the rest
+
+20p + ⚪ + 🪙🪙 + 🪙 = 20 + 5 + 2 + 1 = 28p
+
+
+
+**Answer:** You have **28 pence (28p)** 💰
+
+
+
+### Example 2: Making £1 (Visual)
+
+
+
+How many 10p coins make £1?
+
+
+
+**Visual Representation:**
+
+
+
+£1 = 100p
+
+We need: ⚪⚪ ⚪⚪ ⚪⚪ ⚪⚪ ⚪⚪ ⚪⚪ ⚪⚪ ⚪⚪ ⚪⚪ ⚪⚪
+
+         10  20  30  40  50  60  70  80  90  100
+
+
+
+**Calculation:**
+
+
+
+**Remember:** £1 = 100p
+
+**So:** 100p ÷ 10p = **10 coins**
+
+
+
+**Answer:** You need **10 ten-pence coins** to make £1! 🎉
+
+
+
+### Example 3: Buying Something (Visual)
+
+
+
+A toy costs 45p. You have 3 coins: 20p, 20p, and 10p.
+
+
+
+**Visual Representation:**
+
+
+
+**Your Money:**        ⚪⚪⚪⚪  +  ⚪⚪⚪⚪  +  ⚪⚪
+
+                   20p        20p        10p
+
+                   = 50p total
+
+**Toy Cost:**          45p 💸
+
+
+
+**Step-by-Step:**
+
+
+
+**Step 1:** Count your money
+
+⚪⚪⚪⚪ + ⚪⚪⚪⚪ + ⚪⚪ = 20 + 20 + 10 = 50p
+
+**Step 2:** Compare
+
+50p > 45p ✓ (You have enough!)
+
+**Step 3:** Calculate change
+
+50p - 45p = 5p change
+
+
+
+**Answer:** Yes, you can buy it! You'll get **5p change**! 🎉
+
+
+
+## Practice Questions
 
 
 
 <!-- QUESTION_START -->
-If you cut a pizza into 2 equal pieces and eat 1 piece, what fraction did you eat?
+You have 2 coins of 20p each. How much money do you have in total?
 <!-- OPTIONS -->
-1/3|1/2|1/4|2/3
+30p|40p|50p|60p
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-You ate 1/2 (half) of the pizza! When you cut something into 2 equal parts and take 1 part, that's half.
+20p + 20p = 40p. You have 40 pence in total!
 <!-- QUESTION_END -->
 
 
 
 <!-- QUESTION_START -->
-If you cut a cake into 4 equal pieces and eat 1 piece, what fraction did you eat?
+A pencil costs 15p. You have 10p and 5p. Can you buy the pencil?
 <!-- OPTIONS -->
-1/2|1/3|1/4|1/5
+Yes, with 5p change|Yes, with no change|No, you need more money|No, you have too much
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+10p + 5p = 15p. You have exactly 15p, so you can buy it with no change!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How many 5p coins do you need to make 25p?
+<!-- OPTIONS -->
+3 coins|4 coins|5 coins|6 coins
 <!-- CORRECT -->
 2
 <!-- EXPLANATION -->
-You ate 1/4 (one quarter) of the cake! When you cut something into 4 equal parts and take 1 part, that's a quarter.
+25p ÷ 5p = 5. You need 5 five-pence coins to make 25p!
 <!-- QUESTION_END -->
 
 
 
 <!-- QUESTION_START -->
-What is the top number of a fraction called?
+You want to buy a sticker that costs 30p. You have 20p, 10p, and 5p. Can you buy it?
 <!-- OPTIONS -->
-Denominator|Numerator|Fraction|Whole
+Yes, with 5p change|Yes, with no change|No, you need more money|No, you have too much
 <!-- CORRECT -->
-1
+0
 <!-- EXPLANATION -->
-The top number is called the numerator! It tells us how many parts we have. The bottom number is the denominator.
-<!-- QUESTION_END -->`,
+20p + 10p + 5p = 35p. You have 35p, which is more than 30p, so you can buy it with 5p change!
+<!-- QUESTION_END -->
+
+
+
+## Money Tips
+
+
+
+- Always count your coins carefully
+
+- Check if you have enough before buying
+
+- Learn to recognize different coins
+
+- Practice making different amounts!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'maths',
+      lessonNumber: 7,
+      title: "Time and Clocks",
+      emoji: '🕐',
+      content: `# Time and Clocks 🕐
+
+
+
+Let's learn to tell time with visual clock faces!
+
+
+
+## Parts of a Clock
+
+
+
+### The Clock Face (Visual)
+
+
+
+        12
+
+    11      1
+
+  10    🕐    2
+
+9             3
+
+  8           4
+
+    7       5
+
+        6
+
+
+
+**Key Parts:**
+
+- **Hour hand** (short hand ⏰) - Shows the hour
+
+- **Minute hand** (long hand ⏰) - Shows the minutes
+
+- **Numbers** - 1 through 12 around the clock
+
+- **12** is at the top ⬆️, **6** is at the bottom ⬇️
+
+
+
+## Reading the Time
+
+
+
+### Step 1: Look at the Hour Hand ⏰
+
+
+
+The hour hand points to the hour. If it's between two numbers, we use the smaller number.
+
+
+
+### Step 2: Look at the Minute Hand ⏰
+
+
+
+The minute hand shows minutes. Each number represents 5 minutes:
+
+- **1** = 5 minutes ⏰
+
+- **2** = 10 minutes ⏰⏰
+
+- **3** = 15 minutes (quarter past) ⏰⏰⏰
+
+- **6** = 30 minutes (half past) ⏰⏰⏰⏰⏰⏰
+
+- **9** = 45 minutes (quarter to) ⏰⏰⏰⏰⏰⏰⏰
+
+
+
+## Telling Time Examples (Visual)
+
+
+
+### Example 1: 3 o'clock 🕐
+
+
+
+**Visual Clock:**
+
+        12
+
+    11      1
+
+  10         2
+
+9      ⏰      3
+
+  8           4
+
+    7       5
+
+        6
+
+
+
+- **Hour hand:** pointing at 3 ⏰
+
+- **Minute hand:** pointing at 12 ⏰
+
+- **Time:** **3:00** or "three o'clock"
+
+
+
+### Example 2: Half Past 2 🕐
+
+
+
+**Visual Clock:**
+
+        12
+
+    11      1
+
+  10         2
+
+9             3
+
+  8      ⏰    4
+
+    7       5
+
+        6
+
+
+
+- **Hour hand:** halfway between 2 and 3 ⏰
+
+- **Minute hand:** pointing at 6 ⏰
+
+- **Time:** **2:30** or "half past two"
+
+
+
+### Example 3: Quarter Past 4 🕐
+
+
+
+**Visual Clock:**
+
+        12
+
+    11      1
+
+  10         2
+
+9             3
+
+  8           4
+
+    7      ⏰  5
+
+        6
+
+
+
+- **Hour hand:** just past 4 ⏰
+
+- **Minute hand:** pointing at 3 ⏰
+
+- **Time:** **4:15** or "quarter past four"
+
+
+
+### Example 4: Quarter To 5 🕐
+
+
+
+**Visual Clock:**
+
+        12
+
+    11      1
+
+  10         2
+
+9             3
+
+  8           4
+
+    7       5
+
+        6
+
+
+
+- **Hour hand:** almost at 5 ⏰
+
+- **Minute hand:** pointing at 9 ⏰
+
+- **Time:** **4:45** or "quarter to five"
+
+
+
+## Daily Time Activities
+
+
+
+- **Morning:** 7:00 - Wake up time
+
+- **School:** 9:00 - School starts
+
+- **Lunch:** 12:00 - Noon, lunch time
+
+- **Afternoon:** 3:00 - School ends
+
+- **Evening:** 6:00 - Dinner time
+
+- **Night:** 8:00 - Bedtime
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+If the hour hand is at 3 and the minute hand is at 12, what time is it?
+<!-- OPTIONS -->
+3:00|3:15|3:30|3:45
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+When the hour hand is at 3 and the minute hand is at 12, it's 3:00 or "three o'clock"!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What time is "half past 5"?
+<!-- OPTIONS -->
+5:00|5:15|5:30|5:45
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Half past 5" means 5:30. The minute hand would be at 6 (which is 30 minutes)!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+If it's 4:15, where is the minute hand pointing?
+<!-- OPTIONS -->
+At 3|At 6|At 9|At 12
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+At 4:15 (quarter past 4), the minute hand points at 3, which represents 15 minutes!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What time is "quarter to 6"?
+<!-- OPTIONS -->
+5:15|5:30|5:45|6:00
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Quarter to 6" means 5:45. It's 15 minutes (a quarter) before 6 o'clock!
+<!-- QUESTION_END -->
+
+
+
+## Time Tips
+
+
+
+- Practice reading clocks around your house
+
+- Notice what time you do different activities
+
+- Use both digital and analog clocks
+
+- Remember: quarter = 15 minutes, half = 30 minutes!`,
       quizId: quizId++,
       assessmentType: 'interactive',
       categoryId: null,

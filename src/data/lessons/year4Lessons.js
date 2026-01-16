@@ -23,79 +23,29 @@ Let's learn to multiply larger numbers!
 
 
 
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
 ## What is Long Multiplication?
 
 
 
-Long multiplication helps us multiply numbers with more than one digit.
+Long multiplication helps us multiply numbers with more than one digit!
 
 
 
-## Example: 23 × 4
+## Example
 
 
 
-\`\`\`
+23 × 4 = 92
 
-23
-
-×  4
-
----
-
-92
-
-\`\`\`
-
-
-
-Step by step:
-
-1. Multiply 4 × 3 = 12 (write 2, carry 1)
-
-2. Multiply 4 × 2 = 8, add the carried 1 = 9
-
-3. Answer: 92
-
-
-
-## Example: 34 × 12
-
-
-
-\`\`\`
-
- 34
-
-×  12
-
----
-
- 68  (34 × 2)
-
-+ 340  (34 × 10)
-
----
-
-408
-
-\`\`\`
-
-
-
-## Practice
-
-
-
-Try these:
-
-- 45 × 6 = ?
-
-- 23 × 7 = ?
-
-- 56 × 8 = ?
-
-- 34 × 9 = ?
+45 × 6 = 270
 
 
 
@@ -105,63 +55,11 @@ Try these:
 
 - Practice long multiplication
 
-- Use grid method to help
-
 - Check your answers
 
-- Solve word problems
-
-
-
-## Remember
-
-
-
-- Line up numbers carefully
-
-- Multiply each digit
-
-- Add carried numbers
-
-- Check your work!
-
-
-
-<!-- QUESTION_START -->
-What is 23 × 4?
-<!-- OPTIONS -->
-88|90|92|94
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-23 × 4 = 92! Multiply 4 × 3 = 12 (write 2, carry 1), then 4 × 2 = 8, add the carried 1 = 9. Answer: 92.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is 45 × 6?
-<!-- OPTIONS -->
-260|268|270|272
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-45 × 6 = 270! Multiply 6 × 5 = 30 (write 0, carry 3), then 6 × 4 = 24, add the carried 3 = 27. Answer: 270.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-In long multiplication, what do you do when a multiplication gives you a number greater than 9?
-<!-- OPTIONS -->
-Write it all down|Carry the tens digit|Skip it|Start over
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-You carry the tens digit! For example, if you get 12, you write 2 and carry 1 to add to the next multiplication.
-<!-- QUESTION_END -->`,
+- Play the multiplication game!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -180,81 +78,31 @@ Let's learn about fractions and decimals!
 
 
 
-## Fractions
+## How to Play
 
 
 
-Fractions show parts of a whole.
+Tap the numbers to hear them! Then play the game! 🎮
 
 
 
-- ½ = one half
-
-- ¼ = one quarter
-
-- ⅓ = one third
-
-- ¾ = three quarters
+## What are Fractions and Decimals?
 
 
 
-## Decimals
+Fractions and decimals show parts of a whole!
 
 
 
-Decimals are another way to show parts of a whole.
+## Examples
 
 
 
-- 0.5 = half (same as ½)
+- 1/2 = 0.5 (half)
 
-- 0.25 = quarter (same as ¼)
+- 1/4 = 0.25 (quarter)
 
-- 0.75 = three quarters (same as ¾)
-
-- 0.1 = one tenth
-
-
-
-## Converting Fractions to Decimals
-
-
-
-- ½ = 0.5 (1 ÷ 2 = 0.5)
-
-- ¼ = 0.25 (1 ÷ 4 = 0.25)
-
-- ⅓ = 0.333... (1 ÷ 3 = 0.333...)
-
-- ¾ = 0.75 (3 ÷ 4 = 0.75)
-
-
-
-## Place Value in Decimals
-
-
-
-- 0.1 = one tenth
-
-- 0.01 = one hundredth
-
-- 0.001 = one thousandth
-
-
-
-## Practice
-
-
-
-Convert these:
-
-- ½ to decimal
-
-- ¼ to decimal
-
-- ¾ to decimal
-
-- 0.5 to fraction
+- 3/4 = 0.75 (three quarters)
 
 
 
@@ -262,65 +110,11 @@ Convert these:
 
 
 
-- Practice converting fractions
+- Practice converting fractions to decimals
 
-- Use number lines
-
-- Compare fractions and decimals
-
-- Solve problems with both
-
-
-
-## Remember
-
-
-
-- Fractions and decimals show parts
-
-- They can be converted
-
-- Practice helps you understand
-
-- You're doing great!
-
-
-
-<!-- QUESTION_START -->
-What decimal is the same as 1/2?
-<!-- OPTIONS -->
-0.1|0.25|0.5|0.75
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-1/2 = 0.5! To convert, divide 1 by 2: 1 ÷ 2 = 0.5. Half is the same as 0.5.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What decimal is the same as 1/4?
-<!-- OPTIONS -->
-0.1|0.25|0.5|0.75
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-1/4 = 0.25! To convert, divide 1 by 4: 1 ÷ 4 = 0.25. One quarter is the same as 0.25.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What fraction is the same as 0.5?
-<!-- OPTIONS -->
-1/3|1/2|1/4|3/4
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-0.5 = 1/2! The decimal 0.5 represents half, which is the same as the fraction 1/2.
-<!-- QUESTION_END -->`,
+- Play the fractions and decimals game!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -339,75 +133,23 @@ Let's learn about measuring things!
 
 
 
-## Length
+## How to Play
 
 
 
-We measure length in:
-
-- **Millimeters (mm)** - Very small things
-
-- **Centimeters (cm)** - Small things (10 mm = 1 cm)
-
-- **Meters (m)** - Medium things (100 cm = 1 m)
-
-- **Kilometers (km)** - Long distances (1000 m = 1 km)
+Tap the numbers to hear them! Then play the game! 🎮
 
 
 
-## Weight
+## Units of Measurement
 
 
 
-We measure weight in:
+- Length: cm, m (100 cm = 1 m)
 
-- **Grams (g)** - Light things
+- Weight: g, kg (1000 g = 1 kg)
 
-- **Kilograms (kg)** - Heavier things (1000 g = 1 kg)
-
-
-
-## Capacity (Volume)
-
-
-
-We measure capacity in:
-
-- **Milliliters (ml)** - Small amounts
-
-- **Liters (l)** - Larger amounts (1000 ml = 1 l)
-
-
-
-## Time
-
-
-
-We measure time in:
-
-- **Seconds** - Very short time
-
-- **Minutes** - 60 seconds = 1 minute
-
-- **Hours** - 60 minutes = 1 hour
-
-- **Days** - 24 hours = 1 day
-
-
-
-## Practice
-
-
-
-Convert these:
-
-- 5 cm = ? mm
-
-- 2 m = ? cm
-
-- 3 kg = ? g
-
-- 4 l = ? ml
+- Capacity: mL, L (1000 mL = 1 L)
 
 
 
@@ -419,61 +161,9 @@ Convert these:
 
 - Convert between units
 
-- Estimate measurements
-
-- Solve measurement problems
-
-
-
-## Remember
-
-
-
-- Different things need different units
-
-- Learn the conversions
-
-- Practice measuring
-
-- Measurement is useful!
-
-
-
-<!-- QUESTION_START -->
-How many millimeters are in 1 centimeter?
-<!-- OPTIONS -->
-5|10|15|20
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-There are 10 millimeters in 1 centimeter! 10 mm = 1 cm. Millimeters are very small units.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How many centimeters are in 1 meter?
-<!-- OPTIONS -->
-50|100|150|200
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-There are 100 centimeters in 1 meter! 100 cm = 1 m. Meters are used for medium-sized things.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How many grams are in 1 kilogram?
-<!-- OPTIONS -->
-100|500|1000|2000
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-There are 1000 grams in 1 kilogram! 1000 g = 1 kg. Kilograms are used for heavier things.
-<!-- QUESTION_END -->`,
+- Play the measurement game!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -7046,7 +6736,7 @@ STEP format should be used for manufacturing. It maintains precise geometry and 
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
-    })
+    }),
 
   ];
 }

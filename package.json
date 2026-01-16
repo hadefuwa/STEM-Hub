@@ -1,6 +1,6 @@
 {
   "name": "homeschool-hub",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "A cross-platform homeschool learning management application",
   "main": "electron/main.js",
   "type": "module",
@@ -23,6 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
+    "electron-updater": "^6.1.7",
     "phaser": "^3.90.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -55,23 +56,34 @@
       "target": [
         "nsis"
       ],
-      "icon": "build/web/icons/Icon-512.png"
+      "icon": "build/web/icons/Icon-512.png",
+      "publisherName": "Homeschool Hub"
     },
     "mac": {
       "target": [
         "dmg"
       ],
-      "icon": "build/web/icons/Icon-512.png"
+      "icon": "build/web/icons/Icon-512.png",
+      "category": "public.app-category.education"
     },
     "linux": {
       "target": [
         "AppImage"
       ],
-      "icon": "build/web/icons/Icon-512.png"
+      "icon": "build/web/icons/Icon-512.png",
+      "category": "Education"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "hadefuwa",
+        "repo": "homeschool-hub",
+        "private": true
+      }
+    ]
   }
 }

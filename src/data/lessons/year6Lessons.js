@@ -23,99 +23,29 @@ Let's learn about algebra!
 
 
 
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
 ## What is Algebra?
 
 
 
-Algebra uses letters (like x, y) to represent unknown numbers.
+Algebra uses letters (like x, y) to represent unknown numbers!
 
 
 
-## Simple Equations
+## Examples
 
 
 
-**Example:**
+- x + 5 = 10 → x = 5
 
-x + 5 = 10
-
-- What number plus 5 equals 10?
-
-- x = 5
-
-
-
-**Example:**
-
-y - 3 = 7
-
-- What number minus 3 equals 7?
-
-- y = 10
-
-
-
-## Solving Equations
-
-
-
-To solve an equation, find the value of the letter.
-
-
-
-**Steps:**
-
-1. Look at the equation
-
-2. Do the opposite operation
-
-3. Check your answer
-
-
-
-**Example:**
-
-x + 4 = 9
-
-- Opposite of +4 is -4
-
-- x = 9 - 4
-
-- x = 5
-
-- Check: 5 + 4 = 9 ✓
-
-
-
-## Using Variables
-
-
-
-Variables can represent any number.
-
-
-
-- If x = 3, then x + 2 = 5
-
-- If y = 7, then y - 4 = 3
-
-- If a = 5, then a × 2 = 10
-
-
-
-## Practice
-
-
-
-Solve these:
-
-- x + 3 = 8
-
-- y - 5 = 10
-
-- a + 7 = 15
-
-- b - 2 = 9
+- y - 3 = 7 → y = 10
 
 
 
@@ -125,63 +55,9 @@ Solve these:
 
 - Practice solving equations
 
-- Create your own equations
-
-- Use algebra in word problems
-
-- Play algebra games
-
-
-
-## Remember
-
-
-
-- Letters represent numbers
-
-- Do opposite operations
-
-- Check your answers
-
-- Algebra is useful!
-
-
-
-<!-- QUESTION_START -->
-If x + 3 = 8, what is x?
-<!-- OPTIONS -->
-3|4|5|6
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-x = 5! To solve, do the opposite: 8 - 3 = 5. Check: 5 + 3 = 8 ✓
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-If y - 5 = 10, what is y?
-<!-- OPTIONS -->
-12|13|14|15
-<!-- CORRECT -->
-3
-<!-- EXPLANATION -->
-y = 15! To solve, do the opposite: 10 + 5 = 15. Check: 15 - 5 = 10 ✓
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What does a letter like x or y represent in algebra?
-<!-- OPTIONS -->
-A known number|An unknown number|A word|A symbol
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A letter represents an unknown number! We use letters like x, y, or a to stand for numbers we need to find.
-<!-- QUESTION_END -->`,
+- Play the algebra game!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -200,69 +76,19 @@ Let's learn about statistics!
 
 
 
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
 ## What is Statistics?
 
 
 
-Statistics is collecting, organizing, and analyzing data.
-
-
-
-## Types of Data
-
-
-
-**Categorical Data**
-
-- Colors: red, blue, green
-
-- Types: cat, dog, bird
-
-- Categories
-
-
-
-**Numerical Data**
-
-- Numbers: 5, 10, 15, 20
-
-- Measurements: height, weight
-
-- Counts
-
-
-
-## Ways to Show Data
-
-
-
-**Bar Chart**
-
-- Shows categories
-
-- Easy to compare
-
-- Good for counting
-
-
-
-**Line Graph**
-
-- Shows changes over time
-
-- Good for trends
-
-- Shows patterns
-
-
-
-**Pie Chart**
-
-- Shows parts of a whole
-
-- Good for percentages
-
-- Shows proportions
+Statistics is collecting, organizing, and analyzing data!
 
 
 
@@ -270,41 +96,11 @@ Statistics is collecting, organizing, and analyzing data.
 
 
 
-**Mean (Average)**
+- **Mean (Average)** - Add all numbers, divide by count
 
-- Add all numbers, divide by count
+- **Median** - Middle number when ordered
 
-- Example: 2, 4, 6 → (2+4+6)÷3 = 4
-
-
-
-**Median**
-
-- Middle number when ordered
-
-- Example: 2, 4, 6, 8, 10 → median = 6
-
-
-
-**Mode**
-
-- Most common number
-
-- Example: 2, 3, 3, 4, 5 → mode = 3
-
-
-
-## Practice
-
-
-
-Find mean, median, mode:
-
-- 5, 7, 7, 9, 10
-
-- 2, 4, 6, 8
-
-- 1, 3, 3, 5, 5, 7
+- **Mode** - Most common number
 
 
 
@@ -312,65 +108,11 @@ Find mean, median, mode:
 
 
 
-- Collect data
-
-- Make charts and graphs
-
 - Calculate mean, median, mode
 
-- Analyze data
-
-
-
-## Remember
-
-
-
-- Data tells us information
-
-- Charts help us understand
-
-- Statistics help us decide
-
-- Data is everywhere!
-
-
-
-<!-- QUESTION_START -->
-What is the mean (average) of 5, 7, 7, 9, 10?
-<!-- OPTIONS -->
-6|7|7.6|8
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The mean is 7.6! Add all numbers: 5 + 7 + 7 + 9 + 10 = 38, then divide by 5: 38 ÷ 5 = 7.6.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the mode of 5, 7, 7, 9, 10?
-<!-- OPTIONS -->
-5|7|9|10
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The mode is 7! The mode is the most common number, and 7 appears twice in the list.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Which type of chart is best for showing changes over time?
-<!-- OPTIONS -->
-Bar chart|Line graph|Pie chart|Table
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A line graph is best for showing changes over time! It shows trends and patterns as time passes.
-<!-- QUESTION_END -->`,
+- Play the statistics game!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -389,15 +131,25 @@ Let's solve more complex problems!
 
 
 
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
 ## Multi-Step Problems
 
 
 
-Problems that need more than one step.
+Problems that need more than one step!
 
 
 
-**Example:**
+## Example
+
+
 
 "Sarah has £20. She buys 3 books at £4 each. How much money does she have left?"
 
@@ -415,73 +167,13 @@ Steps:
 
 
 
-**Draw a Diagram**
+- Draw a diagram
 
-- Visualize the problem
-
-- See relationships
-
-- Understand better
-
-
-
-**Make a Table**
-
-- Organize information
-
-- See patterns
-
-- Find answers
-
-
-
-**Work Backwards**
-
-- Start from the end
+- Make a table
 
 - Work backwards
 
-- Find the beginning
-
-
-
-**Try Different Approaches**
-
-- If one way doesn't work, try another
-
-- Be flexible
-
-- Keep trying
-
-
-
-## Word Problems
-
-
-
-Read carefully:
-
-- What information is given?
-
-- What do you need to find?
-
-- What steps are needed?
-
-- Does the answer make sense?
-
-
-
-## Practice
-
-
-
-Solve these:
-
-- Tom saves £5 each week for 6 weeks, then spends £15. How much left?
-
-- A rectangle is 8cm long and 5cm wide. What is the area and perimeter?
-
-- You have 24 sweets. You share them equally among 4 friends. How many each?
+- Try different approaches
 
 
 
@@ -491,63 +183,9 @@ Solve these:
 
 - Solve complex problems
 
-- Create your own problems
-
-- Explain your thinking
-
-- Try different strategies
-
-
-
-## Remember
-
-
-
-- Break problems into steps
-
-- Use different strategies
-
-- Check your work
-
-- Practice makes perfect!
-
-
-
-<!-- QUESTION_START -->
-Sarah has £20. She buys 3 books at £4 each. How much money does she have left?
-<!-- OPTIONS -->
-£6|£7|£8|£9
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-Sarah has £8 left! First find the cost: 3 × £4 = £12. Then find remaining: £20 - £12 = £8.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Which strategy is helpful when solving word problems?
-<!-- OPTIONS -->
-Skip reading the problem|Draw a diagram|Guess the answer|Ignore the numbers
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Drawing a diagram is very helpful! It helps you visualize the problem and understand what you need to find.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What should you do after solving a problem?
-<!-- OPTIONS -->
-Forget about it|Check if your answer makes sense|Change the numbers|Start over
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-You should check if your answer makes sense! Always review your work to make sure the answer is reasonable.
-<!-- QUESTION_END -->`,
+- Play the problem-solving game!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 

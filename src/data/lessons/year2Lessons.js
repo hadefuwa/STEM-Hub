@@ -15,65 +15,79 @@ export function getYear2Lessons(startLessonId, startQuizId) {
       lessonNumber: 1,
       title: "Counting to 20",
       emoji: '🔢',
-      content: `# Counting to 20
+      content: `# Counting to 20 🔢
 
 
 
-Let's learn numbers from 11 to 20!
+Let's learn to count from 1 to 20!
 
 
 
-## Numbers 11-20
+## How to Play
 
 
 
-11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+Tap the numbers to hear them! Then play the game! 🎮
 
 
 
-<!-- QUESTION_START -->
-What number comes after 15?
-<!-- OPTIONS -->
-14|15|16|17
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-After 15 comes 16! We count: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20.
-<!-- QUESTION_END -->
+## Numbers 1-20
 
 
 
-<!-- QUESTION_START -->
-What number comes before 18?
-<!-- OPTIONS -->
-16|17|18|19
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Before 18 comes 17! We count backwards: 20, 19, 18, 17, 16, and so on.
-<!-- QUESTION_END -->
+1️⃣ One
+
+2️⃣ Two
+
+3️⃣ Three
+
+4️⃣ Four
+
+5️⃣ Five
+
+6️⃣ Six
+
+7️⃣ Seven
+
+8️⃣ Eight
+
+9️⃣ Nine
+
+🔟 Ten
+
+1️⃣1️⃣ Eleven
+
+1️⃣2️⃣ Twelve
+
+1️⃣3️⃣ Thirteen
+
+1️⃣4️⃣ Fourteen
+
+1️⃣5️⃣ Fifteen
+
+1️⃣6️⃣ Sixteen
+
+1️⃣7️⃣ Seventeen
+
+1️⃣8️⃣ Eighteen
+
+1️⃣9️⃣ Nineteen
+
+2️⃣0️⃣ Twenty
 
 
 
-<!-- QUESTION_START -->
-Which number is in the middle of 11 and 20?
-<!-- OPTIONS -->
-14|15|16|17
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-15 is in the middle! The numbers go: 11, 12, 13, 14, 15, 16, 17, 18, 19, 20. 15 is right in the middle.
-<!-- QUESTION_END -->
+## Fun Activities
 
 
 
-## Practice
+- Count your fingers and toes
 
+- Count objects around you
 
-
-Count from 1 to 20!`,
+- Practice counting to 20!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 

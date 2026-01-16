@@ -15,15 +15,23 @@ export function getReceptionLessons(startLessonId, startQuizId) {
       lessonNumber: 1,
       title: "Recognising Numbers",
       emoji: '🔢',
-      content: `# Recognising Numbers
+      content: `# Recognising Numbers 🔢
 
 
 
-Let's learn to recognise numbers!
+Let's learn to recognise numbers from 1 to 10!
 
 
 
-## Numbers 1-5
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
+## Numbers 1-10
 
 
 
@@ -37,51 +45,29 @@ Let's learn to recognise numbers!
 
 5️⃣ Five
 
+6️⃣ Six
 
+7️⃣ Seven
 
-<!-- QUESTION_START -->
-Which number is shown by the emoji 3️⃣?
-<!-- OPTIONS -->
-One|Two|Three|Four
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-3️⃣ represents the number Three! It's the third number when we count.
-<!-- QUESTION_END -->
+8️⃣ Eight
 
+9️⃣ Nine
 
-
-<!-- QUESTION_START -->
-How many fingers do you show when you hold up one hand with all fingers up?
-<!-- OPTIONS -->
-3|4|5|6
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-When you hold up one hand with all fingers up, you show 5 fingers!
-<!-- QUESTION_END -->
+🔟 Ten
 
 
 
-<!-- QUESTION_START -->
-What number comes between 2 and 4?
-<!-- OPTIONS -->
-1|2|3|5
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The number 3 comes between 2 and 4! We count: 1, 2, 3, 4, 5.
-<!-- QUESTION_END -->
+## Fun Activities
 
 
 
-## Practice
+- Find numbers around you
 
+- Count objects
 
-
-Point to the number 3!`,
+- Practice recognising numbers!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 

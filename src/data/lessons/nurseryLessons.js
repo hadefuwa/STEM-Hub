@@ -13,6 +13,480 @@ export function getNurseryLessons(startLessonId, startQuizId) {
       yearId: 'nursery',
       subjectId: 'maths',
       lessonNumber: 1,
+      title: "Number 1",
+      emoji: '1️⃣',
+      content: `# Number 1 🔢
+
+
+
+Let's learn about the number 1!
+
+
+
+## The Number 1
+
+
+
+1️⃣ One
+
+
+
+## How to Play
+
+
+
+Tap the number to hear it! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Find one object around you
+
+- Show one finger
+
+- Count to one!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 2,
+      title: "Number 2",
+      emoji: '2️⃣',
+      content: `# Number 2 🔢
+
+
+
+Let's learn about the number 2!
+
+
+
+## The Number 2
+
+
+
+2️⃣ Two
+
+
+
+## How to Play
+
+
+
+Tap the number to hear it! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Find two objects around you
+
+- Show two fingers
+
+- Count to two!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 3,
+      title: "Number 3",
+      emoji: '3️⃣',
+      content: `# Number 3 🔢
+
+
+
+Let's learn about the number 3!
+
+
+
+## The Number 3
+
+
+
+3️⃣ Three
+
+
+
+## How to Play
+
+
+
+Tap the number to hear it! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Find three objects around you
+
+- Show three fingers
+
+- Count to three!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 4,
+      title: "Counting 1-3",
+      emoji: '🔢',
+      content: `# Counting 1-3 🔢
+
+
+
+Let's learn to count from 1 to 3!
+
+
+
+## Numbers 1-3
+
+
+
+1️⃣ One
+
+2️⃣ Two
+
+3️⃣ Three
+
+
+
+## How to Play
+
+
+
+Count the objects! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Count your fingers (1, 2, 3!)
+
+- Count toys
+
+- Count steps!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 5,
+      title: "Match Number 1",
+      emoji: '1️⃣',
+      content: `# Match Number 1 🔢
+
+
+
+Let's match the number 1 to one object!
+
+
+
+## One Object
+
+
+
+🍎 One apple
+
+
+
+## How to Play
+
+
+
+Count the objects! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Find one thing around you
+
+- Show one finger
+
+- Count to one!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 6,
+      title: "Match Number 2",
+      emoji: '2️⃣',
+      content: `# Match Number 2 🔢
+
+
+
+Let's match the number 2 to two objects!
+
+
+
+## Two Objects
+
+
+
+🍎🍌 Two fruits
+
+
+
+## How to Play
+
+
+
+Count the objects! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Find two things around you
+
+- Show two fingers
+
+- Count to two!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 7,
+      title: "Match Number 3",
+      emoji: '3️⃣',
+      content: `# Match Number 3 🔢
+
+
+
+Let's match the number 3 to three objects!
+
+
+
+## Three Objects
+
+
+
+🍎🍌🍊 Three fruits
+
+
+
+## How to Play
+
+
+
+Count the objects! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Find three things around you
+
+- Show three fingers
+
+- Count to three!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 8,
+      title: "Counting 1-5",
+      emoji: '🔢',
+      content: `# Counting 1-5 🔢
+
+
+
+Let's learn to count from 1 to 5!
+
+
+
+## Numbers 1-5
+
+
+
+1️⃣ One
+
+2️⃣ Two
+
+3️⃣ Three
+
+4️⃣ Four
+
+5️⃣ Five
+
+
+
+## How to Play
+
+
+
+Count the objects! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Count your fingers on one hand (1, 2, 3, 4, 5!)
+
+- Count toys
+
+- Count steps!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 9,
+      title: "Number Order 1-3",
+      emoji: '🔢',
+      content: `# Number Order 1-3 🔢
+
+
+
+Let's learn the order of numbers!
+
+
+
+## Numbers in Order
+
+
+
+1️⃣ One comes first
+
+2️⃣ Two comes second
+
+3️⃣ Three comes third
+
+
+
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Count in order: 1, 2, 3!
+
+- Show numbers on your fingers
+
+- Practice counting!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 10,
+      title: "Numbers 1-5",
+      emoji: '🔢',
+      content: `# Numbers 1-5 🔢
+
+
+
+Let's learn all the numbers from 1 to 5!
+
+
+
+## Numbers 1-5
+
+
+
+1️⃣ One
+
+2️⃣ Two
+
+3️⃣ Three
+
+4️⃣ Four
+
+5️⃣ Five
+
+
+
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
+## Fun Activities
+
+
+
+- Count your fingers (1, 2, 3, 4, 5!)
+
+- Find objects to count
+
+- Practice every day!`,
+      quizId: quizId++,
+      assessmentType: 'maths-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'maths',
+      lessonNumber: 11,
       title: "Counting to 10",
       emoji: '🔢',
       content: `# Counting to 10 🔢
@@ -87,7 +561,7 @@ Tap the numbers to hear them! Then play the game to test what you learned! 🎮
       id: lessonId++,
       yearId: 'nursery',
       subjectId: 'maths',
-      lessonNumber: 2,
+      lessonNumber: 12,
       title: "Counting to 20",
       emoji: '🔢',
       content: `# Counting to 20 🔢

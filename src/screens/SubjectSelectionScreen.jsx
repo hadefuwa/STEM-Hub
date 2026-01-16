@@ -2,6 +2,7 @@ import React from 'react';
 import useDataStore from '../store/dataStore';
 import { Subject } from '../models/Subject';
 import { useNavigate } from 'react-router-dom';
+import ActivityTable from '../components/ActivityTable';
 
 function SubjectSelectionScreen() {
   const navigate = useNavigate();
@@ -258,6 +259,14 @@ function SubjectSelectionScreen() {
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Activity Table */}
+      <div style={{
+        marginTop: '40px',
+        width: '100%',
+      }}>
+        <ActivityTable />
       </div>
       </div>
     </div>

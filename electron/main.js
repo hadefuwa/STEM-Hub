@@ -1,8 +1,28 @@
-import { app, BrowserWindow, ipcMain, Menu, globalShortcut, protocol, session } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, globalShortcut, protocol, session, dialog } from 'electron';
+import pkg from 'electron-updater';
+const { autoUpdater } = pkg;
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import { loadData, saveData } from './persistence.js';
+import { loadData, saveData, writeActivityLog, readActivityLog } from './persistence.js';
+
+// Load GitHub token for private repo updates
+let GITHUB_TOKEN = null;
+try {
+  const configPath = path.join(__dirname, 'update-config.js');
+  if (fs.existsSync(configPath)) {
+    // Read and parse the config file directly
+    const configContent = fs.readFileSync(configPath, 'utf-8');
+    const tokenMatch = configContent.match(/GITHUB_TOKEN\s*=\s*['"]([^'"]+)['"]/);
+    if (tokenMatch) {
+      GITHUB_TOKEN = tokenMatch[1];
+      // Set as environment variable for electron-updater to use
+      process.env.GH_TOKEN = GITHUB_TOKEN;
+    }
+  }
+} catch (error) {
+  console.log('No update config found, using environment token if available');
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,6 +53,89 @@ const getDefaultDataFunc = () => {
 };
 
 let mainWindow;
+
+// Configure auto-updater
+autoUpdater.autoDownload = false; // Don't auto-download, let user choose
+autoUpdater.autoInstallOnAppQuit = true; // Install on app quit if update is ready
+
+// Auto-updater event handlers
+autoUpdater.on('checking-for-update', () => {
+  console.log('Checking for updates...');
+});
+
+autoUpdater.on('update-available', (info) => {
+  console.log('Update available:', info.version);
+  if (mainWindow) {
+    dialog.showMessageBox(mainWindow, {
+      type: 'info',
+      title: 'Update Available',
+      message: `A new version (${info.version}) is available!`,
+      detail: 'Would you like to download it now?',
+      buttons: ['Download', 'Later'],
+      defaultId: 0,
+      cancelId: 1
+    }).then((result) => {
+      if (result.response === 0) {
+        autoUpdater.downloadUpdate();
+      }
+    });
+  }
+});
+
+autoUpdater.on('update-not-available', (info) => {
+  console.log('Update not available. Current version is latest.');
+});
+
+autoUpdater.on('error', (err) => {
+  console.error('Error in auto-updater:', err);
+  // Don't show error dialogs for expected errors
+  const errorMessage = err.message || '';
+  const is404Error = errorMessage.includes('404') || errorMessage.includes('Not Found');
+  const isNetworkError = errorMessage.includes('ENOTFOUND') || errorMessage.includes('network');
+  const isLatestYmlError = errorMessage.includes('latest.yml') || errorMessage.includes('Cannot find latest.yml');
+  
+  if (!is404Error && !isNetworkError && !isLatestYmlError) {
+    // Only show dialog for unexpected errors
+    if (mainWindow) {
+      dialog.showErrorBox('Update Error', err.message || 'An error occurred while checking for updates.');
+    }
+  } else {
+    // Log expected errors silently
+    if (isLatestYmlError) {
+      console.log('Update check: latest.yml file not found in release. Upload latest.yml to your GitHub release to enable auto-updates.');
+    } else {
+      console.log('Update check: No releases found yet or network issue. This is normal if you haven\'t published your first release.');
+    }
+  }
+});
+
+autoUpdater.on('download-progress', (progressObj) => {
+  const message = `Download speed: ${progressObj.bytesPerSecond} - Downloaded ${progressObj.percent}% (${progressObj.transferred}/${progressObj.total})`;
+  console.log(message);
+  // You can send this to renderer to show progress bar
+  if (mainWindow && !mainWindow.isDestroyed()) {
+    mainWindow.webContents.send('update-download-progress', progressObj);
+  }
+});
+
+autoUpdater.on('update-downloaded', (info) => {
+  console.log('Update downloaded:', info.version);
+  if (mainWindow) {
+    dialog.showMessageBox(mainWindow, {
+      type: 'info',
+      title: 'Update Ready',
+      message: 'Update downloaded. The application will restart to apply the update.',
+      detail: `Version ${info.version} has been downloaded and will be installed on restart.`,
+      buttons: ['Restart Now', 'Later'],
+      defaultId: 0,
+      cancelId: 1
+    }).then((result) => {
+      if (result.response === 0) {
+        autoUpdater.quitAndInstall(false, true);
+      }
+    });
+  }
+});
 
 function createWindow() {
   const isDev = !app.isPackaged;
@@ -98,6 +201,74 @@ ipcMain.handle('save-data', async (event, data) => {
     console.error('Error saving data:', error);
     return { success: false, error: error.message };
   }
+});
+
+// IPC handlers for activity logging
+ipcMain.handle('write-activity-log', async (event, entry) => {
+  try {
+    await writeActivityLog(entry);
+    return { success: true };
+  } catch (error) {
+    console.error('Error writing activity log:', error);
+    return { success: false, error: error.message };
+  }
+});
+
+ipcMain.handle('read-activity-log', async (event, limit) => {
+  try {
+    const entries = await readActivityLog(limit);
+    return { success: true, entries };
+  } catch (error) {
+    console.error('Error reading activity log:', error);
+    return { success: false, error: error.message, entries: [] };
+  }
+});
+
+// IPC handlers for auto-updater
+ipcMain.handle('check-for-updates', async () => {
+  if (app.isPackaged) {
+    try {
+      const result = await autoUpdater.checkForUpdates();
+      return { success: true, updateInfo: result?.updateInfo || null };
+    } catch (error) {
+      console.error('Error checking for updates:', error);
+      return { success: false, error: error.message };
+    }
+  } else {
+    return { success: false, error: 'Update check only available in production' };
+  }
+});
+
+ipcMain.handle('download-update', async () => {
+  if (app.isPackaged) {
+    try {
+      await autoUpdater.downloadUpdate();
+      return { success: true };
+    } catch (error) {
+      console.error('Error downloading update:', error);
+      return { success: false, error: error.message };
+    }
+  } else {
+    return { success: false, error: 'Update download only available in production' };
+  }
+});
+
+ipcMain.handle('install-update', async () => {
+  if (app.isPackaged) {
+    try {
+      autoUpdater.quitAndInstall(false, true);
+      return { success: true };
+    } catch (error) {
+      console.error('Error installing update:', error);
+      return { success: false, error: error.message };
+    }
+  } else {
+    return { success: false, error: 'Update install only available in production' };
+  }
+});
+
+ipcMain.handle('get-app-version', () => {
+  return { version: app.getVersion() };
 });
 
 // Register custom protocol for serving blockly-games files
@@ -254,6 +425,19 @@ app.whenReady().then(() => {
   registerBlocklyProtocol();
   
   createWindow();
+  
+  // Check for updates after app is ready (only in production)
+  if (!app.isPackaged) {
+    console.log('Skipping update check in development mode');
+  } else {
+    // Check for updates immediately
+    autoUpdater.checkForUpdates();
+    
+    // Check for updates every 4 hours
+    setInterval(() => {
+      autoUpdater.checkForUpdates();
+    }, 4 * 60 * 60 * 1000);
+  }
 
   // Register keyboard shortcuts for dev tools
   globalShortcut.register('CommandOrControl+Shift+I', () => {

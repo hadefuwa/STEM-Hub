@@ -475,6 +475,26 @@ const useDataStore = create((set, get) => ({
     if (!state.data || !lesson) return;
     
     const userId = state.getUserId();
+    const student = state.data.students.find(s => s.id === userId);
+    const studentName = student ? student.name : 'Student';
+    
+    // Log lesson access to activity log file
+    if (window.electronAPI) {
+      try {
+        await window.electronAPI.writeActivityLog({
+          type: 'lesson_access',
+          studentId: userId,
+          studentName: studentName,
+          lessonId: lesson.id,
+          lessonTitle: lesson.title,
+          lessonNumber: lesson.lessonNumber,
+          subjectId: lesson.subjectId,
+          yearId: lesson.yearId,
+        });
+      } catch (error) {
+        console.error('Error writing activity log:', error);
+      }
+    }
     
     // Check if already accessed
     const existingProgress = state.data.progress.find(

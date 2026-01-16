@@ -77,5 +77,77 @@ export const saveData = async (data) => {
   }
 };
 
+/**
+ * Get the activity log file path (Desktop/HomeschoolHub/activity.log)
+ */
+export const getActivityLogPath = () => {
+  const userHome = app.getPath('home');
+  const desktopPath = path.join(userHome, 'Desktop');
+  const appDir = path.join(desktopPath, 'HomeschoolHub');
+  return path.join(appDir, 'activity.log');
+};
+
+/**
+ * Write activity log entry
+ */
+export const writeActivityLog = async (entry) => {
+  try {
+    const logPath = getActivityLogPath();
+    await ensureDataDirectory();
+    
+    const timestamp = new Date().toISOString();
+    const logEntry = {
+      timestamp,
+      ...entry,
+    };
+    
+    const logLine = JSON.stringify(logEntry) + '\n';
+    await fs.appendFile(logPath, logLine, 'utf-8');
+  } catch (error) {
+    console.error('Error writing activity log:', error);
+    throw error;
+  }
+};
+
+/**
+ * Read activity log entries (returns last N entries, default 50)
+ */
+export const readActivityLog = async (limit = 50) => {
+  try {
+    const logPath = getActivityLogPath();
+    
+    // Check if file exists
+    try {
+      await fs.access(logPath);
+    } catch (error) {
+      // File doesn't exist, return empty array
+      return [];
+    }
+    
+    // Read the entire file
+    const content = await fs.readFile(logPath, 'utf-8');
+    const lines = content.trim().split('\n').filter(line => line.trim());
+    
+    // Parse each line as JSON and reverse to get most recent first
+    const entries = lines
+      .map(line => {
+        try {
+          return JSON.parse(line);
+        } catch (error) {
+          console.warn('Error parsing log line:', line, error);
+          return null;
+        }
+      })
+      .filter(entry => entry !== null)
+      .reverse()
+      .slice(0, limit);
+    
+    return entries;
+  } catch (error) {
+    console.error('Error reading activity log:', error);
+    return [];
+  }
+};
+
 
 

@@ -15,7 +15,7 @@ export function getYear1Lessons(startLessonId, startQuizId) {
       lessonNumber: 1,
       title: "Counting to 10",
       emoji: '🔢',
-      content: `# Counting to 10
+      content: `# Counting to 10 🔢
 
 
 
@@ -23,75 +23,51 @@ Let's learn to count from 1 to 10!
 
 
 
+## How to Play
+
+
+
+Tap the numbers to hear them! Then play the game! 🎮
+
+
+
 ## Numbers 1-10
 
 
 
-1. One
+1️⃣ One
 
-2. Two
+2️⃣ Two
 
-3. Three
+3️⃣ Three
 
-4. Four
+4️⃣ Four
 
-5. Five
+5️⃣ Five
 
-6. Six
+6️⃣ Six
 
-7. Seven
+7️⃣ Seven
 
-8. Eight
+8️⃣ Eight
 
-9. Nine
+9️⃣ Nine
 
-10. Ten
-
-
-
-<!-- QUESTION_START -->
-What number comes after 7?
-<!-- OPTIONS -->
-6|7|8|9
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-After 7 comes 8! We count: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
-<!-- QUESTION_END -->
+🔟 Ten
 
 
 
-<!-- QUESTION_START -->
-How many fingers do you have on both hands?
-<!-- OPTIONS -->
-8|9|10|12
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-You have 5 fingers on each hand, so 5 + 5 = 10 fingers on both hands!
-<!-- QUESTION_END -->
+## Fun Activities
 
 
 
-<!-- QUESTION_START -->
-Which number is the smallest: 3, 7, or 1?
-<!-- OPTIONS -->
-1|3|7|They are all the same
-<!-- CORRECT -->
-0
-<!-- EXPLANATION -->
-1 is the smallest number! When we count, we start with 1, then 2, then 3, and so on.
-<!-- QUESTION_END -->
+- Count your fingers
 
+- Count objects around you
 
-
-## Practice
-
-
-
-Count your fingers! How many do you have?`,
+- Practice counting to 10!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -102,69 +78,85 @@ Count your fingers! How many do you have?`,
       lessonNumber: 2,
       title: "Adding Numbers",
       emoji: '➕',
-      content: `# Adding Numbers
+      content: `# Adding Numbers ➕
 
 
 
-Addition means putting numbers together!
+Let's learn to add numbers together!
 
 
 
-## Examples
+## How to Play
 
 
 
-- 2 + 3 = 5
-
-- 1 + 4 = 5
-
-- 3 + 2 = 5
+Tap the numbers to hear them! Then play the game! 🎮
 
 
 
-<!-- QUESTION_START -->
-What is 2 + 2?
-<!-- OPTIONS -->
-2|3|4|5
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-2 + 2 = 4! When we add, we put the numbers together. Two plus two equals four.
-<!-- QUESTION_END -->
+## What is Addition?
 
 
 
-<!-- QUESTION_START -->
-What is 3 + 1?
-<!-- OPTIONS -->
-2|3|4|5
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-3 + 1 = 4! If you have 3 apples and add 1 more, you have 4 apples.
-<!-- QUESTION_END -->
+Addition means putting numbers together to make a bigger number!
+
+When we add, we combine two or more numbers to find the total.
 
 
 
-<!-- QUESTION_START -->
-What is 1 + 4?
-<!-- OPTIONS -->
-3|4|5|6
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-1 + 4 = 5! Adding means putting numbers together, so 1 plus 4 equals 5.
-<!-- QUESTION_END -->
+## Addition Examples
 
 
 
-## Practice
+2️⃣ + 3️⃣ = 5️⃣
+
+Two plus three equals five!
 
 
 
-Try adding: 2 + 2 = ?`,
+4️⃣ + 1️⃣ = 5️⃣
+
+Four plus one equals five!
+
+
+
+3️⃣ + 2️⃣ = 5️⃣
+
+Three plus two equals five!
+
+
+
+1️⃣ + 1️⃣ = 2️⃣
+
+One plus one equals two!
+
+
+
+2️⃣ + 2️⃣ = 4️⃣
+
+Two plus two equals four!
+
+
+
+3️⃣ + 1️⃣ = 4️⃣
+
+Three plus one equals four!
+
+
+
+## Fun Activities
+
+
+
+- Practice adding small numbers
+
+- Use objects to help you add
+
+- Count your fingers to add
+
+- Play the addition game!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 

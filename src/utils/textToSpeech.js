@@ -113,19 +113,42 @@ const speak = (text, options = {}) => {
       utterance.pitch = options.pitch !== undefined ? options.pitch : prefs.pitch;
       utterance.volume = options.volume !== undefined ? options.volume : prefs.volume;
       
+      let hasResolved = false;
+      
       // Event handlers
       utterance.onstart = () => {
         currentUtterance = utterance;
-        resolve();
+        if (!hasResolved) {
+          hasResolved = true;
+          resolve();
+        }
       };
       
       utterance.onend = () => {
-        currentUtterance = null;
+        if (currentUtterance === utterance) {
+          currentUtterance = null;
+        }
       };
       
       utterance.onerror = (event) => {
-        currentUtterance = null;
-        reject(new Error(`Speech synthesis error: ${event.error}`));
+        if (currentUtterance === utterance) {
+          currentUtterance = null;
+        }
+        // "interrupted" is expected when we cancel previous speech, so don't treat it as an error
+        if (event.error === 'interrupted') {
+          // If interrupted before starting, resolve silently (expected behavior)
+          // If already resolved, this is a no-op
+          if (!hasResolved) {
+            hasResolved = true;
+            resolve();
+          }
+        } else {
+          // Only reject on actual errors
+          if (!hasResolved) {
+            hasResolved = true;
+            reject(new Error(`Speech synthesis error: ${event.error}`));
+          }
+        }
       };
       
       // Speak
