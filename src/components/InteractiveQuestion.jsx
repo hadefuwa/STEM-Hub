@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { speak } from '../utils/textToSpeech';
 
 /**
  * Interactive Question Component
@@ -9,6 +10,14 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+
+  const handleTTS = () => {
+    if (question) {
+      speak(question, { volume: 1.0, rate: 0.9, pitch: 1.0 }).catch(err => {
+        console.error('Error speaking question:', err);
+      });
+    }
+  };
 
   const handleSelect = (index) => {
     if (showFeedback) return; // Don't allow changing answer after feedback
@@ -76,12 +85,47 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
       border: '1px solid #e0e0e0',
     }}>
       <div style={{
-        fontSize: '18px',
-        fontWeight: '600',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
         marginBottom: '15px',
-        color: '#333',
       }}>
-        {question}
+        <div style={{
+          fontSize: '18px',
+          fontWeight: '600',
+          color: '#333',
+          flex: 1,
+        }}>
+          {question}
+        </div>
+        <button
+          onClick={handleTTS}
+          style={{
+            padding: '8px 12px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontSize: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            transition: 'all 0.2s',
+            flexShrink: 0,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#0056b3';
+            e.currentTarget.style.transform = 'scale(1.05)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#007bff';
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+          title="Listen to question"
+        >
+          🔊
+        </button>
       </div>
       
       <div>
