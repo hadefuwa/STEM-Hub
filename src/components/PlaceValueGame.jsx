@@ -18,18 +18,69 @@ function PlaceValueGame({ lesson }) {
   const [isDragging, setIsDragging] = useState(false);
   const [dragDigit, setDragDigit] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [maxPlace, setMaxPlace] = useState(2); // 2 = tens, 3 = hundreds, etc.
+  const [maxPlace, setMaxPlace] = useState(3); // 2 = tens, 3 = hundreds, etc.
   const dragStartPos = useRef({ x: 0, y: 0 });
   const placeValueRefs = useRef({});
   const gameAreaRef = useRef(null);
 
-  const problems = [
-    { number: 24, places: 2, digits: [2, 4, 1, 3, 5, 6] },
-    { number: 67, places: 2, digits: [6, 7, 2, 3, 8, 9] },
-    { number: 89, places: 2, digits: [8, 9, 1, 2, 4, 5] },
-    { number: 156, places: 3, digits: [1, 5, 6, 2, 3, 4] },
-    { number: 234, places: 3, digits: [2, 3, 4, 1, 5, 6] },
-  ];
+  // Generate problems based on lesson
+  const generateProblems = () => {
+    const isPlaceValue10000 = lesson?.title?.includes('Place Value to 10,000') || lesson?.title?.includes('Place Value to 10000') || lesson?.title?.includes('place value to 10,000') || lesson?.title?.includes('place value to 10000');
+    const isPlaceValue1000 = lesson?.title?.includes('Place Value to 1000') || lesson?.title?.includes('place value to 1000');
+    const isPlaceValue100 = lesson?.title?.includes('Place Value to 100') || lesson?.title?.includes('place value to 100');
+    
+    if (isPlaceValue10000) {
+      // For "Place Value to 10,000", use 4-digit numbers (1000-9999)
+      const numbers = [1234, 2345, 3456, 4567, 5678, 6789, 2345, 4567, 5678, 7890, 1234, 2345, 3456, 4567, 5678];
+      return numbers.map(num => {
+        const digits = num.toString().split('').map(Number);
+        // Add some extra digits for distraction
+        const extraDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].filter(d => !digits.includes(d));
+        return {
+          number: num,
+          places: 4,
+          digits: [...digits, ...extraDigits.slice(0, 2)],
+        };
+      });
+    } else if (isPlaceValue1000) {
+      // For "Place Value to 1000", use 3-digit numbers (100-999)
+      const numbers = [156, 234, 345, 456, 567, 678, 789, 123, 234, 456, 567, 789, 234, 567, 890];
+      return numbers.map(num => {
+        const digits = num.toString().split('').map(Number);
+        // Add some extra digits for distraction
+        const extraDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(d => !digits.includes(d));
+        return {
+          number: num,
+          places: 3,
+          digits: [...digits, ...extraDigits.slice(0, 3)],
+        };
+      });
+    } else if (isPlaceValue100) {
+      // For "Place Value to 100", use 2-digit numbers (10-99)
+      const numbers = [24, 67, 89, 35, 48, 56, 72, 81, 93, 15, 28, 46, 59, 37, 64];
+      return numbers.map(num => {
+        const digits = num.toString().split('').map(Number);
+        const extraDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(d => !digits.includes(d));
+        return {
+          number: num,
+          places: 2,
+          digits: [...digits, ...extraDigits.slice(0, 4)],
+        };
+      });
+    } else {
+      // Default: mix of 2 and 3 digit numbers
+      return [
+        { number: 24, places: 2, digits: [2, 4, 1, 3, 5, 6] },
+        { number: 67, places: 2, digits: [6, 7, 2, 3, 8, 9] },
+        { number: 89, places: 2, digits: [8, 9, 1, 2, 4, 5] },
+        { number: 156, places: 3, digits: [1, 5, 6, 2, 3, 4] },
+        { number: 234, places: 3, digits: [2, 3, 4, 1, 5, 6] },
+      ];
+    }
+  };
+
+  // Generate problems based on lesson - memoize to avoid regeneration
+  const problems = React.useMemo(() => generateProblems(), [lesson?.title]);
 
   useEffect(() => {
     const problem = problems[level - 1] || problems[0];
@@ -43,12 +94,18 @@ function PlaceValueGame({ lesson }) {
     }
     setSelectedDigits(places);
     
-    // Create available digits
+    // Create available digits - position them in a grid at the bottom
+    const digitsPerRow = 4;
+    const digitSize = 80;
+    const digitSpacing = 20;
+    const startX = 100;
+    const startY = 300; // Position digits below place value boxes
+    
     const digits = problem.digits.map((digit, idx) => ({
       id: `digit-${idx}`,
       value: digit,
-      x: 50 + (idx % 3) * 80,
-      y: 50 + Math.floor(idx / 3) * 80,
+      x: startX + (idx % digitsPerRow) * (digitSize + digitSpacing),
+      y: startY + Math.floor(idx / digitsPerRow) * (digitSize + digitSpacing),
     }));
     setAvailableDigits(digits);
     setShowSuccess(false);
@@ -201,71 +258,90 @@ function PlaceValueGame({ lesson }) {
           backgroundColor: '#f0f8ff',
           overflow: 'hidden',
           cursor: isDragging ? 'grabbing' : 'default',
-          padding: '20px',
+          padding: '40px',
+          display: 'flex',
+          flexDirection: 'column',
         }}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        {/* Place Value Boxes */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '30px', flexWrap: 'wrap' }}>
+        {/* Place Value Boxes - Top Section */}
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          gap: '25px', 
+          marginBottom: '50px', 
+          flexWrap: 'wrap',
+          paddingTop: '20px',
+        }}>
           {selectedDigits.map((slot, idx) => (
             <div
               key={slot.place}
               ref={el => placeValueRefs.current[slot.place] = el}
               style={{
-                width: '80px',
-                height: '100px',
+                width: '120px',
+                height: '140px',
                 border: '3px dashed #2196F3',
-                borderRadius: '10px',
+                borderRadius: '12px',
                 backgroundColor: slot.value !== null ? '#d4edda' : '#fff',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               }}
             >
-              <div style={{ fontSize: '12px', color: '#666', marginBottom: '5px' }}>
+              <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px', fontWeight: 'bold' }}>
                 {placeNames[slot.place]}
               </div>
-              <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#333' }}>
+              <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#333' }}>
                 {slot.value !== null ? slot.value : '?'}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Available Digits */}
-        {availableDigits.map(digit => (
-          <div
-            key={digit.id}
-            onMouseDown={(e) => handleMouseDown(e, digit)}
-            style={{
-              position: 'absolute',
-              left: `${digit.x}px`,
-              top: `${digit.y}px`,
-              width: '60px',
-              height: '60px',
-              fontSize: '36px',
-              fontWeight: 'bold',
-              cursor: 'grab',
-              userSelect: 'none',
-              backgroundColor: '#fff',
-              border: '3px solid #2196F3',
-              borderRadius: '10px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: isDragging && dragDigit?.id === digit.id ? 'none' : 'all 0.2s',
-              transform: isDragging && dragDigit?.id === digit.id ? 'scale(1.2)' : 'scale(1)',
-              zIndex: isDragging && dragDigit?.id === digit.id ? 1000 : 1,
-              boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-            }}
-          >
-            {digit.value}
-          </div>
-        ))}
+        {/* Available Digits - Bottom Section */}
+        <div style={{ 
+          marginTop: 'auto',
+          paddingBottom: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          gap: '15px',
+        }}>
+          {availableDigits.map(digit => (
+            <div
+              key={digit.id}
+              onMouseDown={(e) => handleMouseDown(e, digit)}
+              style={{
+                position: 'absolute',
+                left: `${digit.x}px`,
+                top: `${digit.y}px`,
+                width: '80px',
+                height: '80px',
+                fontSize: '42px',
+                fontWeight: 'bold',
+                cursor: 'grab',
+                userSelect: 'none',
+                backgroundColor: '#fff',
+                border: '3px solid #2196F3',
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: isDragging && dragDigit?.id === digit.id ? 'none' : 'all 0.2s',
+                transform: isDragging && dragDigit?.id === digit.id ? 'scale(1.15)' : 'scale(1)',
+                zIndex: isDragging && dragDigit?.id === digit.id ? 1000 : 1,
+                boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+              }}
+            >
+              {digit.value}
+            </div>
+          ))}
+        </div>
 
         {showSuccess && (
           <div style={{
@@ -287,8 +363,8 @@ function PlaceValueGame({ lesson }) {
         )}
       </div>
 
-      <div style={{ marginTop: '10px', textAlign: 'center', fontSize: '18px', color: '#666' }}>
-        Current number: {builtNumber}
+      <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '20px', color: '#666', fontWeight: 'bold', padding: '15px', backgroundColor: '#f8f9fa', borderRadius: '10px' }}>
+        Current number: <span style={{ color: '#2196F3', fontSize: '24px' }}>{builtNumber}</span>
       </div>
     </div>
   );

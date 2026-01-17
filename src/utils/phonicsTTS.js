@@ -1,8 +1,9 @@
 /**
  * Phonics Text-to-Speech Utility
  * Generates pure phoneme sounds for phonics lessons
- * Uses Web Speech API with phonetic pronunciation
+ * Uses edge-tts (high-quality) in Electron, falls back to Web Speech API
  */
+import { speak as baseSpeak, stop as baseStop } from './textToSpeech';
 
 // Phoneme mappings for pure sounds
 const PHONEME_MAP = {
@@ -68,113 +69,58 @@ export const speakPhoneme = async (letter, options = {}) => {
     return speakLetter(letter, options);
   }
   
-  // Use SSML-like approach or direct phoneme
-  // For Web Speech API, we'll use a word that contains the sound
+  // Use a word that contains the sound for better pronunciation
   const soundWord = getSoundWord(lowerLetter);
   
-  return new Promise((resolve, reject) => {
-    if (!('speechSynthesis' in window)) {
-      reject(new Error('Speech synthesis not supported'));
-      return;
-    }
-    
-    const utterance = new SpeechSynthesisUtterance(soundWord);
-    utterance.rate = options.rate !== undefined ? options.rate : 0.7; // Slower for clarity
-    utterance.pitch = options.pitch !== undefined ? options.pitch : 1.2; // Slightly higher pitch can help with clarity
-    utterance.volume = Math.max(0, Math.min(1, options.volume !== undefined ? options.volume : 1.0)); // Max volume (1.0)
-    
-    console.log('Phonics TTS: Speaking', soundWord, 'with volume:', utterance.volume, 'pitch:', utterance.pitch);
-    
-    // Try to use a louder, clearer voice
-    const voices = window.speechSynthesis.getVoices();
-    // Prefer voices that are typically louder (Microsoft voices on Windows)
-    const preferredVoice = voices.find(v => 
-      v.name.toLowerCase().includes('zira') || // Microsoft Zira is usually louder
-      v.name.toLowerCase().includes('david') || // Microsoft David
-      v.name.toLowerCase().includes('mark') ||  // Microsoft Mark
-      v.name.toLowerCase().includes('hazel')    // Microsoft Hazel
-    ) || voices.find(v => 
-      v.name.toLowerCase().includes('samantha') ||
-      v.name.toLowerCase().includes('alex') ||
-      v.name.toLowerCase().includes('victoria')
-    ) || voices.find(v => v.lang.startsWith('en'));
-    
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    }
-    
-    utterance.onend = () => resolve();
-    utterance.onerror = (e) => reject(e);
-    
-    window.speechSynthesis.speak(utterance);
-  });
+  // Use centralized TTS (edge-tts in Electron, Web Speech API fallback)
+  // Note: edge-tts doesn't support rate/pitch, but volume works
+  try {
+    await baseSpeak(soundWord, {
+      volume: options.volume !== undefined ? options.volume : 1.0,
+      rate: options.rate !== undefined ? options.rate : 0.7, // For Web Speech API fallback
+      pitch: options.pitch !== undefined ? options.pitch : 1.2, // For Web Speech API fallback
+    });
+  } catch (error) {
+    console.error('Error speaking phoneme:', error);
+    throw error;
+  }
 };
 
 /**
  * Speak a letter name
  */
 export const speakLetter = async (letter, options = {}) => {
-  return new Promise((resolve, reject) => {
-    if (!('speechSynthesis' in window)) {
-      reject(new Error('Speech synthesis not supported'));
-      return;
-    }
-    
-    const utterance = new SpeechSynthesisUtterance(letter.toUpperCase());
-    utterance.rate = options.rate || 0.8;
-    utterance.pitch = options.pitch || 1.2; // Slightly higher pitch
-    utterance.volume = Math.max(0, Math.min(1, options.volume !== undefined ? options.volume : 1.0)); // Ensure volume is between 0 and 1
-    
-    const voices = window.speechSynthesis.getVoices();
-    const childVoice = voices.find(v => 
-      v.name.toLowerCase().includes('child') || 
-      v.name.toLowerCase().includes('zira')
-    ) || voices.find(v => v.lang.startsWith('en'));
-    
-    if (childVoice) {
-      utterance.voice = childVoice;
-    }
-    
-    utterance.onend = () => resolve();
-    utterance.onerror = (e) => reject(e);
-    
-    window.speechSynthesis.speak(utterance);
-  });
+  // Use centralized TTS (edge-tts in Electron, Web Speech API fallback)
+  try {
+    await baseSpeak(letter.toUpperCase(), {
+      volume: options.volume !== undefined ? options.volume : 1.0,
+      rate: options.rate || 0.8, // For Web Speech API fallback
+      pitch: options.pitch || 1.2, // For Web Speech API fallback
+    });
+  } catch (error) {
+    console.error('Error speaking letter:', error);
+    throw error;
+  }
 };
 
 /**
  * Speak a blend or word
  */
 export const speakBlend = async (blend, options = {}) => {
-  return new Promise((resolve, reject) => {
-    if (!('speechSynthesis' in window)) {
-      reject(new Error('Speech synthesis not supported'));
-      return;
-    }
-    
-    // Use phonetic pronunciation if available
-    const pronunciation = BLEND_PRONUNCIATIONS[blend.toLowerCase()] || blend;
-    
-    const utterance = new SpeechSynthesisUtterance(pronunciation);
-    utterance.rate = options.rate || 0.6; // Slower for blending
-    utterance.pitch = options.pitch || 1.2; // Slightly higher pitch
-    utterance.volume = Math.max(0, Math.min(1, options.volume !== undefined ? options.volume : 1.0)); // Ensure volume is between 0 and 1
-    
-    const voices = window.speechSynthesis.getVoices();
-    const childVoice = voices.find(v => 
-      v.name.toLowerCase().includes('child') || 
-      v.name.toLowerCase().includes('zira')
-    ) || voices.find(v => v.lang.startsWith('en'));
-    
-    if (childVoice) {
-      utterance.voice = childVoice;
-    }
-    
-    utterance.onend = () => resolve();
-    utterance.onerror = (e) => reject(e);
-    
-    window.speechSynthesis.speak(utterance);
-  });
+  // Use phonetic pronunciation if available
+  const pronunciation = BLEND_PRONUNCIATIONS[blend.toLowerCase()] || blend;
+  
+  // Use centralized TTS (edge-tts in Electron, Web Speech API fallback)
+  try {
+    await baseSpeak(pronunciation, {
+      volume: options.volume !== undefined ? options.volume : 1.0,
+      rate: options.rate || 0.6, // Slower for blending (Web Speech API fallback)
+      pitch: options.pitch || 1.2, // Slightly higher pitch (Web Speech API fallback)
+    });
+  } catch (error) {
+    console.error('Error speaking blend:', error);
+    throw error;
+  }
 };
 
 /**
@@ -232,9 +178,8 @@ function getSoundWord(letter) {
  * Stop current speech
  */
 export const stopSpeech = () => {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-  }
+  // Use centralized stop function
+  baseStop();
 };
 
 /**

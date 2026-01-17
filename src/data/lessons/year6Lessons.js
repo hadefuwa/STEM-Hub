@@ -701,9 +701,61 @@ World War I lasted from 1914 to 1918.
 
 - Very difficult time
 
-- Important to remember!`,
+- Important to remember!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+When did World War I happen?
+<!-- OPTIONS -->
+1910-1914|1914-1918|1918-1922|1920-1924
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+World War I lasted from 1914 to 1918! It was a very difficult time with many countries involved!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were soldiers' living conditions like in the trenches?
+<!-- OPTIONS -->
+Comfortable|Very difficult with mud, rats, and disease|Easy|Fun
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Soldiers lived in trenches (ditches) with very difficult conditions - mud, rats, and disease. It was dangerous and scary!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Which countries were in the Allied Powers?
+<!-- OPTIONS -->
+Germany, Austria-Hungary|Britain, France, Russia, United States|Only Germany|Only Britain
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Allied Powers included Britain, France, Russia, and the United States (who joined later), plus many others!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What new weapons were used in World War I?
+<!-- OPTIONS -->
+Only swords|Machine guns, tanks, poison gas, airplanes, and submarines|Only guns|Only knives
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+New weapons included machine guns, tanks (first used), poison gas, airplanes (for war), and submarines!
+<!-- QUESTION_END -->`,
       quizId: 82,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -826,9 +878,61 @@ Let's learn about the time between the world wars!
 
 - Dictators rose to power
 
-- It led to World War II!`,
+- It led to World War II!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What was the 1920s called?
+<!-- OPTIONS -->
+The Sad Twenties|The Roaring Twenties|The Quiet Twenties|The Boring Twenties
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The 1920s were called "The Roaring Twenties"! After World War I, people wanted to have fun, there was new music and dancing, and women got more rights!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+When did the Great Depression start?
+<!-- OPTIONS -->
+1925|1929|1930|1935
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Great Depression started in 1929 when the stock market crashed! Many people lost jobs, and it was very hard times!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What happened because of the rise of dictators?
+<!-- OPTIONS -->
+Peace|People lost freedoms and it led to World War II|Nothing|Happiness
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+When dictators rose to power, people lost freedoms, and this led to problems that caused World War II!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What new technologies became popular in the 1920s-1930s?
+<!-- OPTIONS -->
+Nothing|Cars, radio, and movies|Only computers|Only phones
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Cars became common, radio became popular, movies became big, technology advanced, and life changed!
+<!-- QUESTION_END -->`,
       quizId: 84,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -971,9 +1075,61 @@ World War II lasted from 1939 to 1945.
 
 - People showed courage
 
-- Important to remember!`,
+- Important to remember!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+When did World War II happen?
+<!-- OPTIONS -->
+1935-1939|1939-1945|1940-1946|1930-1940
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+World War II lasted from 1939 to 1945! It affected everyone, and people showed great courage!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was the Holocaust?
+<!-- OPTIONS -->
+A celebration|A terrible time when millions of people were killed|A war|A party
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Holocaust was a terrible time when millions of people were killed. It was a genocide, and we must never forget and learn from it!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was the Blitz?
+<!-- OPTIONS -->
+A celebration|German bombing of British cities|A dance|A song
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Blitz was German bombing of British cities! People hid in air raid shelters, many buildings were destroyed, but people showed great courage and Britain stood strong!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was D-Day?
+<!-- OPTIONS -->
+June 6, 1944 - Allied invasion of France|A holiday|A celebration|A dance
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+D-Day was June 6, 1944 - the Allied invasion of France! It was a very important battle that helped end the war!
+<!-- QUESTION_END -->`,
       quizId: 83,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1122,9 +1278,61 @@ Let's learn about the Cold War!
 
 - It was tense
 
-- It ended peacefully!`,
+- It ended peacefully!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+When did the Cold War happen?
+<!-- OPTIONS -->
+1940-1950|1945-1991|1950-2000|1939-1945
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Cold War lasted from 1945 to 1991! It was a conflict between the USA and Soviet Union!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why was it called the "Cold" War?
+<!-- OPTIONS -->
+It was cold outside|They didn't fight directly|It was in winter|It was about ice
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+It was called "cold" because the USA and Soviet Union didn't fight directly, but there was tension!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was the Berlin Wall?
+<!-- OPTIONS -->
+A decoration|A symbol of division between East and West|A bridge|A road
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Berlin Wall was built as part of the Iron Curtain - a division in Europe where East and West were separated, and people couldn't travel freely!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was the Space Race?
+<!-- OPTIONS -->
+A running race|Both sides racing to space|A swimming race|A car race
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Space Race was when both sides raced to space! There was the first satellite (Sputnik), first man in space, and first moon landing!
+<!-- QUESTION_END -->`,
       quizId: 84,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1263,9 +1471,61 @@ Let's learn about the fight for civil rights!
 
 - They made progress
 
-- We must continue the fight!`,
+- We must continue the fight!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What were civil rights?
+<!-- OPTIONS -->
+Rights for some people|Rights for all people, equal treatment, no discrimination|Rights for only rich people|Rights for only men
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Civil rights were rights for all people - equal treatment, no discrimination, fairness for everyone, and important freedoms!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was segregation?
+<!-- OPTIONS -->
+A celebration|People separated by race with different schools and places|A dance|A song
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Segregation was when people were separated by race - different schools, different places. It was unfair and wrong!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Rosa Parks do?
+<!-- OPTIONS -->
+Nothing|Refused to give up her seat and started a bus boycott|Only sat|Only stood
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Rosa Parks refused to give up her seat! She was brave, started a bus boycott, inspired others, and made a difference!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Martin Luther King Jr. do?
+<!-- OPTIONS -->
+Nothing|Fought for civil rights, gave famous speeches, and led peaceful protests|Only fought|Only wrote
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Martin Luther King Jr. was a great leader who fought for civil rights, gave famous speeches, and led peaceful protests!
+<!-- QUESTION_END -->`,
       quizId: 84,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1388,9 +1648,61 @@ Let's learn about the modern world!
 
 - World became connected
 
-- Life changed a lot!`,
+- Life changed a lot!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What happened in the 1960s?
+<!-- OPTIONS -->
+Nothing|A time of change with young people protesting, music and fashion changing|Only war|Only peace
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The 1960s were a time of change! Young people protested, music changed, fashion changed, and society changed!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What became popular in the 1990s?
+<!-- OPTIONS -->
+Nothing|The Internet became popular|Only TV|Only radio
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+In the 1990s, the Internet became popular! Computers were everywhere, communication changed, the world became connected, and technology advanced!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What important event happened in 1989?
+<!-- OPTIONS -->
+Nothing|Fall of Berlin Wall|World War II|Cold War started
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Fall of Berlin Wall happened in 1989! The Cold War ended in 1991, and there was an Internet revolution!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What happened to technology from 1960s to 1990s?
+<!-- OPTIONS -->
+Nothing|Technology advanced - computers started, became common, and Internet became popular|It stayed the same|It got worse
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Technology advanced greatly! Computers started in the 1970s, became common in the 1980s, and the Internet became popular in the 1990s!
+<!-- QUESTION_END -->`,
       quizId: 84,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1529,9 +1841,61 @@ Let's learn about recent history!
 
 - We're making history now
 
-- The future is ahead!`,
+- The future is ahead!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What became common in the 2010s?
+<!-- OPTIONS -->
+Nothing|Smartphones became common|Only computers|Only TV
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+In the 2010s, smartphones became common! Social media grew, technology was everywhere, and the world became more connected!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What technology do we have today?
+<!-- OPTIONS -->
+Nothing|Smartphones, Internet, social media, and Artificial Intelligence|Only phones|Only computers
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Today we have smartphones, Internet, social media, Artificial Intelligence, and many new things! Technology is everywhere!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What recent events have happened?
+<!-- OPTIONS -->
+Nothing|COVID-19 pandemic, climate change awareness, technology advances, and social movements|Only good things|Only bad things
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Recent events include the COVID-19 pandemic, climate change awareness, technology advances, social movements, and world events!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why is it important to know we're making history?
+<!-- OPTIONS -->
+It's not important|Our actions matter, we can make a difference, and we're part of the story|It doesn't matter|We can't do anything
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We're living in history! Our actions matter, we can make a difference, we're part of the story, and history continues!
+<!-- QUESTION_END -->`,
       quizId: 84,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1700,9 +2064,61 @@ Historical sources are evidence from the past that help us understand history.
 
 - Evaluate sources carefully
 
-- Sources help us understand history!`,
+- Sources help us understand history!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What are primary sources?
+<!-- OPTIONS -->
+Sources created later|Sources created at the time like letters, diaries, photos, and artifacts|Only books|Only videos
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Primary sources are created at the time - letters, diaries, photos, official documents, artifacts, and first-hand accounts!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What are secondary sources?
+<!-- OPTIONS -->
+Sources from the time|Sources created later like history books, documentaries, and articles|Only photos|Only letters
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Secondary sources are created later - history books, documentaries, articles, and interpretations!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What questions should we ask about sources?
+<!-- OPTIONS -->
+Nothing|Who created it, when, why, is it reliable, what does it tell us|Only who|Only when
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We should ask: Who created it? When was it created? Why was it created? Is it reliable? What does it tell us? What perspective does it show?
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why is it important to evaluate sources?
+<!-- OPTIONS -->
+It's not important|To understand if they're reliable, what perspective they show, and what might be missing|It doesn't matter|We can't learn anything
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We evaluate sources to see if they're reliable, understand the perspective, see what's missing, compare to other sources, and check for biases!
+<!-- QUESTION_END -->`,
       quizId: 96,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1827,9 +2243,61 @@ Let's learn how historians study the past!
 
 - They think critically
 
-- History helps us understand!`,
+- History helps us understand!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What do historians do?
+<!-- OPTIONS -->
+Nothing|Study the past, research events, analyze sources, and write about history|Only write|Only read
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Historians study the past, research events, analyze sources, write about history, and help us understand!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What research methods do historians use?
+<!-- OPTIONS -->
+Nothing|Read primary sources, study artifacts, visit historical places, talk to experts, and compare sources|Only read|Only write
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Historians read primary sources, study artifacts, visit historical places, talk to experts, and compare different sources!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is historical thinking?
+<!-- OPTIONS -->
+Not thinking|Ask questions, look for evidence, consider different perspectives, think critically, and make connections|Only ask questions|Only read
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Historical thinking means asking questions, looking for evidence, considering different perspectives, thinking critically, and making connections!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why does history matter?
+<!-- OPTIONS -->
+It doesn't|Learn from the past, understand the present, prepare for the future, learn about people, and understand change|Only for fun|Only for tests
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+History matters because we can learn from the past, understand the present, prepare for the future, learn about people, and understand change!
+<!-- QUESTION_END -->`,
       quizId: 96,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1970,11 +2438,134 @@ Let's learn about how history changes!
 
 - You're part of history
 
-- You can make a difference!`,
+- You can make a difference!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What causes change in history?
+<!-- OPTIONS -->
+Nothing|New ideas, new inventions, wars and conflicts, people's actions, and natural events|Only wars|Only inventions
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Causes of change include new ideas, new inventions, wars and conflicts, people's actions, and natural events!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What can we learn from history?
+<!-- OPTIONS -->
+Nothing|Learn from mistakes, learn from successes, understand people, make better choices|Only mistakes|Only successes
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We can learn from mistakes, learn from successes, understand people, make better choices, and history teaches us!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What is continuity and change?
+<!-- OPTIONS -->
+Everything changes|Some things stay the same and some things change|Nothing changes|Only change
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Continuity and change means some things stay the same and some things change! We see both in history, and it's interesting to study!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why is it important to know you're part of history?
+<!-- OPTIONS -->
+It's not important|Your actions matter, you can make a difference, you're making history now, and the future is yours|It doesn't matter|You can't do anything
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+You're part of history! Your actions matter, you can make a difference, you're making history now, and the future is yours!
+<!-- QUESTION_END -->`,
       quizId: 96,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
-    })
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'technology',
+      lessonNumber: 1,
+      title: "TapTapTap: Champion Level 1",
+      emoji: '👆',
+      content: `# TapTapTap: Champion Level 1 👆
+
+The ultimate challenge! You've reached the champion level - the highest difficulty!
+
+## How to Play
+
+- Tap targets as they appear on screen
+- Targets appear every 0.6 seconds (incredibly fast!)
+- Targets are very small and require perfect precision
+- 30 seconds to score as many points as possible!
+
+## Scoring System
+
+- **Bronze**: 30-59 points
+- **Silver**: 60-89 points
+- **Gold**: 90-119 points
+- **Platinum**: 120+ points
+
+You need at least **Bronze** (30 points) to progress!
+
+## Tips
+
+- This is the hardest level - be patient!
+- Focus on accuracy over speed
+- Practice makes perfect - keep trying!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'technology',
+      lessonNumber: 2,
+      title: "TapTapTap: Champion Level 2",
+      emoji: '👆',
+      content: `# TapTapTap: Champion Level 2 👆
+
+The final challenge! You're at the top level - show what you can do!
+
+## How to Play
+
+- Tap targets as they appear
+- Same speed as Level 1 - the ultimate test!
+- 30 seconds to score points
+
+## Scoring System
+
+- **Bronze**: 30-59 points
+- **Silver**: 60-89 points
+- **Gold**: 90-119 points
+- **Platinum**: 120+ points
+
+You need at least **Bronze** (30 points) to progress!
+
+## Challenge
+
+You've made it to the champion level! Can you achieve Platinum? You're a true tapping champion!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
 
   ];
 }

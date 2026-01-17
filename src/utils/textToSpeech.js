@@ -1,19 +1,34 @@
 /**
  * Text-to-Speech Utility Module
- * Uses Web Speech API for reading text aloud
+ * Uses edge-tts-universal (high-quality) in Electron, falls back to Web Speech API
  */
 
-// Check if TTS is supported
-const isSupported = () => {
-  return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+// Check if we're in Electron (has electronAPI)
+const isElectron = () => {
+  return typeof window !== 'undefined' && window.electronAPI && window.electronAPI.ttsSpeak;
 };
 
-// Get available voices (with async handling)
+// Check if Web Speech API is supported (fallback)
+const isWebSpeechSupported = () => {
+  return typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+};
+
+// Check if TTS is supported (either method)
+const isSupported = () => {
+  return isElectron() || isWebSpeechSupported();
+};
+
+// Audio player for edge-tts (Electron)
+let currentAudioPlayer = null;
+
+// Web Speech API state (fallback)
 let voicesLoaded = false;
 let voices = [];
+let currentUtterance = null;
 
+// Load Web Speech API voices (fallback only)
 const loadVoices = () => {
-  if (typeof window === 'undefined' || !isSupported()) {
+  if (typeof window === 'undefined' || !isWebSpeechSupported()) {
     return [];
   }
   
@@ -22,16 +37,12 @@ const loadVoices = () => {
   return voices;
 };
 
-// Load voices when they become available
-if (typeof window !== 'undefined' && isSupported()) {
-  // Some browsers load voices asynchronously
+// Load voices when they become available (fallback only)
+if (typeof window !== 'undefined' && isWebSpeechSupported() && !isElectron()) {
   if (window.speechSynthesis.onvoiceschanged !== undefined) {
     window.speechSynthesis.onvoiceschanged = loadVoices;
   }
-  // Try to load immediately
   loadVoices();
-  
-  // Also try after a short delay (some browsers need this)
   setTimeout(loadVoices, 100);
 }
 
@@ -48,13 +59,14 @@ const getPreferences = () => {
   
   // Default preferences
   return {
-    enabled: true,  // TTS enabled by default
+    enabled: true,
     autoRead: false,
-    readAnswers: true,  // Read answers when selected enabled by default
-    voice: null, // Will use default system voice
+    readAnswers: true,
+    voice: null, // Will use default voice
     rate: 1.0,
     pitch: 1.0,
     volume: 1.0,
+    useEdgeTTS: true, // Prefer edge-tts in Electron
   };
 };
 
@@ -67,104 +79,192 @@ const savePreferences = (prefs) => {
   }
 };
 
-// Current utterance reference for control
-let currentUtterance = null;
-
 /**
- * Speak text using TTS
+ * Speak text using TTS (edge-tts in Electron, Web Speech API as fallback)
  * @param {string} text - Text to speak
  * @param {Object} options - Optional settings (voice, rate, pitch, volume)
  * @returns {Promise} - Resolves when speech starts, rejects on error
  */
-const speak = (text, options = {}) => {
+const speak = async (text, options = {}) => {
   if (!isSupported()) {
-    return Promise.reject(new Error('Text-to-speech is not supported in this browser'));
+    return Promise.reject(new Error('Text-to-speech is not supported'));
   }
 
   if (!text || typeof text !== 'string') {
     return Promise.reject(new Error('Invalid text provided'));
   }
 
-  return new Promise((resolve, reject) => {
-    try {
-      // Stop any current speech
-      stop();
+  // Stop any current speech
+  stop();
 
-      // Get preferences
-      const prefs = getPreferences();
+  // Get preferences
+  const prefs = getPreferences();
+
+  // Try edge-tts first (Electron)
+  if (isElectron() && (prefs.useEdgeTTS !== false)) {
+    try {
+      const voice = options.voice || prefs.voice || 'en-US-EmmaMultilingualNeural';
       
-      // Create utterance
-      const utterance = new SpeechSynthesisUtterance(text);
-      
-      // Set voice
-      if (options.voice || prefs.voice) {
-        const voiceName = options.voice || prefs.voice;
-        const availableVoices = getVoices();
-        const selectedVoice = availableVoices.find(v => 
-          v.name === voiceName || v.voiceURI === voiceName
-        );
-        if (selectedVoice) {
-          utterance.voice = selectedVoice;
+      // Call Electron main process to synthesize speech
+      // Note: edge-tts doesn't support rate/pitch directly, but volume is handled via audio element
+      const result = await window.electronAPI.ttsSpeak(text, {
+        voice,
+      });
+
+      if (result.success && result.audioData) {
+        // Convert base64 to blob URL for playback
+        // This avoids file:// URL security restrictions in Electron
+        const base64Data = result.audioData;
+        const mimeType = result.mimeType || 'audio/mpeg';
+        
+        // Convert base64 to binary
+        const binaryString = atob(base64Data);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
         }
+        
+        // Create blob and blob URL
+        const blob = new Blob([bytes], { type: mimeType });
+        const blobUrl = URL.createObjectURL(blob);
+        
+        // Play the audio
+        const audio = new Audio(blobUrl);
+        currentAudioPlayer = audio;
+        
+        // Set volume
+        audio.volume = options.volume !== undefined ? options.volume : prefs.volume;
+        
+        // Play and return promise
+        return new Promise((resolve, reject) => {
+          audio.oncanplaythrough = () => {
+            audio.play().then(() => {
+              resolve();
+            }).catch(reject);
+          };
+          
+          audio.onerror = (e) => {
+            currentAudioPlayer = null;
+            URL.revokeObjectURL(blobUrl); // Clean up blob URL
+            reject(new Error('Failed to play audio'));
+          };
+          
+          audio.onended = () => {
+            currentAudioPlayer = null;
+            URL.revokeObjectURL(blobUrl); // Clean up blob URL
+          };
+          
+          // If already loaded, play immediately
+          if (audio.readyState >= 2) {
+            audio.play().then(() => {
+              resolve();
+            }).catch(reject);
+          }
+        });
+      } else {
+        throw new Error(result.error || 'TTS synthesis failed');
       }
-      
-      // Set properties
-      utterance.rate = options.rate !== undefined ? options.rate : prefs.rate;
-      utterance.pitch = options.pitch !== undefined ? options.pitch : prefs.pitch;
-      utterance.volume = options.volume !== undefined ? options.volume : prefs.volume;
-      
-      let hasResolved = false;
-      
-      // Event handlers
-      utterance.onstart = () => {
-        currentUtterance = utterance;
-        if (!hasResolved) {
-          hasResolved = true;
-          resolve();
+    } catch (error) {
+      console.warn('Edge TTS failed, falling back to Web Speech API:', error);
+      // Fall through to Web Speech API
+    }
+  }
+
+  // Fallback to Web Speech API
+  if (isWebSpeechSupported()) {
+    return new Promise((resolve, reject) => {
+      try {
+        // Create utterance
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Set voice
+        if (options.voice || prefs.voice) {
+          const voiceName = options.voice || prefs.voice;
+          // In Web Speech API path, getVoices() returns synchronously (array)
+          const availableVoices = getVoices();
+          const selectedVoice = availableVoices.find(v => 
+            v.name === voiceName || v.voiceURI === voiceName
+          );
+          if (selectedVoice) {
+            utterance.voice = selectedVoice;
+          }
         }
-      };
-      
-      utterance.onend = () => {
-        if (currentUtterance === utterance) {
-          currentUtterance = null;
-        }
-      };
-      
-      utterance.onerror = (event) => {
-        if (currentUtterance === utterance) {
-          currentUtterance = null;
-        }
-        // "interrupted" is expected when we cancel previous speech, so don't treat it as an error
-        if (event.error === 'interrupted') {
-          // If interrupted before starting, resolve silently (expected behavior)
-          // If already resolved, this is a no-op
+        
+        // Set properties
+        utterance.rate = options.rate !== undefined ? options.rate : prefs.rate;
+        utterance.pitch = options.pitch !== undefined ? options.pitch : prefs.pitch;
+        utterance.volume = options.volume !== undefined ? options.volume : prefs.volume;
+        
+        let hasResolved = false;
+        
+        // Event handlers
+        utterance.onstart = () => {
+          currentUtterance = utterance;
           if (!hasResolved) {
             hasResolved = true;
             resolve();
           }
-        } else {
-          // Only reject on actual errors
-          if (!hasResolved) {
-            hasResolved = true;
-            reject(new Error(`Speech synthesis error: ${event.error}`));
+        };
+        
+        utterance.onend = () => {
+          if (currentUtterance === utterance) {
+            currentUtterance = null;
           }
-        }
-      };
-      
-      // Speak
-      window.speechSynthesis.speak(utterance);
-      
-    } catch (error) {
-      reject(error);
-    }
-  });
+        };
+        
+        utterance.onerror = (event) => {
+          if (currentUtterance === utterance) {
+            currentUtterance = null;
+          }
+          if (event.error === 'interrupted') {
+            if (!hasResolved) {
+              hasResolved = true;
+              resolve();
+            }
+          } else {
+            if (!hasResolved) {
+              hasResolved = true;
+              reject(new Error(`Speech synthesis error: ${event.error}`));
+            }
+          }
+        };
+        
+        // Speak
+        window.speechSynthesis.speak(utterance);
+        
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  return Promise.reject(new Error('No TTS method available'));
 };
 
 /**
  * Stop current speech
  */
 const stop = () => {
-  if (isSupported()) {
+  // Stop edge-tts audio (Electron)
+  if (currentAudioPlayer) {
+    currentAudioPlayer.pause();
+    currentAudioPlayer.currentTime = 0;
+    // Revoke blob URL if it exists (cleanup)
+    if (currentAudioPlayer.src && currentAudioPlayer.src.startsWith('blob:')) {
+      URL.revokeObjectURL(currentAudioPlayer.src);
+    }
+    currentAudioPlayer = null;
+  }
+  
+  // Stop Electron TTS if available
+  if (isElectron() && window.electronAPI.ttsStop) {
+    window.electronAPI.ttsStop().catch(() => {
+      // Ignore errors
+    });
+  }
+  
+  // Stop Web Speech API (fallback)
+  if (isWebSpeechSupported()) {
     window.speechSynthesis.cancel();
     currentUtterance = null;
   }
@@ -174,7 +274,13 @@ const stop = () => {
  * Pause current speech
  */
 const pause = () => {
-  if (isSupported()) {
+  // Pause edge-tts audio (Electron)
+  if (currentAudioPlayer) {
+    currentAudioPlayer.pause();
+  }
+  
+  // Pause Web Speech API (fallback)
+  if (isWebSpeechSupported()) {
     window.speechSynthesis.pause();
   }
 };
@@ -183,26 +289,57 @@ const pause = () => {
  * Resume paused speech
  */
 const resume = () => {
-  if (isSupported()) {
+  // Resume edge-tts audio (Electron)
+  if (currentAudioPlayer && currentAudioPlayer.paused) {
+    currentAudioPlayer.play().catch(() => {
+      // Ignore errors
+    });
+  }
+  
+  // Resume Web Speech API (fallback)
+  if (isWebSpeechSupported()) {
     window.speechSynthesis.resume();
   }
 };
 
 /**
  * Get available voices
- * @returns {Array} Array of voice objects
+ * @returns {Array|Promise<Array>} Array of voice objects (async in Electron, sync for Web Speech API)
  */
 const getVoices = () => {
-  if (!isSupported()) {
-    return [];
+  // Try to get edge-tts voices first (Electron) - returns Promise
+  if (isElectron() && window.electronAPI.ttsGetVoices) {
+    return (async () => {
+      try {
+        const result = await window.electronAPI.ttsGetVoices();
+        if (result.success && result.voices) {
+          return result.voices;
+        }
+      } catch (error) {
+        console.warn('Failed to get edge-tts voices, using Web Speech API:', error);
+      }
+      
+      // Fallback to Web Speech API voices if edge-tts fails
+      if (isWebSpeechSupported()) {
+        if (!voicesLoaded) {
+          loadVoices();
+        }
+        return voices.length > 0 ? voices : window.speechSynthesis.getVoices();
+      }
+      
+      return [];
+    })();
   }
   
-  // Ensure voices are loaded
-  if (!voicesLoaded) {
-    loadVoices();
+  // Fallback to Web Speech API voices (synchronous)
+  if (isWebSpeechSupported()) {
+    if (!voicesLoaded) {
+      loadVoices();
+    }
+    return voices.length > 0 ? voices : window.speechSynthesis.getVoices();
   }
   
-  return voices.length > 0 ? voices : window.speechSynthesis.getVoices();
+  return [];
 };
 
 /**
@@ -210,10 +347,18 @@ const getVoices = () => {
  * @returns {boolean}
  */
 const isSpeaking = () => {
-  if (!isSupported()) {
-    return false;
+  // Check edge-tts audio (Electron)
+  if (currentAudioPlayer) {
+    return !currentAudioPlayer.paused && currentAudioPlayer.currentTime > 0 && 
+           currentAudioPlayer.currentTime < currentAudioPlayer.duration;
   }
-  return window.speechSynthesis.speaking;
+  
+  // Check Web Speech API (fallback)
+  if (isWebSpeechSupported()) {
+    return window.speechSynthesis.speaking;
+  }
+  
+  return false;
 };
 
 /**
@@ -221,10 +366,17 @@ const isSpeaking = () => {
  * @returns {boolean}
  */
 const isPaused = () => {
-  if (!isSupported()) {
-    return false;
+  // Check edge-tts audio (Electron)
+  if (currentAudioPlayer) {
+    return currentAudioPlayer.paused;
   }
-  return window.speechSynthesis.paused;
+  
+  // Check Web Speech API (fallback)
+  if (isWebSpeechSupported()) {
+    return window.speechSynthesis.paused;
+  }
+  
+  return false;
 };
 
 /**
@@ -319,4 +471,3 @@ export {
   setReadAnswers,
   setEnabled,
 };
-

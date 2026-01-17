@@ -12,12 +12,14 @@ function TypingMathGame({ lesson }) {
 
   const [currentProblem, setCurrentProblem] = useState(null);
   const [userAnswer, setUserAnswer] = useState('');
+  const [userRemainder, setUserRemainder] = useState(''); // For division with remainders
   const [score, setScore] = useState(0);
   const [level, setLevel] = useState(1);
   const [showFeedback, setShowFeedback] = useState(null);
   const [attempts, setAttempts] = useState(0);
   const [problems, setProblems] = useState([]);
   const inputRef = React.useRef(null);
+  const remainderInputRef = React.useRef(null);
 
   // Check if this is a unit conversion lesson
   const isUnitConversion = lesson?.title?.includes('Converting Units') || lesson?.title?.includes('Converting');
@@ -44,6 +46,7 @@ function TypingMathGame({ lesson }) {
   const isMultiplyingDecimals = lesson?.title?.includes('Multiplying Decimals');
   const isAddingSubtractingFractions = lesson?.title?.includes('Adding/Subtracting Fractions') || lesson?.title?.includes('Adding Fractions') || lesson?.title?.includes('Subtracting Fractions');
   const isDivisionRemainders = lesson?.title?.includes('Division with Remainders') || lesson?.title?.includes('Remainders');
+  const isNumberPatterns = lesson?.title?.includes('Number Patterns') || lesson?.title?.includes('number patterns');
 
   // Generate BODMAS/BIDMAS problems
   const generateBODMASProblems = () => {
@@ -200,33 +203,80 @@ function TypingMathGame({ lesson }) {
   // Generate addition with regrouping problems
   const generateAdditionRegroupingProblems = () => {
     const problems = [];
-    for (let i = 0; i < 5; i++) {
-      const num1 = Math.floor(Math.random() * 50) + 15; // 15-64
-      const num2 = Math.floor(Math.random() * 50) + 15; // 15-64
-      const answer = num1 + num2;
-      problems.push({
-        question: `${num1} + ${num2} = ?`,
-        answer: answer,
+    
+    // Pre-defined problems that require regrouping (carrying)
+    const regroupingProblems = [
+      // Ones column requires regrouping
+      { num1: 25, num2: 17, answer: 42 }, // 5+7=12, carry 1
+      { num1: 38, num2: 26, answer: 64 }, // 8+6=14, carry 1
+      { num1: 47, num2: 35, answer: 82 }, // 7+5=12, carry 1
+      { num1: 29, num2: 18, answer: 47 }, // 9+8=17, carry 1
+      { num1: 56, num2: 27, answer: 83 }, // 6+7=13, carry 1
+      { num1: 34, num2: 28, answer: 62 }, // 4+8=12, carry 1
+      { num1: 48, num2: 39, answer: 87 }, // 8+9=17, carry 1
+      { num1: 67, num2: 25, answer: 92 }, // 7+5=12, carry 1
+      { num1: 19, num2: 16, answer: 35 }, // 9+6=15, carry 1
+      { num1: 58, num2: 37, answer: 95 }, // 8+7=15, carry 1
+      { num1: 46, num2: 28, answer: 74 }, // 6+8=14, carry 1
+      { num1: 39, num2: 45, answer: 84 }, // 9+5=14, carry 1
+    ];
+    
+    // Select 5 random problems
+    const selected = [];
+    const available = [...regroupingProblems];
+    while (selected.length < 5 && available.length > 0) {
+      const randomIndex = Math.floor(Math.random() * available.length);
+      const problem = available[randomIndex];
+      selected.push({
+        question: `${problem.num1} + ${problem.num2} = ?`,
+        answer: problem.answer,
         type: 'addition-regrouping',
       });
+      available.splice(randomIndex, 1);
     }
-    return problems;
+    
+    return selected;
   };
 
   // Generate subtraction with regrouping problems
   const generateSubtractionRegroupingProblems = () => {
     const problems = [];
-    for (let i = 0; i < 5; i++) {
-      const num1 = Math.floor(Math.random() * 50) + 20; // 20-69
-      const num2 = Math.floor(Math.random() * (num1 - 10)) + 10; // Ensure regrouping needed
-      const answer = num1 - num2;
-      problems.push({
-        question: `${num1} - ${num2} = ?`,
-        answer: answer,
+    
+    // Pre-defined problems that require regrouping (borrowing)
+    // The ones digit of num1 must be smaller than ones digit of num2
+    const regroupingProblems = [
+      { num1: 32, num2: 15, answer: 17 }, // 2 < 5, borrow from 3
+      { num1: 45, num2: 28, answer: 17 }, // 5 < 8, borrow from 4
+      { num1: 63, num2: 47, answer: 16 }, // 3 < 7, borrow from 6
+      { num1: 51, num2: 24, answer: 27 }, // 1 < 4, borrow from 5
+      { num1: 72, num2: 38, answer: 34 }, // 2 < 8, borrow from 7
+      { num1: 84, num2: 57, answer: 27 }, // 4 < 7, borrow from 8
+      { num1: 56, num2: 29, answer: 27 }, // 6 < 9, borrow from 5
+      { num1: 43, num2: 16, answer: 27 }, // 3 < 6, borrow from 4
+      { num1: 67, num2: 39, answer: 28 }, // 7 < 9, borrow from 6
+      { num1: 81, num2: 45, answer: 36 }, // 1 < 5, borrow from 8
+      { num1: 52, num2: 27, answer: 25 }, // 2 < 7, borrow from 5
+      { num1: 74, num2: 48, answer: 26 }, // 4 < 8, borrow from 7
+      { num1: 93, num2: 46, answer: 47 }, // 3 < 6, borrow from 9
+      { num1: 35, num2: 18, answer: 17 }, // 5 < 8, borrow from 3
+      { num1: 61, num2: 34, answer: 27 }, // 1 < 4, borrow from 6
+    ];
+    
+    // Select 5 random problems
+    const selected = [];
+    const available = [...regroupingProblems];
+    while (selected.length < 5 && available.length > 0) {
+      const randomIndex = Math.floor(Math.random() * available.length);
+      const problem = available[randomIndex];
+      selected.push({
+        question: `${problem.num1} - ${problem.num2} = ?`,
+        answer: problem.answer,
         type: 'subtraction-regrouping',
       });
+      available.splice(randomIndex, 1);
     }
-    return problems;
+    
+    return selected;
   };
 
   // Generate long division problems
@@ -327,12 +377,48 @@ function TypingMathGame({ lesson }) {
       const randomIndex = Math.floor(Math.random() * available.length);
       const div = available[randomIndex];
       selected.push({
-        question: `${div.dividend} ÷ ${div.divisor} = ? (remainder: ?)`,
-        answer: `${div.answer} remainder ${div.remainder}`,
+        question: `${div.dividend} ÷ ${div.divisor} = ?`,
+        answer: div.answer,
+        remainder: div.remainder,
         type: 'division-remainders',
       });
       available.splice(randomIndex, 1);
     }
+    return selected;
+  };
+
+  // Generate number pattern problems
+  const generateNumberPatternProblems = () => {
+    const problems = [];
+    
+    // Various pattern types for Year 2
+    const patternProblems = [
+      // Addition patterns
+      { sequence: [2, 4, 6, 8], answer: 10, question: '2, 4, 6, 8, ?', type: 'addition', step: 2 },
+      { sequence: [5, 10, 15, 20], answer: 25, question: '5, 10, 15, 20, ?', type: 'addition', step: 5 },
+      { sequence: [3, 6, 9, 12], answer: 15, question: '3, 6, 9, 12, ?', type: 'addition', step: 3 },
+      { sequence: [1, 3, 5, 7], answer: 9, question: '1, 3, 5, 7, ?', type: 'addition', step: 2 },
+      { sequence: [4, 8, 12, 16], answer: 20, question: '4, 8, 12, 16, ?', type: 'addition', step: 4 },
+      // Subtraction patterns
+      { sequence: [10, 9, 8, 7], answer: 6, question: '10, 9, 8, 7, ?', type: 'subtraction', step: 1 },
+      { sequence: [20, 18, 16, 14], answer: 12, question: '20, 18, 16, 14, ?', type: 'subtraction', step: 2 },
+      { sequence: [15, 12, 9, 6], answer: 3, question: '15, 12, 9, 6, ?', type: 'subtraction', step: 3 },
+      { sequence: [25, 20, 15, 10], answer: 5, question: '25, 20, 15, 10, ?', type: 'subtraction', step: 5 },
+      // Patterns with missing number in middle
+      { sequence: [2, 4, 6, 8, 10], answer: 6, question: '2, 4, ?, 8, 10', type: 'addition', step: 2, missingIndex: 2 },
+      { sequence: [5, 10, 15, 20, 25], answer: 15, question: '5, 10, ?, 20, 25', type: 'addition', step: 5, missingIndex: 2 },
+      { sequence: [10, 9, 8, 7, 6], answer: 8, question: '10, 9, ?, 7, 6', type: 'subtraction', step: 1, missingIndex: 2 },
+    ];
+    
+    // Select 5 random problems
+    const selected = [];
+    const available = [...patternProblems];
+    while (selected.length < 5 && available.length > 0) {
+      const randomIndex = Math.floor(Math.random() * available.length);
+      selected.push(available[randomIndex]);
+      available.splice(randomIndex, 1);
+    }
+    
     return selected;
   };
 
@@ -502,8 +588,11 @@ function TypingMathGame({ lesson }) {
     const isMultiplyingDecimalsLesson = lesson?.title?.includes('Multiplying Decimals');
     const isAddingSubtractingFractionsLesson = lesson?.title?.includes('Adding/Subtracting Fractions') || lesson?.title?.includes('Adding Fractions') || lesson?.title?.includes('Subtracting Fractions');
     const isDivisionRemaindersLesson = lesson?.title?.includes('Division with Remainders') || lesson?.title?.includes('Remainders');
+    const isNumberPatternsLesson = lesson?.title?.includes('Number Patterns') || lesson?.title?.includes('number patterns');
     let currentProblems;
-    if (isDivisionRemaindersLesson) {
+    if (isNumberPatternsLesson) {
+      currentProblems = generateNumberPatternProblems();
+    } else if (isDivisionRemaindersLesson) {
       currentProblems = generateDivisionRemaindersProblems();
     } else if (isAddingSubtractingFractionsLesson) {
       currentProblems = generateAddingSubtractingFractionsProblems();
@@ -541,6 +630,7 @@ function TypingMathGame({ lesson }) {
       const problem = problems[level - 1] || problems[0];
       setCurrentProblem(problem);
       setUserAnswer('');
+      setUserRemainder('');
       setShowFeedback(null);
       setAttempts(0);
       if (inputRef.current) {
@@ -553,9 +643,14 @@ function TypingMathGame({ lesson }) {
     if (!currentProblem) return;
     // Handle different answer types
     let isCorrect = false;
-    if (currentProblem.type === 'fraction-addition' || currentProblem.type === 'fraction-subtraction' || currentProblem.type === 'division-remainders') {
-      // For fraction and remainder answers, compare as strings
+    if (currentProblem.type === 'fraction-addition' || currentProblem.type === 'fraction-subtraction') {
+      // For fraction answers, compare as strings
       isCorrect = userAnswer.trim().toLowerCase() === currentProblem.answer.toLowerCase();
+    } else if (currentProblem.type === 'division-remainders') {
+      // For division with remainders, check both answer and remainder
+      const answerNum = parseInt(userAnswer);
+      const remainderNum = parseInt(userRemainder);
+      isCorrect = answerNum === currentProblem.answer && remainderNum === currentProblem.remainder;
     } else {
       const answer = parseFloat(userAnswer);
       const correctAnswer = typeof currentProblem.answer === 'number' ? currentProblem.answer : parseFloat(currentProblem.answer);
@@ -621,7 +716,7 @@ function TypingMathGame({ lesson }) {
     <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ marginBottom: '40px', textAlign: 'center' }}>
         <h2 style={{ fontSize: '32px', marginBottom: '20px' }}>
-          {isWordProblems ? 'Word Problems' : isAlgebra ? 'Algebra: Solving Equations' : isArea ? 'Area Game' : isPercentagesOfAmounts ? 'Percentages of Amounts Game' : isBODMAS ? 'BODMAS Game' : isUnitConversion ? 'Unit Conversion Game' : 'Math Typing Game'}
+          {isNumberPatterns ? 'Number Patterns' : isWordProblems ? 'Word Problems' : isAlgebra ? 'Algebra: Solving Equations' : isArea ? 'Area Game' : isPercentagesOfAmounts ? 'Percentages of Amounts Game' : isBODMAS ? 'BODMAS Game' : isUnitConversion ? 'Unit Conversion Game' : isAdditionRegrouping ? 'Addition with Regrouping' : isSubtractionRegrouping ? 'Subtraction with Regrouping' : isLongDivision ? 'Long Division' : isMultiplyingDecimals ? 'Multiplying Decimals' : isAddingSubtractingFractions ? 'Adding/Subtracting Fractions' : isDivisionRemainders ? 'Division with Remainders' : 'Math Typing Game'}
         </h2>
         <div style={{ fontSize: '24px', marginBottom: '20px' }}>
           Level: {level} / {problems.length || 5} | Score: {score}
@@ -629,29 +724,92 @@ function TypingMathGame({ lesson }) {
         <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#2196F3', marginBottom: '30px' }}>
           {currentProblem.question}
         </div>
+        {isDivisionRemainders && (
+          <div style={{ fontSize: '20px', color: '#666', marginTop: '10px' }}>
+            Enter the answer and remainder below
+          </div>
+        )}
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', width: '100%', maxWidth: '500px' }}>
-        <input
-          ref={inputRef}
-          type="number"
-          value={userAnswer}
-          onChange={(e) => {
-            setUserAnswer(e.target.value);
-            setShowFeedback(null);
-          }}
-          onKeyPress={handleKeyPress}
-          style={{
-            fontSize: '48px',
-            padding: '20px',
-            width: '200px',
-            textAlign: 'center',
-            border: `4px solid ${showFeedback === 'correct' ? '#28a745' : showFeedback === 'incorrect' ? '#dc3545' : '#2196F3'}`,
-            borderRadius: '15px',
-            fontWeight: 'bold',
-          }}
-          autoFocus
-        />
+        {isDivisionRemainders ? (
+          // Two inputs for division with remainders
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+              <label style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Answer:</label>
+              <input
+                ref={inputRef}
+                type="number"
+                value={userAnswer}
+                onChange={(e) => {
+                  setUserAnswer(e.target.value);
+                  setShowFeedback(null);
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    remainderInputRef.current?.focus();
+                  }
+                }}
+                style={{
+                  fontSize: '48px',
+                  padding: '20px',
+                  width: '200px',
+                  textAlign: 'center',
+                  border: `4px solid ${showFeedback === 'correct' ? '#28a745' : showFeedback === 'incorrect' ? '#dc3545' : '#2196F3'}`,
+                  borderRadius: '15px',
+                  fontWeight: 'bold',
+                }}
+                autoFocus
+                placeholder="?"
+              />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+              <label style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>Remainder:</label>
+              <input
+                ref={remainderInputRef}
+                type="number"
+                value={userRemainder}
+                onChange={(e) => {
+                  setUserRemainder(e.target.value);
+                  setShowFeedback(null);
+                }}
+                onKeyPress={handleKeyPress}
+                style={{
+                  fontSize: '48px',
+                  padding: '20px',
+                  width: '200px',
+                  textAlign: 'center',
+                  border: `4px solid ${showFeedback === 'correct' ? '#28a745' : showFeedback === 'incorrect' ? '#dc3545' : '#2196F3'}`,
+                  borderRadius: '15px',
+                  fontWeight: 'bold',
+                }}
+                placeholder="?"
+              />
+            </div>
+          </div>
+        ) : (
+          // Single input for other problems
+          <input
+            ref={inputRef}
+            type="number"
+            value={userAnswer}
+            onChange={(e) => {
+              setUserAnswer(e.target.value);
+              setShowFeedback(null);
+            }}
+            onKeyPress={handleKeyPress}
+            style={{
+              fontSize: '48px',
+              padding: '20px',
+              width: '200px',
+              textAlign: 'center',
+              border: `4px solid ${showFeedback === 'correct' ? '#28a745' : showFeedback === 'incorrect' ? '#dc3545' : '#2196F3'}`,
+              borderRadius: '15px',
+              fontWeight: 'bold',
+            }}
+            autoFocus
+          />
+        )}
 
         <button
           onClick={handleSubmit}
@@ -682,7 +840,9 @@ function TypingMathGame({ lesson }) {
             width: '100%',
             textAlign: 'center',
           }}>
-            Try again! The answer is {currentProblem.answer}
+            Try again! {isDivisionRemainders 
+              ? `The answer is ${currentProblem.answer} with remainder ${currentProblem.remainder}`
+              : `The answer is ${currentProblem.answer}`}
           </div>
         )}
 

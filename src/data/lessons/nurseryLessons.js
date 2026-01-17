@@ -1005,9 +1005,61 @@ Dinosaurs were huge animals that lived a very, very long time ago!
 
 - They don't live anymore
 
-- We learn about them from fossils!`,
+- We learn about them from fossils!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+When did dinosaurs live?
+<!-- OPTIONS -->
+Today|A very, very long time ago, millions of years ago|Last year|Next year
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Dinosaurs lived a very, very long time ago - millions of years ago! They were bigger than elephants!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did T-Rex eat?
+<!-- OPTIONS -->
+Plants|Meat|Nothing|Fruits
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+T-Rex was a meat eater! It was very big and strong, had sharp teeth, and was very scary!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Brachiosaurus eat?
+<!-- OPTIONS -->
+Meat|Plants|Nothing|Fruits
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Brachiosaurus ate plants! It had a very long neck, was very tall, and was gentle!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How do we learn about dinosaurs?
+<!-- OPTIONS -->
+We see them|From fossils|We don't|We guess
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We learn about dinosaurs from fossils! Even though they don't live anymore, we can still learn about them!
+<!-- QUESTION_END -->`,
       quizId: 31,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1092,86 +1144,61 @@ Let's learn about the first people in the world!
 
 - They were the first family
 
-- This is a special story!`,
+- This is a special story!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Who were the first people?
+<!-- OPTIONS -->
+No one|Adam and Eve|Moses|Noah
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Adam and Eve were the first people! Adam was the first man, and Eve was the first woman!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Where did Adam and Eve live?
+<!-- OPTIONS -->
+In a house|In a beautiful garden called Eden|In a cave|In a city
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Adam and Eve lived in a beautiful garden called Eden! It was a perfect place where everything was good!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Adam and Eve do in the garden?
+<!-- OPTIONS -->
+Nothing|Took care of the garden and were happy together|Only played|Only slept
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Adam and Eve were together, took care of the garden, were happy, and they were the first family!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why is this story special?
+<!-- OPTIONS -->
+It's not|Adam and Eve were the first people and the first family|It's scary|It's boring
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+This is a special story because Adam and Eve were the first people, they lived in a beautiful garden, and they were the first family!
+<!-- QUESTION_END -->`,
       quizId: 37,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'nursery',
-      subjectId: 'history',
-      lessonNumber: 3,
-      title: "My Family History",
-      emoji: '👨‍👩‍👧‍👦',
-      content: `# My Family History 👨‍👩‍👧‍👦
-
-
-
-Everyone has a family! Let's learn about yours!
-
-
-
-## What is a Family?
-
-
-
-A family is people who love and care for each other!
-
-
-
-- Mummy and Daddy 👨‍👩‍👧‍👦
-
-- Brothers and Sisters 👫
-
-- Grandparents 👴👵
-
-- Aunts and Uncles 👨‍👨‍👧
-
-- Cousins 👨‍👩‍👦
-
-
-
-## Family Photos
-
-
-
-Look at old family photos together!
-
-- Who is in the picture?
-
-- What were they doing?
-
-- How old were they?
-
-
-
-## Fun Activities
-
-
-
-- Draw a picture of your family
-
-- Ask grown-ups about when they were little
-
-- Look at baby photos
-
-- Make a family tree with pictures
-
-
-
-## Remember
-
-
-
-- Families are special
-
-- Everyone has a family history
-
-- Stories from the past are important!`,
-      quizId: 31,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1182,6 +1209,7 @@ Look at old family photos together!
       lessonNumber: 4,
       title: "Days of the Week",
       emoji: '📅',
+      assessmentType: null, // Uses HTML game instead
       content: `# Days of the Week 📅
 
 
@@ -1252,80 +1280,60 @@ There are seven days in a week!
 
 - Each day has a name
 
-- Days help us know what to do!`,
+- Days help us know what to do!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+How many days are in a week?
+<!-- OPTIONS -->
+5|7|10|12
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+There are 7 days in a week! Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, and Sunday!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What day is the start of the week?
+<!-- OPTIONS -->
+Sunday|Monday|Friday|Saturday
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Monday is the start of the week! Then comes Tuesday, Wednesday, Thursday, Friday, Saturday, and Sunday!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What days are the weekend?
+<!-- OPTIONS -->
+Monday and Tuesday|Saturday and Sunday|Wednesday and Thursday|Friday and Saturday
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Saturday and Sunday are the weekend! Saturday is play time, and Sunday is rest day and family time!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why are days of the week important?
+<!-- OPTIONS -->
+They're not|Days help us know what to do and each day has a name|They're boring|They're scary
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Days of the week are important because they help us know what to do! Each day has a name, and we can plan our week!
+<!-- QUESTION_END -->`,
       quizId: 33,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'nursery',
-      subjectId: 'history',
-      lessonNumber: 5,
-      title: "Growing Up",
-      emoji: '📸',
-      content: `# Growing Up 📸
-
-
-
-You are growing bigger every day!
-
-
-
-## When You Were a Baby
-
-
-
-- You were very small 👶
-
-- You couldn't walk yet
-
-- You needed help with everything
-
-- You learned to crawl, then walk!
-
-
-
-## Now You Are Bigger
-
-
-
-- You can walk and run! 🏃
-
-- You can talk and sing! 🎵
-
-- You can play and learn! 🎮
-
-- You are getting smarter every day!
-
-
-
-## Fun Activities
-
-
-
-- Look at your baby photos
-
-- See how much you've grown!
-
-- Draw a picture of yourself as a baby
-
-- Draw a picture of yourself now
-
-
-
-## Remember
-
-
-
-- Everyone grows and changes
-
-- You learn new things every day
-
-- Growing up is exciting!`,
-      quizId: 32,
-      assessmentType: 'quiz',
       categoryId: null,
     }),
 

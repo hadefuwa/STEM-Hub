@@ -22,13 +22,43 @@ function NumberLineGame({ lesson }) {
   const numberLineRef = useRef(null);
   const gameAreaRef = useRef(null);
 
-  const problems = [
-    { target: 3, min: 0, max: 10, values: [1, 2, 3, 4, 5], type: 'whole' },
-    { target: 7, min: 0, max: 10, values: [5, 6, 7, 8, 9], type: 'whole' },
-    { target: 0.5, min: 0, max: 1, values: [0.25, 0.5, 0.75], type: 'decimal' },
-    { target: 0.75, min: 0, max: 1, values: [0.25, 0.5, 0.75], type: 'decimal' },
-    { target: '1/2', min: 0, max: 1, values: ['1/4', '1/2', '3/4'], type: 'fraction' },
-  ];
+  // Check if this is a fractions lesson
+  const isFractionsLesson = lesson?.title?.includes('Fractions on Number Line') || lesson?.title?.includes('fractions on number line');
+
+  // Helper function to convert fraction to decimal
+  const fractionToDecimal = (fraction) => {
+    if (typeof fraction === 'number') return fraction;
+    if (typeof fraction === 'string' && fraction.includes('/')) {
+      const [num, den] = fraction.split('/').map(Number);
+      return num / den;
+    }
+    return parseFloat(fraction);
+  };
+
+  // Generate problems based on lesson type
+  const generateProblems = () => {
+    if (isFractionsLesson) {
+      // Fractions on number line - all problems should be fractions
+      return [
+        { target: '1/2', min: 0, max: 1, values: ['1/4', '1/2', '3/4'], type: 'fraction' },
+        { target: '1/4', min: 0, max: 1, values: ['1/4', '1/2', '3/4', '1/8'], type: 'fraction' },
+        { target: '3/4', min: 0, max: 1, values: ['1/4', '1/2', '3/4', '1'], type: 'fraction' },
+        { target: '1/2', min: 0, max: 1, values: ['1/3', '1/2', '2/3', '3/4'], type: 'fraction' },
+        { target: '1/4', min: 0, max: 1, values: ['1/4', '1/2', '3/4', '1/8'], type: 'fraction' },
+      ];
+    } else {
+      // Default: mix of whole numbers, decimals, and fractions
+      return [
+        { target: 3, min: 0, max: 10, values: [1, 2, 3, 4, 5], type: 'whole' },
+        { target: 7, min: 0, max: 10, values: [5, 6, 7, 8, 9], type: 'whole' },
+        { target: 0.5, min: 0, max: 1, values: [0.25, 0.5, 0.75], type: 'decimal' },
+        { target: 0.75, min: 0, max: 1, values: [0.25, 0.5, 0.75], type: 'decimal' },
+        { target: '1/2', min: 0, max: 1, values: ['1/4', '1/2', '3/4'], type: 'fraction' },
+      ];
+    }
+  };
+
+  const problems = React.useMemo(() => generateProblems(), [lesson?.title]);
 
   useEffect(() => {
     const problem = problems[level - 1] || problems[0];
@@ -85,7 +115,10 @@ function NumberLineGame({ lesson }) {
       
       // Check if value matches target at this position
       const tolerance = (numberLine.max - numberLine.min) * 0.05;
-      const isCorrect = Math.abs(position - parseFloat(targetValue)) < tolerance;
+      const targetDecimal = fractionToDecimal(targetValue);
+      const draggedDecimal = fractionToDecimal(draggedValue.value);
+      const isCorrect = Math.abs(position - targetDecimal) < tolerance && 
+                       Math.abs(draggedDecimal - targetDecimal) < 0.01;
       
       if (isCorrect) {
         setShowSuccess(true);
@@ -129,51 +162,103 @@ function NumberLineGame({ lesson }) {
   const renderNumberLine = () => {
     const width = 600;
     const height = 100;
-    const tickCount = numberLine.max - numberLine.min + 1;
     
-    return (
-      <svg width={width} height={height} style={{ display: 'block' }}>
-        <line
-          x1={20}
-          y1={height / 2}
-          x2={width - 20}
-          y2={height / 2}
-          stroke="#333"
-          strokeWidth="4"
-        />
-        {Array.from({ length: tickCount }, (_, i) => {
-          const value = numberLine.min + i;
-          const x = 20 + (i / (tickCount - 1)) * (width - 40);
-          return (
-            <g key={i}>
-              <line
-                x1={x}
-                y1={height / 2 - 10}
-                x2={x}
-                y2={height / 2 + 10}
-                stroke="#333"
-                strokeWidth="2"
-              />
-              <text
-                x={x}
-                y={height / 2 + 30}
-                textAnchor="middle"
-                fontSize="18"
-                fontWeight="bold"
-              >
-                {value}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
-    );
+    if (isFractionsLesson && numberLine.min === 0 && numberLine.max === 1) {
+      // Render fraction number line (0 to 1 with fraction markers)
+      const fractions = [
+        { value: 0, label: '0' },
+        { value: 0.25, label: '1/4' },
+        { value: 0.5, label: '1/2' },
+        { value: 0.75, label: '3/4' },
+        { value: 1, label: '1' },
+      ];
+      
+      return (
+        <svg width={width} height={height} style={{ display: 'block' }}>
+          <line
+            x1={20}
+            y1={height / 2}
+            x2={width - 20}
+            y2={height / 2}
+            stroke="#333"
+            strokeWidth="4"
+          />
+          {fractions.map((frac, i) => {
+            const x = 20 + (frac.value / (numberLine.max - numberLine.min)) * (width - 40);
+            return (
+              <g key={i}>
+                <line
+                  x1={x}
+                  y1={height / 2 - 10}
+                  x2={x}
+                  y2={height / 2 + 10}
+                  stroke="#333"
+                  strokeWidth="2"
+                />
+                <text
+                  x={x}
+                  y={height / 2 + 30}
+                  textAnchor="middle"
+                  fontSize="18"
+                  fontWeight="bold"
+                >
+                  {frac.label}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      );
+    } else {
+      // Render whole number line
+      const tickCount = numberLine.max - numberLine.min + 1;
+      
+      return (
+        <svg width={width} height={height} style={{ display: 'block' }}>
+          <line
+            x1={20}
+            y1={height / 2}
+            x2={width - 20}
+            y2={height / 2}
+            stroke="#333"
+            strokeWidth="4"
+          />
+          {Array.from({ length: tickCount }, (_, i) => {
+            const value = numberLine.min + i;
+            const x = 20 + (i / (tickCount - 1)) * (width - 40);
+            return (
+              <g key={i}>
+                <line
+                  x1={x}
+                  y1={height / 2 - 10}
+                  x2={x}
+                  y2={height / 2 + 10}
+                  stroke="#333"
+                  strokeWidth="2"
+                />
+                <text
+                  x={x}
+                  y={height / 2 + 30}
+                  textAnchor="middle"
+                  fontSize="18"
+                  fontWeight="bold"
+                >
+                  {value}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      );
+    }
   };
 
   return (
     <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div style={{ marginBottom: '20px', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '28px', marginBottom: '10px' }}>Number Line Game</h2>
+        <h2 style={{ fontSize: '28px', marginBottom: '10px' }}>
+          {isFractionsLesson ? 'Fractions on Number Line' : 'Number Line Game'}
+        </h2>
         <div style={{ fontSize: '20px', marginBottom: '10px' }}>
           Level: {level} / {problems.length} | Score: {score}
         </div>

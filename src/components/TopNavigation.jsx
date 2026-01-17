@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
@@ -11,18 +11,19 @@ function TopNavigation() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
-  
-  const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
-  const addProgress = useDataStore(state => state.addProgress);
-  const getNextProgressId = useDataStore(state => state.getNextProgressId);
-  const getUserId = useDataStore(state => state.getUserId);
-  const saveData = useDataStore(state => state.saveData);
-  const getLesson = useDataStore(state => state.getLesson);
-  const hasCompletedLesson = useDataStore(state => state.hasCompletedLesson);
-  const getPointsBalance = useDataStore(state => state.getPointsBalance);
-  const data = useDataStore(state => state.data);
-  
-  const pointsBalance = getPointsBalance();
+
+  // Use stable selectors to prevent unnecessary re-renders
+  const getNextLessonAfter = useDataStore(useCallback(state => state.getNextLessonAfter, []));
+  const addProgress = useDataStore(useCallback(state => state.addProgress, []));
+  const getNextProgressId = useDataStore(useCallback(state => state.getNextProgressId, []));
+  const getUserId = useDataStore(useCallback(state => state.getUserId, []));
+  const saveData = useDataStore(useCallback(state => state.saveData, []));
+  const getLesson = useDataStore(useCallback(state => state.getLesson, []));
+  const hasCompletedLesson = useDataStore(useCallback(state => state.hasCompletedLesson, []));
+  // Only subscribe to pointsBalance, not the entire data object
+  const pointsBalance = useDataStore(useCallback(state => state.data?.pointsBalance || 0, []));
+  // Get lessons array reference for skip logic (avoid subscribing to entire data)
+  const lessons = useDataStore(useCallback(state => state.data?.lessons || [], []));
   
   // Determine if we're on a lesson page
   const isLessonPage = location.pathname.startsWith('/lesson/');
@@ -62,10 +63,10 @@ function TopNavigation() {
       console.error('No lesson found to skip. LessonId:', lessonId);
       console.error('Pathname:', location.pathname);
       console.error('Params:', params);
-      console.error('Available lessons:', data?.lessons?.length || 0);
-      
+      console.error('Available lessons:', lessons?.length || 0);
+
       // Try to find the lesson by ID from all lessons
-      const allLessons = data?.lessons || [];
+      const allLessons = lessons || [];
       let foundLesson = lessonId ? allLessons.find(l => l.id === lessonId) : null;
       
       // If still not found, try to get lesson from location state
@@ -311,8 +312,8 @@ function TopNavigation() {
           }}
           title="Click to open shop"
         >
-          <span style={{ fontSize: '20px' }}>🪙</span>
-          <span>{pointsBalance}</span>
+          <span style={{ fontSize: '18px', lineHeight: '1' }}>💰</span>
+          <span>{pointsBalance} pts</span>
         </div>
         <UpdateChecker />
         <button

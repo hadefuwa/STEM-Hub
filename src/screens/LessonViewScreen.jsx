@@ -17,6 +17,7 @@ import FlappyBirdGame from '../components/FlappyBirdGame';
 import BubblePopGame from '../components/BubblePopGame';
 import SnakeGame from '../components/SnakeGame';
 import TargetPracticeGame from '../components/TargetPracticeGame';
+import TapTapTapGame from '../components/TapTapTapGame';
 import SubtractionDragGame from '../components/SubtractionDragGame';
 import ShapePatternGame from '../components/ShapePatternGame';
 import MoneyDragGame from '../components/MoneyDragGame';
@@ -28,6 +29,10 @@ import ShapeMatchingGame from '../components/ShapeMatchingGame';
 import GraphBuilderGame from '../components/GraphBuilderGame';
 import CoordinateGame from '../components/CoordinateGame';
 import AngleGame from '../components/AngleGame';
+import HistoryGame from '../components/HistoryGame';
+import DinosaurGame from '../components/DinosaurGame';
+import AdamEveGame from '../components/AdamEveGame';
+import HTMLGameEmbed from '../components/HTMLGameEmbed';
 import { Progress } from '../models/Progress';
 
 // Error Boundary component
@@ -71,14 +76,16 @@ class ErrorBoundary extends React.Component {
 function LessonViewScreen() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
-  const lesson = useDataStore(state => state.getLesson(parseInt(lessonId)));
-  const trackLessonAccess = useDataStore(state => state.trackLessonAccess);
-  const getUserId = useDataStore(state => state.getUserId);
-  const getNextProgressId = useDataStore(state => state.getNextProgressId);
-  const addProgress = useDataStore(state => state.addProgress);
-  const saveData = useDataStore(state => state.saveData);
-  const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
-  const hasGoldOrPlatinum = useDataStore(state => state.hasGoldOrPlatinum);
+
+  // Use stable selectors to prevent unnecessary re-renders
+  const lesson = useDataStore(useCallback(state => state.getLesson(parseInt(lessonId)), [lessonId]));
+  const trackLessonAccess = useDataStore(useCallback(state => state.trackLessonAccess, []));
+  const getUserId = useDataStore(useCallback(state => state.getUserId, []));
+  const getNextProgressId = useDataStore(useCallback(state => state.getNextProgressId, []));
+  const addProgress = useDataStore(useCallback(state => state.addProgress, []));
+  const saveData = useDataStore(useCallback(state => state.saveData, []));
+  const getNextLessonAfter = useDataStore(useCallback(state => state.getNextLessonAfter, []));
+  const hasGoldOrPlatinum = useDataStore(useCallback(state => state.hasGoldOrPlatinum, []));
   
   // Track question answers for interactive lessons
   const [questionAnswers, setQuestionAnswers] = useState(new Map());
@@ -106,19 +113,23 @@ function LessonViewScreen() {
     lesson.title === 'Flappy Bird Game' ||
     lesson.title === 'Bubble Pop Game' ||
     lesson.title === 'Snake Game' ||
-    lesson.title === 'Target Practice Game'
+    lesson.title === 'Target Practice Game' ||
+    lesson.title?.includes('TapTapTap')
   );
   const hasGoldOrPlatinumForLesson = lesson && isTechnologyGame && hasGoldOrPlatinum(lesson.id);
   
-  // Track lesson access when component mounts
+  // Track lesson access when component mounts (only once per lessonId)
+  const hasTrackedRef = React.useRef(null);
   useEffect(() => {
-    if (lesson) {
+    // Only track if this is a new lesson (prevents re-tracking on every store update)
+    if (lesson && hasTrackedRef.current !== lessonId) {
+      hasTrackedRef.current = lessonId;
       trackLessonAccess(lesson);
     }
     // Reset question tracking when lesson changes
     setQuestionAnswers(new Map());
     setHasIncorrectAnswer(false);
-  }, [lesson, trackLessonAccess, lessonId]);
+  }, [lessonId]); // Only depend on lessonId, not lesson or trackLessonAccess
   
   // Handle question answer
   const handleQuestionAnswer = useCallback((questionId, isCorrect) => {
@@ -392,6 +403,19 @@ function LessonViewScreen() {
           boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
         }}>
           <TargetPracticeGame lesson={lesson} />
+        </div>
+      ) : lesson.title?.includes('TapTapTap') ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '30px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <TapTapTapGame lesson={lesson} />
         </div>
       ) : lesson.title?.startsWith('HTML Programming: SVG Graphics') ? (
         <div style={{
@@ -680,6 +704,126 @@ function LessonViewScreen() {
         }}>
           <ErrorBoundary>
             <MoneyDragGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Dinosaurs - Big and Small' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <HTMLGameEmbed url="/html-games/dinosaur-sorting.html" height="100%" lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === "Noah's Ark - A Big Boat" ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <HTMLGameEmbed url="/html-games/noahs-ark.html" height="100%" lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Life Long Ago' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <HTMLGameEmbed url="/html-games/life-long-ago.html" height="100%" lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Ancient Stories - The First Cities' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <HTMLGameEmbed url="/html-games/ancient-stories.html" height="100%" lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Dinosaurs - The First Animals' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <DinosaurGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Adam and Eve - The First People' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <AdamEveGame lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.title === 'Days of the Week' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <HTMLGameEmbed url="/html-games/days.html" height="100%" lesson={lesson} />
+          </ErrorBoundary>
+        </div>
+      ) : lesson.assessmentType === 'history-game' ? (
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: 0,
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}>
+          <ErrorBoundary>
+            <HistoryGame lesson={lesson} />
           </ErrorBoundary>
         </div>
       ) : (

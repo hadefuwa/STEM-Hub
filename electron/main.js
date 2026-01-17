@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import { loadData, saveData, writeActivityLog, readActivityLog } from './persistence.js';
+import { EdgeTTS, VoicesManager } from 'edge-tts-universal';
 
 // Load GitHub token for private repo updates
 let GITHUB_TOKEN = null;
@@ -31,6 +32,15 @@ const __dirname = path.dirname(__filename);
 protocol.registerSchemesAsPrivileged([
   {
     scheme: 'blockly',
+    privileges: {
+      secure: true,
+      standard: true,
+      corsEnabled: true,
+      supportFetchAPI: true,
+    },
+  },
+  {
+    scheme: 'htmlgame',
     privileges: {
       secure: true,
       standard: true,
@@ -407,6 +417,104 @@ ipcMain.handle('get-app-version', () => {
   return { version: app.getVersion() };
 });
 
+// TTS state management
+let currentAudioPlayer = null;
+let voicesManager = null;
+
+// Initialize voices manager
+async function initVoicesManager() {
+  if (!voicesManager) {
+    try {
+      voicesManager = await VoicesManager.create();
+    } catch (error) {
+      console.error('Error initializing voices manager:', error);
+    }
+  }
+  return voicesManager;
+}
+
+// IPC handlers for TTS
+ipcMain.handle('tts-speak', async (event, { text, voice }) => {
+  try {
+    // Stop any current audio
+    if (currentAudioPlayer) {
+      currentAudioPlayer.pause();
+      currentAudioPlayer = null;
+    }
+
+    if (!text || typeof text !== 'string') {
+      return { success: false, error: 'Invalid text provided' };
+    }
+
+    // Default to a high-quality English voice if not specified
+    // Using a clear, child-friendly voice
+    const selectedVoice = voice || 'en-US-EmmaMultilingualNeural';
+    
+    // Create TTS instance
+    const tts = new EdgeTTS(text, selectedVoice);
+    
+    // Synthesize audio
+    const result = await tts.synthesize();
+    
+    // Convert audio to buffer
+    const audioBuffer = Buffer.from(await result.audio.arrayBuffer());
+    
+    // Convert to base64 for transmission to renderer
+    // This avoids file:// URL security restrictions
+    const base64Audio = audioBuffer.toString('base64');
+    const mimeType = 'audio/mpeg'; // MP3 format
+    
+    // Return base64 data URL - renderer will create blob URL from it
+    return { 
+      success: true, 
+      audioData: base64Audio,
+      mimeType: mimeType
+    };
+  } catch (error) {
+    console.error('Error in TTS speak:', error);
+    return { success: false, error: error.message };
+  }
+});
+
+ipcMain.handle('tts-stop', async () => {
+  try {
+    if (currentAudioPlayer) {
+      currentAudioPlayer.pause();
+      currentAudioPlayer = null;
+    }
+    return { success: true };
+  } catch (error) {
+    console.error('Error stopping TTS:', error);
+    return { success: false, error: error.message };
+  }
+});
+
+ipcMain.handle('tts-get-voices', async () => {
+  try {
+    const manager = await initVoicesManager();
+    if (!manager) {
+      return { success: false, error: 'Voices manager not available', voices: [] };
+    }
+    
+    // Get all English voices (US and UK)
+    const englishVoices = manager.find({ Language: 'en' });
+    
+    // Format voices for the renderer
+    const formattedVoices = englishVoices.map(v => ({
+      name: v.ShortName,
+      displayName: v.FriendlyName || v.ShortName,
+      locale: v.Locale,
+      gender: v.Gender,
+      language: v.Language
+    }));
+    
+    return { success: true, voices: formattedVoices };
+  } catch (error) {
+    console.error('Error getting voices:', error);
+    return { success: false, error: error.message, voices: [] };
+  }
+});
+
 // Register custom protocol for serving blockly-games files
 function registerBlocklyProtocol() {
   const isDev = !app.isPackaged;
@@ -484,6 +592,48 @@ function registerBlocklyProtocol() {
   });
 }
 
+// Register custom protocol for serving HTML game files
+function registerHTMLGameProtocol() {
+  const isDev = !app.isPackaged;
+  
+  protocol.registerFileProtocol('htmlgame', (request, callback) => {
+    let url = request.url.replace('htmlgame://', '').replace(/\/$/, ''); // Remove trailing slash
+    
+    // Ensure it starts with html-games
+    if (!url.startsWith('html-games/')) {
+      url = 'html-games/' + url;
+    }
+    
+    let filePath;
+    
+    if (isDev) {
+      // Development: serve from public folder
+      filePath = path.join(__dirname, '../public', url);
+    } else {
+      // Production: serve from dist folder (packaged in resources)
+      // In packaged app, dist folder is at resources/app/dist
+      const appPath = app.getAppPath();
+      filePath = path.join(appPath, 'dist', url);
+    }
+    
+    // Normalize path separators for Windows
+    filePath = path.normalize(filePath);
+    
+    console.log('[HTMLGame Protocol] Request:', request.url);
+    console.log('[HTMLGame Protocol] Resolved URL:', url);
+    console.log('[HTMLGame Protocol] File Path:', filePath);
+    
+    // Check if file exists
+    if (!fs.existsSync(filePath)) {
+      console.error('[HTMLGame Protocol] File not found:', filePath);
+      callback({ error: -6 }); // FILE_NOT_FOUND
+      return;
+    }
+    
+    callback({ path: filePath });
+  });
+}
+
 // Modify CSP headers to allow blockly:// protocol and be more permissive for frames
 function setupCSPModification() {
   session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
@@ -493,7 +643,7 @@ function setupCSPModification() {
     if (responseHeaders['content-security-policy']) {
       // Replace existing CSP with one that allows blockly://, Pyodide CDN, and YouTube
       responseHeaders['content-security-policy'] = [
-        "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: file: blockly: https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
+        "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: file: blockly: htmlgame: https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
         "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://s.ytimg.com https://static.doubleclick.net https://www.google.com; " +
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
         "connect-src 'self' https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://*.googlevideo.com https://*.doubleclick.net https://*.googleadservices.com https://*.google.com; " +
@@ -557,8 +707,9 @@ app.whenReady().then(() => {
   // Setup CSP modification to allow blockly:// protocol
   setupCSPModification();
   
-  // Register custom protocol before creating window
+  // Register custom protocols before creating window
   registerBlocklyProtocol();
+  registerHTMLGameProtocol();
   
   createWindow();
   

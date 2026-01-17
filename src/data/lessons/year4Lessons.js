@@ -605,9 +605,61 @@ Let's learn about life after the Roman Empire!
 
 - Monasteries kept learning alive
 
-- It was a time of change!`,
+- It was a time of change!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What came after the Roman Empire fell?
+<!-- OPTIONS -->
+The Renaissance|The Dark Ages|Modern times|The Stone Age
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Dark Ages came after Rome fell! It was a difficult time when learning decreased and life was harder!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Where did Vikings come from?
+<!-- OPTIONS -->
+Britain|Scandinavia|France|Italy
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Vikings came from Scandinavia! They were skilled sailors who raided, explored, and settled in many places!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who kept learning alive during the Dark Ages?
+<!-- OPTIONS -->
+Kings|Monks in monasteries|Soldiers|Farmers
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Monks in monasteries kept learning alive! They copied books by hand, and learning was mostly in monasteries!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Anglo-Saxons do in Britain?
+<!-- OPTIONS -->
+Nothing|Settled in England and created kingdoms|Only fought|Only farmed
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Anglo-Saxons came to Britain, settled in England, created kingdoms, and had their own culture!
+<!-- QUESTION_END -->`,
       quizId: 62,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -720,9 +772,61 @@ Let's learn about Jesus and the early Christians!
 
 - Christianity grew
 
-- It influenced history!`,
+- It influenced history!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Where was Jesus born?
+<!-- OPTIONS -->
+Nazareth|Bethlehem|Jerusalem|Egypt
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Jesus was born in Bethlehem! He grew up in Nazareth, taught people about God, and performed miracles!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How many disciples did Jesus have?
+<!-- OPTIONS -->
+10|11|12|13
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Jesus had 12 disciples! They were his followers, learned from him, and spread his message!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did early Christians do?
+<!-- OPTIONS -->
+Fought wars|Followed Jesus' teachings, met together, and helped each other|Stayed alone|Did nothing
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Early Christians followed Jesus' teachings, met together, and helped each other! Christianity spread quickly and changed the world!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What does the Bible contain?
+<!-- OPTIONS -->
+Only stories|The Old and New Testaments telling Jesus' story|Only laws|Only poems
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Bible has the Old and New Testaments and tells Jesus' story! It's an important book that many people read today!
+<!-- QUESTION_END -->`,
       quizId: 70,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -835,9 +939,61 @@ Let's learn about medieval times!
 
 - Knights were warriors
 
-- Feudalism was the system!`,
+- Feudalism was the system!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+When were medieval times?
+<!-- OPTIONS -->
+AD 100-500|AD 500-1500|AD 1500-2000|BC 500-AD 500
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Medieval times were from about AD 500 to 1500! That's the Middle Ages, after the Dark Ages and before modern times!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were castles used for?
+<!-- OPTIONS -->
+Decoration|Protecting people|Housing animals|Storing food
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Castles were strong buildings that protected people! They had thick walls, towers, and moats!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was feudalism?
+<!-- OPTIONS -->
+A type of castle|A system where lords owned land, knights served lords, and serfs worked|A type of weapon|A type of food
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Feudalism was a system where lords owned land, knights served lords, and serfs worked the land!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did knights do?
+<!-- OPTIONS -->
+Only farmed|Were warriors who wore armor, fought on horses, and protected the kingdom|Only built castles|Only wrote books
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Knights were warriors who wore armor, fought on horses, and protected the kingdom! They were an important part of medieval society!
+<!-- QUESTION_END -->`,
       quizId: 63,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -950,9 +1106,61 @@ Let's learn about how people lived in medieval times!
 
 - People worked together
 
-- Villages were important!`,
+- Villages were important!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Where did most people live in medieval times?
+<!-- OPTIONS -->
+In castles|In villages|In cities|In caves
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Most people lived in villages! Villages were small, people worked together, and they farmed the land!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did most people do for work?
+<!-- OPTIONS -->
+Were soldiers|Were farmers|Were kings|Were priests
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Most people were farmers! They grew crops, raised animals, and worked very hard!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did blacksmiths and weavers do?
+<!-- OPTIONS -->
+Farmed|Made things by hand - blacksmiths made tools, weavers made cloth|Fought|Wrote books
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Craftspeople made things by hand! Blacksmiths made tools, and weavers made cloth! They were important in medieval villages!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were medieval homes like?
+<!-- OPTIONS -->
+Big and modern|Simple, made of wood and mud, with thatched roofs, small and dark|Made of stone|Made of metal
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Medieval homes were simple, made of wood and mud, had thatched roofs, and were small and dark! Life was very different then!
+<!-- QUESTION_END -->`,
       quizId: 62,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1051,9 +1259,61 @@ Let's learn about the Crusades!
 
 - They had big effects
 
-- They changed history!`,
+- They changed history!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What were the Crusades?
+<!-- OPTIONS -->
+Peaceful meetings|Wars between Christians and Muslims for control of the Holy Land|Trade agreements|Religious ceremonies
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Crusades were wars that happened in the Middle Ages! Christians fought Muslims, and they wanted control of the Holy Land!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why did the Crusades happen?
+<!-- OPTIONS -->
+For fun|The Holy Land was important and both sides wanted it|For trade|For exploration
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Holy Land was important, and both sides wanted it! They went to war, and many crusades happened!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did knights do during the Crusades?
+<!-- OPTIONS -->
+Stayed home|Traveled far to the Middle East and fought in battles|Only traded|Only farmed
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Knights traveled far to the Middle East, went to the Holy Land, fought in battles, and it was a long journey!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were effects of the Crusades?
+<!-- OPTIONS -->
+Nothing changed|Many people died, countries changed, people learned about other places, and trade increased|Only trade increased|Only people died
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Crusades had big effects: many people died, countries changed, people learned about other places, and trade increased!
+<!-- QUESTION_END -->`,
       quizId: 71,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1152,9 +1412,61 @@ Let's learn about the Renaissance!
 
 - Many famous people
 
-- It changed the world!`,
+- It changed the world!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What does "Renaissance" mean?
+<!-- OPTIONS -->
+Darkness|Rebirth|War|End
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Renaissance means "rebirth"! It was a time of new ideas that started in Italy and spread across Europe!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What happened to art during the Renaissance?
+<!-- OPTIONS -->
+It disappeared|It became more realistic, artists used perspective|It stayed the same|It got worse
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Art became more realistic during the Renaissance! Artists used perspective, and Leonardo da Vinci and Michelangelo were famous!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did people do during the Renaissance?
+<!-- OPTIONS -->
+Nothing|Studied ancient texts, asked questions, made discoveries, and learning increased|Only fought|Only farmed
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+People studied ancient texts, asked questions, made discoveries, and learning increased! It was a time of new ideas!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who were famous Renaissance artists?
+<!-- OPTIONS -->
+No one|Leonardo da Vinci and Michelangelo|Only soldiers|Only kings
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Leonardo da Vinci and Michelangelo were famous Renaissance artists! They created amazing art and were very talented!
+<!-- QUESTION_END -->`,
       quizId: 95,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1267,9 +1579,61 @@ Let's learn about explorers and their journeys!
 
 - They changed trade
 
-- They changed the world!`,
+- They changed the world!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What did explorers do?
+<!-- OPTIONS -->
+Stayed home|Traveled to new places, discovered new lands, and sailed across oceans|Only traded|Only farmed
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Explorers traveled to new places, discovered new lands, were very brave, and sailed across oceans!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Christopher Columbus do?
+<!-- OPTIONS -->
+Stayed in Spain|Sailed from Spain, wanted to reach Asia, but found America instead|Only traded|Only farmed
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Christopher Columbus sailed from Spain, wanted to reach Asia, but found America instead! He made important journeys!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did explorers find?
+<!-- OPTIONS -->
+Nothing|New continents, new countries, and met new people|Only gold|Only animals
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Explorers found new continents, new countries, met new people, and changed the world!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What foods came from America?
+<!-- OPTIONS -->
+Rice and wheat|Potatoes and tomatoes|Bananas and oranges|Apples and pears
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Potatoes and tomatoes came from America! Explorers brought new foods, and foods spread around the world!
+<!-- QUESTION_END -->`,
       quizId: 72,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1382,9 +1746,61 @@ Let's learn about the Reformation!
 
 - Printing press helped
 
-- It was a time of change!`,
+- It was a time of change!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What was the Reformation?
+<!-- OPTIONS -->
+A war|A change that changed the church|A type of art|A type of building
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Reformation was a change that changed the church! It started in the 1500s and was very important!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who started the Reformation?
+<!-- OPTIONS -->
+A king|Martin Luther, a monk|A soldier|A farmer
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Martin Luther was a monk who questioned the church, wrote 95 theses, and started the Reformation!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What helped the Reformation spread?
+<!-- OPTIONS -->
+Horses|The printing press|Ships|Weapons
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The printing press was invented and helped the Reformation! Books could be made faster, ideas spread quickly!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did people do during the Reformation?
+<!-- OPTIONS -->
+Nothing|Questioned old ideas, read the Bible themselves, and had new beliefs|Only fought|Only farmed
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+People questioned old ideas, read the Bible themselves, had new beliefs, and religion changed!
+<!-- QUESTION_END -->`,
       quizId: 84,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -3371,7 +3787,7 @@ Fusion 360 has different workspaces for different tasks:
 
 - The interface adapts to your current task`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: 'fusion360',
     }),
 
@@ -3590,7 +4006,7 @@ Small fillets of 0.3 mm are applied to the edges of the camera bumps to smooth t
 - Patterns save time compared to manual copying
 - Small fillets add professional finishing touches`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: 'fusion360',
     }),
 
@@ -6680,6 +7096,77 @@ STEP format should be used for manufacturing. It maintains precise geometry and 
       quizId: quizId++,
       assessmentType: 'quiz',
       categoryId: 'fusion360',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'technology',
+      lessonNumber: 22,
+      title: "TapTapTap: Expert Level 1",
+      emoji: '👆',
+      content: `# TapTapTap: Expert Level 1 👆
+
+You're getting really good! This expert level will challenge your skills even more.
+
+## How to Play
+
+- Tap targets as they appear on screen
+- Targets appear every 1 second (very fast!)
+- Targets are smaller and more challenging
+- 30 seconds to score as many points as possible!
+
+## Scoring System
+
+- **Bronze**: 20-39 points
+- **Silver**: 40-59 points
+- **Gold**: 60-79 points
+- **Platinum**: 80+ points
+
+You need at least **Bronze** (20 points) to progress!
+
+## Tips
+
+- Stay calm and focused
+- Practice makes perfect
+- Challenge yourself to beat your best score!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'technology',
+      lessonNumber: 23,
+      title: "TapTapTap: Expert Level 2",
+      emoji: '👆',
+      content: `# TapTapTap: Expert Level 2 👆
+
+Continue mastering your tapping skills at the expert level!
+
+## How to Play
+
+- Tap targets as they appear
+- Same speed as Level 1 - keep practicing!
+- 30 seconds to score points
+
+## Scoring System
+
+- **Bronze**: 20-39 points
+- **Silver**: 40-59 points
+- **Gold**: 60-79 points
+- **Platinum**: 80+ points
+
+You need at least **Bronze** (20 points) to progress!
+
+## Challenge
+
+Can you improve your score? Aim for Platinum!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
     }),
 
   ];

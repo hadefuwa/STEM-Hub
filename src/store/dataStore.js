@@ -750,6 +750,34 @@ const useDataStore = create((set, get) => ({
         if (score >= 150) medal = 'Platinum';
         else if (score >= 100) medal = 'Gold';
         else if (score >= 50) medal = 'Silver';
+      } else if (lesson.title?.includes('TapTapTap')) {
+        // TapTapTap scoring based on level
+        const level = lesson.title.includes('Level 1') || lesson.title.includes('Beginner') ? 1 :
+                      lesson.title.includes('Level 2') || lesson.title.includes('Intermediate') ? 2 :
+                      lesson.title.includes('Level 3') || lesson.title.includes('Advanced') ? 3 :
+                      lesson.title.includes('Level 4') || lesson.title.includes('Expert') ? 4 :
+                      lesson.title.includes('Level 5') || lesson.title.includes('Master') ? 5 :
+                      lesson.title.includes('Level 6') || lesson.title.includes('Champion') ? 6 :
+                      lesson.yearId === 'year1' ? 1 :
+                      lesson.yearId === 'year2' ? 2 :
+                      lesson.yearId === 'year3' ? 3 :
+                      lesson.yearId === 'year4' ? 4 :
+                      lesson.yearId === 'year5' ? 5 :
+                      lesson.yearId === 'year6' ? 6 : 1;
+        
+        const thresholds = {
+          1: { platinum: 20, gold: 15, silver: 10 },
+          2: { platinum: 40, gold: 30, silver: 20 },
+          3: { platinum: 60, gold: 45, silver: 30 },
+          4: { platinum: 80, gold: 60, silver: 40 },
+          5: { platinum: 100, gold: 75, silver: 50 },
+          6: { platinum: 120, gold: 90, silver: 60 },
+        };
+        
+        const threshold = thresholds[level] || thresholds[1];
+        if (score >= threshold.platinum) medal = 'Platinum';
+        else if (score >= threshold.gold) medal = 'Gold';
+        else if (score >= threshold.silver) medal = 'Silver';
       }
       
       // Count medals
@@ -843,6 +871,34 @@ const useDataStore = create((set, get) => ({
       if (score >= 150) medal = 'Platinum';
       else if (score >= 100) medal = 'Gold';
       else if (score >= 50) medal = 'Silver';
+    } else if (lesson.title?.includes('TapTapTap')) {
+      // TapTapTap scoring based on level
+      const level = lesson.title.includes('Level 1') || lesson.title.includes('Beginner') ? 1 :
+                    lesson.title.includes('Level 2') || lesson.title.includes('Intermediate') ? 2 :
+                    lesson.title.includes('Level 3') || lesson.title.includes('Advanced') ? 3 :
+                    lesson.title.includes('Level 4') || lesson.title.includes('Expert') ? 4 :
+                    lesson.title.includes('Level 5') || lesson.title.includes('Master') ? 5 :
+                    lesson.title.includes('Level 6') || lesson.title.includes('Champion') ? 6 :
+                    lesson.yearId === 'year1' ? 1 :
+                    lesson.yearId === 'year2' ? 2 :
+                    lesson.yearId === 'year3' ? 3 :
+                    lesson.yearId === 'year4' ? 4 :
+                    lesson.yearId === 'year5' ? 5 :
+                    lesson.yearId === 'year6' ? 6 : 1;
+      
+      const thresholds = {
+        1: { platinum: 20, gold: 15, silver: 10 },
+        2: { platinum: 40, gold: 30, silver: 20 },
+        3: { platinum: 60, gold: 45, silver: 30 },
+        4: { platinum: 80, gold: 60, silver: 40 },
+        5: { platinum: 100, gold: 75, silver: 50 },
+        6: { platinum: 120, gold: 90, silver: 60 },
+      };
+      
+      const threshold = thresholds[level] || thresholds[1];
+      if (score >= threshold.platinum) medal = 'Platinum';
+      else if (score >= threshold.gold) medal = 'Gold';
+      else if (score >= threshold.silver) medal = 'Silver';
     }
     
     return medal === 'Gold' || medal === 'Platinum';
@@ -918,8 +974,36 @@ const useDataStore = create((set, get) => ({
       if (score >= 150) medal = 'Platinum';
       else if (score >= 100) medal = 'Gold';
       else if (score >= 50) medal = 'Silver';
+    } else if (lesson.title?.includes('TapTapTap')) {
+      // TapTapTap scoring based on level
+      const level = lesson.title.includes('Level 1') || lesson.title.includes('Beginner') ? 1 :
+                    lesson.title.includes('Level 2') || lesson.title.includes('Intermediate') ? 2 :
+                    lesson.title.includes('Level 3') || lesson.title.includes('Advanced') ? 3 :
+                    lesson.title.includes('Level 4') || lesson.title.includes('Expert') ? 4 :
+                    lesson.title.includes('Level 5') || lesson.title.includes('Master') ? 5 :
+                    lesson.title.includes('Level 6') || lesson.title.includes('Champion') ? 6 :
+                    lesson.yearId === 'year1' ? 1 :
+                    lesson.yearId === 'year2' ? 2 :
+                    lesson.yearId === 'year3' ? 3 :
+                    lesson.yearId === 'year4' ? 4 :
+                    lesson.yearId === 'year5' ? 5 :
+                    lesson.yearId === 'year6' ? 6 : 1;
+      
+      const thresholds = {
+        1: { platinum: 20, gold: 15, silver: 10 },
+        2: { platinum: 40, gold: 30, silver: 20 },
+        3: { platinum: 60, gold: 45, silver: 30 },
+        4: { platinum: 80, gold: 60, silver: 40 },
+        5: { platinum: 100, gold: 75, silver: 50 },
+        6: { platinum: 120, gold: 90, silver: 60 },
+      };
+      
+      const threshold = thresholds[level] || thresholds[1];
+      if (score >= threshold.platinum) medal = 'Platinum';
+      else if (score >= threshold.gold) medal = 'Gold';
+      else if (score >= threshold.silver) medal = 'Silver';
     }
-
+    
     return medal;
   },
 
@@ -1046,6 +1130,34 @@ const useDataStore = create((set, get) => ({
         if (score >= 150) medal = 'Platinum';
         else if (score >= 100) medal = 'Gold';
         else if (score >= 50) medal = 'Silver';
+      } else if (lesson.title?.includes('TapTapTap')) {
+        // TapTapTap scoring based on level
+        const level = lesson.title.includes('Level 1') || lesson.title.includes('Beginner') ? 1 :
+                      lesson.title.includes('Level 2') || lesson.title.includes('Intermediate') ? 2 :
+                      lesson.title.includes('Level 3') || lesson.title.includes('Advanced') ? 3 :
+                      lesson.title.includes('Level 4') || lesson.title.includes('Expert') ? 4 :
+                      lesson.title.includes('Level 5') || lesson.title.includes('Master') ? 5 :
+                      lesson.title.includes('Level 6') || lesson.title.includes('Champion') ? 6 :
+                      lesson.yearId === 'year1' ? 1 :
+                      lesson.yearId === 'year2' ? 2 :
+                      lesson.yearId === 'year3' ? 3 :
+                      lesson.yearId === 'year4' ? 4 :
+                      lesson.yearId === 'year5' ? 5 :
+                      lesson.yearId === 'year6' ? 6 : 1;
+        
+        const thresholds = {
+          1: { platinum: 20, gold: 15, silver: 10 },
+          2: { platinum: 40, gold: 30, silver: 20 },
+          3: { platinum: 60, gold: 45, silver: 30 },
+          4: { platinum: 80, gold: 60, silver: 40 },
+          5: { platinum: 100, gold: 75, silver: 50 },
+          6: { platinum: 120, gold: 90, silver: 60 },
+        };
+        
+        const threshold = thresholds[level] || thresholds[1];
+        if (score >= threshold.platinum) medal = 'Platinum';
+        else if (score >= threshold.gold) medal = 'Gold';
+        else if (score >= threshold.silver) medal = 'Silver';
       }
 
       // Award points based on medal

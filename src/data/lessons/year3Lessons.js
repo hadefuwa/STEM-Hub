@@ -1229,7 +1229,7 @@ What time is "quarter to 6"?
 
 - Remember: quarter = 15 minutes, half = 30 minutes!`,
       quizId: quizId++,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1680,9 +1680,61 @@ Let's learn about prehistoric Britain!
 
 - They built hill forts
 
-- Celtic people lived there!`,
+- Celtic people lived there!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What material did people use first in prehistoric Britain?
+<!-- OPTIONS -->
+Stone|Bronze|Iron|Steel
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+People first used stone tools in the Stone Age, before learning to use bronze and then iron!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did people build on hills during the Iron Age?
+<!-- OPTIONS -->
+Caves|Hill forts|Temples|Bridges
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+People built hill forts on hills during the Iron Age to protect themselves. These were safe places with walls around them!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Which metal is stronger: bronze or iron?
+<!-- OPTIONS -->
+Bronze|Iron|They are the same|Neither
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Iron is stronger than bronze! That's why people started using iron after the Bronze Age.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who lived in Britain during prehistoric times?
+<!-- OPTIONS -->
+Romans|Celtic people|Vikings|Anglo-Saxons
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Celtic people lived in Britain during prehistoric times. They had their own culture, language, and made beautiful art!
+<!-- QUESTION_END -->`,
       quizId: 61,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1691,6 +1743,46 @@ Let's learn about prehistoric Britain!
       yearId: 'year3',
       subjectId: 'history',
       lessonNumber: 2,
+      title: "Adam and Eve - The First People",
+      emoji: '🍎',
+      content: `# Adam and Eve - The First People 🍎
+
+Let's learn about Adam and Eve through play!
+
+## The Story
+
+In the beginning, God created a beautiful garden called Eden. He placed Adam and Eve there to live happily.
+
+God told them: "You may eat from ANY tree in the garden, but you must NOT eat from the Forbidden Tree."
+
+## How to Play
+
+Use **Arrow Keys** or **WASD** to move Adam around the Garden of Eden.
+
+- Explore the beautiful garden
+- Find the Forbidden Tree
+- Learn what happens when we disobey God
+
+## The Lesson
+
+This story teaches us about:
+- **Obedience** - Following God's instructions
+- **Consequences** - What happens when we make wrong choices
+- **God's Love** - Even when Adam and Eve disobeyed, God still loved them
+
+## Remember
+
+God always loves us, even when we make mistakes. But our choices have consequences!`,
+      quizId: null,
+      assessmentType: 'adam-eve-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'history',
+      lessonNumber: 3,
       title: "Biblical History - Kings and Prophets",
       emoji: '👑',
       content: `# Biblical History - Kings and Prophets 👑
@@ -1795,9 +1887,61 @@ Let's learn about the kings and prophets from the Bible!
 
 - Prophets were messengers
 
-- These are important stories!`,
+- These are important stories!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What was David before he became king?
+<!-- OPTIONS -->
+A soldier|A shepherd boy|A prince|A farmer
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+David was a shepherd boy before he became a great king. He was brave and wise!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who built the great temple in Jerusalem?
+<!-- OPTIONS -->
+David|Solomon|Moses|Abraham
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Solomon, who was David's son, built the great temple in Jerusalem. It was God's house and very important!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were prophets?
+<!-- OPTIONS -->
+Kings|Soldiers|Messengers|Priests
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Prophets were messengers who spoke God's words. They warned people and gave hope!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What happened to the kingdom after Solomon?
+<!-- OPTIONS -->
+It grew bigger|It split into two kingdoms|It disappeared|It moved to a new place
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+After Solomon, the kingdom split into two: Israel in the north and Judah in the south!
+<!-- QUESTION_END -->`,
       quizId: 61,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1805,7 +1949,7 @@ Let's learn about the kings and prophets from the Bible!
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'history',
-      lessonNumber: 3,
+      lessonNumber: 4,
       title: "Ancient Greece - Gods and Heroes",
       emoji: '🏛️',
       content: `# Ancient Greece - Gods and Heroes 🏛️
@@ -1924,9 +2068,61 @@ Let's learn about ancient Greece!
 
 - They started the Olympics
 
-- They influenced the world!`,
+- They influenced the world!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Who was the king of the Greek gods?
+<!-- OPTIONS -->
+Poseidon|Athena|Zeus|Apollo
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Zeus was the king of the Greek gods! He was very powerful and important in Greek mythology.
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Where did the Olympics start?
+<!-- OPTIONS -->
+Rome|Egypt|Greece|China
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The Olympics started in ancient Greece! They were athletic competitions held every four years, and they still happen today!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were the two famous Greek city-states?
+<!-- OPTIONS -->
+Athens and Sparta|Rome and Athens|Sparta and Egypt|Athens and Egypt
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+Athens and Sparta were two famous Greek city-states. Each was independent and had its own way of life!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What famous building did the Greeks build using columns?
+<!-- OPTIONS -->
+The Colosseum|The Parthenon|The Great Wall|The Pyramids
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Parthenon is a famous Greek building that used columns. Greek architecture is still admired today!
+<!-- QUESTION_END -->`,
       quizId: 70,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1934,7 +2130,7 @@ Let's learn about ancient Greece!
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'history',
-      lessonNumber: 4,
+      lessonNumber: 5,
       title: "Ancient Greece - Daily Life",
       emoji: '🏺',
       content: `# Ancient Greece - Daily Life 🏺
@@ -2039,9 +2235,61 @@ Let's learn about how people lived in ancient Greece!
 
 - Athens created democracy
 
-- Greeks loved art and theater!`,
+- Greeks loved art and theater!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Who went to school in ancient Greece?
+<!-- OPTIONS -->
+Girls|Boys|Both boys and girls|Nobody
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+In ancient Greece, boys went to school while girls learned at home. They learned reading, writing, music, and sports!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Athens create that influenced many countries?
+<!-- OPTIONS -->
+The Olympics|Democracy|Theater|Pottery
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Athens created democracy, where people could vote and citizens had a say. This influenced many countries around the world!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Greeks love to watch?
+<!-- OPTIONS -->
+Gladiator fights|Plays in the theater|Chariot races|Sports games
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Greeks loved theater! They watched plays, including comedies and tragedies. Theater was very important to them!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Greeks make that is still admired today?
+<!-- OPTIONS -->
+Pottery|Sculptures|Beautiful art|All of the above
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+Greeks made beautiful pottery, sculptures, and art that is still admired today! They painted scenes on vases and created amazing works of art!
+<!-- QUESTION_END -->`,
       quizId: 70,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -2049,7 +2297,7 @@ Let's learn about how people lived in ancient Greece!
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'history',
-      lessonNumber: 5,
+      lessonNumber: 6,
       title: "Ancient Rome - The Empire",
       emoji: '🏛️',
       content: `# Ancient Rome - The Empire 🏛️
@@ -2168,9 +2416,61 @@ Let's learn about the Roman Empire!
 
 - They built amazing things
 
-- Rome was very powerful!`,
+- Rome was very powerful!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What was the Roman army known for?
+<!-- OPTIONS -->
+Being weak|Being strong and well-trained|Not building anything|Only fighting
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Roman army was strong and well-trained! Soldiers were very skilled, and they built roads and protected the empire!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What famous building did the Romans build?
+<!-- OPTIONS -->
+The Parthenon|The Colosseum|The Great Wall|The Pyramids
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Colosseum is a famous Roman building! Romans built amazing buildings, aqueducts for water, and many temples!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Romans build that connected their empire?
+<!-- OPTIONS -->
+Bridges|Roads|Tunnels|Canals
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Romans built amazing roads that were straight and strong! These roads connected the empire, and some still exist today!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who ruled the Roman Empire?
+<!-- OPTIONS -->
+Kings|Emperors|Presidents|Governors
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Emperors ruled Rome! They were very powerful and controlled the huge empire. Some were good, some were bad!
+<!-- QUESTION_END -->`,
       quizId: 54,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -2178,7 +2478,7 @@ Let's learn about the Roman Empire!
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'history',
-      lessonNumber: 6,
+      lessonNumber: 7,
       title: "Ancient Rome - Daily Life",
       emoji: '🏺',
       content: `# Ancient Rome - Daily Life 🏺
@@ -2283,9 +2583,61 @@ Let's learn about how people lived in ancient Rome!
 
 - They enjoyed entertainment
 
-- Life was different then!`,
+- Life was different then!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What did rich Romans live in?
+<!-- OPTIONS -->
+Small apartments|Large houses called villas|Caves|Tents
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Rich Romans lived in large houses called villas! Poor people lived in small apartments. Houses had courtyards and beautiful decorations!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Where did Romans go to relax and talk?
+<!-- OPTIONS -->
+The Colosseum|Public bathhouses|The market|The temple
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Romans loved baths and went to public bathhouses! They relaxed and talked there - baths were social places!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Romans watch for entertainment?
+<!-- OPTIONS -->
+Only plays|Gladiator fights and chariot races|Only sports|Nothing
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Romans loved entertainment! They watched gladiator fights, chariot races, and went to the theater!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What language did Romans write in?
+<!-- OPTIONS -->
+Greek|English|Latin|French
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Romans wrote in Latin! Latin was their language, and they wrote on scrolls. Many languages today come from Latin!
+<!-- QUESTION_END -->`,
       quizId: 54,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -2293,7 +2645,7 @@ Let's learn about how people lived in ancient Rome!
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'history',
-      lessonNumber: 7,
+      lessonNumber: 8,
       title: "The Fall of Rome",
       emoji: '⚔️',
       content: `# The Fall of Rome ⚔️
@@ -2398,11 +2750,134 @@ Let's learn about why the Roman Empire fell!
 
 - Barbarians attacked
 
-- It was the end of an era!`,
+- It was the end of an era!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Why was it hard for Rome to control its empire?
+<!-- OPTIONS -->
+It was too small|It was too big|It had no enemies|It had no problems
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Roman Empire was too big! It was hard to control, expensive to run, and difficult to defend. This was one reason it fell!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who attacked Rome from outside?
+<!-- OPTIONS -->
+Romans|Barbarians|Greeks|Egyptians
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Barbarians attacked Rome from outside! They were strong warriors who wanted land, and their attacks helped bring down the empire!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+When did Rome fall?
+<!-- OPTIONS -->
+AD 100|AD 476|AD 1000|BC 476
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Rome fell in AD 476! The western part of the empire fell first, while the eastern part lasted longer!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What began after Rome fell?
+<!-- OPTIONS -->
+The Renaissance|The Middle Ages|The Modern Age|The Stone Age
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+After Rome fell, the Middle Ages began! New kingdoms formed, and Europe changed forever!
+<!-- QUESTION_END -->`,
       quizId: 61,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
-    })
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 1,
+      title: "TapTapTap: Advanced Level 1",
+      emoji: '👆',
+      content: `# TapTapTap: Advanced Level 1 👆
+
+Time to step up your game! This level is faster and more challenging.
+
+## How to Play
+
+- Tap targets as they appear on screen
+- Targets appear every 1.2 seconds (even faster!)
+- Targets are smaller and move faster
+- 30 seconds to score as many points as possible!
+
+## Scoring System
+
+- **Bronze**: 15-29 points
+- **Silver**: 30-44 points
+- **Gold**: 45-59 points
+- **Platinum**: 60+ points
+
+You need at least **Bronze** (15 points) to progress!
+
+## Tips
+
+- Stay focused - targets appear quickly
+- Practice your hand-eye coordination
+- Don't give up if you miss some - keep trying!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 2,
+      title: "TapTapTap: Advanced Level 2",
+      emoji: '👆',
+      content: `# TapTapTap: Advanced Level 2 👆
+
+Keep challenging yourself! This level continues to build your skills.
+
+## How to Play
+
+- Tap targets as they appear
+- Same speed as Level 1 - keep practicing!
+- 30 seconds to score points
+
+## Scoring System
+
+- **Bronze**: 15-29 points
+- **Silver**: 30-44 points
+- **Gold**: 45-59 points
+- **Platinum**: 60+ points
+
+You need at least **Bronze** (15 points) to progress!
+
+## Challenge
+
+Can you beat your previous score? Aim for a higher medal!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
 
   ];
 }

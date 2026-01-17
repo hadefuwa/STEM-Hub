@@ -31,8 +31,19 @@ function ClockGame({ lesson }) {
   const startNewProblem = () => {
     const problem = problems[level - 1] || problems[0];
     setTargetTime(problem);
-    setHourHand(problem.hour);
-    setMinuteHand(problem.minute);
+    
+    // Start with a random time (different from target) so child has to set it
+    let randomHour = Math.floor(Math.random() * 12);
+    let randomMinute = Math.floor(Math.random() * 60);
+    
+    // Make sure the random time is different from the target
+    while (randomHour === problem.hour && randomMinute === problem.minute) {
+      randomHour = Math.floor(Math.random() * 12);
+      randomMinute = Math.floor(Math.random() * 60);
+    }
+    
+    setHourHand(randomHour);
+    setMinuteHand(randomMinute);
     setShowSuccess(false);
   };
 

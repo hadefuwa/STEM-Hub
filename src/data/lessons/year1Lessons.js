@@ -275,9 +275,61 @@ Let's learn about when dinosaurs lived!
 
 - Fossils tell us about them
 
-- We can learn from the past!`,
+- We can learn from the past!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+When did dinosaurs live?
+<!-- OPTIONS -->
+A few years ago|Hundreds of years ago|Millions of years ago|Last year
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Dinosaurs lived millions of years ago! That's a very, very long time - before people existed!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What period did T-Rex live in?
+<!-- OPTIONS -->
+Triassic Period|Jurassic Period|Cretaceous Period|Modern Period
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+T-Rex lived in the Cretaceous Period, which was the last period of dinosaurs before they disappeared!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What are fossils?
+<!-- OPTIONS -->
+Living dinosaurs|Bones that turned to stone|Modern animals|Rocks
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Fossils are what's left of dinosaurs - bones that turned to stone! Scientists find them and learn about dinosaurs!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What do scientists do with fossils?
+<!-- OPTIONS -->
+Nothing|Study them and put bones together|Throw them away|Hide them
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Scientists study fossils, put bones together, and learn how dinosaurs lived. They teach us about the past!
+<!-- QUESTION_END -->`,
       quizId: 43,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -392,9 +444,61 @@ Let's learn about stories from the Bible!
 
 - They teach us lessons
 
-- History includes these stories!`,
+- History includes these stories!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Who were the first people according to the Bible?
+<!-- OPTIONS -->
+Noah and his family|Adam and Eve|Cain and Abel|Moses
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Adam and Eve were the first people! They lived in the Garden of Eden, which was a beautiful place!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did God tell Noah to build?
+<!-- OPTIONS -->
+A house|A temple|An ark|A palace
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+God told Noah to build an ark, which was a big boat! Animals came in pairs, and the rainbow was a promise!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did God create in the beginning?
+<!-- OPTIONS -->
+Only animals|Only people|The world with light, dark, land, sea, animals, and people|Only plants
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+In the beginning, God created the world - He made light and dark, land and sea, animals and people!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was the rainbow a symbol of?
+<!-- OPTIONS -->
+Rain|A promise|A storm|Nothing
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The rainbow was a promise from God! It came after Noah's ark and the flood!
+<!-- QUESTION_END -->`,
       quizId: 43,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -507,9 +611,61 @@ Let's learn about ancient Egypt!
 
 - Pharaohs were powerful rulers
 
-- We can learn from ancient Egypt!`,
+- We can learn from ancient Egypt!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What were pyramids used for?
+<!-- OPTIONS -->
+Homes|Tombs for pharaohs|Markets|Schools
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Pyramids were huge stone buildings that were tombs for pharaohs! The Great Pyramid is still standing today!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were pharaohs?
+<!-- OPTIONS -->
+Farmers|Rulers of Egypt like kings|Soldiers|Priests
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Pharaohs were the rulers of Egypt, like kings! They were very powerful. Tutankhamun was a famous pharaoh!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What river was very important to ancient Egypt?
+<!-- OPTIONS -->
+The Thames|The Nile|The Amazon|The Mississippi
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Nile River was very important! It provided water for crops, people lived along it, and it helped Egypt grow!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Egyptians make to preserve bodies?
+<!-- OPTIONS -->
+Statues|Mummies|Paintings|Pottery
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Egyptians made mummies! They preserved bodies by wrapping them in cloth and putting them in pyramids!
+<!-- QUESTION_END -->`,
       quizId: 53,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -664,9 +820,61 @@ Let's compare life in the past and life today!
 
 - We can learn from the past
 
-- History shows us change!`,
+- History shows us change!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+How did people travel long ago?
+<!-- OPTIONS -->
+By car|By walking and using horses|By plane|By train
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Long ago, people walked and used horses! They had carriages, but travel was very slow compared to today!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did children write on in school long ago?
+<!-- OPTIONS -->
+Computers|Tablets|Slates|Paper
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Long ago, children wrote on slates! Now we use computers. Schools have changed a lot!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did homes have long ago for warmth?
+<!-- OPTIONS -->
+Central heating|Fireplaces|Electric heaters|Air conditioning
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Long ago, homes had fireplaces for warmth! There was no electricity, so they used fire to keep warm!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How do we communicate now compared to long ago?
+<!-- OPTIONS -->
+By letters only|By instant communication with phones and internet|By shouting|By smoke signals
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Now we have instant communication with smartphones, computers, and the internet! Long ago, people sent letters which took a long time!
+<!-- QUESTION_END -->`,
       quizId: 44,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -765,9 +973,61 @@ Let's learn about important people from the past!
 
 - History is full of interesting people
 
-- They inspire us today!`,
+- They inspire us today!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Who was Queen Elizabeth I?
+<!-- OPTIONS -->
+A nurse|A writer|Queen of England|A scientist
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Queen Elizabeth I was Queen of England! She lived a long time ago, was very brave and clever, and helped make England strong!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was Florence Nightingale known for?
+<!-- OPTIONS -->
+Being a queen|Being a nurse who helped people|Being a writer|Being a soldier
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Florence Nightingale was a nurse who helped sick and injured people! She made hospitals better places and is called "The Lady with the Lamp"!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did William Shakespeare do?
+<!-- OPTIONS -->
+Was a king|Wrote amazing plays and poems|Was a nurse|Was a soldier
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+William Shakespeare wrote amazing plays and poems! He lived in England long ago, and people still read his stories today!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why do we remember famous people from history?
+<!-- OPTIONS -->
+They were rich|They did important things and helped others|They were tall|They were old
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We remember famous people because they did important things, helped others, changed the world, and inspire us today!
+<!-- QUESTION_END -->`,
       quizId: 43,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -866,9 +1126,61 @@ Let's learn about the history of where we live!
 
 - We can learn from the past
 
-- History is everywhere!`,
+- History is everywhere!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What can tell us about local history?
+<!-- OPTIONS -->
+Only new buildings|Old buildings, statues, monuments, and old photos|Only trees|Only cars
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Old buildings, statues, monuments, and old photos can tell us about local history! Every place has a history!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Where can you learn about local history?
+<!-- OPTIONS -->
+Only at home|At local museums, by asking grown-ups, and looking at old photos|Only at school|Only in books
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+You can learn about local history at local museums, by asking grown-ups, looking at old photos, and reading about your area!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What might have history in your local area?
+<!-- OPTIONS -->
+Only new buildings|Your library, school, parks, and shops in old buildings|Only cars|Only trees
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Your local library, school, parks, and shops in old buildings might have history! History is all around us!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why is it important to learn about local history?
+<!-- OPTIONS -->
+It's not important|It helps us understand our area and learn from the past|It's boring|It's too hard
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Learning about local history helps us understand our area and learn from the past! History is everywhere and full of interesting stories!
+<!-- QUESTION_END -->`,
       quizId: 45,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1061,6 +1373,76 @@ Master JavaScript programming!
 ## Note
 
 You may see console messages about "play() request was interrupted" or "createRadialGradient" - these are normal! Blockly Games preloads sound effects and creates visual effects that can trigger browser warnings. These messages don't affect the game and you can safely ignore them.`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'technology',
+      lessonNumber: 8,
+      title: "TapTapTap: Beginner Level 1",
+      emoji: '👆',
+      content: `# TapTapTap: Beginner Level 1 👆
+
+Welcome to TapTapTap! A fun game that helps you practice your clicking and reaction skills!
+
+## How to Play
+
+- Tap or click the colorful targets as they appear on the screen
+- Be quick! Targets disappear after 2 seconds
+- Try to tap as many targets as you can in 30 seconds!
+
+## Scoring System
+
+- **Bronze**: 5-9 points
+- **Silver**: 10-14 points
+- **Gold**: 15-19 points
+- **Platinum**: 20+ points
+
+You need at least **Bronze** (5 points) to progress to the next lesson!
+
+## Tips
+
+- Keep your eyes on the screen
+- Tap quickly but accurately
+- Don't worry if you miss some - just keep trying!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'technology',
+      lessonNumber: 9,
+      title: "TapTapTap: Beginner Level 2",
+      emoji: '👆',
+      content: `# TapTapTap: Beginner Level 2 👆
+
+Keep practicing your tapping skills! This level is the same difficulty as Level 1 - perfect for getting better!
+
+## How to Play
+
+- Tap the colorful targets as they appear
+- Targets appear every 2 seconds
+- You have 30 seconds to score as many points as possible!
+
+## Scoring System
+
+- **Bronze**: 5-9 points
+- **Silver**: 10-14 points
+- **Gold**: 15-19 points
+- **Platinum**: 20+ points
+
+You need at least **Bronze** (5 points) to progress!
+
+## Challenge
+
+Can you beat your previous score? Try to get a higher medal this time!`,
       quizId: null,
       assessmentType: null,
       categoryId: null,

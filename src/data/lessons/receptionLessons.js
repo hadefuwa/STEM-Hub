@@ -171,6 +171,7 @@ Try reading these words:
       lessonNumber: 1,
       title: "Dinosaurs - Big and Small",
       emoji: '🦖',
+      assessmentType: null, // Uses HTML game instead
       content: `# Dinosaurs - Big and Small 🦖
 
 
@@ -285,110 +286,60 @@ Let's learn about different types of dinosaurs!
 
 - They lived long ago
 
-- We learn about them from fossils!`,
+- We learn about them from fossils!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What did T-Rex eat?
+<!-- OPTIONS -->
+Plants|Meat|Nothing|Fruits
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+T-Rex was a meat eater! It was very big and strong, had sharp teeth, and was very scary!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Triceratops have?
+<!-- OPTIONS -->
+Sharp teeth|Three horns and a big frill|A long neck|Wings
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Triceratops had three horns and a big frill! It ate plants and was protected!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Where did dinosaurs live?
+<!-- OPTIONS -->
+In the sky|On land and some near water|Only in water|Only in caves
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Dinosaurs lived on land, some lived near water, they lived all over the world, and they lived millions of years ago!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How do we learn about dinosaurs?
+<!-- OPTIONS -->
+We see them|From fossils|We don't|We guess
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We learn about dinosaurs from fossils! Even though they disappeared long ago, we can still learn about them!
+<!-- QUESTION_END -->`,
       quizId: 37,
-      assessmentType: 'quiz',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'reception',
-      subjectId: 'history',
-      lessonNumber: 2,
-      title: "The Story of Adam and Eve",
-      emoji: '🌳',
-      content: `# The Story of Adam and Eve 🌳
-
-
-
-Let's learn more about Adam and Eve's story!
-
-
-
-## The Beautiful Garden
-
-
-
-- Adam and Eve lived in a beautiful garden 🌳
-
-- The garden was called Eden
-
-- It was a perfect place
-
-- Everything was good and happy
-
-
-
-## Life in the Garden
-
-
-
-- Adam and Eve took care of the garden
-
-- They could eat from many trees
-
-- They were happy together
-
-- They lived peacefully
-
-
-
-## The First Children
-
-
-
-- Adam and Eve had children
-
-- Their first sons were Cain and Abel
-
-- They were the first family
-
-- The family grew bigger!
-
-
-
-## Learning from the Story
-
-
-
-- Adam and Eve were the first people
-
-- They lived in a beautiful place
-
-- They had a family
-
-- This is a special story!
-
-
-
-## Fun Activities
-
-
-
-- Draw the garden of Eden
-
-- Talk about the story
-
-- Learn about Adam and Eve
-
-- Draw the first family
-
-
-
-## Remember
-
-
-
-- Adam and Eve were the first people
-
-- They lived in a beautiful garden
-
-- They had children
-
-- This is an important story!`,
-      quizId: 37,
-      assessmentType: 'quiz',
       categoryId: null,
     }),
 
@@ -501,9 +452,60 @@ Let's learn about Noah and his big boat!
 
 - The rainbow was a promise
 
-- This is a special story!`,
+- This is a special story!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What did God tell Noah to build?
+<!-- OPTIONS -->
+A house|A big boat called an ark|A car|A plane
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+God told Noah to build a big boat called an ark! Noah was a good man, and the ark was very, very big!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How many of each animal came to the ark?
+<!-- OPTIONS -->
+One|Two (in pairs)|Three|Four
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Two of every animal came to the ark! Lions, elephants, birds, and more - they all came in pairs, two of each!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What happened when it rained?
+<!-- OPTIONS -->
+Nothing|Water covered everything and the ark floated|Only a little rain|The ark sank
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+It rained and rained, water covered everything, the ark floated on the water, and everyone was safe inside!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was the rainbow?
+<!-- OPTIONS -->
+Just pretty|A promise that it wouldn't flood again|Nothing|Just colors
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+After the rain stopped, a beautiful rainbow appeared! It was a promise - a promise that it wouldn't flood again!
+<!-- QUESTION_END -->`,
       quizId: 37,
-      assessmentType: 'quiz',
       categoryId: null,
     }),
 
@@ -514,6 +516,7 @@ Let's learn about Noah and his big boat!
       lessonNumber: 4,
       title: "Ancient Stories - The First Cities",
       emoji: '🏛️',
+      assessmentType: null, // Uses HTML game instead
       content: `# Ancient Stories - The First Cities 🏛️
 
 
@@ -602,9 +605,60 @@ Long, long ago, people started living in cities!
 
 - People lived together
 
-- Cities are important!`,
+- Cities are important!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What is a city?
+<!-- OPTIONS -->
+A small house|A place where many people live together|A forest|A mountain
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+A city is a place where many people live together! Cities have lots of houses, places to work, and places to play!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+When were the first cities built?
+<!-- OPTIONS -->
+Today|Long, long ago|Never|Last year
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Long, long ago, people built the first cities! They were very different from today - they were smaller, but they were still cities!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did people do in cities?
+<!-- OPTIONS -->
+Nothing|Lived close together, helped each other, worked together, and built things together|Only played|Only slept
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+In cities, people lived close together, helped each other, worked together, and built things together!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were the first buildings made of?
+<!-- OPTIONS -->
+Steel|Mud and stone|Plastic|Glass
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The first buildings were simple, made of mud and stone! They were different from today, but they were homes!
+<!-- QUESTION_END -->`,
       quizId: 37,
-      assessmentType: 'quiz',
       categoryId: null,
     }),
 
@@ -703,9 +757,60 @@ Life was very different long ago!
 
 - No electricity
 
-- We can learn about the past!`,
+- We can learn about the past!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What was different about houses long ago?
+<!-- OPTIONS -->
+They were the same|They were simpler, no electricity, no running water|They were bigger|They were made of glass
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Houses were simpler long ago - no electricity, no running water! They were made of different materials like wood and mud!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did people use for light long ago?
+<!-- OPTIONS -->
+Electric lights|Candles|Nothing|The sun only
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+There was no electricity! People used candles for light and fireplaces for warmth! Life was different!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were clothes like long ago?
+<!-- OPTIONS -->
+The same as today|Simpler and made by hand|Better than today|Made of plastic
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+People wore different clothes that were simpler and made by hand! They were different from today!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why is it important to learn about life long ago?
+<!-- OPTIONS -->
+It's not|We can learn about the past and see how things changed|It's boring|It's too hard
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We can learn about the past and see how things changed! Life was different long ago, and we can learn from it!
+<!-- QUESTION_END -->`,
       quizId: 44,
-      assessmentType: 'quiz',
       categoryId: null,
     }),
 
@@ -804,9 +909,61 @@ Let's learn about famous people from stories!
 
 - History is full of interesting people
 
-- Stories teach us lessons!`,
+- Stories teach us lessons!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What did kings and queens do in stories?
+<!-- OPTIONS -->
+Nothing|They were important people who ruled over lands|Only played|Only slept
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Kings and queens from stories were important people who ruled over lands! They are in many stories!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did brave heroes do?
+<!-- OPTIONS -->
+Nothing|Did brave things and helped others|Only fought|Only ran away
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Brave heroes from stories did brave things, helped others, and they are remembered!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did kind helpers do?
+<!-- OPTIONS -->
+Nothing|Helped people and were good|Only played|Only slept
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Kind helpers from stories helped people, were good, and they are remembered!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Why do we remember famous people from stories?
+<!-- OPTIONS -->
+They were bad|They did good things, helped others, and made the world better|They were mean|They did nothing
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We remember famous people because they did good things, helped others, made the world better, and stories teach us lessons!
+<!-- QUESTION_END -->`,
       quizId: 43,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 

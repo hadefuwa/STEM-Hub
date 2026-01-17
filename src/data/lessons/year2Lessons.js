@@ -149,9 +149,9 @@ Let's practice adding numbers up to 20!
 
 ## How to Play
 
-Type your answers! 🎮`,
+Click the correct answer! 🎮`,
       quizId: quizId++,
-      assessmentType: 'typing-math-game',
+      assessmentType: 'maths-game',
       categoryId: null,
     }),
 
@@ -812,7 +812,7 @@ When the compiler reports an error on a specific line saying "expected ';' befor
 
 - Missing semicolons will prevent your code from compiling`,
       quizId: null,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1103,7 +1103,7 @@ If you declare a variable inside setup(), it is local to that function and canno
 
 - Variables must be declared before use`,
       quizId: null,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1372,7 +1372,7 @@ It works normally|It has no effect|The pin automatically switches to OUTPUT|The 
 If you try to use digitalWrite() on a pin configured as INPUT, it will have no effect. The pin must be configured as OUTPUT using pinMode() before digitalWrite() can control it.
 <!-- QUESTION_END -->`,
       quizId: null,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -1639,7 +1639,7 @@ To get 50% brightness, you need a value of 128 (half of 255). The sensor value o
 
 - Use map() to convert between ranges`,
       quizId: null,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -2002,7 +2002,7 @@ The condition sensorValue > 500 && sensorValue < 800 will be true when sensorVal
 
 - for loops are great when you know how many iterations`,
       quizId: null,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -2353,7 +2353,7 @@ If you try to return a value from a void function, the code will not compile. Vo
 
 - Functions can call other functions`,
       quizId: null,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -2720,7 +2720,7 @@ for (int i = 0; i < numLEDs; i++) {
 
 - Arrays can be passed to functions`,
       quizId: null,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -3125,7 +3125,7 @@ if (Serial.available() > 0) {
 
 - Check library documentation for proper usage`,
       quizId: null,
-      assessmentType: 'interactive',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -3252,9 +3252,61 @@ Let's learn about the time before people could write!
 
 - They were hunters and gatherers
 
-- We learn from their artifacts!`,
+- We learn from their artifacts!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What does "prehistoric" mean?
+<!-- OPTIONS -->
+After history|Before history|During history|History itself
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Prehistoric means "before history" - before people wrote things down! We learn from artifacts and fossils!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Where did Stone Age people live?
+<!-- OPTIONS -->
+In houses|In caves|In apartments|In castles
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Stone Age people lived in caves! Caves kept them safe, they made fires inside, and they painted on cave walls!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did people paint on cave walls?
+<!-- OPTIONS -->
+Nothing|Animals and hunting scenes|Only flowers|Only people
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+People painted animals and hunting scenes on cave walls! These paintings still exist today and tell us about their lives!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were Stone Age people called?
+<!-- OPTIONS -->
+Farmers|Hunter-gatherers|Builders|Writers
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Stone Age people were hunter-gatherers! They hunted animals, gathered fruits and plants, and moved from place to place following food!
+<!-- QUESTION_END -->`,
       quizId: 61,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -3369,9 +3421,61 @@ Let's learn about important people from the Bible!
 
 - They teach us lessons
 
-- History includes these events!`,
+- History includes these events!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What did God tell Abraham to do?
+<!-- OPTIONS -->
+Stay home|Leave his home and travel to a new land|Build a temple|Write a book
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+God told Abraham to leave his home and travel to a new land! Abraham trusted God and did what he was told!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What happened to Joseph in Egypt?
+<!-- OPTIONS -->
+He became a farmer|He became important and helped save people from famine|He became a soldier|He became a king
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Joseph was sold by his brothers and went to Egypt, where he became important and helped save people from famine!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did God give Moses?
+<!-- OPTIONS -->
+A sword|The Ten Commandments|A crown|A book
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+God gave Moses the Ten Commandments! They were rules to live by, written on stone tablets, and were important laws for people!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Where did Moses grow up?
+<!-- OPTIONS -->
+In the desert|In the palace in Egypt|In a cave|In a village
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Moses was born in Egypt and grew up in the palace! God chose him to lead his people out of Egypt!
+<!-- QUESTION_END -->`,
       quizId: 52,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -3484,9 +3588,61 @@ Let's learn about how people lived in ancient Egypt!
 
 - They believed in many gods
 
-- Life was different then!`,
+- Life was different then!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What did most people do in ancient Egypt?
+<!-- OPTIONS -->
+Were soldiers|Were farmers|Were kings|Were priests
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Most people in ancient Egypt were farmers! They grew crops by the river, and the Nile flooding made the soil good for growing!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was Egyptian writing called?
+<!-- OPTIONS -->
+Cuneiform|Hieroglyphs|Alphabet|Numbers
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Egyptians wrote in hieroglyphs, which are picture writing! They wrote on papyrus (paper) and on walls too!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who was the sun god in ancient Egypt?
+<!-- OPTIONS -->
+Osiris|Isis|Ra|Horus
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Ra was the sun god in ancient Egypt! Egyptians believed in many gods - Osiris was the god of the dead, and Isis was a powerful goddess!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+How long did it take to build the pyramids?
+<!-- OPTIONS -->
+A few days|A few months|Many years|One year
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Pyramids took many years to build! Thousands of workers helped, they moved huge stones, and it was very hard work!
+<!-- QUESTION_END -->`,
       quizId: 53,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -3599,9 +3755,61 @@ Let's learn about the very first civilization!
 
 - They built the first cities
 
-- They were very important!`,
+- They were very important!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What was Mesopotamia between?
+<!-- OPTIONS -->
+Two mountains|Two deserts|Two rivers (Tigris and Euphrates)|Two oceans
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Mesopotamia was between two rivers - the Tigris and Euphrates rivers! It was in the Middle East, a very fertile area!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was the first writing system called?
+<!-- OPTIONS -->
+Hieroglyphs|Cuneiform|Alphabet|Chinese characters
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Mesopotamians created the first writing called cuneiform! They wrote on clay tablets using a stylus (stick)!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What were ziggurats?
+<!-- OPTIONS -->
+Houses|Temple towers|Bridges|Roads
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Ziggurats were temple towers! They were very tall, people climbed them, and they were for worship!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who created the first laws?
+<!-- OPTIONS -->
+A pharaoh|Hammurabi, a king|A priest|A farmer
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Hammurabi was a king who created the first laws - the Code of Hammurabi! It was written down and was very important!
+<!-- QUESTION_END -->`,
       quizId: 94,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -3714,9 +3922,61 @@ Let's learn about ancient China!
 
 - They invented many things
 
-- China was a great civilization!`,
+- China was a great civilization!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+Why was the Great Wall of China built?
+<!-- OPTIONS -->
+For decoration|To protect China|To show off|To keep people in
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The Great Wall of China was built to protect China! It's very, very long and you can still see it today!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Chinese people invent?
+<!-- OPTIONS -->
+Nothing|Paper, printing, and silk|Only paper|Only silk
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Chinese people invented many things including paper, printing, and silk! They were very creative and innovative!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did Chinese writing use?
+<!-- OPTIONS -->
+Letters|Characters|Numbers|Pictures only
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Chinese writing uses characters! Each character means something, it's very beautiful, and it's still used today!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+Who ruled ancient China?
+<!-- OPTIONS -->
+Kings|Emperors|Presidents|Governors
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+China had emperors who were rulers! They were very powerful and ruled all of China!
+<!-- QUESTION_END -->`,
       quizId: 94,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -3839,9 +4099,61 @@ Let's compare the ancient civilizations we've learned about!
 
 - They influenced us today
 
-- We can learn from them all!`,
+- We can learn from them all!
+
+
+
+## Practice Questions
+
+
+
+<!-- QUESTION_START -->
+What did all ancient civilizations have in common?
+<!-- OPTIONS -->
+Nothing|Rivers nearby, writing, cities, governments, and art|Only rivers|Only writing
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+All ancient civilizations had rivers nearby, developed writing, had cities, had governments, and created art! They had many things in common!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did ancient Egypt have that was special?
+<!-- OPTIONS -->
+The Great Wall|Pyramids and hieroglyphs|Ziggurats|Chinese characters
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Ancient Egypt had pyramids and hieroglyphs! They also had the Nile River, pharaohs, and mummies!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What was special about ancient Mesopotamia?
+<!-- OPTIONS -->
+The first cities and first writing|The Great Wall|Pyramids|Chinese characters
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+Ancient Mesopotamia had the first cities and created the first writing (cuneiform)! They also had ziggurats and the first laws!
+<!-- QUESTION_END -->
+
+
+
+<!-- QUESTION_START -->
+What did all civilizations do that influenced the world?
+<!-- OPTIONS -->
+Nothing|Built amazing things, created writing, had governments, made art|Only built things|Only wrote
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+All civilizations built amazing things, created writing systems, had strong governments, made beautiful art, and influenced the world!
+<!-- QUESTION_END -->`,
       quizId: 94,
-      assessmentType: 'quiz',
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 
@@ -4028,7 +4340,78 @@ This creates a diamond shape by connecting 4 points!
       quizId: null,
       assessmentType: null,
       categoryId: null,
-    })
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 18,
+      title: "TapTapTap: Intermediate Level 1",
+      emoji: '👆',
+      content: `# TapTapTap: Intermediate Level 1 👆
+
+Ready for a bit more challenge? This level is faster than the beginner levels!
+
+## How to Play
+
+- Tap the targets as they appear on screen
+- Targets appear every 1.5 seconds (faster than beginner!)
+- Targets are slightly smaller
+- You have 30 seconds to score points!
+
+## Scoring System
+
+- **Bronze**: 10-19 points
+- **Silver**: 20-29 points
+- **Gold**: 30-39 points
+- **Platinum**: 40+ points
+
+You need at least **Bronze** (10 points) to progress!
+
+## Tips
+
+- Focus on accuracy - smaller targets need precise taps
+- Keep your hand steady
+- Practice makes perfect!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 19,
+      title: "TapTapTap: Intermediate Level 2",
+      emoji: '👆',
+      content: `# TapTapTap: Intermediate Level 2 👆
+
+Continue improving your reaction time and accuracy!
+
+## How to Play
+
+- Tap targets as they appear
+- Same speed as Level 1 - keep practicing!
+- 30 seconds to score as many points as you can
+
+## Scoring System
+
+- **Bronze**: 10-19 points
+- **Silver**: 20-29 points
+- **Gold**: 30-39 points
+- **Platinum**: 40+ points
+
+You need at least **Bronze** (10 points) to progress!
+
+## Challenge
+
+Can you improve your score from Level 1? Try to get a higher medal!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
 
   ];
 }

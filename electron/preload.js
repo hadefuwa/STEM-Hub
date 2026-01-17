@@ -19,5 +19,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   removeUpdateDownloadProgressListener: () => {
     ipcRenderer.removeAllListeners('update-download-progress');
   },
+  // TTS functions
+  ttsSpeak: (text, options) => ipcRenderer.invoke('tts-speak', { text, ...options }),
+  ttsStop: () => ipcRenderer.invoke('tts-stop'),
+  ttsGetVoices: () => ipcRenderer.invoke('tts-get-voices'),
 });
 

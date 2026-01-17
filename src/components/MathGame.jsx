@@ -68,6 +68,8 @@ const LESSON_CONFIGS = {
   31: { type: 'fractions-decimals-percentages', title: 'Converting Fractions/Decimals/Percentages', fractions: ['1/2', '1/4', '3/4', '1/5', '2/5', '1/10'], decimals: [0.5, 0.25, 0.75, 0.2, 0.4, 0.1], percentages: [50, 25, 75, 20, 40, 10] },
   // Year 2 - Place Value to 100
   32: { type: 'place-value-100', title: 'Place Value to 100', maxNumber: 99 },
+  // Year 2 - Length Measurement
+  42: { type: 'length-measurement', title: 'Length Measurement', units: ['cm', 'm'] },
   // Year 2 - Addition to 20
   33: { type: 'addition-to-20', title: 'Addition to 20', maxSum: 20 },
   // Year 2 - Subtraction to 20
@@ -174,6 +176,7 @@ function MathGame({ lesson }) {
   const [activityObjectCount, setActivityObjectCount] = useState(null);
   const [isInitialized, setIsInitialized] = useState(false);
   const [questionText, setQuestionText] = useState('');
+  const initializedLessonIdRef = useRef(null); // Track which lesson we've initialized
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
   const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
@@ -221,7 +224,8 @@ function MathGame({ lesson }) {
     if (title.includes('fractions introduction') || (title.includes('fractions') && yearId === 'year3')) return 19;
     if (title.includes('long multiplication')) return 20;
     if (title.includes('fractions and decimals') || (title.includes('fractions') && yearId === 'year4')) return 21;
-    if (title.includes('measurement and units') || title.includes('measurement')) return 22;
+    if (title.includes('length measurement') && yearId === 'year2') return 42;
+    if (title.includes('measurement and units') || (title.includes('measurement') && yearId === 'year4')) return 22;
     if (title.includes('algebra introduction') || (title.includes('algebra') && yearId === 'year6')) return 23;
     if (title.includes('statistics and data') || title.includes('statistics')) return 24;
     if (title.includes('advanced problem solving') || title.includes('problem solving')) return 25;
@@ -255,6 +259,9 @@ function MathGame({ lesson }) {
   const mathLessonNumber = getMathLessonNumber();
   const config = LESSON_CONFIGS[mathLessonNumber] || LESSON_CONFIGS[1];
   
+  // Memoize mathLessonNumber to prevent unnecessary re-renders
+  const stableMathLessonNumber = React.useMemo(() => mathLessonNumber, [lesson?.id, lesson?.title, lesson?.yearId]);
+  
   // Safety check - if config is invalid, use default
   if (!config || !config.type) {
     console.error('Invalid config for math lesson:', mathLessonNumber, 'Using default');
@@ -267,6 +274,7 @@ function MathGame({ lesson }) {
   useEffect(() => {
     // Reset all state when lesson changes
     setIsInitialized(false);
+    initializedLessonIdRef.current = null; // Reset initialization tracking
     setGameState('validation'); // Reset to validation state
     setCurrentScore(null); // Clear the score/medal
     setCorrectAnswer(null);
@@ -282,28 +290,36 @@ function MathGame({ lesson }) {
 
   // Debug logging
   useEffect(() => {
-    console.log('MathGame - Lesson:', lesson?.title, 'Lesson Number:', lesson?.lessonNumber, 'Math Lesson Number:', mathLessonNumber, 'Config:', config);
-  }, [lesson?.title, lesson?.lessonNumber, mathLessonNumber, config]);
+    console.log('MathGame - Lesson:', lesson?.title, 'Lesson Number:', lesson?.lessonNumber, 'Math Lesson Number:', stableMathLessonNumber, 'Config Type:', config?.type);
+  }, [lesson?.title, lesson?.lessonNumber, stableMathLessonNumber, config?.type]);
 
   // Track gameState changes
   useEffect(() => {
     console.log('GameState changed to:', gameState);
   }, [gameState]);
 
-  // Generate validation when component mounts
+  // Generate validation when component mounts - only once per lesson
+  // Use ref to prevent re-initialization if user is working on the problem
   useEffect(() => {
-    if (!isInitialized && gameState === 'validation' && config && config.type) {
-      console.log('Component mounted, generating initial validation');
+    // Only initialize if we haven't already initialized for this lesson
+    if (initializedLessonIdRef.current !== lesson?.id && 
+        !isInitialized && 
+        gameState === 'validation' && 
+        config && 
+        config.type) {
+      console.log('Component mounted, generating initial validation for lesson:', lesson?.id);
       try {
         setIsInitialized(true);
+        initializedLessonIdRef.current = lesson?.id; // Mark this lesson as initialized
         generateValidation();
       } catch (error) {
         console.error('Error generating validation on mount:', error);
         setIsInitialized(false);
+        initializedLessonIdRef.current = null;
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lesson?.id, gameState, config?.type, isInitialized]);
+  }, [lesson?.id, gameState, stableMathLessonNumber]);
 
   const handleNumberClick = async (number) => {
     try {
@@ -695,8 +711,21 @@ function MathGame({ lesson }) {
         }
         options = options.slice(0, 4);
       }
+    } else if (config.type === 'length-measurement') {
+      // Year 2: Length Measurement (cm and m only)
+      const lengthQuestions = [
+        { value: 100, unit: 'cm', question: 'How many centimeters in 1 meter?', answer: 100, options: [50, 100, 150, 200] },
+        { value: 1, unit: 'm', question: 'How many meters in 100 centimeters?', answer: 1, options: [0.5, 1, 2, 10] },
+        { value: 200, unit: 'cm', question: 'How many centimeters in 2 meters?', answer: 200, options: [100, 200, 300, 400] },
+        { value: 2, unit: 'm', question: 'How many meters in 200 centimeters?', answer: 2, options: [1, 2, 3, 4] },
+        { value: 50, unit: 'cm', question: 'A pencil is about 15 cm. How many centimeters longer is a 50 cm ruler?', answer: 35, options: [25, 35, 45, 55] },
+      ];
+      const question = lengthQuestions[Math.floor(Math.random() * lengthQuestions.length)];
+      answer = question.answer;
+      questionText = question.question;
+      options = question.options.sort(() => Math.random() - 0.5);
     } else if (config.type === 'measurement') {
-      // Year 4: Measurement and units
+      // Year 4: Measurement and units (includes mass and capacity)
       const measurements = [
         { value: 100, unit: 'cm', question: 'How many centimeters in 1 meter?', answer: 100, options: [50, 100, 150, 200] },
         { value: 1000, unit: 'g', question: 'How many grams in 1 kilogram?', answer: 1000, options: [500, 1000, 1500, 2000] },
