@@ -1,6 +1,6 @@
 {
   "name": "homeschool-hub",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A cross-platform homeschool learning management application",
   "main": "electron/main.js",
   "type": "module",
@@ -53,7 +53,8 @@
       "dist/**/*",
       "package.json",
       "!node_modules/**",
-      "node_modules/edge-tts-universal/**/*"
+      "node_modules/edge-tts-universal/**/*",
+      "node_modules/electron-updater/**/*"
     ],
     "asarUnpack": [
       "**/node_modules/edge-tts-universal/**/*"
