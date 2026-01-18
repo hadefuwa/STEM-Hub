@@ -10,7 +10,7 @@ function DrawingGame({ lesson }) {
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
-  
+
   // Determine shape based on lesson number
   const lessonNumber = lesson?.lessonNumber || 1;
   const shapeConfig = {
@@ -22,7 +22,7 @@ function DrawingGame({ lesson }) {
     6: { name: 'octagon', points: 8, angles: 135 },
   };
   const currentShape = shapeConfig[lessonNumber] || shapeConfig[1];
-  
+
   const canvasRef = useRef(null);
   const storedLinesRef = useRef([]); // Corner points
   const [pointsCount, setPointsCount] = useState(0); // Trigger re-render
@@ -41,8 +41,8 @@ function DrawingGame({ lesson }) {
   const generateExamplePoints = (shapeName, centerX, centerY, size) => {
     const points = [];
     const numPoints = currentShape.points;
-    
-    switch(shapeName) {
+
+    switch (shapeName) {
       case 'triangle':
         // Equilateral triangle pointing up
         points.push({ x: centerX, y: centerY - size / 2 }); // Top
@@ -103,13 +103,13 @@ function DrawingGame({ lesson }) {
 
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     // Draw example shape in the center as a guide
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const exampleSize = 120; // Size of example shape
     const examplePoints = generateExamplePoints(currentShape.name, centerX, centerY, exampleSize);
-    
+
     // Draw example square outline (light gray, dashed)
     ctx.strokeStyle = '#e0e0e0';
     ctx.lineWidth = 2;
@@ -122,7 +122,7 @@ function DrawingGame({ lesson }) {
     ctx.closePath();
     ctx.stroke();
     ctx.setLineDash([]);
-    
+
     // Draw example corner points (smaller, lighter)
     const exampleColors = ['#a0d4a0', '#a0c0ff', '#ffe0a0', '#ffa0a0', '#d4a0ff', '#ffa0d4', '#a0ffd4', '#ffd4a0'];
     examplePoints.forEach((point, index) => {
@@ -130,19 +130,19 @@ function DrawingGame({ lesson }) {
       ctx.beginPath();
       ctx.arc(point.x, point.y, 8, 0, Math.PI * 2);
       ctx.fill();
-      
+
       ctx.fillStyle = '#FFFFFF';
       ctx.beginPath();
       ctx.arc(point.x, point.y, 5, 0, Math.PI * 2);
       ctx.fill();
-      
+
       ctx.fillStyle = '#666666';
       ctx.font = 'bold 10px Arial';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText((index + 1).toString(), point.x, point.y);
     });
-    
+
     // Draw the user's square shape
     if (storedLinesRef.current.length > 0) {
       ctx.strokeStyle = '#000000';
@@ -150,22 +150,22 @@ function DrawingGame({ lesson }) {
       ctx.lineWidth = 4;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
-      
+
       // Draw the shape
       ctx.beginPath();
       ctx.moveTo(storedLinesRef.current[0].x, storedLinesRef.current[0].y);
       for (let i = 1; i < storedLinesRef.current.length; i++) {
         ctx.lineTo(storedLinesRef.current[i].x, storedLinesRef.current[i].y);
       }
-      
+
       // Close the shape if we have the required number of points
       if (storedLinesRef.current.length === currentShape.points) {
         ctx.closePath();
         ctx.fill(); // Fill the shape
       }
-      
+
       ctx.stroke(); // Draw the outline
-      
+
       // Draw corner points as large, colorful circles
       const pointColors = ['#28a745', '#007bff', '#ffc107', '#dc3545', '#9b59b6', '#e67e22', '#1abc9c', '#e74c3c'];
       storedLinesRef.current.forEach((point, index) => {
@@ -174,13 +174,13 @@ function DrawingGame({ lesson }) {
         ctx.beginPath();
         ctx.arc(point.x, point.y, 12, 0, Math.PI * 2);
         ctx.fill();
-        
+
         // Draw inner white circle
         ctx.fillStyle = '#FFFFFF';
         ctx.beginPath();
         ctx.arc(point.x, point.y, 8, 0, Math.PI * 2);
         ctx.fill();
-        
+
         // Draw point number
         ctx.fillStyle = '#000000';
         ctx.font = 'bold 14px Arial';
@@ -193,7 +193,7 @@ function DrawingGame({ lesson }) {
 
   const handleCanvasClick = (e) => {
     if (lessonCompleted) return;
-    
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -210,7 +210,7 @@ function DrawingGame({ lesson }) {
     storedLinesRef.current.push({ x, y });
     setPointsCount(storedLinesRef.current.length);
     setValidationMessage('');
-    
+
     // Auto-validate when required number of points are placed
     if (storedLinesRef.current.length === currentShape.points) {
       // Force re-render
@@ -222,7 +222,7 @@ function DrawingGame({ lesson }) {
 
   const validateShape = () => {
     const points = storedLinesRef.current;
-    
+
     if (points.length !== currentShape.points) {
       setValidationMessage(`Click exactly ${currentShape.points} points to make a ${currentShape.name}!`);
       return;
@@ -251,7 +251,7 @@ function DrawingGame({ lesson }) {
       const avgSide = sides.reduce((a, b) => a + b, 0) / 4;
       const maxVariance = avgSide * 0.4;
       const maxSide = Math.max(...sides);
-      
+
       if (maxSide - minSide > maxVariance) {
         setValidationMessage('Try to make all 4 sides more similar in length!');
         return;
@@ -265,9 +265,10 @@ function DrawingGame({ lesson }) {
       const curr = i;
       const next = (i + 1) % currentShape.points;
 
+      // Vectors from the current vertex to the previous and next vertices
       const v1 = {
-        x: points[curr].x - points[prev].x,
-        y: points[curr].y - points[prev].y
+        x: points[prev].x - points[curr].x,
+        y: points[prev].y - points[curr].y
       };
       const v2 = {
         x: points[next].x - points[curr].x,
@@ -277,23 +278,18 @@ function DrawingGame({ lesson }) {
       const dot = v1.x * v2.x + v1.y * v2.y;
       const mag1 = Math.sqrt(v1.x * v1.x + v1.y * v1.y);
       const mag2 = Math.sqrt(v2.x * v2.x + v2.y * v2.y);
-      
+
       if (mag1 > 0 && mag2 > 0) {
-        const externalAngle = Math.acos(Math.max(-1, Math.min(1, dot / (mag1 * mag2))));
-        // For triangles, convert external angle to internal angle (internal = π - external)
-        // For other shapes, the external angle calculation works correctly
-        const angle = currentShape.name === 'triangle' 
-          ? Math.PI - externalAngle 
-          : externalAngle;
+        const angle = Math.acos(Math.max(-1, Math.min(1, dot / (mag1 * mag2))));
         angles.push(angle);
       }
     }
 
     // Check if angles are roughly correct (lenient tolerance for kids)
     const targetAngle = (currentShape.angles * Math.PI) / 180; // Convert to radians
-    const angleTolerance = Math.PI / 3; // 60 degrees tolerance (lenient)
-    const allAnglesGood = angles.every(angle => 
-      Math.abs(angle - targetAngle) <= angleTolerance || 
+    const angleTolerance = Math.PI / 2.5; // More lenient tolerance for kids (approx 72 degrees)
+    const allAnglesGood = angles.every(angle =>
+      Math.abs(angle - targetAngle) <= angleTolerance ||
       Math.abs(angle - (Math.PI * 2 - targetAngle)) <= angleTolerance
     );
 
@@ -304,7 +300,7 @@ function DrawingGame({ lesson }) {
 
     // If we got here, it's the correct shape!
     setValidationMessage(`Great job! You drew a ${currentShape.name}! ✓`);
-    
+
     if (!lessonCompleted && lesson) {
       setLessonCompleted(true);
       setTimeout(() => {
@@ -452,7 +448,7 @@ function DrawingGame({ lesson }) {
         >
           Clear
         </button>
-        
+
         {lessonCompleted && (
           <div style={{
             padding: '12px 24px',
