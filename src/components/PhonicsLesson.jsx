@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { speakPhoneme, speakBlend, speakWordSlowlyThenBlended, stopSpeech } from '../utils/phonicsTTS';
+import { speak as generalSpeak } from '../utils/textToSpeech';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
 import { useNavigate } from 'react-router-dom';
@@ -81,7 +82,8 @@ function PhonicsLesson({ lesson }) {
   const [selectedLetters, setSelectedLetters] = useState([]);
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
-  const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
+  const getNextLessonUrl = useDataStore(state => state.getNextLessonUrl);
+  const disableStudyMode = useDataStore(state => state.disableStudyMode);
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
@@ -114,21 +116,72 @@ function PhonicsLesson({ lesson }) {
   const config = LESSON_CONFIGS[phonicsLessonNumber] || LESSON_CONFIGS[1];
 
   useEffect(() => {
+    // Speak the instructions when the lesson loads
+    const speakInstructions = async () => {
+      try {
+        if (config.type === 'vowel-recognition' || config.type === 'consonant-recognition') {
+          await generalSpeak("Tap a letter to hear its sound!");
+        } else if (config.type === 'cv-blending' || config.type === 'vc-blending') {
+          await generalSpeak("Tap a blend to hear it!");
+        } else if (config.type === 'sound-to-letter' || config.type === 'initial-sound') {
+          await generalSpeak("Tap a picture to hear the starting sound!");
+        }
+      } catch (error) {
+        console.error('Error speaking instructions:', error);
+      }
+    };
+
+    // Add a small delay to ensure the component is fully rendered
+    const timer = setTimeout(speakInstructions, 500);
+
     return () => {
+      clearTimeout(timer);
       stopSpeech();
     };
-  }, [lesson?.id]);
+  }, [lesson?.id, config.type]);
+
+  // Effect to speak validation questions when they appear
+  useEffect(() => {
+    if (gameState === 'validation') {
+      const speakValidationQuestion = async () => {
+        let questionToSpeak = '';
+
+        if (config.type === 'vowel-recognition' || config.type === 'consonant-recognition') {
+          questionToSpeak = 'Which letter makes this sound?';
+        } else if (config.type === 'cv-blending' || config.type === 'vc-blending') {
+          questionToSpeak = 'Which blend matches this sound?';
+        } else if (config.type === 'sound-to-letter' || config.type === 'initial-sound') {
+          questionToSpeak = 'Which letter makes this sound?';
+        } else if (config.type === 'cvc-construction') {
+          questionToSpeak = 'Which word matches this spelling?';
+        } else {
+          questionToSpeak = 'Select the correct answer!';
+        }
+
+        try {
+          await generalSpeak(questionToSpeak);
+        } catch (error) {
+          console.error('Error speaking validation question:', error);
+        }
+      };
+
+      // Add a small delay to ensure the validation screen is rendered
+      const timer = setTimeout(speakValidationQuestion, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [gameState, config.type]);
 
   const handleLetterClick = async (letter) => {
     // Stop any current speech first
     stopSpeech();
-    await speakPhoneme(letter, { volume: 1.0, rate: 0.6, pitch: 1.2 });
+    await speakPhoneme(letter, { volume: 1.0, rate: 0.4, pitch: 1.2 }); // Slower rate for better clarity
   };
 
   const handleBlendClick = async (blend) => {
     // Stop any current speech first
     stopSpeech();
-    await speakWordSlowlyThenBlended(blend, { volume: 1.0, pitch: 1.2 });
+    await speakWordSlowlyThenBlended(blend, { volume: 1.0, rate: 0.5, pitch: 1.2 }); // Slower rate for better clarity
   };
 
   const handleContinue = () => {
@@ -147,14 +200,14 @@ function PhonicsLesson({ lesson }) {
         options = [answer, ...config.letters.filter(l => l !== answer)].slice(0, 3);
         options = options.sort(() => Math.random() - 0.5);
         setCorrectAnswer(answer);
-        setTimeout(() => speakPhoneme(answer, { volume: 1.0, rate: 0.7 }), 500);
+        setTimeout(() => speakPhoneme(answer, { volume: 1.0, rate: 0.4 }), 500); // Slower rate for better clarity
         break;
       case 'consonant-recognition':
         answer = config.letters[Math.floor(Math.random() * config.letters.length)];
         options = [answer, ...config.letters.filter(l => l !== answer)].slice(0, 3);
         options = options.sort(() => Math.random() - 0.5);
         setCorrectAnswer(answer);
-        setTimeout(() => speakPhoneme(answer, { volume: 1.0, rate: 0.7 }), 500);
+        setTimeout(() => speakPhoneme(answer, { volume: 1.0, rate: 0.4 }), 500); // Slower rate for better clarity
         break;
       case 'cv-blending':
         answer = config.blends[Math.floor(Math.random() * config.blends.length)];
@@ -176,7 +229,7 @@ function PhonicsLesson({ lesson }) {
         options = [item.letter, ...config.items.map(i => i.letter).filter(l => l !== item.letter)].slice(0, 3);
         options = options.sort(() => Math.random() - 0.5);
         setCorrectAnswer(answer);
-        setTimeout(() => speakPhoneme(item.letter), 500);
+        setTimeout(() => speakPhoneme(item.letter, { rate: 0.4 }), 500); // Slower rate for better clarity
         break;
       case 'initial-sound':
         const soundItem = config.items[Math.floor(Math.random() * config.items.length)];
@@ -184,7 +237,7 @@ function PhonicsLesson({ lesson }) {
         options = [soundItem.letter, ...config.items.map(i => i.letter).filter(l => l !== soundItem.letter)].slice(0, 3);
         options = options.sort(() => Math.random() - 0.5);
         setCorrectAnswer(answer);
-        setTimeout(() => speakPhoneme(soundItem.letter), 500);
+        setTimeout(() => speakPhoneme(soundItem.letter, { rate: 0.4 }), 500); // Slower rate for better clarity
         break;
       case 'cvc-construction':
         const word = config.words[Math.floor(Math.random() * config.words.length)];
@@ -329,9 +382,33 @@ function PhonicsLesson({ lesson }) {
       case 'consonant-recognition':
         return (
           <div style={{ textAlign: 'center', padding: '40px' }}>
-            <h2 style={{ fontSize: '32px', marginBottom: '40px', color: '#333' }}>
-              Tap a letter to hear its sound!
-            </h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
+              <h2 style={{ fontSize: '32px', color: '#333', margin: 0, marginRight: '20px' }}>
+                Tap a letter to hear its sound!
+              </h2>
+              <button
+                onClick={async () => {
+                  stopSpeech();
+                  await generalSpeak("Tap a letter to hear its sound!");
+                }}
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',
+                  backgroundColor: '#4CAF50',
+                  color: 'white',
+                  border: 'none',
+                  fontSize: '20px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                aria-label="Repeat instructions"
+              >
+                🔊
+              </button>
+            </div>
             <div style={{ 
               display: 'flex', 
               justifyContent: 'center', 
@@ -393,9 +470,33 @@ function PhonicsLesson({ lesson }) {
       case 'vc-blending':
         return (
           <div style={{ textAlign: 'center', padding: '40px' }}>
-            <h2 style={{ fontSize: '32px', marginBottom: '40px', color: '#333' }}>
-              Tap a blend to hear it!
-            </h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
+              <h2 style={{ fontSize: '32px', color: '#333', margin: 0, marginRight: '20px' }}>
+                Tap a blend to hear it!
+              </h2>
+              <button
+                onClick={async () => {
+                  stopSpeech();
+                  await generalSpeak("Tap a blend to hear it!");
+                }}
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',
+                  backgroundColor: '#2196F3',
+                  color: 'white',
+                  border: 'none',
+                  fontSize: '20px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                aria-label="Repeat instructions"
+              >
+                🔊
+              </button>
+            </div>
             <div style={{ 
               display: 'flex', 
               justifyContent: 'center', 
@@ -456,9 +557,33 @@ function PhonicsLesson({ lesson }) {
       case 'sound-to-letter':
         return (
           <div style={{ textAlign: 'center', padding: '40px' }}>
-            <h2 style={{ fontSize: '32px', marginBottom: '40px', color: '#333' }}>
-              Tap a picture to hear the starting sound!
-            </h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
+              <h2 style={{ fontSize: '32px', color: '#333', margin: 0, marginRight: '20px' }}>
+                Tap a picture to hear the starting sound!
+              </h2>
+              <button
+                onClick={async () => {
+                  stopSpeech();
+                  await generalSpeak("Tap a picture to hear the starting sound!");
+                }}
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',
+                  backgroundColor: '#FF9800',
+                  color: 'white',
+                  border: 'none',
+                  fontSize: '20px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                aria-label="Repeat instructions"
+              >
+                🔊
+              </button>
+            </div>
             <div style={{ 
               display: 'flex', 
               justifyContent: 'center', 
@@ -523,9 +648,33 @@ function PhonicsLesson({ lesson }) {
         const currentItem = config.items[Math.floor(Math.random() * config.items.length)];
         return (
           <div style={{ textAlign: 'center', padding: '40px' }}>
-            <h2 style={{ fontSize: '32px', marginBottom: '40px', color: '#333' }}>
-              Which sound does this start with?
-            </h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
+              <h2 style={{ fontSize: '32px', color: '#333', margin: 0, marginRight: '20px' }}>
+                Which sound does this start with?
+              </h2>
+              <button
+                onClick={async () => {
+                  stopSpeech();
+                  await generalSpeak("Which sound does this start with?");
+                }}
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',
+                  backgroundColor: '#FF9800',
+                  color: 'white',
+                  border: 'none',
+                  fontSize: '20px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                aria-label="Repeat instructions"
+              >
+                🔊
+              </button>
+            </div>
             <div style={{ marginBottom: '40px' }}>
               <div style={{ fontSize: '120px', marginBottom: '20px' }}>{currentItem.image}</div>
               <div style={{ fontSize: '40px', fontWeight: 'bold', color: '#333' }}>
@@ -556,9 +705,33 @@ function PhonicsLesson({ lesson }) {
         const wordLetters = currentWord.split('').sort(() => Math.random() - 0.5);
         return (
           <div style={{ textAlign: 'center', padding: '40px' }}>
-            <h2 style={{ fontSize: '32px', marginBottom: '40px', color: '#333' }}>
-              Build the word: {currentWord.toUpperCase()}
-            </h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
+              <h2 style={{ fontSize: '32px', color: '#333', margin: 0, marginRight: '20px' }}>
+                Build the word: {currentWord.toUpperCase()}
+              </h2>
+              <button
+                onClick={async () => {
+                  stopSpeech();
+                  await generalSpeak(`Build the word: ${currentWord.toUpperCase()}`);
+                }}
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  borderRadius: '50%',
+                  backgroundColor: '#9C27B0',
+                  color: 'white',
+                  border: 'none',
+                  fontSize: '20px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                aria-label="Repeat instructions"
+              >
+                🔊
+              </button>
+            </div>
             <div style={{ marginBottom: '30px' }}>
               <div style={{ fontSize: '60px', fontWeight: 'bold', color: '#333', marginBottom: '20px' }}>
                 {selectedLetters.join('').toUpperCase() || '_ _ _'}
@@ -645,13 +818,22 @@ function PhonicsLesson({ lesson }) {
   };
 
   const renderValidation = () => {
-    let questionText = 'Select the correct answer!';
+    let questionText = '';
     let displayItem = null;
 
-    if (config.type === 'sound-to-letter' || config.type === 'initial-sound') {
+    // Set appropriate question text based on activity type
+    if (config.type === 'vowel-recognition' || config.type === 'consonant-recognition') {
+      questionText = 'Which letter makes this sound?';
+    } else if (config.type === 'cv-blending' || config.type === 'vc-blending') {
+      questionText = 'Which blend matches this sound?';
+    } else if (config.type === 'sound-to-letter' || config.type === 'initial-sound') {
       const item = config.items.find(i => i.letter === correctAnswer) || config.items[0];
       displayItem = item;
       questionText = 'Which letter makes this sound?';
+    } else if (config.type === 'cvc-construction') {
+      questionText = 'Which word matches this spelling?';
+    } else {
+      questionText = 'Select the correct answer!';
     }
 
     const options = [];
@@ -675,9 +857,33 @@ function PhonicsLesson({ lesson }) {
 
     return (
       <div style={{ textAlign: 'center', padding: '40px' }}>
-        <h2 style={{ fontSize: '32px', marginBottom: '40px', color: '#333' }}>
-          {questionText}
-        </h2>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
+          <h2 style={{ fontSize: '32px', color: '#333', margin: 0, marginRight: '20px' }}>
+            {questionText}
+          </h2>
+          <button
+            onClick={async () => {
+              stopSpeech();
+              await generalSpeak(questionText);
+            }}
+            style={{
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
+              backgroundColor: '#9E9E9E',
+              color: 'white',
+              border: 'none',
+              fontSize: '20px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            aria-label="Repeat question"
+          >
+            🔊
+          </button>
+        </div>
         {displayItem && (
           <div style={{ marginBottom: '40px' }}>
             <div style={{ fontSize: '100px', marginBottom: '20px' }}>{displayItem.image}</div>
@@ -778,12 +984,11 @@ function PhonicsLesson({ lesson }) {
           </button>
           <button
             onClick={() => {
-              const nextLesson = getNextLessonAfter(lesson);
-              if (nextLesson && nextLesson.id) {
-                navigate(`/lesson/${nextLesson.id}`);
-              } else {
-                navigate(`/lessons?subjectId=${lesson.subjectId}`);
+              const { url, shouldDisableStudyMode } = getNextLessonUrl(lesson);
+              if (shouldDisableStudyMode) {
+                disableStudyMode();
               }
+              navigate(url);
             }}
             style={{
               padding: '15px 40px',

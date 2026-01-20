@@ -94,6 +94,42 @@ Tap the numbers to hear them! Then play the game! 🎮
     new Lesson({
       id: lessonId++,
       yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "The Adventures of Enid Blyton",
+      emoji: '🏞️',
+      content: `# The Adventures of Enid Blyton
+
+Enid Blyton was a famous author who wrote exciting adventure stories for children. Her books are known for their clear plots, brave characters, and thrilling mysteries.
+
+## Famous Series
+
+Some of her most famous book series include:
+- **The Famous Five**: A group of four children and their dog who solve mysteries during their school holidays.
+- **The Secret Seven**: A secret society of seven children who solve mysteries.
+- **Noddy**: Stories about a little wooden boy who lives in Toyland.
+
+## Adventure Writing
+
+Enid Blyton's stories are full of adventure! The characters often explore exciting places like secret islands, mysterious castles, and hidden passages. They work together to solve clues and catch villains.
+
+## Clear Dialogue
+
+The conversations between her characters are simple and easy to follow. This helps to move the story along and show the characters' personalities.
+
+## Watch a Story
+
+Here is a story from "The Famous Five":
+
+https://www.youtube.com/watch?v=k_K9y2h5iI0
+      `,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
       subjectId: 'maths',
       lessonNumber: 2,
       title: "Place Value to 100",
@@ -405,6 +441,82 @@ A pictogram uses pictures to show data!
 Click to create graphs and drag items! 🎮`,
       quizId: quizId++,
       assessmentType: 'graph-builder-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Adjectives",
+      emoji: '✨',
+      content: `# Adjectives ✨
+
+Let's learn about words that describe things!
+
+## What are Adjectives?
+
+Adjectives are words that describe nouns. Nouns are people, places, animals, or things. Adjectives tell us more about them!
+
+Adjectives answer questions like:
+- **What kind?** (e.g., *happy* child, *blue* car)
+- **How many?** (e.g., *two* apples, *many* stars)
+- **Which one?** (e.g., *this* book, *that* dog)
+
+## Examples of Adjectives
+
+- **Colors**: red, blue, green, yellow
+- **Sizes**: big, small, tiny, giant
+- **Shapes**: round, square, wavy, straight
+- **Feelings**: happy, sad, angry, excited
+- **Qualities**: kind, loud, soft, sharp
+
+## Sentences with Adjectives
+
+- The **fluffy** cat is sleeping. (Fluffy describes the cat)
+- She has **long**, **brown** hair. (Long and brown describe the hair)
+- I like **sweet** strawberries. (Sweet describes the strawberries)
+- The **tall** tree has **green** leaves. (Tall describes the tree, green describes the leaves)
+
+## Activity: Find the Adjectives!
+
+Read the sentences below and try to find the adjective!
+
+<!-- QUESTION_START -->
+The **fast** rabbit ran into the bush.
+What is the adjective in this sentence?
+<!-- OPTIONS -->
+rabbit|ran|fast|bush
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Fast" describes the rabbit!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+I saw a **beautiful** flower in the garden.
+What is the adjective in this sentence?
+<!-- OPTIONS -->
+saw|beautiful|flower|garden
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Beautiful" describes the flower!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+He ate a **delicious** apple.
+What is the adjective in this sentence?
+<!-- OPTIONS -->
+he|ate|delicious|apple
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Delicious" describes the apple!
+<!-- QUESTION_END -->
+      `,
+      quizId: null,
       categoryId: null,
     }),
 
@@ -2366,53 +2478,20 @@ If you try to return a value from a void function, the code will not compile. Vo
       emoji: '📋',
       content: `# Arduino Lesson 9: Working with Arrays
 
+> Arrays are like little trays that hold a row of matching items. They help us store LED pins, scores, or sensor readings without making 10 separate variables.
 
+## Step 1: Build a Tiny Tray
 
-## What are Arrays?
-
-
-
-Arrays are collections of variables of the same type, stored in contiguous memory locations.
-
-
-
-## Array Declaration
-
-
+Follow this recipe: **type → name → number of slots**.
 
 \`\`\`cpp
-
-dataType arrayName[size];
-
+int moodLevels[4] = {20, 40, 80, 100};
+// type   name      slots   ready-to-use values
 \`\`\`
 
-
-
-### Example
-
-\`\`\`cpp
-
-int numbers[5];        // Array of 5 integers
-
-float temps[10];       // Array of 10 floats
-
-\`\`\`
-
-
-
-## Array Initialization
-
-
-
-\`\`\`cpp
-
-int numbers[5] = {1, 2, 3, 4, 5};  // Initialize with values
-
-int pins[] = {2, 4, 7, 8};         // Size determined automatically
-
-\`\`\`
-
-
+Why it helps:
+- One word (moodLevels) now represents four different numbers.
+- Arduino keeps every slot together in memory, so loops can zoom through them.
 
 <!-- QUESTION_START -->
 How do you initialize an array with values: {10, 20, 30}?
@@ -2421,36 +2500,21 @@ int arr[3] = 10, 20, 30;|int arr[3] = {10, 20, 30};|int arr = {10, 20, 30};|int 
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-To initialize an array with values, you use curly braces: int arr[3] = {10, 20, 30}; The values are enclosed in curly braces and separated by commas.
+Use curly braces: int arr[3] = {10, 20, 30}; Values stay inside the braces and are separated by commas.
 <!-- QUESTION_END -->
 
-
-
-## Accessing Array Elements
-
-
-
-Arrays are zero-indexed (first element is at index 0).
-
-
+## Step 2: Use the Slots (Remember Index 0!)
 
 \`\`\`cpp
+int rewards[5] = {5, 10, 15, 20, 25};
 
-int numbers[5] = {10, 20, 30, 40, 50};
-
-// Index:        0   1   2   3   4
-
-
-
-int first = numbers[0];   // 10
-
-int third = numbers[2];    // 30
-
-int last = numbers[4];     // 50
-
+int firstPrize = rewards[0];   // 5
+int surprise  = rewards[2];   // 15
+int finale    = rewards[4];   // 25
 \`\`\`
 
-
+- Arrays count 0, 1, 2, 3, 4 (not 1, 2, 3...).
+- The highest index is always **size - 1**.
 
 <!-- QUESTION_START -->
 What is the index of the first element in an array?
@@ -2459,10 +2523,8 @@ What is the index of the first element in an array?
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-The first element in an array is at index 0. Arrays in Arduino (and most programming languages) are zero-indexed, meaning counting starts at 0, not 1.
+Counting starts at zero, so the very first element is index 0.
 <!-- QUESTION_END -->
-
-
 
 <!-- QUESTION_START -->
 If you declare "int numbers[5];", what is the valid index range?
@@ -2471,174 +2533,57 @@ If you declare "int numbers[5];", what is the valid index range?
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-For an array declared as int numbers[5], the valid indices are 0 to 4. The array has 5 elements, but they are numbered 0, 1, 2, 3, and 4.
+Five elements means the legal spots are 0, 1, 2, 3, and 4.
 <!-- QUESTION_END -->
 
-
-
-## Modifying Array Elements
-
-
+## Step 3: Change Values on the Fly
 
 \`\`\`cpp
+int scores[3] = {0, 0, 0};
 
-int numbers[5] = {1, 2, 3, 4, 5};
-
-numbers[0] = 100;  // Change first element to 100
-
-numbers[2] = 300;  // Change third element to 300
-
+scores[0] = 50;   // update first kid
+scores[1] += 10;  // add bonus points
 \`\`\`
 
-
-
-## Array Length
-
-
+Need the length later? Let Arduino calculate it:
 
 \`\`\`cpp
-
-int arraySize = sizeof(numbers) / sizeof(numbers[0]);
-
+int scoreCount = sizeof(scores) / sizeof(scores[0]);
 \`\`\`
 
-
-
-## Example: Multiple LEDs
-
-
+## Step 4: Let Loops Do the Heavy Lifting
 
 \`\`\`cpp
-
 int ledPins[] = {2, 4, 7, 8, 13};
-
-int numLEDs = 5;
-
-
+int total = sizeof(ledPins) / sizeof(ledPins[0]);
 
 void setup() {
-
-for (int i = 0; i < numLEDs; i++) {
-
-  pinMode(ledPins[i], OUTPUT);
-
+  for (int i = 0; i < total; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
 }
-
-}
-
-
 
 void loop() {
+  for (int i = 0; i < total; i++) {
+    digitalWrite(ledPins[i], HIGH);
+  }
+  delay(600);
 
-// Turn all LEDs on
-
-for (int i = 0; i < numLEDs; i++) {
-
-  digitalWrite(ledPins[i], HIGH);
-
+  for (int i = 0; i < total; i++) {
+    digitalWrite(ledPins[i], LOW);
+  }
+  delay(600);
 }
-
-delay(1000);
-
-
-
-// Turn all LEDs off
-
-for (int i = 0; i < numLEDs; i++) {
-
-  digitalWrite(ledPins[i], LOW);
-
-}
-
-delay(1000);
-
-}
-
 \`\`\`
 
+Loops love arrays because the index i can visit every slot without extra code.
 
+## Friendly Code Tips
 
-## Example: Storing Sensor Readings
-
-
-
-\`\`\`cpp
-
-int readings[10];
-
-int index = 0;
-
-
-
-void loop() {
-
-readings[index] = analogRead(A0);
-
-index++;
-
-
-
-if (index >= 10) {
-
-  index = 0;  // Reset to beginning
-
-}
-
-
-
-delay(100);
-
-}
-
-\`\`\`
-
-
-
-## Multidimensional Arrays
-
-
-
-Arrays can have multiple dimensions.
-
-
-
-\`\`\`cpp
-
-int matrix[3][4];  // 3 rows, 4 columns
-
-
-
-// Initialize
-
-int matrix[2][3] = {
-
-{1, 2, 3},
-
-{4, 5, 6}
-
-};
-
-\`\`\`
-
-
-
-## Array Bounds
-
-
-
-**Important**: Accessing elements outside array bounds causes undefined behavior!
-
-
-
-\`\`\`cpp
-
-int numbers[5] = {1, 2, 3, 4, 5};
-
-// numbers[5] is OUT OF BOUNDS! (valid indices are 0-4)
-
-\`\`\`
-
-
+1. **Stay inside the tray**: Going past array[size - 1] is like grabbing from thin air — the program can glitch.
+2. **Match types**: int arrays hold integers, float arrays hold decimals. Mixing types causes surprises.
+3. **Reuse the index**: When you already have for (int i = 0; ..., use i both to read and write: leds[i].
+4. **Give arrays a job**: pin lists, note patterns, top scores, or recent sensor readings are perfect array buddies.
 
 <!-- QUESTION_START -->
 What happens if you access numbers[5] when the array is declared as int numbers[5]?
@@ -2647,10 +2592,8 @@ It returns 0|It causes undefined behavior - could crash or return garbage|It aut
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-Accessing numbers[5] when the array size is 5 is out of bounds (valid indices are 0-4). This causes undefined behavior - it could crash the program, return garbage data, or cause other unpredictable results.
+numbers[5] is outside the tray (legal spots are 0-4), so the result is unpredictable.
 <!-- QUESTION_END -->
-
-
 
 <!-- QUESTION_START -->
 If you have "int leds[] = {2, 4, 7, 8};", what is the value of leds[2]?
@@ -2659,66 +2602,35 @@ If you have "int leds[] = {2, 4, 7, 8};", what is the value of leds[2]?
 <!-- CORRECT -->
 2
 <!-- EXPLANATION -->
-In the array {2, 4, 7, 8}, the indices are: leds[0] = 2, leds[1] = 4, leds[2] = 7, leds[3] = 8. So leds[2] equals 7.
+Index 2 points to the third slot, which holds the number 7.
 <!-- QUESTION_END -->
 
+## Mini Challenge: LED Runner
 
-
-## Example: LED Chaser
-
-
+Try keeping just four lines in mind:
 
 \`\`\`cpp
-
 int leds[] = {2, 3, 4, 5};
-
-int numLEDs = 4;
-
-
-
-void setup() {
-
-for (int i = 0; i < numLEDs; i++) {
-
-  pinMode(leds[i], OUTPUT);
-
-}
-
-}
-
-
+int count = sizeof(leds) / sizeof(leds[0]);
 
 void loop() {
-
-for (int i = 0; i < numLEDs; i++) {
-
-  digitalWrite(leds[i], HIGH);
-
-  delay(200);
-
-  digitalWrite(leds[i], LOW);
-
+  for (int i = 0; i < count; i++) {
+    digitalWrite(leds[i], HIGH);
+    delay(180);
+    digitalWrite(leds[i], LOW);
+  }
 }
-
-}
-
 \`\`\`
 
+- Make the delay 80 ms for a race, or 400 ms for a calm wave.
+- Bonus: add a second loop that runs **backwards** for a “ping-pong” light.
 
+## Quick Recap
 
-## Important Notes
-
-
-
-- Arrays are zero-indexed (first element is at index 0)
-
-- Array size must be known at compile time (or use dynamic allocation)
-
-- Be careful not to access elements outside array bounds
-
-- Use loops to iterate through arrays
-
-- Arrays can be passed to functions`,
+- Arrays keep matching data together.
+- Index numbers start at 0.
+- Loops + arrays = less typing and fewer bugs.
+- Always stay inside the tray!`,
       quizId: null,
       assessmentType: 'history-game',
       categoryId: null,
@@ -4304,6 +4216,496 @@ Many years later, Moses was born in Egypt. He was a brave leader who helped his 
       assessmentType: 'prophet-journey-game',
       categoryId: null,
     }),
+
+
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'art',
+      lessonNumber: 1,
+      title: "Art: Traffic Lights",
+      emoji: '🚦',
+      assessmentType: 'coloring-game',
+      content: `# Art: Traffic Lights 🚦
+
+Color the Traffic Lights correctly!
+
+## Instructions
+- **Top**: Red (Stop) 🔴
+- **Middle**: Amber (Wait) 🟡
+- **Bottom**: Green (Go) 🟢`,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'art',
+      lessonNumber: 2,
+      title: "Art: Colorful Flowers",
+      emoji: '🌸',
+      assessmentType: 'coloring-game',
+      content: `# Art: Colorful Flowers 🌸
+
+Let's color some beautiful flowers! Flowers come in many different colors and are very pretty.
+
+## About Flowers
+- Flowers have petals that come in many colors
+- The center of flowers often has a different color
+- Flowers have green stems and leaves
+- Flowers help plants make seeds to grow new plants
+
+## Instructions
+- Color flower petals YELLOW
+- Color flower centers BROWN
+- Color stems and leaves GREEN`,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'art',
+      lessonNumber: 3,
+      title: "Art: Farm Animals",
+      emoji: '🐄',
+      assessmentType: 'coloring-game',
+      content: `# Art: Farm Animals 🐄
+
+Let's color farm animals! Animals on farms have different colors and are very important.
+
+## About Farm Animals
+- Cows give us milk to drink
+- Pigs are pink and like to roll in mud
+- Chickens lay eggs for breakfast
+- Sheep have fluffy wool that keeps them warm
+
+## Instructions
+- Color the cow BLACK and WHITE
+- Color the pig PINK
+- Color the chicken YELLOW
+- Color the sheep WHITE`,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'art',
+      lessonNumber: 4,
+      title: "Art: Ocean Creatures",
+      emoji: '🐠',
+      assessmentType: 'coloring-game',
+      content: `# Art: Ocean Creatures 🐠
+
+Let's color creatures that live in the ocean! The ocean covers most of our Earth and is home to amazing animals.
+
+## Fun Facts About Ocean Creatures
+- Fish breathe underwater using special organs called gills
+- Starfish can regrow arms if they lose them - isn't that amazing?
+- Crabs have hard shells called exoskeletons that protect them
+- Seashells are the empty homes of sea snails and other mollusks
+- Dolphins and whales are mammals that live in the ocean
+- Coral reefs are made by tiny animals and are home to colorful fish
+
+## Different Ocean Zones
+- **Surface Zone**: Where sunlight reaches - many fish live here
+- **Twilight Zone**: Deeper and darker - some creatures make their own light
+- **Deep Zone**: Very dark and cold - special creatures live here
+
+## Instructions
+- Color the fish ORANGE - fish come in many bright colors in coral reefs
+- Color the starfish RED - many starfish are red or orange
+- Color the crab RED - crabs often have red or brown shells
+- Color the seashell PINK - many shells have pink or white colors
+
+## Ocean Conservation
+Oceans are very important! We should keep oceans clean by not throwing trash in them.`,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'art',
+      lessonNumber: 5,
+      title: "Art: Vehicles",
+      emoji: '🚗',
+      assessmentType: 'coloring-game',
+      content: `# Art: Vehicles 🚗
+
+Let's color different vehicles! Vehicles help us travel and carry things.
+
+## About Vehicles
+- Cars have wheels and take us places
+- Buses are big and carry many people
+- Trucks are strong and carry heavy things
+- Bicycles have two wheels and we pedal with our feet
+
+## Instructions
+- Color the car RED
+- Color the bus YELLOW
+- Color the truck BLUE
+- Color the bicycle BLACK`,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'art',
+      lessonNumber: 6,
+      title: "Art: Shapes and Patterns",
+      emoji: '🔷',
+      assessmentType: 'coloring-game',
+      content: `# Art: Shapes and Patterns 🔷
+
+Let's color different shapes and patterns! Shapes are everywhere around us.
+
+## About Shapes
+- Circles are round like balls
+- Squares have four equal sides
+- Triangles have three sides
+- Stars have many points
+- Hearts show love and friendship
+
+## Instructions
+- Color circles BLUE
+- Color squares RED
+- Color triangles GREEN
+- Color stars YELLOW
+- Color hearts PINK`,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "English: Long Vowel Sounds (ai/ay)",
+      emoji: '📖',
+      content: `# Long Vowel Sounds: ai and ay 📖
+
+Let's learn about long vowel sounds! When we see 'ai' or 'ay', they often make the long 'a' sound.
+
+## Examples:
+- **ai** words: rain, pain, brain, train, chain
+- **ay** words: say, day, play, stay, may
+
+## Practice:
+- Read these words aloud: rain, day, play, train, say
+- Can you think of other words with 'ai' or 'ay'?
+
+## Activity:
+Listen to the sounds and practice saying them out loud!`,
+      quizId: quizId++,
+      assessmentType: 'vowel-sound-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "English: Sight Words - Level 2",
+      emoji: '👁️',
+      content: `# Sight Words - Level 2 👁️
+
+Practice reading these important sight words! These words appear frequently in reading.
+
+## Words to learn:
+- said, some, could, every, first, also, two, here, then, look
+- more, other, use, many, way, went, after, again, once, upon
+
+## Practice:
+- Read each word out loud
+- Use the words in sentences
+- Try to spell the words after seeing them
+
+## Challenge:
+Can you use these words in your own sentences?`,
+      quizId: quizId++,
+      assessmentType: 'sight-word-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "English: Compound Words",
+      emoji: '📚',
+      content: `# Compound Words 📚
+
+Compound words are made when two smaller words join together to make a new word!
+
+## Examples:
+- sun + flower = sunflower
+- rain + bow = rainbow
+- cup + cake = cupcake
+- book + shelf = bookshelf
+- snow + man = snowman
+
+## More compound words:
+- bedroom, football, playground, butterfly, popcorn, notebook
+
+## Activity:
+Can you think of other compound words? What do you get when you combine "fire" and "truck"?`,
+      quizId: quizId++,
+      assessmentType: 'compound-word-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "English: Contractions",
+      emoji: '✍️',
+      content: `# Contractions ✍️
+
+Contractions are words made by combining two words and using an apostrophe (').
+
+## Common contractions:
+- I am = I'm
+- do not = don't
+- can not = can't
+- will not = won't
+- I have = I've
+- you are = you're
+
+## More examples:
+- we are = we're
+- they are = they're
+- is not = isn't
+- are not = aren't
+
+## Practice:
+Match the words to their contractions!`,
+      quizId: quizId++,
+      assessmentType: 'contraction-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 5,
+      title: "English: Adjectives",
+      emoji: '🌈',
+      content: `# Adjectives 🌈
+
+Adjectives describe nouns (people, places, or things). They tell us more about them!
+
+## Examples:
+- A **big** dog (describes the dog)
+- A **red** ball (describes the ball)
+- A **happy** child (describes the child)
+- **Tall** trees (describe the trees)
+
+## Common adjectives:
+- Size: big, small, tall, short, wide, narrow
+- Color: red, blue, green, yellow, purple
+- Feeling: happy, sad, angry, excited, tired
+- Quality: good, bad, nice, mean, soft, hard
+
+## Activity:
+Look around you. What adjectives can you use to describe things you see?`,
+      quizId: quizId++,
+      assessmentType: 'english-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 6,
+      title: "English: Synonyms and Antonyms",
+      emoji: '🔄',
+      content: `# Synonyms and Antonyms 🔄
+
+Synonyms are words with similar meanings. Antonyms are words with opposite meanings!
+
+## Synonyms (similar meanings):
+- Happy = Joyful, Cheerful, Glad
+- Big = Large, Huge, Giant
+- Smart = Clever, Bright, Intelligent
+- Pretty = Beautiful, Lovely, Nice
+
+## Antonyms (opposite meanings):
+- Hot ≠ Cold
+- Big ≠ Small
+- Up ≠ Down
+- Happy ≠ Sad
+- Fast ≠ Slow
+- Light ≠ Dark
+
+## Practice:
+- Can you think of synonyms for "angry"?
+- What's the antonym of "strong"?
+
+## Game:
+Match words with their synonyms and antonyms!`,
+      quizId: quizId++,
+      assessmentType: 'synonyms-antonyms-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 7,
+      title: "English: Parts of Speech",
+      emoji: '🏷️',
+      content: `# Parts of Speech 🏷️
+
+Words have different jobs in sentences! Let's learn about the main types.
+
+## Nouns (naming words):
+- Name people, places, or things
+- Examples: dog, school, Alice, mountain
+
+## Verbs (action words):
+- Show actions or states
+- Examples: run, jump, think, is, have
+
+## Adjectives (describing words):
+- Describe nouns
+- Examples: red, happy, big, soft
+
+## Practice:
+- Read sentences and identify the nouns
+- Find the verbs that show actions
+- Spot adjectives that describe things
+
+## Activity:
+Make sentences using a noun, verb, and adjective!`,
+      quizId: quizId++,
+      assessmentType: 'parts-of-speech-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 8,
+      title: "English: Sentence Building",
+      emoji: '🏗️',
+      content: `# Sentence Building 🏗️
+
+Build sentences with the right parts! Good sentences have a subject and a verb.
+
+## Sentence Parts:
+- **Subject**: Who or what the sentence is about
+- **Verb**: What the subject does or is
+- **Other**: More details about when, where, or how
+
+## Examples:
+- "The cat sleeps." (subject: cat, verb: sleeps)
+- "Children play outside." (subject: children, verb: play, detail: outside)
+- "Sarah reads a book." (subject: Sarah, verb: reads, object: book)
+
+## Types of Sentences:
+- **Statements**: Tell information ("Dogs bark.")
+- **Questions**: Ask something ("Do you like ice cream?")
+- **Commands**: Give directions ("Close the door.")
+- **Exclamations**: Show strong feeling ("Wow!")
+
+## Activity:
+Build your own sentences using different subjects and verbs!`,
+      quizId: quizId++,
+      assessmentType: 'sentence-building-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 9,
+      title: "English: Reading Comprehension",
+      emoji: '📖',
+      content: `# Reading Comprehension 📖
+
+Reading comprehension means understanding what you read! Let's practice.
+
+## Before Reading:
+- Look at the title and pictures
+- Predict what the story will be about
+
+## While Reading:
+- Pay attention to who, what, when, where, why
+- Visualize (create pictures in your mind)
+- Ask yourself: "Does this make sense?"
+
+## After Reading:
+- Summarize: What happened?
+- Connect: Does this relate to your life?
+- Evaluate: Did you enjoy it? Why?
+
+## Practice Skills:
+- Find the main idea
+- Identify important details
+- Understand character feelings
+- Predict what happens next
+
+## Activity:
+Read a short story and answer questions about it!`,
+      quizId: quizId++,
+      assessmentType: 'reading-comprehension-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'english',
+      lessonNumber: 10,
+      title: "English: Creative Writing",
+      emoji: '✍️',
+      content: `# Creative Writing ✍️
+
+Express your imagination through writing! Let's learn how to write creatively.
+
+## Story Elements:
+- **Characters**: Who is in your story?
+- **Setting**: Where and when does it happen?
+- **Problem**: What challenge do characters face?
+- **Solution**: How is the problem solved?
+
+## Writing Tips:
+- Start with "Once upon a time..." or "Have you ever wondered..."
+- Use descriptive words (adjectives) to paint pictures
+- Include dialogue (what characters say)
+- End with how everything turns out
+
+## Types of Writing:
+- **Stories**: Fiction with characters and plots
+- **Descriptions**: Paint pictures with words
+- **Instructions**: Tell how to do something
+- **Letters**: Share thoughts with others
+
+## Activity:
+Write a short story about an adventure!`,
+      quizId: quizId++,
+      assessmentType: 'creative-writing-game',
+      categoryId: null,
+    })
 
   ];
 }

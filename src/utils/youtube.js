@@ -97,8 +97,18 @@ export function getYouTubeEmbedUrl(videoId, options = {}) {
   params.append('modestbranding', '1');
   params.append('rel', '0'); // Don't show related videos from other channels
   
+  // Add origin for better compatibility in Electron
+  try {
+    if (typeof window !== 'undefined' && window.location) {
+      params.append('origin', window.location.origin);
+    }
+  } catch (e) {
+    // Ignore error in non-browser environments
+  }
+  
   const queryString = params.toString();
   return `https://www.youtube.com/embed/${videoId}${queryString ? '?' + queryString : ''}`;
+
 }
 
 

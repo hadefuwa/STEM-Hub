@@ -113,6 +113,38 @@ window.addEventListener('unhandledrejection', function(event) {
     const originalProtocol = originalLocation.protocol;
     const originalHost = originalLocation.host;
     const originalPathname = originalLocation.pathname;
+    const STANDARD_PROTOCOLS = ['http:', 'https:', 'file:'];
+    const URL_SCHEME_REGEX = /^[a-zA-Z][a-zA-Z\d+\-.]*:/;
+
+    function resolveRelativeUrl(targetUrl) {
+      const baseHref = originalHref || window.location.href || '';
+      if (!targetUrl) {
+        return baseHref;
+      }
+      if (URL_SCHEME_REGEX.test(targetUrl) || targetUrl.startsWith('//')) {
+        return targetUrl;
+      }
+      try {
+        return new URL(targetUrl, baseHref).href;
+      } catch (e) {
+        return targetUrl;
+      }
+    }
+
+    function navigateInternally(targetUrl) {
+      if (!targetUrl) {
+        return;
+      }
+      if (typeof originalAssign === 'function') {
+        originalAssign.call(originalLocation, targetUrl);
+        return;
+      }
+      if (typeof originalReplace === 'function') {
+        originalReplace.call(originalLocation, targetUrl);
+        return;
+      }
+      console.warn('No native navigation method available for', targetUrl);
+    }
     
     // Override location.protocol and location.host to help Blockly Games construct correct URLs
     // When Blockly Games does: window.location.protocol + "//" + window.location.host + window.location.pathname
@@ -208,6 +240,36 @@ window.addEventListener('unhandledrejection', function(event) {
     
     function handleNavigation(url) {
       if (typeof url !== 'string') {
+        return;
+      }
+
+      const currentProtocol = originalProtocol || window.location.protocol || '';
+      const usesStandardProtocol = STANDARD_PROTOCOLS.includes(currentProtocol);
+      const resolvedUrl = resolveRelativeUrl(url);
+      const hasScheme = URL_SCHEME_REGEX.test(url) || url.startsWith('//');
+      const isRelative = !hasScheme;
+      const baseHref = originalHref || window.location.href || '';
+      let currentOrigin = '';
+      try {
+        currentOrigin = new URL(baseHref).origin;
+      } catch (e) {
+        currentOrigin = '';
+      }
+      let targetOrigin = '';
+      let resolvedProtocol = '';
+      try {
+        const parsedTarget = new URL(resolvedUrl);
+        targetOrigin = parsedTarget.origin;
+        resolvedProtocol = parsedTarget.protocol;
+      } catch (e) {
+        targetOrigin = '';
+        resolvedProtocol = '';
+      }
+      const isSameOrigin = currentOrigin && targetOrigin && currentOrigin === targetOrigin;
+      const matchesFileProtocol = currentProtocol === 'file:' && resolvedProtocol === 'file:';
+
+      if (usesStandardProtocol && (isRelative || isSameOrigin || matchesFileProtocol)) {
+        navigateInternally(resolvedUrl);
         return;
       }
       

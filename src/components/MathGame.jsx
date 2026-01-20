@@ -88,6 +88,16 @@ const LESSON_CONFIGS = {
   40: { type: 'place-value-1000000', title: 'Place Value to 1,000,000', maxNumber: 999999 },
   // Year 6 - Negative Numbers
   41: { type: 'negative-numbers', title: 'Negative Numbers', maxAbsValue: 10 },
+  43: { type: 'counting-to-100', title: 'Counting to 100', numbers: Array.from({length: 100}, (_, i) => i + 1) },
+  44: { type: 'advanced-addition', title: 'Advanced Addition', maxSum: 100 },
+  45: { type: 'advanced-subtraction', title: 'Advanced Subtraction', maxDifference: 100 },
+  46: { type: 'telling-time', title: 'Telling Time' },
+  47: { type: 'money-math-counting-coins', title: 'Money Math: Counting Coins' },
+  48: { type: 'fractions-equivalents', title: 'Fractions: Equivalents' },
+  49: { type: 'geometry-3d-shapes', title: 'Geometry: 3D Shapes' },
+  50: { type: 'measurement-temperature', title: 'Measurement: Temperature' },
+  51: { type: 'patterns-what-comes-next', title: 'Patterns: What Comes Next?' },
+  52: { type: 'roman-numerals', title: 'Roman Numerals' },
 };
 
 // Scoring tiers
@@ -256,6 +266,18 @@ function MathGame({ lesson }) {
     if (title.includes('negative numbers')) return 41;
     if (title.includes('ratio and proportion') || title.includes('ratio')) return 30;
     if (title.includes('converting fractions/decimals/percentages') || (title.includes('converting') && title.includes('fractions') && title.includes('percentages'))) return 31; // Use fractions-decimals-percentages config
+
+    // New lessons
+    if (title.includes('counting to 100')) return 43;
+    if (title.includes('advanced addition')) return 44;
+    if (title.includes('advanced subtraction')) return 45;
+    if (title.includes('telling time')) return 46;
+    if (title.includes('money math: counting coins')) return 47;
+    if (title.includes('fractions: equivalents')) return 48;
+    if (title.includes('geometry: 3d shapes')) return 49;
+    if (title.includes('measurement: temperature')) return 50;
+    if (title.includes('patterns: what comes next?')) return 51;
+    if (title.includes('roman numerals')) return 52;
 
     // If no match found, log warning and use a safe default
     console.warn(`MathGame: No config found for lesson "${lesson.title}" (Year: ${yearId}, Lesson #: ${lesson.lessonNumber}). Using default config.`);
@@ -1432,6 +1454,85 @@ function MathGame({ lesson }) {
         }
         options = options.slice(0, 4);
       }
+    } else if (config.type === 'counting-to-100') {
+      const baseNumber = Math.floor(Math.random() * 99) + 1; // 1-99
+      answer = baseNumber + 1;
+      questionText = `What number comes after ${baseNumber}?`;
+      options = [answer, baseNumber, answer + 1, answer - 1].filter(n => n > 0 && n <= 100);
+    } else if (config.type === 'advanced-addition') {
+      const num1 = Math.floor(Math.random() * 50) + 1;
+      const num2 = Math.floor(Math.random() * 50) + 1;
+      answer = num1 + num2;
+      questionText = `What is ${num1} + ${num2}?`;
+      options = [answer, answer + 1, answer - 1, answer + 10].filter(n => n > 0 && n <= 100);
+    } else if (config.type === 'advanced-subtraction') {
+      const num1 = Math.floor(Math.random() * 50) + 51;
+      const num2 = Math.floor(Math.random() * 50) + 1;
+      answer = num1 - num2;
+      questionText = `What is ${num1} - ${num2}?`;
+      options = [answer, answer + 1, answer - 1, answer + 10].filter(n => n > 0 && n <= 100);
+    } else if (config.type === 'telling-time') {
+        const hour = Math.floor(Math.random() * 12) + 1;
+        const minute = Math.floor(Math.random() * 12) * 5;
+        answer = `${hour}:${minute.toString().padStart(2, '0')}`;
+        questionText = `What time is it?`;
+        const wrong1 = `${(hour % 12) + 1}:${minute.toString().padStart(2, '0')}`;
+        const wrong2 = `${hour}:${((minute + 5) % 60).toString().padStart(2, '0')}`;
+        const wrong3 = `${(hour + 1) % 12}:${((minute + 10) % 60).toString().padStart(2, '0')}`;
+        options = [answer, wrong1, wrong2, wrong3];
+    } else if (config.type === 'money-math-counting-coins') {
+        const coins = [1, 5, 10, 25];
+        let numCoins = Math.floor(Math.random() * 5) + 3;
+        let currentSum = 0;
+        let coinObjects = [];
+        for (let i = 0; i < numCoins; i++) {
+            const coin = coins[Math.floor(Math.random() * coins.length)];
+            currentSum += coin;
+            coinObjects.push(coin);
+        }
+        answer = currentSum;
+        questionText = `How much money is this?`;
+        options = [answer, answer + 1, answer - 1, answer + 5].filter(n => n > 0);
+    } else if (config.type === 'fractions-equivalents') {
+        const den = Math.floor(Math.random() * 4) + 2; // 2-5
+        const num = Math.floor(Math.random() * (den - 1)) + 1;
+        const multiplier = Math.floor(Math.random() * 3) + 2; // 2-4
+        const equivalentNum = num * multiplier;
+        const equivalentDen = den * multiplier;
+        answer = `${equivalentNum}/${equivalentDen}`;
+        questionText = `Which fraction is equivalent to ${num}/${den}?`;
+        options = [answer, `${num+1}/${den}`, `${num}/${den+1}`, `${equivalentNum+1}/${equivalentDen}`];
+    } else if (config.type === 'geometry-3d-shapes') {
+        const shapes = ['cube', 'sphere', 'cone', 'cylinder', 'pyramid'];
+        answer = shapes[Math.floor(Math.random() * shapes.length)];
+        questionText = `What shape is this?`;
+        options = [...shapes].sort(() => Math.random() - 0.5);
+    } else if (config.type === 'measurement-temperature') {
+        answer = Math.floor(Math.random() * 100);
+        questionText = `What is the temperature?`;
+        options = [answer, answer + 5, answer - 5, answer + 10].filter(n => n >= 0);
+    } else if (config.type === 'patterns-what-comes-next') {
+        const start = Math.floor(Math.random() * 10) + 1;
+        const step = Math.floor(Math.random() * 5) + 1;
+        const sequence = [start, start + step, start + 2 * step];
+        answer = start + 3 * step;
+        questionText = `What comes next in the pattern: ${sequence.join(', ')}, ...?`;
+        options = [answer, answer+step, answer-step, answer+1];
+    } else if (config.type === 'roman-numerals') {
+        const romanMap = { 1: 'I', 4: 'IV', 5: 'V', 9: 'IX', 10: 'X', 40: 'XL', 50: 'L', 90: 'XC', 100: 'C' };
+        const num = Math.floor(Math.random() * 20) + 1;
+        let roman = '';
+        let n = num;
+        const sortedKeys = Object.keys(romanMap).map(Number).sort((a,b) => b-a);
+        for(let key of sortedKeys) {
+            while(n >= key) {
+                roman += romanMap[key];
+                n -= key;
+            }
+        }
+        answer = num;
+        questionText = `What is ${roman} in numbers?`;
+        options = [num, num + 1, num - 1, num + 2].filter(n => n > 0);
     }
 
     // Ensure we have exactly 4 options, remove duplicates, and shuffle

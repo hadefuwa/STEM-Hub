@@ -76,93 +76,374 @@ Tap the numbers to hear them! Then play the game! 🎮
       yearId: 'reception',
       subjectId: 'english',
       lessonNumber: 1,
-      title: "Phonics: Letter Sounds",
-      emoji: '🔊',
-      content: `# Phonics: Letter Sounds 🔤
-
-
-
-Let's learn how letters make sounds!
-
-
-
-## Basic Letter Sounds
-
-
-
-**A** says /a/ like in apple 🍎
-
-**B** says /b/ like in ball ⚽
-
-**C** says /c/ like in cat 🐱
-
-**D** says /d/ like in dog 🐶
-
-**E** says /e/ like in egg 🥚
-
-
-
-## Blending Sounds
-
-
-
-When we put sounds together, we make words!
-
-
-
-- C-A-T = Cat 🐱
-
-- D-O-G = Dog 🐶
-
-- H-A-T = Hat 🎩
-
-- S-U-N = Sun ☀️
-
-
-
-## Practice
-
-
-
-Try reading these words:
-
-- M-A-T
-
-- P-A-T
-
-- B-A-T
-
-- R-A-T
-
-
-
-## Fun Activities
-
-
-
-- Sound out words together
-
-- Find objects that start with each sound
-
-- Play phonics games
-
-- Read simple books
-
-
-
-## Remember
-
-
-
-- Letters make sounds
-
-- Sounds blend to make words
-
-- Practice every day!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: null,
+      title: "Letter A",
+      emoji: '🅰️',
+      content: `# Letter A 🅰️\n\nLet's learn the sound of the letter A!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-a',
     }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Letter B",
+      emoji: '🅱️',
+      content: `# Letter B 🅱️\n\nLet's learn the sound of the letter B!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-b',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "Letter C",
+      emoji: '©️',
+      content: `# Letter C ©️\n\nLet's learn the sound of the letter C!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-c',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Letter D",
+      emoji: '🇩',
+      content: `# Letter D 🇩\n\nLet's learn the sound of the letter D!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-d',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 5,
+      title: "Letter E",
+      emoji: '🇪',
+      content: `# Letter E 🇪\n\nLet's learn the sound of the letter E!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-e',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 6,
+      title: "Letter F",
+      emoji: '🇫',
+      content: `# Letter F 🇫\n\nLet's learn the sound of the letter F!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-f',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 7,
+      title: "Letter G",
+      emoji: '🇬',
+      content: `# Letter G 🇬\n\nLet's learn the sound of the letter G!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-g',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 8,
+      title: "Letter H",
+      emoji: '🇭',
+      content: `# Letter H 🇭\n\nLet's learn the sound of the letter H!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-h',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 9,
+      title: "Letter I",
+      emoji: '🇮',
+      content: `# Letter I 🇮\n\nLet's learn the sound of the letter I!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-i',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 10,
+      title: "Letter J",
+      emoji: '🇯',
+      content: `# Letter J 🇯\n\nLet's learn the sound of the letter J!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-j',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 11,
+      title: "Letter K",
+      emoji: '🇰',
+      content: `# Letter K 🇰\n\nLet's learn the sound of the letter K!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-k',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 12,
+      title: "Letter L",
+      emoji: '🇱',
+      content: `# Letter L 🇱\n\nLet's learn the sound of the letter L!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-l',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 13,
+      title: "Letter M",
+      emoji: '🇲',
+      content: `# Letter M 🇲\n\nLet's learn the sound of the letter M!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-m',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 14,
+      title: "Letter N",
+      emoji: '🇳',
+      content: `# Letter N 🇳\n\nLet's learn the sound of the letter N!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-n',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 15,
+      title: "Letter O",
+      emoji: '🇴',
+      content: `# Letter O 🇴\n\nLet's learn the sound of the letter O!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-o',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 16,
+      title: "Letter P",
+      emoji: '🇵',
+      content: `# Letter P 🇵\n\nLet's learn the sound of the letter P!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-p',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 17,
+      title: "Letter Q",
+      emoji: '🇶',
+      content: `# Letter Q 🇶\n\nLet's learn the sound of the letter Q!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-q',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 18,
+      title: "Letter R",
+      emoji: '🇷',
+      content: `# Letter R 🇷\n\nLet's learn the sound of the letter R!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-r',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 19,
+      title: "Letter S",
+      emoji: '🇸',
+      content: `# Letter S 🇸\n\nLet's learn the sound of the letter S!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-s',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 20,
+      title: "Letter T",
+      emoji: '🇹',
+      content: `# Letter T 🇹\n\nLet's learn the sound of the letter T!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-t',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 21,
+      title: "Letter U",
+      emoji: '🇺',
+      content: `# Letter U 🇺\n\nLet's learn the sound of the letter U!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-u',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 22,
+      title: "Letter V",
+      emoji: '🇻',
+      content: `# Letter V 🇻\n\nLet's learn the sound of the letter V!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-v',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 23,
+      title: "Letter W",
+      emoji: '🇼',
+      content: `# Letter W 🇼\n\nLet's learn the sound of the letter W!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-w',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 24,
+      title: "Letter X",
+      emoji: '🇽',
+      content: `# Letter X 🇽\n\nLet's learn the sound of the letter X!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-x',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 25,
+      title: "Letter Y",
+      emoji: '🇾',
+      content: `# Letter Y 🇾\n\nLet's learn the sound of the letter Y!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-y',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 26,
+      title: "Letter Z",
+      emoji: '🇿',
+      content: `# Letter Z 🇿\n\nLet's learn the sound of the letter Z!\n\nTap the letter to hear the sound, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'letter-z',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 27,
+      title: "Words with 'a'",
+      emoji: '🍎',
+      content: `# Words with 'a' 🍎\n\nLet's read words with the 'a' sound!\n\nTap the words to hear them, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'cvc-a',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 28,
+      title: "Words with 'o'",
+      emoji: '🐙',
+      content: `# Words with 'o' 🐙\n\nLet's read words with the 'o' sound!\n\nTap the words to hear them, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'cvc-o',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 29,
+      title: "Words with 'i'",
+      emoji: '🍦',
+      content: `# Words with 'i' 🍦\n\nLet's read words with the 'i' sound!\n\nTap the words to hear them, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'cvc-i',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 30,
+      title: "Words with 'e'",
+      emoji: '🥚',
+      content: `# Words with 'e' 🥚\n\nLet's read words with the 'e' sound!\n\nTap the words to hear them, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'cvc-e',
+    }),
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'english',
+      lessonNumber: 31,
+      title: "Words with 'u'",
+      emoji: '☀️',
+      content: `# Words with 'u' ☀️\n\nLet's read words with the 'u' sound!\n\nTap the words to hear them, then play the game! 🎮`,
+      quizId: null,
+      assessmentType: 'phonics-game',
+      categoryId: 'cvc-u',
+    }),
+
 
     new Lesson({
       id: lessonId++,
@@ -871,6 +1152,28 @@ Improve your mouse precision and accuracy!
 You need at least **Bronze** (10 points) to progress to the next lesson!`,
       quizId: null,
       assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'reception',
+      subjectId: 'art',
+      lessonNumber: 1,
+      title: "Art: Fruit Colors",
+      emoji: '🍎',
+      assessmentType: 'coloring-game',
+      content: `# Art: Fruit Colors 🍎
+
+Let's color some fruit!
+
+## Instructions
+- **Apple**: Red 🔴
+- **Banana**: Yellow 🍌
+- **Leaf**: Green 🍃
+
+Can you make them look real?`,
+      quizId: null,
       categoryId: null,
     })
 

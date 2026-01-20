@@ -10,21 +10,29 @@ function YouTubeEmbed({ videoId, width = '100%', height = '400px', options = {} 
   // Build embed URL with options
   const embedUrl = (() => {
     const params = new URLSearchParams();
-    
+
     if (options.autoplay) params.append('autoplay', '1');
     if (options.loop) params.append('loop', '1');
     if (options.playlist) params.append('playlist', options.playlist);
     if (options.start) params.append('start', options.start);
     if (options.end) params.append('end', options.end);
     if (options.mute) params.append('mute', '1');
-    
+
     // Privacy and UX options
     params.append('modestbranding', '1');
     params.append('rel', '0'); // Don't show related videos from other channels
-    
+
+    // Use a consistent mock public origin for YouTube to bypass localhost blocks
+    const publicOrigin = 'https://homeschool-hub.io';
+    params.append('origin', publicOrigin);
+    params.append('enablejsapi', '1');
+    params.append('widget_referrer', publicOrigin);
+
     const queryString = params.toString();
-    return `https://www.youtube.com/embed/${videoId}${queryString ? '?' + queryString : ''}`;
+    // Use youtube-nocookie.com for better privacy and fewer blocks in Electron
+    return `https://www.youtube-nocookie.com/embed/${videoId}${queryString ? '?' + queryString : ''}`;
   })();
+
 
   return (
     <div style={{
@@ -41,8 +49,9 @@ function YouTubeEmbed({ videoId, width = '100%', height = '400px', options = {} 
         height={height}
         src={embedUrl}
         frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
+        referrerPolicy="strict-origin-when-cross-origin"
         style={{
           position: 'absolute',
           top: 0,

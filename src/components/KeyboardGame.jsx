@@ -46,7 +46,8 @@ const WASD_KEY_MAPPINGS = {
 function KeyboardGame({ lesson }) {
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
-  const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
+  const getNextLessonUrl = useDataStore(state => state.getNextLessonUrl);
+  const disableStudyMode = useDataStore(state => state.disableStudyMode);
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
@@ -674,12 +675,11 @@ function KeyboardGame({ lesson }) {
               <button
                 onClick={async () => {
                   await new Promise(resolve => setTimeout(resolve, 200));
-                  const nextLesson = getNextLessonAfter(lesson);
-                  if (nextLesson) {
-                    navigate(`/lesson/${nextLesson.id}`);
-                  } else {
-                    navigate(`/lessons?subjectId=${lesson.subjectId}`);
+                  const { url, shouldDisableStudyMode } = getNextLessonUrl(lesson);
+                  if (shouldDisableStudyMode) {
+                    disableStudyMode();
                   }
+                  navigate(url);
                 }}
                 style={{
                   padding: '12px 30px',

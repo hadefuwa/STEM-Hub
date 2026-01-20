@@ -453,6 +453,332 @@ Click points and drag to create graphs! 🎮`,
       assessmentType: 'graph-builder-game',
       categoryId: null,
     }),
+    
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "Fronted Adverbials",
+      emoji: '⏱️',
+      content: `# Fronted Adverbials ⏱️
+
+A **fronted adverbial** is a word or phrase at the start of a sentence that tells us more about the action. It can describe **When**, **Where**, or **How** something happened.
+
+## Examples
+- **When**: "Early this morning, I went for a run."
+- **Where**: "In the deep forest, a wolf howled."
+- **How**: "Without a sound, the cat crept into the room."
+
+## The Comma Rule ⚠️
+Always remember to put a **comma** after your fronted adverbial!
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which of these is a fronted adverbial of **TIME**?
+<!-- OPTIONS -->
+Under the bed|Suddenly|Late last night|Very quietly
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Late last night" tells us *when* the action happened.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Where does the comma go: "Slowly the door opened."
+<!-- OPTIONS -->
+Slowly, the door opened.|Slowly the, door opened.|Slowly the door, opened.|No comma needed
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+The comma goes after the fronted adverbial "Slowly".
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which sentence uses a fronted adverbial of **PLACE**?
+<!-- OPTIONS -->
+Carefully, I picked it up.|In the distance, I saw a light.|Soon, it was time to go.|Happily, they played together.
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"In the distance" tells us *where* the action happened.
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Expanded Noun Phrases",
+      emoji: '📝',
+      content: `# Expanded Noun Phrases 📝
+
+A noun phrase is just a noun (like *dog*) and any words that describe it. An **expanded** noun phrase uses adjectives and extra details to make the description much more interesting!
+
+## How to Expand a Noun
+1. **The noun**: house
+2. **Add adjectives**: the large, spooky house
+3. **Add a prepositional phrase**: the large, spooky house *on the hill*
+
+## Examples
+- The **tiny, colorful** butterfly.
+- A **brave, young** knight **with a shining sword**.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which is an expanded noun phrase?
+<!-- OPTIONS -->
+The cat|A big cat|The sleek, black cat with green eyes|The cat is black
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+This phrase uses multiple adjectives and extra detail ("with green eyes") to expand the noun.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Where should the comma go: "The tall narrow building..."
+<!-- OPTIONS -->
+The tall narrow, building|The tall, narrow building|The, tall narrow building|No comma needed
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+When using two adjectives to describe a noun, we put a comma between them.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Expand the noun 'forest' with more detail:
+<!-- OPTIONS -->
+The forest|A green forest|The ancient, dark forest filled with mystery|The forest is old
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+This option adds the most descriptive detail, making it a great expanded noun phrase.
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "Inverted Commas (Speech Marks)",
+      emoji: '💬',
+      content: `# Inverted Commas 💬
+
+Inverted commas (also called speech marks) are used to show exactly what someone is saying out loud.
+
+## The 3 Golden Rules
+1. **Surround the speech**: "Put marks at the start and end of the spoken words."
+2. **Capital Letter**: Always start the speech with a capital letter.
+3. **Punctuation inside**: Keep commas, full stops, or question marks *inside* the speech marks.
+
+## Example
+"What time is it?" asked Sarah.
+James replied, "It is nearly lunchtime."
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which sentence is punctuated correctly?
+<!-- OPTIONS -->
+"I'm tired, said Tom."|I'm tired, "said Tom."|"I'm tired," said Tom.|"I'm tired" said Tom.
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+The comma and speech marks are correctly placed to separate the speech from the rest of the sentence.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Where is the missing punctuation: "Can I play? asked Ben.
+<!-- OPTIONS -->
+Before Ben|Before asked|After?|After Ben
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+We need the closing inverted comma after the question mark: "Can I play?" asked Ben.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which word should have a capital letter: James said, "the cake is ready!"
+<!-- OPTIONS -->
+said|the|cake|ready
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The first word of direct speech always starts with a capital letter.
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Possessive Apostrophes (Plural)",
+      emoji: '🖋️',
+      content: `# Possessive Apostrophes (Plural) 🖋️
+
+We use apostrophes to show that something belongs to someone. In Year 4, we focus on **plural possession**.
+
+## The Rules
+1. **Regular Plurals (ending in -s)**: Put the apostrophe *after* the s.
+   - The boys' coats (lots of boys owning coats).
+   - The dogs' bowls (lots of dogs owning bowls).
+2. **Irregular Plurals (not ending in -s)**: Put 's at the end.
+   - The children's toys.
+   - The men's hats.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Where does the apostrophe go for: **The cars engines** (lots of cars)?
+<!-- OPTIONS -->
+car's|cars'|ca'rs|cars
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Because "cars" is a plural ending in 's', the apostrophe goes after the 's'.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which one is correct for **The people room**?
+<!-- OPTIONS -->
+peoples'|people's|peoples|peopl'es
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"People" is an irregular plural, so we add 's.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What does "The teacher's books" mean?
+<!-- OPTIONS -->
+Lots of teachers have books|One teacher has books|It's not about possession|The books belong to the classroom
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The 's shows that it is one teacher (singular possession). Plural would be "the teachers' books".
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 5,
+      title: "Standard English & Pronouns",
+      emoji: '🗣️',
+      content: `# Standard English & Pronouns 🗣️
+
+Standard English is the formal way of speaking and writing that everyone can understand clearly. We often focus on using the correct verb forms and pronouns.
+
+## Common Mistakes
+- **Incorrect**: "I were going to the shop." -> **Correct**: "I *was* going to the shop."
+- **Incorrect**: "He done his homework." -> **Correct**: "He *did* his homework."
+- **Incorrect**: "Them books are mine." -> **Correct**: "*Those* books are mine."
+
+## Pronouns for Cohesion
+Use pronouns (he, she, it, they, them) so you don't repeat names too much.
+*Instead of:* "Sarah saw the ball. Sarah picked the ball up."
+*Try:* "Sarah saw the ball. **She** picked **it** up."
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which sentence is Standard English?
+<!-- OPTIONS -->
+I done my work.|I did my work.|I has did my work.|I did my work good.
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"I did my work" is the correct Standard English verb form.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Replace the repeated names: "The boys went to the park. The boys played football."
+<!-- OPTIONS -->
+The boys went to the park. They played football.|The boys went to the park. Them played football.|The boys went to the park. He played football.|The boys went to the park. We played football.
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+"They" is the correct plural pronoun to replace "The boys".
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which is WRONG?
+<!-- OPTIONS -->
+We were happy.|You were happy.|They were happy.|I were happy.
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+The correct form is "I was happy."
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'english',
+      lessonNumber: 6,
+      title: "Year 4 Homophones",
+      emoji: '👂',
+      content: `# Year 4 Homophones 👂
+
+Homophones are words that **sound the same** but have **different meanings** and **different spellings**.
+
+## Key Year 4 Homophones
+- **Accept** (saying yes) vs **Except** (not including).
+- **Affect** (to change something) vs **Effect** (the result of a change).
+- **Scene** (part of a play) vs **Seen** (past tense of see).
+- **Fair** (it is right / a carnival) vs **Fare** (money for a bus or train).
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which word fits: "I can't ______ that gift."
+<!-- OPTIONS -->
+accept|except|axcept|acsept
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+"Accept" means to receive or agree to something.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which word fits: "Everyone went to the party ______ me."
+<!-- OPTIONS -->
+accept|except|axcept|acsept
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Except" means not including.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which word fits: "Have you ______ my new bike?"
+<!-- OPTIONS -->
+scene|seen|sene|sean
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Seen" is the past tense of see. "Scene" is like a movie scene.
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
 
     new Lesson({
       id: lessonId++,
@@ -7113,6 +7439,44 @@ Can you improve your score? Aim for Platinum!`,
       assessmentType: null,
       categoryId: null,
     }),
+
+
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year4',
+      subjectId: 'art',
+      lessonNumber: 1,
+      title: "Art: Flags of the World",
+      emoji: '🏳️',
+      assessmentType: 'coloring-game',
+      content: `# Art: Flags of the World 🏳️
+
+Let's learn about and color flags from around the world! Flags represent countries and have special meanings.
+
+## France 🇫🇷
+The French flag has three colors arranged in vertical stripes:
+- Blue stripe on the left
+- White stripe in the middle
+- Red stripe on the right
+This flag is called the "Tricolore" and was adopted in 1794.
+
+## Italy 🇮🇹
+The Italian flag also has three colors in vertical stripes:
+- Green stripe on the left
+- White stripe in the middle
+- Red stripe on the right
+Italy's flag was officially adopted in 1946.
+
+## Fun Facts
+- Flags often use colors that represent important aspects of a country
+- The order of colors can have special meaning
+- Flags are displayed with pride by people all around the world
+
+Color these flags carefully, paying attention to the correct order of colors!`,
+      quizId: null,
+      categoryId: null,
+    })
 
   ];
 }

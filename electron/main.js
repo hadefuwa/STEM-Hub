@@ -311,6 +311,9 @@ function createWindow() {
   Menu.setApplicationMenu(null);
   
   // Load the app
+  const chromeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36';
+  mainWindow.webContents.setUserAgent(chromeUA);
+
   if (isDev) {
     // Development: load from Vite dev server
     mainWindow.loadURL('http://localhost:3000');
@@ -702,79 +705,128 @@ function registerHTMLGameProtocol() {
   });
 }
 
-// Modify CSP headers to allow blockly:// protocol and be more permissive for frames
-function setupCSPModification() {
+// Modify headers and CSP for security and functionality
+function setupHeadersAndCSP() {
+  const isDev = !app.isPackaged;
+  const rendererUrl = isDev ? 'http://localhost:3000' : 'file://'; // Base for Referer
+
+  // Add Referer and User-Agent for YouTube requests
+  session.defaultSession.webRequest.onBeforeSendHeaders(
+    { urls: ['*://*.youtube.com/*', '*://*.googlevideo.com/*', '*://*.youtube-nocookie.com/*'] },
+    (details, callback) => {
+      const { url, resourceType, requestHeaders } = details;
+      const isYouTube = url.includes('youtube.com') || url.includes('youtube-nocookie.com') || url.includes('googlevideo.com');
+      
+      if (isYouTube) {
+        // Use a "public" looking domain only for the initial iframe load (subFrame)
+        // to bypass the domain restriction (Error 152-4)
+        const publicDomain = 'https://homeschool-hub.io';
+        
+        if (resourceType === 'subFrame') {
+          requestHeaders['Referer'] = publicDomain;
+          requestHeaders['Origin'] = publicDomain;
+          requestHeaders['Sec-Fetch-Site'] = 'cross-site';
+          requestHeaders['Sec-Fetch-Mode'] = 'navigate';
+          requestHeaders['Sec-Fetch-Dest'] = 'iframe';
+        } else if (resourceType === 'xhr' || resourceType === 'fetch') {
+          // For internal API calls (youtubei/v1/player), let YouTube's own context work.
+          // Don't force our fake public domain here as it triggers 403 Forbidden (CORS).
+          const originHost = url.includes('youtube-nocookie.com') ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com';
+          requestHeaders['Origin'] = originHost;
+          // Referer for API calls is usually the embed URL
+          if (!requestHeaders['Referer'] || !requestHeaders['Referer'].includes('youtube')) {
+             requestHeaders['Referer'] = `${originHost}/`;
+          }
+          requestHeaders['Sec-Fetch-Site'] = 'same-origin';
+          requestHeaders['Sec-Fetch-Mode'] = 'cors';
+          requestHeaders['Sec-Fetch-Dest'] = 'empty';
+        }
+
+        // Standard recent Chrome UA
+        requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36';
+
+        // Strip Electron signals
+        Object.keys(requestHeaders).forEach(key => {
+          if (key.toLowerCase().startsWith('sec-ch-ua')) {
+            delete requestHeaders[key];
+          }
+        });
+      }
+      
+      callback({ requestHeaders });
+    }
+  );
+
   session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
     const responseHeaders = { ...details.responseHeaders };
+    const { url } = details;
     
+    // Fix CORS for googlevideo.com which sometimes sends the wrong Access-Control-Allow-Origin
+    // (e.g., sends https://www.youtube.com when the origin is https://www.youtube-nocookie.com)
+    if (url.includes('googlevideo.com')) {
+      // Force allow the origin from which the request was made
+      responseHeaders['Access-Control-Allow-Origin'] = ['https://www.youtube-nocookie.com'];
+      responseHeaders['Access-Control-Allow-Methods'] = ['GET, POST, OPTIONS, HEAD'];
+      responseHeaders['Access-Control-Allow-Headers'] = ['Range, Content-Type, x-client-data, x-goog-visitor-id'];
+      responseHeaders['Access-Control-Expose-Headers'] = ['Content-Length, Content-Range, X-Content-Type-Options'];
+      responseHeaders['Access-Control-Allow-Credentials'] = ['true'];
+      
+      // Remove any conflicting CSP or frame-options from googlevideo
+      delete responseHeaders['x-frame-options'];
+      delete responseHeaders['content-security-policy'];
+    }
+
     // Modify CSP to allow custom protocols in frames and YouTube embeds
     if (responseHeaders['content-security-policy']) {
-      // Replace existing CSP with one that allows blockly://, Pyodide CDN, and YouTube
       responseHeaders['content-security-policy'] = [
         "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: file: blockly: htmlgame: https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://s.ytimg.com https://static.doubleclick.net https://www.google.com; " +
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://www.youtube-nocookie.com https://s.ytimg.com https://static.doubleclick.net https://www.google.com; " +
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
-        "connect-src 'self' https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://*.googlevideo.com https://*.doubleclick.net https://*.googleadservices.com https://*.google.com https://*.googleapis.com; " +
+        "connect-src 'self' https://www.gstatic.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://www.youtube.com https://www.youtube-nocookie.com https://*.googlevideo.com https://*.doubleclick.net https://*.googleadservices.com https://*.google.com https://*.googleapis.com; " +
         "img-src 'self' data: blob: file: https:; " +
         "font-src 'self' data: file: https://fonts.gstatic.com; " +
         "worker-src 'self' blob:; " +
         "child-src 'self' blob:; " +
-        "frame-src *; "  // Allow all sources in frames (needed for custom protocols and YouTube)
+        "frame-src *; "
       ];
     }
     
-    // Filter out problematic Permissions-Policy headers with unrecognized features
-    // This prevents console errors about 'ch-ua-form-factors' and similar features
+    // Filter out problematic Permissions-Policy headers
     if (responseHeaders['permissions-policy']) {
       const policies = responseHeaders['permissions-policy'];
       if (Array.isArray(policies)) {
-        // Filter out policies with unrecognized features
         responseHeaders['permissions-policy'] = policies.map(policy => {
           if (typeof policy === 'string') {
-            // Remove problematic features like 'ch-ua-form-factors'
-            const filtered = policy.split(',').filter(p => {
-              const trimmed = p.trim();
-              return !trimmed.includes('ch-ua-form-factors') && trimmed.length > 0;
-            }).join(',');
-            return filtered || undefined;
+            return policy.split(',').filter(p => !p.trim().includes('ch-ua-form-factors')).join(',');
           }
           return policy;
-        }).filter(p => p !== undefined && p !== '');
+        }).filter(p => p && p.trim().length > 0);
       } else if (typeof policies === 'string') {
-        // Handle single string policy
-        const filtered = policies.split(',').filter(p => {
-          const trimmed = p.trim();
-          return !trimmed.includes('ch-ua-form-factors') && trimmed.length > 0;
-        }).join(',');
-        if (filtered) {
-          responseHeaders['permissions-policy'] = [filtered];
-        } else {
-          delete responseHeaders['permissions-policy'];
-        }
+        const filtered = policies.split(',').filter(p => !p.trim().includes('ch-ua-form-factors')).join(',');
+        if (filtered) responseHeaders['permissions-policy'] = [filtered];
+        else delete responseHeaders['permissions-policy'];
       }
     }
-    
-    // Add Permissions-Policy header to suppress warnings about unrecognized features
-    // This allows YouTube embeds to work without console warnings
-    if (!responseHeaders['permissions-policy']) {
-      responseHeaders['permissions-policy'] = [];
-    }
-    // Add ch-ua-form-factors to suppress the warning (even if not fully supported)
-    const existingPermissions = Array.isArray(responseHeaders['permissions-policy']) 
-      ? responseHeaders['permissions-policy'][0] || ''
-      : responseHeaders['permissions-policy'] || '';
-    responseHeaders['permissions-policy'] = [
-      existingPermissions + (existingPermissions ? ', ' : '') + 'ch-ua-form-factors=*'
-    ];
     
     callback({ responseHeaders });
   });
 }
 
-app.whenReady().then(() => {
-  // Setup CSP modification to allow blockly:// protocol
-  setupCSPModification();
-  
+
+app.whenReady().then(async () => {
+  // Clear storage data to prevent any sticky "video unavailable" issues based on cached state
+  try {
+    await session.defaultSession.clearStorageData({
+      storages: ['cookies', 'localstorage', 'caches'],
+    });
+    console.log('Cleared storage data for fresh session');
+  } catch (error) {
+    console.error('Error clearing storage data:', error);
+  }
+
+  // Setup headers and CSP for YouTube and other external resources
+  setupHeadersAndCSP();
+
   // Register custom protocols before creating window
   registerBlocklyProtocol();
   registerHTMLGameProtocol();

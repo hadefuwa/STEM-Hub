@@ -28,8 +28,28 @@ function LessonsListScreen() {
   const getMedalForLesson = useDataStore(state => state.getMedalForLesson);
   const getUserId = useDataStore(state => state.getUserId);
   const userId = getUserId();
-  
+
+  // Study Mode
+  const studyMode = useDataStore(state => state.studyMode);
+  const enableStudyMode = useDataStore(state => state.enableStudyMode);
+  const disableStudyMode = useDataStore(state => state.disableStudyMode);
+  const getStudyModePlaylist = useDataStore(state => state.getStudyModePlaylist);
+
   const subject = subjectId ? Subject.getById(subjectId) : null;
+
+  const handleStartStudyMode = () => {
+    if (subjectId) {
+      const playlist = getStudyModePlaylist(subjectId);
+      if (playlist.length > 0) {
+        enableStudyMode(subjectId);
+        navigate(`/lesson/${playlist[0].id}`);
+      }
+    }
+  };
+
+  const handleExitStudyMode = () => {
+    disableStudyMode();
+  };
   
   // Removed auto-navigation - let users see the lessons list
 
@@ -63,6 +83,43 @@ function LessonsListScreen() {
           {subject.name} Lessons
         </h1>
       </div>
+
+      {/* Study Mode Banner */}
+      {studyMode.enabled && studyMode.subjectId === subjectId && (
+        <div style={{
+          marginBottom: '20px',
+          padding: '15px 20px',
+          backgroundColor: '#007bff',
+          color: 'white',
+          borderRadius: '8px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+        }}>
+          <div>
+            <strong style={{ fontSize: '16px' }}>📚 Study Mode Active</strong>
+            <p style={{ margin: '5px 0 0 0', fontSize: '14px', opacity: 0.9 }}>
+              Playing only uncompleted lessons
+            </p>
+          </div>
+          <button
+            onClick={handleExitStudyMode}
+            style={{
+              padding: '8px 16px',
+              backgroundColor: 'white',
+              color: '#007bff',
+              border: 'none',
+              borderRadius: '6px',
+              fontSize: '14px',
+              fontWeight: '600',
+              cursor: 'pointer',
+            }}
+          >
+            Exit Study Mode
+          </button>
+        </div>
+      )}
 
       {/* Progress Info */}
       {subjectProgress && (
@@ -109,6 +166,38 @@ function LessonsListScreen() {
           }}>
             {subjectProgress.completedCount} of {subjectProgress.totalLessons} lessons completed
           </p>
+
+          {/* Study Mode Button */}
+          {!studyMode.enabled && subjectProgress.completedCount < subjectProgress.totalLessons && (
+            <button
+              onClick={handleStartStudyMode}
+              style={{
+                marginTop: '15px',
+                padding: '12px 24px',
+                backgroundColor: '#28a745',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#218838';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#28a745';
+              }}
+            >
+              <span>📚</span>
+              <span>Start Study Mode</span>
+            </button>
+          )}
         </div>
       )}
 

@@ -10,6 +10,32 @@ import SVGCodeEditor from '../components/SVGCodeEditor';
 import PythonCodeEditor from '../components/PythonCodeEditor';
 import ArduinoCodeEditor from '../components/ArduinoCodeEditor';
 import PhonicsLesson from '../components/PhonicsLesson';
+import LetterALesson from '../components/LetterALesson';
+import LetterBLesson from '../components/LetterBLesson';
+import LetterCLesson from '../components/LetterCLesson';
+import LetterDLesson from '../components/LetterDLesson';
+import LetterELesson from '../components/LetterELesson';
+import LetterFLesson from '../components/LetterFLesson';
+import LetterGLesson from '../components/LetterGLesson';
+import LetterHLesson from '../components/LetterHLesson';
+import LetterILesson from '../components/LetterILesson';
+import LetterJLesson from '../components/LetterJLesson';
+import LetterKLesson from '../components/LetterKLesson';
+import LetterLLesson from '../components/LetterLLesson';
+import LetterMLesson from '../components/LetterMLesson';
+import LetterNLesson from '../components/LetterNLesson';
+import LetterOLesson from '../components/LetterOLesson';
+import LetterPLesson from '../components/LetterPLesson';
+import LetterQLesson from '../components/LetterQLesson';
+import LetterRLesson from '../components/LetterRLesson';
+import LetterSLesson from '../components/LetterSLesson';
+import LetterTLesson from '../components/LetterTLesson';
+import LetterULesson from '../components/LetterULesson';
+import LetterVLesson from '../components/LetterVLesson';
+import LetterWLesson from '../components/LetterWLesson';
+import LetterXLesson from '../components/LetterXLesson';
+import LetterYLesson from '../components/LetterYLesson';
+import LetterZLesson from '../components/LetterZLesson';
 import MathGame from '../components/MathGame';
 import InfoButton from '../components/InfoButton';
 import EdgeBounceHelpButton from '../components/EdgeBounceHelpButton';
@@ -54,6 +80,20 @@ import MakingHistoryGame from '../components/MakingHistoryGame';
 import HistoricalChangeGame from '../components/HistoricalChangeGame';
 import HTMLGameEmbed from '../components/HTMLGameEmbed';
 import DrawingCanvas from '../components/DrawingCanvas';
+import ColoringGame from '../components/ColoringGame';
+import PhonicsGame from '../components/PhonicsGame';
+import SentenceScrambleGame from '../components/SentenceScrambleGame';
+import MissingVowelGame from '../components/MissingVowelGame';
+import VowelSoundGame from '../components/VowelSoundGame';
+import SightWordGame from '../components/SightWordGame';
+import CompoundWordGame from '../components/CompoundWordGame';
+import ContractionGame from '../components/ContractionGame';
+import FigurativeLanguageGame from '../components/FigurativeLanguageGame';
+import PartsOfSpeechGame from '../components/PartsOfSpeechGame';
+import SynonymsAntonymsGame from '../components/SynonymsAntonymsGame';
+import SentenceBuildingGame from '../components/SentenceBuildingGame';
+import ReadingComprehensionGame from '../components/ReadingComprehensionGame';
+import CreativeWritingGame from '../components/CreativeWritingGame';
 import { Progress } from '../models/Progress';
 import { Year } from '../models/Year';
 
@@ -133,10 +173,15 @@ function LessonViewScreen() {
   const saveData = useDataStore(useCallback(state => state.saveData, []));
   const getNextLessonAfter = useDataStore(useCallback(state => state.getNextLessonAfter, []));
   const hasGoldOrPlatinum = useDataStore(useCallback(state => state.hasGoldOrPlatinum, []));
+  const getNextLessonUrl = useDataStore(useCallback(state => state.getNextLessonUrl, []));
+  const disableStudyMode = useDataStore(useCallback(state => state.disableStudyMode, []));
 
   // Track question answers for interactive lessons
   const [questionAnswers, setQuestionAnswers] = useState(new Map());
   const [hasIncorrectAnswer, setHasIncorrectAnswer] = useState(false);
+
+  // Track if user wants to play anyway (bypass gold/platinum block)
+  const [playAnyway, setPlayAnyway] = useState(false);
 
   // Extract total number of questions from lesson content
   const getTotalQuestions = useCallback(() => {
@@ -163,7 +208,7 @@ function LessonViewScreen() {
     lesson.title === 'Target Practice Game' ||
     lesson.title?.includes('TapTapTap')
   );
-  const hasGoldOrPlatinumForLesson = lesson && isTechnologyGame && hasGoldOrPlatinum(lesson.id);
+  const hasGoldOrPlatinumForLesson = lesson && isTechnologyGame && hasGoldOrPlatinum(lesson.id) && !playAnyway;
 
   // Track lesson access when component mounts (only once per lessonId)
   const hasTrackedRef = React.useRef(null);
@@ -173,9 +218,10 @@ function LessonViewScreen() {
       hasTrackedRef.current = lessonId;
       trackLessonAccess(lesson);
     }
-    // Reset question tracking when lesson changes
+    // Reset states when lesson changes
     setQuestionAnswers(new Map());
     setHasIncorrectAnswer(false);
+    setPlayAnyway(false);
   }, [lessonId]); // Only depend on lessonId, not lesson or trackLessonAccess
 
   // Handle question answer
@@ -219,15 +265,12 @@ function LessonViewScreen() {
       await addProgress(progress);
       await saveData();
 
-      // Navigate to next lesson or back to subject
-      const nextLesson = getNextLessonAfter(lesson);
-      if (nextLesson && nextLesson.id) {
-        navigate(`/lesson/${nextLesson.id}`);
-      } else if (lesson.subjectId) {
-        navigate(`/lessons?subjectId=${lesson.subjectId}`);
-      } else {
-        navigate('/');
+      // Navigate to next lesson (handles both Study Mode and normal mode)
+      const { url, shouldDisableStudyMode } = getNextLessonUrl(lesson);
+      if (shouldDisableStudyMode) {
+        disableStudyMode();
       }
+      navigate(url);
     } catch (error) {
       console.error('Error completing lesson:', error);
     }
@@ -343,22 +386,40 @@ function LessonViewScreen() {
             }}>
               Great job! You've mastered this game. Please continue with other lessons to keep learning.
             </p>
-            <button
-              onClick={() => navigate(`/lessons?subjectId=${lesson.subjectId}`)}
-              style={{
-                marginTop: '30px',
-                padding: '12px 24px',
-                backgroundColor: '#007bff',
-                color: 'white',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '16px',
-                fontWeight: '600',
-              }}
-            >
-              Back to Lessons
-            </button>
+            <div style={{ display: 'flex', gap: '15px' }}>
+              <button
+                onClick={() => navigate(`/lessons?subjectId=${lesson.subjectId}`)}
+                style={{
+                  marginTop: '30px',
+                  padding: '12px 24px',
+                  backgroundColor: '#6c757d',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                }}
+              >
+                Back to Lessons
+              </button>
+              <button
+                onClick={() => setPlayAnyway(true)}
+                style={{
+                  marginTop: '30px',
+                  padding: '12px 24px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                }}
+              >
+                Play Anyway
+              </button>
+            </div>
           </div>
         ) : lesson.title === 'Clicking Game' ? (
           <div style={{
@@ -545,6 +606,344 @@ function LessonViewScreen() {
               })()}
             </div>
           </div>
+        ) : lesson.assessmentType === 'letter-a-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterALesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-b-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterBLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-c-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterCLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-d-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterDLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-e-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterELesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-f-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterFLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-g-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterGLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-h-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterHLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-i-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterILesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-j-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterJLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-k-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterKLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-l-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterLLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-m-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterMLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-n-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterNLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-o-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterOLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-p-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterPLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-q-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterQLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-r-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterRLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-s-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterSLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-t-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterTLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-u-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterULesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-v-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterVLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-w-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterWLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-x-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterXLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-y-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterYLesson lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'letter-z-video-quiz' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            overflow: 'auto',
+          }}>
+            <LetterZLesson lesson={lesson} />
+          </div>
         ) : lesson.assessmentType === 'phonics' ? (
           <div style={{
             flex: 1,
@@ -616,6 +1015,21 @@ function LessonViewScreen() {
           }}>
             <ErrorBoundary>
               <MathGame lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.assessmentType === 'coloring-game' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <ColoringGame lesson={lesson} />
             </ErrorBoundary>
           </div>
         ) : lesson.assessmentType === 'renaissance-game' ? (
@@ -1497,7 +1911,200 @@ function LessonViewScreen() {
                 <HistoryGame lesson={lesson} />
               </ErrorBoundary>
             </div>
-          ) : (
+          ) : lesson.assessmentType === 'phonics-game' ? (
+            <div style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: 0,
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '8px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            }}>
+              <ErrorBoundary>
+                <PhonicsGame lesson={lesson} />
+              </ErrorBoundary>
+            </div>
+          ) : lesson.assessmentType === 'sentence-scramble-game' ? (
+            <div style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: 0,
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '8px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            }}>
+              <ErrorBoundary>
+                <SentenceScrambleGame lesson={lesson} />
+              </ErrorBoundary>
+            </div>
+          ) : lesson.assessmentType === 'missing-vowel-game' ? (
+            <div style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: 0,
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '8px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            }}>
+              <ErrorBoundary>
+                <MissingVowelGame lesson={lesson} />
+              </ErrorBoundary>
+            </div>
+          ) : lesson.assessmentType === 'figurative-language-game' ? (
+            <div style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: 0,
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '8px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            }}>
+              <ErrorBoundary>
+                <FigurativeLanguageGame lesson={lesson} />
+              </ErrorBoundary>
+            </div>
+          ) : lesson.assessmentType === 'parts-of-speech-game' ? (
+            <div style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: 0,
+              backgroundColor: 'white',
+              padding: '20px',
+              borderRadius: '8px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            }}>
+              <ErrorBoundary>
+                <PartsOfSpeechGame lesson={lesson} />
+              </ErrorBoundary>
+            </div>) : lesson.assessmentType === 'vowel-sound-game' ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}>
+                <ErrorBoundary>
+                  <VowelSoundGame lesson={lesson} />
+                </ErrorBoundary>
+              </div>
+            ) : lesson.assessmentType === 'sight-word-game' ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}>
+                <ErrorBoundary>
+                  <SightWordGame lesson={lesson} />
+                </ErrorBoundary>
+              </div>
+            ) : lesson.assessmentType === 'compound-word-game' ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}>
+                <ErrorBoundary>
+                  <CompoundWordGame lesson={lesson} />
+                </ErrorBoundary>
+              </div>
+            ) : lesson.assessmentType === 'synonyms-antonyms-game' ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}>
+                <ErrorBoundary>
+                  <SynonymsAntonymsGame lesson={lesson} />
+                </ErrorBoundary>
+              </div>
+            ) : lesson.assessmentType === 'sentence-building-game' ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}>
+                <ErrorBoundary>
+                  <SentenceBuildingGame lesson={lesson} />
+                </ErrorBoundary>
+              </div>
+            ) : lesson.assessmentType === 'reading-comprehension-game' ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}>
+                <ErrorBoundary>
+                  <ReadingComprehensionGame lesson={lesson} />
+                </ErrorBoundary>
+              </div>
+            ) : lesson.assessmentType === 'creative-writing-game' ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}>
+                <ErrorBoundary>
+                  <CreativeWritingGame lesson={lesson} />
+                </ErrorBoundary>
+              </div>
+            ) : lesson.assessmentType === 'contraction-game' ? (
+              <div style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0,
+                backgroundColor: 'white',
+                padding: '20px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              }}>
+                <ErrorBoundary>
+                  <ContractionGame lesson={lesson} />
+                </ErrorBoundary>
+              </div>) : (
             <div style={{
               flex: 1,
               minHeight: 0,

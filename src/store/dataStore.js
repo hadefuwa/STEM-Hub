@@ -355,6 +355,13 @@ const useDataStore = create((set, get) => ({
         name: 'Student',
         age: 5,
         createdAt: new Date(),
+        characterId: null,
+        avatarConfig: {
+          style: 'adventurer',
+          seed: 'Student',
+          backgroundColor: 'b6e3f4',
+        },
+        selectedAccessories: [],
       });
       state.data.students.push(defaultStudent);
       // Save asynchronously without blocking
@@ -362,6 +369,96 @@ const useDataStore = create((set, get) => ({
       return 1;
     }
     return state.data.students[0].id; // Return first student's ID
+  },
+
+  getStudentById: (studentId) => {
+    const state = get();
+    if (!state.data) return null;
+    return state.data.students.find(s => s.id === studentId) || null;
+  },
+
+  setStudentCharacter: async (studentId, characterId) => {
+    const state = get();
+    if (!state.data) return;
+
+    const studentIndex = state.data.students.findIndex(s => s.id === studentId);
+    if (studentIndex === -1) return;
+
+    const updatedStudent = state.data.students[studentIndex].copyWith({ characterId });
+    const updatedStudents = [...state.data.students];
+    updatedStudents[studentIndex] = updatedStudent;
+
+    const updatedData = new AppData({
+      students: updatedStudents,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: state.data.rewards || [],
+      purchases: state.data.purchases || [],
+      pointsActivities: state.data.pointsActivities || [],
+      pointsBalance: state.data.pointsBalance || 0,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
+  },
+
+  setStudentAvatar: async (studentId, avatarConfig) => {
+    const state = get();
+    if (!state.data) return;
+
+    const studentIndex = state.data.students.findIndex(s => s.id === studentId);
+    if (studentIndex === -1) return;
+
+    const updatedStudent = state.data.students[studentIndex].copyWith({ avatarConfig });
+    const updatedStudents = [...state.data.students];
+    updatedStudents[studentIndex] = updatedStudent;
+
+    const updatedData = new AppData({
+      students: updatedStudents,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: state.data.rewards || [],
+      purchases: state.data.purchases || [],
+      pointsActivities: state.data.pointsActivities || [],
+      pointsBalance: state.data.pointsBalance || 0,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
+  },
+
+  setStudentAccessories: async (studentId, selectedAccessories) => {
+    const state = get();
+    if (!state.data) return;
+
+    const studentIndex = state.data.students.findIndex(s => s.id === studentId);
+    if (studentIndex === -1) return;
+
+    const updatedStudent = state.data.students[studentIndex].copyWith({ selectedAccessories });
+    const updatedStudents = [...state.data.students];
+    updatedStudents[studentIndex] = updatedStudent;
+
+    const updatedData = new AppData({
+      students: updatedStudents,
+      lessons: state.data.lessons,
+      quizzes: state.data.quizzes,
+      progress: state.data.progress,
+      videoResources: state.data.videoResources,
+      rewards: state.data.rewards || [],
+      purchases: state.data.purchases || [],
+      pointsActivities: state.data.pointsActivities || [],
+      pointsBalance: state.data.pointsBalance || 0,
+      pointsSystemVersion: state.data.pointsSystemVersion || 0,
+    });
+
+    set({ data: updatedData });
+    await state.saveData();
   },
 
   // Lesson operations
@@ -1004,7 +1101,14 @@ const useDataStore = create((set, get) => ({
       else if (score >= 90) medal = 'Gold';
       else if (score >= 75) medal = 'Silver';
       else if (score >= 60) medal = 'Bronze';
+    } else {
+      // Default score-based thresholds for all other lessons (including English/Phonics)
+      if (score >= 95) medal = 'Platinum';
+      else if (score >= 85) medal = 'Gold';
+      else if (score >= 70) medal = 'Silver';
+      else medal = 'Bronze';
     }
+
 
     return medal;
   },

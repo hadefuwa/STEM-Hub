@@ -62,6 +62,75 @@ Multiplication is a quick way to add the same number many times!
     new Lesson({
       id: lessonId++,
       yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "The Wonderful World of Lewis Carroll",
+      emoji: '🎩',
+      content: `# The Wonderful World of Lewis Carroll
+
+Lewis Carroll was the pen name of Charles Lutwidge Dodgson, a mathematician who became famous for his wonderfully imaginative stories.
+
+## Alice's Adventures in Wonderland
+
+This is his most famous book, telling the story of a girl named Alice who falls down a rabbit hole into a fantasy world of peculiar creatures.
+
+## Wordplay and Nonsense
+
+Carroll loved to play with words and logic. His stories are full of puns, riddles, and poems that don't always make sense—and that's what makes them so much fun!
+
+For example, the Cheshire Cat slowly disappears until only its grin is left. This is a clever play on the phrase "to grin like a Cheshire cat."
+
+## Famous Characters
+
+- **Alice**: A curious and sensible girl who is often confused by Wonderland.
+- **The White Rabbit**: Always in a hurry, shouting, "Oh dear! Oh dear! I shall be too late!"
+- **The Mad Hatter**: A silly character who loves tea parties and riddles.
+- **The Queen of Hearts**: A grumpy queen who is always shouting, "Off with their heads!"
+
+## Watch a Clip
+
+Here is a clip from Disney's *Alice in Wonderland*:
+
+https://www.youtube.com/watch?v=Fov2sWE6G1I
+      `,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Parts of Speech Game",
+      emoji: '💡',
+      assessmentType: 'parts-of-speech-game',
+      content: `# Parts of Speech Game 💡
+
+Let's play a fun game to learn about parts of speech!
+
+## What are Parts of Speech?
+
+Words in sentences play different roles. These roles are called "Parts of Speech". The main ones are:
+- **Nouns**: Names of people, places, animals, or things. (e.g., *girl*, *park*, *dog*, *book*)
+- **Verbs**: Action words or state of being. (e.g., *run*, *eat*, *is*, *are*)
+- **Adjectives**: Words that describe nouns. (e.g., *big*, *happy*, *red*)
+- **Adverbs**: Words that describe verbs, adjectives, or other adverbs. They often end in -ly. (e.g., *quickly*, *very*, *loudly*)
+
+## How to Play
+
+- A sentence will appear on the screen.
+- A word in the sentence will be highlighted.
+- Choose the correct part of speech for the highlighted word from the options below.
+- See how many you can get right!
+      `,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
       subjectId: 'maths',
       lessonNumber: 2,
       title: "Division Basics",
@@ -2319,6 +2388,877 @@ You need at least **Bronze** (15 points) to progress!
 Can you beat your previous score? Aim for a higher medal!`,
       quizId: null,
       assessmentType: null,
+      categoryId: null,
+    }),
+
+    // English Lessons
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "Nouns - Naming Words",
+      emoji: '📝',
+      content: `# Nouns - Naming Words 📝
+
+Nouns are naming words! They help us name people, places, things, and ideas.
+
+## What is a Noun?
+
+A noun is a word that names:
+- **People**: teacher, boy, sister, doctor
+- **Places**: school, park, London, beach
+- **Things**: book, table, dog, apple
+- **Ideas**: happiness, love, freedom, courage
+
+## Types of Nouns
+
+### Common Nouns
+These are general names for things:
+- dog, city, car, book
+
+### Proper Nouns
+These are specific names and always start with a capital letter:
+- London, Sarah, Monday, Christmas
+
+## Examples
+
+**Common Nouns:**
+- I saw a **dog** in the **park**.
+- The **teacher** read a **book**.
+
+**Proper Nouns:**
+- **Sarah** lives in **London**.
+- We celebrate **Christmas** in **December**.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which word is a noun in this sentence: "The cat sat on the mat"?
+<!-- OPTIONS -->
+sat|the|cat|on
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Cat" is a noun because it names an animal (a thing). "Sat" is a verb, "the" is an article, and "on" is a preposition.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which of these is a proper noun?
+<!-- OPTIONS -->
+city|London|building|street
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"London" is a proper noun because it's the specific name of a city. Proper nouns always start with a capital letter!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+How many nouns are in this sentence: "My brother Tom plays football in the garden"?
+<!-- OPTIONS -->
+2|3|4|5
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+There are 3 nouns: "brother" (person), "Tom" (proper noun - person), and "football" (thing), and "garden" (place). That's 4 nouns total!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Nouns name people, places, things, or ideas
+- Proper nouns need capital letters
+- Every sentence has at least one noun!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Verbs - Action Words",
+      emoji: '🏃',
+      content: `# Verbs - Action Words 🏃
+
+Verbs are action words! They tell us what someone or something is doing.
+
+## What is a Verb?
+
+A verb is a word that shows:
+- **Actions**: run, jump, eat, write
+- **States of being**: is, am, are, was, were
+- **Mental actions**: think, know, believe, remember
+
+## Action Verbs
+
+Action verbs show physical movement:
+- The dog **runs** in the park.
+- She **kicks** the ball.
+- We **eat** lunch at noon.
+
+## Being Verbs
+
+These verbs don't show action but tell us about existence:
+- I **am** happy.
+- The sky **is** blue.
+- They **are** friends.
+
+## Past, Present, and Future
+
+Verbs change to show when something happens:
+
+**Present**: I **walk** to school.
+**Past**: I **walked** to school yesterday.
+**Future**: I **will walk** to school tomorrow.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which word is the verb in this sentence: "The boy jumps over the fence"?
+<!-- OPTIONS -->
+boy|jumps|over|fence
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Jumps" is the verb because it shows the action that the boy is doing!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which sentence is in the past tense?
+<!-- OPTIONS -->
+She walks to school|She walked to school|She will walk to school|She is walking to school
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"She walked to school" is in the past tense. The verb "walked" shows that the action already happened!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which of these is a being verb?
+<!-- OPTIONS -->
+run|jump|is|play
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Is" is a being verb. It doesn't show action but tells us about a state of existence!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Verbs are action words or being words
+- They tell us what's happening
+- Verbs can be past, present, or future!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "Adjectives - Describing Words",
+      emoji: '🎨',
+      content: `# Adjectives - Describing Words 🎨
+
+Adjectives are describing words! They make our writing more interesting by telling us about nouns.
+
+## What is an Adjective?
+
+An adjective describes a noun by telling us:
+- **How it looks**: big, small, red, shiny
+- **How it sounds**: loud, quiet, noisy
+- **How it feels**: soft, rough, smooth, cold
+- **How it tastes**: sweet, sour, delicious
+- **How many**: three, many, few, several
+
+## Using Adjectives
+
+Adjectives make sentences more interesting!
+
+**Without adjectives:**
+The dog ran across the field.
+
+**With adjectives:**
+The **big, brown** dog ran across the **green** field.
+
+## Multiple Adjectives
+
+You can use more than one adjective:
+- A **small, fluffy, white** rabbit
+- The **old, wooden, creaky** door
+- My **favorite, red, spotty** dress
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which word is an adjective in this sentence: "The small mouse ran quickly"?
+<!-- OPTIONS -->
+mouse|small|ran|quickly
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Small" is an adjective because it describes the mouse (a noun). "Quickly" is an adverb describing how the mouse ran!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+How many adjectives are in this sentence: "The brave, young knight rode his fast horse"?
+<!-- OPTIONS -->
+1|2|3|4
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+There are 3 adjectives: "brave" and "young" describe the knight, and "fast" describes the horse!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which sentence uses adjectives correctly?
+<!-- OPTIONS -->
+The cat soft sat on the mat|The soft cat sat on the mat|The cat sat soft on the mat|Soft the cat sat on the mat
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"The soft cat sat on the mat" is correct! The adjective "soft" comes before the noun "cat" it describes!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Adjectives describe nouns
+- They tell us what something is like
+- You can use more than one adjective!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Punctuation - Full Stops and Capital Letters",
+      emoji: '✏️',
+      content: `# Punctuation - Full Stops and Capital Letters ✏️
+
+Punctuation marks help us read and understand sentences!
+
+## Capital Letters
+
+We use capital letters:
+
+1. **At the start of a sentence**
+   - The sun is shining.
+   - We are going to the park.
+
+2. **For names of people and places** (Proper nouns)
+   - Sarah, Tom, London, France
+
+3. **For days and months**
+   - Monday, Tuesday, January, December
+
+4. **For the word "I"**
+   - I am happy.
+   - My friend and I play together.
+
+## Full Stops (.)
+
+We use a full stop:
+- At the end of a sentence
+- To show the sentence is complete
+
+**Example:**
+The cat sat on the mat.
+
+## Common Mistakes
+
+❌ the dog is brown
+✅ The dog is brown.
+
+❌ my name is sarah
+✅ My name is Sarah.
+
+❌ we live in london
+✅ We live in London.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which sentence uses capital letters correctly?
+<!-- OPTIONS -->
+my friend lives in london|My friend lives in London|My Friend Lives In London|my Friend lives in london
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"My friend lives in London" is correct! We use a capital letter at the start of the sentence and for the city name "London".
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What is missing from this sentence: "the boy ran home"
+<!-- OPTIONS -->
+Nothing|A full stop|A capital letter|Both a capital letter and full stop
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+The sentence needs a capital letter at the start (The) and a full stop at the end (home.)!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which word should have a capital letter: "i went to school on monday"
+<!-- OPTIONS -->
+Only "i"|Only "monday"|Both "i" and "monday"|Only "school"
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+Both "I" (always capitalized) and "Monday" (day of the week) need capital letters. The sentence should start with a capital too!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Start sentences with capital letters
+- End sentences with full stops
+- Use capitals for names and places!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 5,
+      title: "Question Marks and Exclamation Marks",
+      emoji: '❓',
+      content: `# Question Marks and Exclamation Marks ❓
+
+These punctuation marks show different types of sentences!
+
+## Question Marks (?)
+
+Use a question mark at the end of a question:
+- What is your name?
+- Where are you going?
+- Can I play too?
+
+**Question words:**
+Who, What, Where, When, Why, How, Can, Is, Are, Do, Does
+
+## Exclamation Marks (!)
+
+Use an exclamation mark to show:
+
+1. **Strong feelings**
+   - I'm so excited!
+   - That's amazing!
+
+2. **Surprise**
+   - Wow!
+   - I can't believe it!
+
+3. **Commands**
+   - Stop!
+   - Watch out!
+
+## Choosing the Right Punctuation
+
+- **Statement** (telling): The sky is blue.
+- **Question** (asking): Is the sky blue?
+- **Exclamation** (strong feeling): The sky is so blue!
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which sentence needs a question mark?
+<!-- OPTIONS -->
+I like ice cream|Where is my book|That's wonderful|Stop right now
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Where is my book" is asking a question, so it needs a question mark: "Where is my book?"
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which sentence uses an exclamation mark correctly?
+<!-- OPTIONS -->
+I went to school!|What time is it!|Watch out!|The cat is sleeping!
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Watch out!" is a command showing urgency, so it correctly uses an exclamation mark!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What punctuation mark goes at the end: "How old are you"
+<!-- OPTIONS -->
+Full stop (.)|Question mark (?)|Exclamation mark (!)|Comma (,)
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"How old are you?" is asking a question, so it needs a question mark!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Questions end with ?
+- Exclamations show strong feelings with !
+- Most sentences end with a full stop!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 6,
+      title: "Prefixes and Suffixes",
+      emoji: '🔤',
+      content: `# Prefixes and Suffixes 🔤
+
+Prefixes and suffixes are word parts we add to change meanings!
+
+## Prefixes
+
+A prefix goes at the **start** of a word:
+
+**un-** (means "not")
+- happy → **un**happy
+- lock → **un**lock
+
+**re-** (means "again")
+- do → **re**do
+- write → **re**write
+
+**dis-** (means "not" or "opposite")
+- like → **dis**like
+- agree → **dis**agree
+
+**pre-** (means "before")
+- view → **pre**view
+- heat → **pre**heat
+
+## Suffixes
+
+A suffix goes at the **end** of a word:
+
+**-ful** (means "full of")
+- care → care**ful**
+- hope → hope**ful**
+
+**-less** (means "without")
+- care → care**less**
+- hope → hope**less**
+
+**-ly** (makes adverbs)
+- quick → quick**ly**
+- slow → slow**ly**
+
+**-er** (for comparing)
+- fast → fast**er**
+- small → small**er**
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+What does the word "unhappy" mean?
+<!-- OPTIONS -->
+Very happy|Not happy|Happy again|Too happy
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The prefix "un-" means "not", so "unhappy" means "not happy"!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which word means "to write again"?
+<!-- OPTIONS -->
+unwrite|writing|rewrite|writer
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Rewrite" means "to write again". The prefix "re-" means "again"!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What does "careful" mean?
+<!-- OPTIONS -->
+Without care|Full of care|Not caring|Care again
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The suffix "-ful" means "full of", so "careful" means "full of care"!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Prefixes go at the start
+- Suffixes go at the end
+- They change word meanings!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 7,
+      title: "Conjunctions - Joining Words",
+      emoji: '🔗',
+      content: `# Conjunctions - Joining Words 🔗
+
+Conjunctions are joining words that connect parts of sentences!
+
+## Common Conjunctions
+
+**and** - adds information
+- I like apples **and** oranges.
+- The dog barked **and** wagged its tail.
+
+**but** - shows contrast
+- I'm tired **but** happy.
+- She wanted to play **but** it was raining.
+
+**or** - shows choice
+- Do you want tea **or** coffee?
+- We can go swimming **or** play in the park.
+
+**because** - gives a reason
+- I'm happy **because** it's sunny.
+- She wore a coat **because** it was cold.
+
+**so** - shows result
+- It was raining **so** we stayed inside.
+- I was hungry **so** I ate lunch.
+
+## Making Better Sentences
+
+**Two short sentences:**
+- I like pizza. I like pasta.
+
+**One better sentence:**
+- I like pizza **and** pasta.
+
+**Two short sentences:**
+- I want to go out. It's raining.
+
+**One better sentence:**
+- I want to go out **but** it's raining.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which conjunction shows a reason: "I wore a coat _____ it was cold"?
+<!-- OPTIONS -->
+and|but|or|because
+<!-- CORRECT -->
+3
+<!-- EXPLANATION -->
+"Because" shows the reason: "I wore a coat **because** it was cold."
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which sentence uses "but" correctly?
+<!-- OPTIONS -->
+I like cats but dogs|It's sunny but we went to the beach|I wanted to play but it was raining|She is happy but excited
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"I wanted to play but it was raining" is correct. "But" shows contrast between wanting to play and the rain stopping it!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Join these sentences: "It was cold. We went swimming." Which is best?
+<!-- OPTIONS -->
+It was cold and we went swimming|It was cold but we went swimming|It was cold or we went swimming|It was cold because we went swimming
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"It was cold **but** we went swimming" is best because "but" shows the contrast - we went swimming even though it was cold!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Conjunctions join words or sentences
+- Choose the right conjunction for the meaning
+- They make our writing flow better!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 8,
+      title: "Synonyms and Antonyms",
+      emoji: '📚',
+      content: `# Synonyms and Antonyms 📚
+
+Synonyms and antonyms help us choose better words!
+
+## Synonyms
+
+Synonyms are words that mean the **same** or nearly the same:
+
+- **happy** = glad, joyful, cheerful, delighted
+- **big** = large, huge, enormous, giant
+- **small** = little, tiny, minute
+- **walk** = stroll, march, stride
+- **said** = replied, answered, shouted, whispered
+
+## Using Synonyms
+
+**Boring:**
+The boy said, "Hello." The girl said, "Hi." The teacher said, "Good morning."
+
+**Better:**
+The boy **whispered**, "Hello." The girl **replied**, "Hi." The teacher **announced**, "Good morning."
+
+## Antonyms
+
+Antonyms are words that mean the **opposite**:
+
+- hot ↔ cold
+- happy ↔ sad
+- big ↔ small
+- fast ↔ slow
+- up ↔ down
+- day ↔ night
+- love ↔ hate
+- hard ↔ soft
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Which word is a synonym for "happy"?
+<!-- OPTIONS -->
+sad|joyful|angry|tired
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"Joyful" is a synonym for "happy" - they both mean feeling good and pleased!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What is the antonym of "hot"?
+<!-- OPTIONS -->
+warm|boiling|cold|heat
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Cold" is the opposite (antonym) of "hot"!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which pair are synonyms?
+<!-- OPTIONS -->
+big and small|happy and sad|walk and stroll|hot and cold
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"Walk" and "stroll" are synonyms - they both mean moving on foot at a gentle pace!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Synonyms mean the same
+- Antonyms mean the opposite
+- Using synonyms makes writing more interesting!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 9,
+      title: "Apostrophes for Contractions",
+      emoji: '✂️',
+      content: `# Apostrophes for Contractions ✂️
+
+Apostrophes help us shorten words by showing where letters are missing!
+
+## What is a Contraction?
+
+A contraction is two words joined together with some letters removed. An apostrophe (') shows where the letters were:
+
+**is**
+- I am → I'm
+- you are → you're
+- he is → he's
+- she is → she's
+- it is → it's
+- we are → we're
+- they are → they're
+
+**not**
+- do not → don't
+- cannot → can't
+- will not → won't
+- should not → shouldn't
+- would not → wouldn't
+
+**have/had/will**
+- I have → I've
+- I had → I'd
+- I will → I'll
+- they have → they've
+
+## Using Contractions
+
+Contractions make writing sound more natural:
+
+**Formal:** I am going to the park. I will not be long.
+**Casual:** I'm going to the park. I won't be long.
+
+## Common Mistakes
+
+❌ its' (wrong)
+✅ it's (it is) or its (belonging to it)
+
+❌ your'e (wrong)
+✅ you're (you are)
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+What is the contraction for "I am"?
+<!-- OPTIONS -->
+I'am|Im'|I'm|Im
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"I'm" is correct! The apostrophe replaces the 'a' in "I am".
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which contraction means "they are"?
+<!-- OPTIONS -->
+there|their|they're|theyre
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"They're" means "they are". The apostrophe shows where the 'a' is missing!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What does "won't" mean?
+<!-- OPTIONS -->
+will not|want|won it|would not
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+"Won't" is the contraction for "will not". It's unusual because it doesn't look like the original words!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Apostrophes show missing letters
+- They make two words into one
+- Don't confuse contractions with possessives!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'english',
+      lessonNumber: 10,
+      title: "Commas in Lists",
+      emoji: '📋',
+      content: `# Commas in Lists 📋
+
+Commas help us separate items in a list!
+
+## Using Commas in Lists
+
+When we list three or more things, we use commas to separate them:
+
+**Without commas (confusing):**
+I bought apples oranges bananas and grapes.
+
+**With commas (clear):**
+I bought apples, oranges, bananas and grapes.
+
+## The Pattern
+
+item, item, item and item
+
+**Examples:**
+- I like red, blue, green and yellow.
+- The zoo has lions, tigers, elephants and monkeys.
+- We need flour, eggs, sugar and butter.
+
+## Lists of Actions
+
+We can also list actions:
+- She jumped, skipped, ran and hopped.
+- He opened the door, walked inside, sat down and smiled.
+
+## Lists of Adjectives
+
+We can list describing words:
+- The dog was big, fluffy, brown and friendly.
+- It was a cold, wet, windy and miserable day.
+
+## Common Mistakes
+
+❌ I like cats, and dogs, and rabbits. (too many "and"s)
+✅ I like cats, dogs and rabbits.
+
+❌ We need eggs milk, and bread (comma in wrong place)
+✅ We need eggs, milk and bread.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+Where should the commas go: "I packed a hat gloves a scarf and boots"?
+<!-- OPTIONS -->
+I packed a hat gloves, a scarf, and boots|I packed a hat, gloves, a scarf and boots|I packed, a hat, gloves, a scarf and boots|I packed a hat gloves a scarf, and boots
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+"I packed a hat, gloves, a scarf and boots" is correct! Commas separate the items, and we use "and" before the last item.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which sentence uses commas correctly?
+<!-- OPTIONS -->
+The cake was sweet, delicious, and, moist|The cake was sweet delicious and moist|The cake was sweet, delicious and moist|The cake was, sweet, delicious and moist
+<!-- CORRECT -->
+2
+<!-- EXPLANATION -->
+"The cake was sweet, delicious and moist" is correct! We separate the adjectives with commas.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+How many commas are needed: "We saw elephants giraffes zebras and lions"?
+<!-- OPTIONS -->
+1|2|3|4
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+We need 2 commas: "We saw elephants, giraffes, zebras and lions." We don't put a comma before "and"!
+<!-- QUESTION_END -->
+
+## Remember
+
+- Use commas to separate items in a list
+- Put "and" before the last item
+- Don't put a comma before "and" at the end!`,
+      quizId: quizId++,
+      assessmentType: 'history-game',
       categoryId: null,
     }),
 

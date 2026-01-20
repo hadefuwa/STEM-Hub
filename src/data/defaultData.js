@@ -9,6 +9,7 @@ import { getYear3Lessons } from './lessons/year3Lessons.js';
 import { getYear4Lessons } from './lessons/year4Lessons.js';
 import { getYear5Lessons } from './lessons/year5Lessons.js';
 import { getYear6Lessons } from './lessons/year6Lessons.js';
+import { getNewMathsLessons } from './lessons/newMathsLessons.js';
 import { getArtLessons } from './lessons/artLessons.js';
 import { getDefaultQuizzes } from './defaultQuizzes.js';
 
@@ -82,6 +83,12 @@ function getDefaultLessons() {
   lessonId += year6Lessons.length;
   quizId += year6Lessons.filter(l => l.quizId !== null).length;
 
+  // New maths lessons
+  const newMathsLessons = getNewMathsLessons(lessonId, quizId);
+  allLessons.push(...newMathsLessons);
+  lessonId += newMathsLessons.length;
+  quizId += newMathsLessons.filter(l => l.quizId !== null).length;
+
   // Art lessons (all years)
   const artLessons = getArtLessons(lessonId);
   allLessons.push(...artLessons);
@@ -112,6 +119,15 @@ function getDefaultRewards() {
       name: '🍬 Have a sweet',
       description: 'Enjoy a sweet treat!',
       cost: 100,
+      imageUrl: null,
+      isActive: true,
+      createdAt: new Date().toISOString(),
+    },
+    {
+      id: 3,
+      name: '💷 £1 Reward',
+      description: 'A £1 reward for your hard work!',
+      cost: 1500,
       imageUrl: null,
       isActive: true,
       createdAt: new Date().toISOString(),

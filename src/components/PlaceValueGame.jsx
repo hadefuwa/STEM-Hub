@@ -95,12 +95,12 @@ function PlaceValueGame({ lesson }) {
     setSelectedDigits(places);
     
     // Create available digits - position them in a grid at the bottom
-    const digitsPerRow = 4;
-    const digitSize = 80;
-    const digitSpacing = 20;
-    const startX = 100;
-    const startY = 300; // Position digits below place value boxes
-    
+    const digitsPerRow = 5;
+    const digitSize = 60;
+    const digitSpacing = 15;
+    const startX = 80;
+    const startY = 250; // Position digits below place value boxes
+
     const digits = problem.digits.map((digit, idx) => ({
       id: `digit-${idx}`,
       value: digit,
@@ -129,8 +129,13 @@ function PlaceValueGame({ lesson }) {
     const digitSize = 60;
     const x = e.clientX - rect.left - dragStartPos.current.x;
     const y = e.clientY - rect.top - dragStartPos.current.y;
+
+    // Constrain the digit within the game area with some padding
+    const constrainedX = Math.max(10, Math.min(x, rect.width - digitSize - 10));
+    const constrainedY = Math.max(10, Math.min(y, rect.height - digitSize - 10));
+
     setAvailableDigits(prev => prev.map(d =>
-      d.id === dragDigit.id ? { ...d, x: Math.max(0, Math.min(x, rect.width - digitSize)), y: Math.max(0, Math.min(y, rect.height - digitSize)) } : d
+      d.id === dragDigit.id ? { ...d, x: constrainedX, y: constrainedY } : d
     ));
   };
 
@@ -220,7 +225,29 @@ function PlaceValueGame({ lesson }) {
         lessonNumber: lesson.lessonNumber,
         isCompleted: true,
         completedAt: new Date(),
-        score: score + 50,
+        score: score + 50,  // Bonus points for completing all levels
+      });
+      await addProgress(progress);
+      saveData();
+    }
+  };
+
+  // Function to save progress during gameplay
+  const saveCurrentProgress = async () => {
+    if (lesson) {
+      const userId = getUserId();
+      const progressId = getNextProgressId();
+      const progress = new Progress({
+        id: progressId,
+        studentId: userId,
+        activityType: 'Lesson',
+        activityId: lesson.id,
+        yearId: lesson.yearId,
+        subjectId: lesson.subjectId,
+        lessonNumber: lesson.lessonNumber,
+        isCompleted: false,  // Not fully completed yet
+        completedAt: null,
+        score: score,  // Current score without bonus
       });
       await addProgress(progress);
       saveData();
@@ -232,6 +259,36 @@ function PlaceValueGame({ lesson }) {
     return sum + (slot.value || 0) * Math.pow(10, slot.place);
   }, 0);
 
+  // Reset function to restart the current level
+  const resetGame = () => {
+    const problem = problems[level - 1] || problems[0];
+    setTargetNumber(problem.number);
+    setMaxPlace(problem.places);
+
+    // Create place value slots
+    const places = [];
+    for (let i = problem.places - 1; i >= 0; i--) {
+      places.push({ place: i, value: null });
+    }
+    setSelectedDigits(places);
+
+    // Create available digits - position them in a grid at the bottom
+    const digitsPerRow = 5;
+    const digitSize = 60;
+    const digitSpacing = 15;
+    const startX = 80;
+    const startY = 250; // Position digits below place value boxes
+
+    const digits = problem.digits.map((digit, idx) => ({
+      id: `digit-${idx}`,
+      value: digit,
+      x: startX + (idx % digitsPerRow) * (digitSize + digitSpacing),
+      y: startY + Math.floor(idx / digitsPerRow) * (digitSize + digitSpacing),
+    }));
+    setAvailableDigits(digits);
+    setShowSuccess(false);
+  };
+
   return (
     <div style={{ padding: '20px', height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div style={{ marginBottom: '20px', textAlign: 'center' }}>
@@ -242,9 +299,24 @@ function PlaceValueGame({ lesson }) {
         <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#2196F3', marginBottom: '10px' }}>
           Build the number: {targetNumber}
         </div>
-        <div style={{ fontSize: '18px', color: '#666' }}>
+        <div style={{ fontSize: '18px', color: '#666', marginBottom: '10px' }}>
           Drag digits to the place value boxes!
         </div>
+        <button
+          onClick={resetGame}
+          style={{
+            padding: '10px 20px',
+            fontSize: '16px',
+            backgroundColor: '#f44336',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            marginRight: '10px'
+          }}
+        >
+          Reset
+        </button>
       </div>
 
       <div
@@ -267,11 +339,11 @@ function PlaceValueGame({ lesson }) {
         onMouseLeave={handleMouseUp}
       >
         {/* Place Value Boxes - Top Section */}
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          gap: '25px', 
-          marginBottom: '50px', 
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '15px',
+          marginBottom: '40px',
           flexWrap: 'wrap',
           paddingTop: '20px',
         }}>
@@ -280,8 +352,8 @@ function PlaceValueGame({ lesson }) {
               key={slot.place}
               ref={el => placeValueRefs.current[slot.place] = el}
               style={{
-                width: '120px',
-                height: '140px',
+                width: '90px',
+                height: '110px',
                 border: '3px dashed #2196F3',
                 borderRadius: '12px',
                 backgroundColor: slot.value !== null ? '#d4edda' : '#fff',
@@ -293,10 +365,10 @@ function PlaceValueGame({ lesson }) {
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               }}
             >
-              <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px', fontWeight: 'bold' }}>
+              <div style={{ fontSize: '12px', color: '#666', marginBottom: '6px', fontWeight: 'bold' }}>
                 {placeNames[slot.place]}
               </div>
-              <div style={{ fontSize: '48px', fontWeight: 'bold', color: '#333' }}>
+              <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#333' }}>
                 {slot.value !== null ? slot.value : '?'}
               </div>
             </div>
@@ -304,13 +376,13 @@ function PlaceValueGame({ lesson }) {
         </div>
 
         {/* Available Digits - Bottom Section */}
-        <div style={{ 
+        <div style={{
           marginTop: 'auto',
           paddingBottom: '20px',
           display: 'flex',
           justifyContent: 'center',
           flexWrap: 'wrap',
-          gap: '15px',
+          gap: '10px',
         }}>
           {availableDigits.map(digit => (
             <div
@@ -320,9 +392,9 @@ function PlaceValueGame({ lesson }) {
                 position: 'absolute',
                 left: `${digit.x}px`,
                 top: `${digit.y}px`,
-                width: '80px',
-                height: '80px',
-                fontSize: '42px',
+                width: '60px',
+                height: '60px',
+                fontSize: '28px',
                 fontWeight: 'bold',
                 cursor: 'grab',
                 userSelect: 'none',

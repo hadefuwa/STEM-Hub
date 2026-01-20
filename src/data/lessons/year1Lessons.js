@@ -163,6 +163,70 @@ Three plus one equals four!
     new Lesson({
       id: lessonId++,
       yearId: 'year1',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "Sentence Scramble",
+      emoji: '📝',
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Missing Vowel Game",
+      emoji: '🤔',
+      assessmentType: 'missing-vowel-game',
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "The Tale of Peter Rabbit",
+      emoji: '🐰',
+      content: `# The Tale of Peter Rabbit
+
+This is a story about a naughty rabbit named Peter.
+
+## Peter's Adventure
+
+Once upon a time there were four little Rabbits, and their names were Flopsy, Mopsy, Cotton-tail, and Peter.
+
+Their mother told them, "You may go into the fields or down the lane, but don't go into Mr. McGregor's garden!"
+
+Flopsy, Mopsy, and Cotton-tail were good little bunnies and went down the lane to gather blackberries.
+
+But Peter, who was very naughty, ran straight away to Mr. McGregor's garden!
+
+He ate some lettuces and some French beans; and then he ate some radishes. And then, feeling rather sick, he went to look for some parsley.
+
+But round the end of a cucumber frame, whom should he meet but Mr. McGregor!
+
+Mr. McGregor was on his hands and knees planting out young cabbages, but he jumped up and ran after Peter, waving a rake and calling out, ‘Stop thief!’
+
+Peter was most dreadfully frightened; he rushed all over the garden, for he had forgotten the way back to the gate.
+
+After a long chase, Peter finally found the gate and slipped underneath. He ran home as fast as he could go.
+
+## Watch the Story
+
+You can watch the story of Peter Rabbit here:
+
+https://www.youtube.com/watch?v=p-c-y3fK8fo
+      `,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
       subjectId: 'history',
       lessonNumber: 1,
       title: "Dinosaurs - When They Lived",
@@ -1157,6 +1221,27 @@ You need at least **Bronze** (1 point) to progress!`,
       assessmentType: null,
       categoryId: null,
     }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'art',
+      lessonNumber: 1,
+      title: "Art: Day and Night",
+      emoji: '🌗',
+      assessmentType: 'coloring-game',
+      content: `# Art: Day and Night 🌗
+
+Color the scene for Day and Night!
+
+## Colors
+- **Sun**: Yellow ☀️
+- **Day Sky**: Light Blue 🌤️
+- **Moon**: White/Grey 🌕
+- **Night Sky**: Dark Blue 🌙`,
+      quizId: null,
+      categoryId: null,
+    })
 
   ];
 }

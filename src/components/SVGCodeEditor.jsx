@@ -6,7 +6,8 @@ import { Progress } from '../models/Progress';
 function SVGCodeEditor({ lesson }) {
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
-  const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
+  const getNextLessonUrl = useDataStore(state => state.getNextLessonUrl);
+  const disableStudyMode = useDataStore(state => state.disableStudyMode);
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
@@ -252,16 +253,13 @@ function SVGCodeEditor({ lesson }) {
       });
       await addProgress(progress);
       await saveData();
-      
+
       // Navigate to next lesson or back to subject
-      const nextLesson = getNextLessonAfter(lesson);
-      if (nextLesson && nextLesson.id) {
-        navigate(`/lesson/${nextLesson.id}`);
-      } else if (lesson.subjectId) {
-        navigate(`/lessons?subjectId=${lesson.subjectId}`);
-      } else {
-        navigate('/');
+      const { url, shouldDisableStudyMode } = getNextLessonUrl(lesson);
+      if (shouldDisableStudyMode) {
+        disableStudyMode();
       }
+      navigate(url);
     } catch (error) {
       console.error('Error completing lesson:', error);
     }

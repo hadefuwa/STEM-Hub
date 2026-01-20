@@ -104,6 +104,9 @@ const speak = async (text, options = {}) => {
   const requestId = ++currentRequestId;
 
   // Stop any current speech immediately
+  // NOTE: We only stop if not already waiting for completion of a sequence
+  // but actually most callers want "last one wins".
+  // For seqential, we'll use awaitCompletion.
   stop();
 
   // Mark that speech is starting
@@ -126,7 +129,7 @@ const speak = async (text, options = {}) => {
       // Check if this request is still the latest one
       if (requestId !== currentRequestId || stopRequested) {
         isSpeechInProgress = false;
-        return Promise.reject(new Error('Speech was stopped or invalidated by a newer request'));
+        return; // Don't reject, just return silently as it's an expected interruption
       }
 
       if (result.success && result.audioData) {
@@ -154,53 +157,56 @@ const speak = async (text, options = {}) => {
         
         // Play and return promise
         return new Promise((resolve, reject) => {
+          const cleanup = () => {
+            if (currentAudioPlayer === audio) {
+              currentAudioPlayer = null;
+              isSpeechInProgress = false;
+            }
+            URL.revokeObjectURL(blobUrl);
+          };
+
           audio.oncanplaythrough = () => {
             // Check again before playing
             if (requestId !== currentRequestId || stopRequested) {
-              currentAudioPlayer = null;
-              isSpeechInProgress = false;
-              URL.revokeObjectURL(blobUrl);
-              reject(new Error('Speech was stopped or invalidated'));
+              cleanup();
+              resolve(); // Resolve anyway to allow sequence to continue (or be ignored)
               return;
             }
             audio.play().then(() => {
-              resolve();
+              if (!options.awaitCompletion) {
+                resolve();
+              }
             }).catch((err) => {
-              isSpeechInProgress = false;
+              cleanup();
               reject(err);
             });
           };
 
           audio.onerror = (e) => {
-            if (currentAudioPlayer === audio) {
-              currentAudioPlayer = null;
-              isSpeechInProgress = false;
-            }
-            URL.revokeObjectURL(blobUrl);
+            cleanup();
             reject(new Error('Failed to play audio'));
           };
 
           audio.onended = () => {
-            if (currentAudioPlayer === audio) {
-              currentAudioPlayer = null;
-              isSpeechInProgress = false;
+            cleanup();
+            if (options.awaitCompletion) {
+              resolve();
             }
-            URL.revokeObjectURL(blobUrl);
           };
 
           // If already loaded, play immediately
           if (audio.readyState >= 2) {
             if (requestId !== currentRequestId || stopRequested) {
-              currentAudioPlayer = null;
-              isSpeechInProgress = false;
-              URL.revokeObjectURL(blobUrl);
-              reject(new Error('Speech was stopped or invalidated'));
+              cleanup();
+              resolve();
               return;
             }
             audio.play().then(() => {
-              resolve();
+              if (!options.awaitCompletion) {
+                resolve();
+              }
             }).catch((err) => {
-              isSpeechInProgress = false;
+              cleanup();
               reject(err);
             });
           }
@@ -247,13 +253,13 @@ const speak = async (text, options = {}) => {
             window.speechSynthesis.cancel();
             if (!hasResolved) {
               hasResolved = true;
-              reject(new Error('Speech was stopped or invalidated'));
+              resolve();
             }
             return;
           }
           
           currentUtterance = utterance;
-          if (!hasResolved) {
+          if (!options.awaitCompletion && !hasResolved) {
             hasResolved = true;
             resolve();
           }
@@ -265,6 +271,10 @@ const speak = async (text, options = {}) => {
             if (requestId === currentRequestId) {
               isSpeechInProgress = false;
             }
+          }
+          if (options.awaitCompletion && !hasResolved) {
+            hasResolved = true;
+            resolve();
           }
         };
 

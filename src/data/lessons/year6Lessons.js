@@ -121,6 +121,313 @@ Steps:
     new Lesson({
       id: lessonId++,
       yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "Figurative Language",
+      emoji: '📜',
+      assessmentType: 'figurative-language-game',
+      content: `# Figurative Language 📜
+
+Let's test your knowledge of figurative language!
+
+## How to Play
+
+- Read the sentence carefully.
+- Decide what type of figurative language is being used.
+- Select the correct option.
+- See if you can get a perfect score!
+      `,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Author Study: Lewis Carroll",
+      emoji: '🎩',
+      content: `# Lewis Carroll 🎩
+
+Lewis Carroll (1832–1898) was a mathematician and writer famous for *Alice's Adventures in Wonderland*.
+
+## Wordplay and Nonsense
+Carroll was a master of **Nonsense Literature**. He loved to play with the English language to create "Portmanteau" words (two words joined together).
+- **Example**: "Chortle" (Chuckle + Snort).
+- **Jabberwocky**: His famous poem is filled with words that sound real but are completely made up (like *frabjous* or *galumphing*).
+
+## Imagination and Logic
+Because Carroll was a mathematician, his "nonsense" often has a strange kind of logic. He loved riddles that didn't have answers and characters who challenged the way we think about the world.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+What is a "Portmanteau" word?
+<!-- OPTIONS -->
+A word that is very long|Two words joined together to make a new one|A word that means nothing|A word from another language
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Carroll loved joining words together, like "Chuckle" and "Snort" to make "Chortle"!
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which famous book did Lewis Carroll write?
+<!-- OPTIONS -->
+The Hobbit|Alice's Adventures in Wonderland|Oliver Twist|Matilda
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+He is most famous for Alice's adventures in the magical world of Wonderland.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What is "Nonsense Literature"?
+<!-- OPTIONS -->
+Writing that is bad|Writing that plays with language and makes no sense on purpose|Writing without any punctuation|Scientific writing
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Nonsense literature uses imagination and wordplay to create stories that are funny because they are so strange.
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "Author Study: Charles Dickens",
+      emoji: '🕯️',
+      content: `# Charles Dickens 🕯️
+
+Charles Dickens (1812–1870) wrote some of the most famous stories in history, often focusing on the lives of people in Victorian England.
+
+## Setting and Atmosphere
+Dickens was a master of describing settings. He often wrote about **Victorian London**, making the city feel like a character itself—filled with fog, shadows, and busy streets.
+
+## Character Description
+His characters often have "unforgettable" names and very specific personalities:
+- **Ebenezer Scrooge**: A cold, greedy man who hates Christmas.
+- **Oliver Twist**: A brave orphan who just wants "some more" food.
+- **Miss Havisham**: A woman who has worn her wedding dress for years!
+
+## Moral Themes
+Dickens used his stories to highlight problems in society, like poverty and how children were treated. He believed that kindness and generosity were the most important things.
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+What era did Charles Dickens write about?
+<!-- OPTIONS -->
+Tudor England|Victorian England|Modern Day|Ancient Rome
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Dickens is famous for his stories set in the smoggy, busy streets of Victorian London.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+Which character is a "greedy man" from A Christmas Carol?
+<!-- OPTIONS -->
+Tiny Tim|Ebenezer Scrooge|Oliver Twist|Pip
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Scrooge is the famous miser who is visited by three ghosts.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What did Dickens often use his stories for?
+<!-- OPTIONS -->
+To teach math|To highlight problems in society like poverty|To give cooking tips|To sell newspapers
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+Dickens wanted to show how hard life was for the poor and encouraged people to be more kind.
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Shakespeare: The Story of Macbeth",
+      emoji: '⚔️',
+      content: `# Shakespeare: Macbeth ⚔️
+
+*Macbeth* is one of Shakespeare's most famous "Tragedies". It is a dark story about ambition and power.
+
+## The Simplified Story
+1. **The Prophecy**: Brave General Macbeth meets three witches who tell him he will one day be King.
+2. **The Ambition**: Macbeth (and his wife, Lady Macbeth) want the power so much they decide to do something terrible to get it.
+3. **The Guilt**: Once Macbeth is King, he finds that he cannot be happy because of the bad things he did. He feels "guilty" and starts to lose his mind.
+4. **The End**: Eventually, Macbeth's ambition leads to his downfall.
+
+## Famous Quotes
+- **"Double, double toil and trouble; Fire burn and caldron bubble."** (The Witches)
+- **"Out, damned spot! out, I say!"** (Lady Macbeth feeling guilty)
+
+## Themes
+- **Ambition**: wanting power too much.
+- **Fate**: is our life planned out, or do we make our own choices?
+
+## Practice Questions
+
+<!-- QUESTION_START -->
+What do the three witches tell Macbeth?
+<!-- OPTIONS -->
+That he will lose his job|That he will become King|That he should go on holiday|That he will find gold
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The witches' prophecy is what starts Macbeth's "ambition" to become King.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+How does Macbeth feel after he becomes King?
+<!-- OPTIONS -->
+Very happy and relaxed|Guilty and scared|Bored|Angry at his friends
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+The "guilt" of how he became King makes Macbeth very unhappy and paranoid.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+What is a 'Tragedy' in Shakespeare's plays?
+<!-- OPTIONS -->
+A play that is very funny|A serious play with a sad ending|A play about animals|A short poem
+<!-- CORRECT -->
+1
+<!-- EXPLANATION -->
+*Macbeth* is a tragedy because it is a dark story where the main characters have a sad ending.
+<!-- QUESTION_END -->`,
+      quizId: quizId++,
+      assessmentType: 'quiz',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Introduction to Shakespeare",
+      emoji: '📜',
+      content: `# Introduction to William Shakespeare
+
+William Shakespeare is one of the most famous writers in the English language. He wrote many plays and poems that are still performed and read today.
+
+## Famous Plays
+
+Shakespeare wrote three types of plays:
+- **Tragedies**: Sad stories where the main character suffers. Examples include *Hamlet* and *Romeo and Juliet*.
+- **Comedies**: Funny stories with happy endings. Examples include *A Midsummer Night's Dream* and *Twelfth Night*.
+- **Histories**: Plays about the lives of English kings. Examples include *Richard III* and *Henry V*.
+
+## Famous Quotes
+
+Shakespeare's words are still used today. Have you heard any of these?
+- "To be or not to be, that is the question." (*Hamlet*)
+- "All the world's a stage, and all the men and women merely players." (*As You Like It*)
+- "A horse! a horse! my kingdom for a horse!" (*Richard III*)
+
+## Shakespeare's Language
+
+Shakespeare wrote in a style of English that is different from what we speak today. It can be challenging to understand, but it is also very beautiful and poetic.
+
+## Watch a Video
+
+To learn more about Shakespeare, watch this video:
+
+https://www.youtube.com/watch?v=gB6f_v8_32k
+      `,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "The World of Roald Dahl",
+      emoji: '📚',
+      content: `# The World of Roald Dahl
+
+Roald Dahl was a master of imaginative and humorous writing. His stories are famous for their quirky characters, fantastical plots, and wonderfully descriptive language.
+
+## Descriptive Writing
+
+Dahl had a special talent for creating vivid pictures with his words. Consider this description of the BFG:
+> "It was three times as tall as the tallest man. It was so tall its head was higher than the upstairs windows of the houses. It was wearing a long black cloak and in one hand it was holding what looked like a very long, thin trumpet."
+
+## Invented Words (Gobblefunk)
+
+Roald Dahl invented over 500 words and phrases! This special language is called "Gobblefunk". Here are a few examples:
+- **Snozzcumber**: A disgusting vegetable that is the only thing the BFG eats.
+- **Scrumdiddlyumptious**: Something that is absolutely delicious.
+- **Oompa-Loompa**: The small workers in Willy Wonka's chocolate factory.
+
+## Memorable Characters
+
+From the clever Matilda to the ghastly Twits, Roald Dahl's characters are unforgettable. He often created characters that were either purely good or purely evil, making his stories exciting and easy to follow.
+
+## Watch a Video
+
+Learn more about Roald Dahl's amazing world in this video:
+
+https://www.youtube.com/watch?v=s9E4FnS_2-U
+      `,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "A Journey into Dickensian London",
+      emoji: '🎩',
+      content: `# A Journey into Dickensian London
+
+Charles Dickens was a famous novelist in the Victorian era. His stories often highlighted the social problems of his time, such as poverty and injustice.
+
+## Vivid Settings
+
+Dickens was a master at describing the settings of his stories. He brought the city of London to life, painting a picture of its dark, foggy streets, and the great contrast between the lives of the rich and the poor.
+
+## Memorable Characters
+
+Dickens created some of the most famous characters in English literature:
+- **Ebenezer Scrooge** from *A Christmas Carol*, a miserable old man who learns to be kind.
+- **Oliver Twist**, a poor orphan who asks for "more" gruel.
+- **Miss Havisham** from *Great Expectations*, a wealthy spinster who wears her wedding dress every day.
+
+## Moral Themes
+
+Dickens' stories often have strong moral themes. They explore ideas of kindness, compassion, and the importance of social reform. He hoped his stories would make people think about the problems in society and inspire them to make a change.
+
+## Watch a Video
+
+Here is a summary of *A Christmas Carol*:
+
+https://www.youtube.com/watch?v=OFg_so_33aM
+      `,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
       subjectId: 'maths',
       lessonNumber: 4,
       title: "Negative Numbers",
@@ -156,44 +463,7 @@ Drag on number line and type comparisons! 🎮`,
       categoryId: null,
     }),
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year6',
-      subjectId: 'maths',
-      lessonNumber: 5,
-      title: "BODMAS/BIDMAS",
-      emoji: '🔢',
-      content: `# BODMAS/BIDMAS 🔢
 
-Let's learn the order of operations!
-
-## How to Play
-
-Tap the numbers to hear them! Then play the game! 🎮
-
-## Order of Operations
-
-BODMAS/BIDMAS tells us the order:
-- **B**rackets
-- **O**rders (powers)
-- **D**ivision
-- **M**ultiplication
-- **A**ddition
-- **S**ubtraction
-
-## Example
-
-2 + 3 × 4 = 2 + 12 = 14
-(Not 5 × 4 = 20!)
-
-## Fun Activities
-
-- Practice BODMAS
-- Play the order of operations game!`,
-      quizId: quizId++,
-      assessmentType: 'maths-game',
-      categoryId: null,
-    }),
 
     new Lesson({
       id: lessonId++,
@@ -240,81 +510,7 @@ Grab your notebook, historian. The archives are open and you’re on the researc
       categoryId: null,
     }),
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year6',
-      subjectId: 'maths',
-      lessonNumber: 4,
-      title: "Negative Numbers",
-      emoji: '🔢',
-      content: `# Negative Numbers 🔢
 
-Let's learn about negative numbers!
-
-## What are Negative Numbers?
-
-Numbers less than zero!
-
-## Examples
-
-- -5 is less than 0
-- -10 is less than -5
-- 0 is neither positive nor negative
-
-## Number Line
-
-... -3, -2, -1, 0, 1, 2, 3 ...
-
-## Comparing
-
-- -5 < -2 (negative 5 is less than negative 2)
-- -1 > -5 (negative 1 is greater than negative 5)
-
-## How to Play
-
-Drag on number line and type comparisons! 🎮`,
-      quizId: quizId++,
-      assessmentType: 'number-line-game',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year6',
-      subjectId: 'maths',
-      lessonNumber: 4,
-      title: "Negative Numbers",
-      emoji: '🔢',
-      content: `# Negative Numbers 🔢
-
-Let's learn about negative numbers!
-
-## What are Negative Numbers?
-
-Numbers less than zero!
-
-## Examples
-
-- -5 is less than 0
-- -10 is less than -5
-- 0 is neither positive nor negative
-
-## Number Line
-
-... -3, -2, -1, 0, 1, 2, 3 ...
-
-## Comparing
-
-- -5 < -2 (negative 5 is less than negative 2)
-- -1 > -5 (negative 1 is greater than negative 5)
-
-## How to Play
-
-Drag on number line and type comparisons! 🎮`,
-      quizId: quizId++,
-      assessmentType: 'number-line-game',
-      categoryId: null,
-    }),
 
     new Lesson({
       id: lessonId++,
@@ -1605,184 +1801,6 @@ We evaluate sources to see if they're reliable, understand the perspective, see 
       categoryId: null,
     }),
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year6',
-      subjectId: 'history',
-      lessonNumber: 9,
-      title: "Making History - How We Study the Past",
-      emoji: '🔍',
-      content: `# Making History - How We Study the Past 🔍
-
-
-
-Let's learn how historians study the past!
-
-
-
-## What Do Historians Do?
-
-
-
-- Historians study the past
-
-- They research events
-
-- They analyze sources
-
-- They write about history
-
-- They help us understand
-
-
-
-## Research Methods
-
-
-
-- Read primary sources
-
-- Study artifacts
-
-- Visit historical places
-
-- Talk to experts
-
-- Compare different sources
-
-
-
-## Historical Thinking
-
-
-
-- Ask questions
-
-- Look for evidence
-
-- Consider different perspectives
-
-- Think critically
-
-- Make connections
-
-
-
-## Writing History
-
-
-
-- Organize information
-
-- Tell a story
-
-- Use evidence
-
-- Explain events
-
-- Help others understand
-
-
-
-## Why History Matters
-
-
-
-- Learn from the past
-
-- Understand the present
-
-- Prepare for the future
-
-- Learn about people
-
-- Understand change
-
-
-
-## Fun Activities
-
-
-
-- Do historical research
-
-- Write about history
-
-- Visit museums
-
-- Interview people
-
-- Create timelines
-
-
-
-## Remember
-
-
-
-- Historians study the past
-
-- They use evidence
-
-- They think critically
-
-- History helps us understand!
-
-
-
-## Practice Questions
-
-
-
-<!-- QUESTION_START -->
-What do historians do?
-<!-- OPTIONS -->
-Nothing|Study the past, research events, analyze sources, and write about history|Only write|Only read
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Historians study the past, research events, analyze sources, write about history, and help us understand!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What research methods do historians use?
-<!-- OPTIONS -->
-Nothing|Read primary sources, study artifacts, visit historical places, talk to experts, and compare sources|Only read|Only write
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Historians read primary sources, study artifacts, visit historical places, talk to experts, and compare different sources!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is historical thinking?
-<!-- OPTIONS -->
-Not thinking|Ask questions, look for evidence, consider different perspectives, think critically, and make connections|Only ask questions|Only read
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Historical thinking means asking questions, looking for evidence, considering different perspectives, thinking critically, and making connections!
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Why does history matter?
-<!-- OPTIONS -->
-It doesn't|Learn from the past, understand the present, prepare for the future, learn about people, and understand change|Only for fun|Only for tests
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-History matters because we can learn from the past, understand the present, prepare for the future, learn about people, and understand change!
-<!-- QUESTION_END -->`,
-      quizId: 96,
-      assessmentType: 'history-game',
-      categoryId: null,
-    }),
 
     new Lesson({
       id: lessonId++,
@@ -1889,6 +1907,278 @@ You've made it to the champion level! Can you achieve Platinum? You're a true ta
       assessmentType: null,
       categoryId: null,
     }),
+
+
+
+     new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'art',
+      lessonNumber: 1,
+      title: "Art: Color Theory",
+      emoji: '🎨',
+      assessmentType: 'coloring-game',
+      content: `# Art: Color Theory - Complementary Colors 🎨
+
+Discover the fascinating world of color theory! Colors can be mixed and matched in special ways to create beautiful combinations.
+
+## Primary Colors
+These are the main colors that can't be made by mixing other colors:
+- **Red**
+- **Blue**
+- **Yellow**
+
+## Secondary Colors
+These are made by mixing two primary colors:
+- **Orange** = Red + Yellow
+- **Green** = Blue + Yellow
+- **Purple** = Red + Blue
+
+## Complementary Colors
+Complementary colors are pairs of colors that sit opposite each other on the color wheel. When placed next to each other, they make each other appear brighter and more vibrant!
+
+- **Red** is complementary to **Green**
+- **Blue** is complementary to **Orange**
+- **Yellow** is complementary to **Purple**
+
+## How to Use Complementary Colors
+- Artists use complementary colors to make their paintings more exciting
+- Complementary colors can create contrast and focus in artwork
+- Mixing complementary colors creates neutral tones like browns and grays
+
+## Activity Instructions
+- Fill in each segment of the color wheel with the correct color
+- Pay attention to which colors are opposites on the wheel
+- Notice how complementary colors make each other stand out`,
+      quizId: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 1,
+      title: "Shakespeare: Introduction to the Bard",
+      emoji: '🎭',
+      content: `# Introduction to William Shakespeare 🎭
+
+Meet the most famous writer in the English language!
+
+## Who was Shakespeare?
+- Born in 1564 in Stratford-upon-Avon, England
+- Wrote 37 plays and 154 sonnets
+- Died in 1616
+- Known as "The Bard" or "The Swan of Avon"
+
+## Why is he Important?
+- Created over 1,700 words still used today
+- Influenced storytelling techniques
+- His themes are still relevant today
+- Works performed worldwide
+
+## Famous Plays:
+- **Tragedies**: Romeo and Juliet, Hamlet, Macbeth, King Lear
+- **Comedies**: A Midsummer Night's Dream, Much Ado About Nothing
+- **Histories**: Henry V, Richard III
+
+## Fun Facts:
+- He wrote about universal themes: love, power, betrayal, friendship
+- Many of his phrases are still used today: "break the ice", "wild goose chase"
+- His theater was called the Globe Theatre
+
+## Activity:
+Explore Shakespeare's life and times!`,
+      quizId: quizId++,
+      assessmentType: 'english-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 2,
+      title: "Shakespeare: Famous Quotes",
+      emoji: '📜',
+      content: `# Famous Shakespeare Quotes 📜
+
+Explore memorable lines from Shakespeare's plays!
+
+## Well-Known Quotes:
+
+**"To be or not to be, that is the question"** (Hamlet)
+- About life, death, and difficult choices
+
+**"All the world's a stage, and all the men and women merely players"** (As You Like It)
+- Life is like a play where everyone has roles
+
+**"Love looks not with the eyes, but with the mind"** (A Midsummer Night's Dream)
+- Love is about feelings, not appearance
+
+**"The course of true love never did run smooth"** (A Midsummer Night's Dream)
+- Love has challenges
+
+**"Uneasy lies the head that wears a crown"** (Henry IV)
+- Power brings responsibility and stress
+
+**"Some are born great, some achieve greatness, and some have greatness thrust upon 'em"** (Twelfth Night)
+- Different ways people become important
+
+## Modern Meaning:
+Many of these expressions are still used today in everyday language!
+
+## Activity:
+Match the quote to the play or explain what it means in your own words.`,
+      quizId: quizId++,
+      assessmentType: 'english-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 3,
+      title: "Shakespeare: Understanding Iambic Pentameter",
+      emoji: '🎵',
+      content: `# Iambic Pentameter 🎵
+
+Learn about Shakespeare's rhythmic writing pattern!
+
+## What is Iambic Pentameter?
+- A poetic rhythm that sounds natural when spoken aloud
+- Consists of 10 syllables per line (penta = five, meter = measure)
+- Each line has 5 "feet" (pairs of syllables)
+- Each foot: UNstressed followed by STRESSED syllable (da-DUM)
+
+## Example:
+"But SOFT! what LIGHT through YONder WINdow BREAKS?"
+(Romeo and Juliet)
+(da-DUM da-DUM da-DUM da-DUM da-DUM)
+
+## Why Did Shakespeare Use It?
+- Creates a musical quality
+- Makes lines easier to memorize
+- Reflects natural speech patterns
+- Adds emotional impact
+
+## Practice Lines:
+- "Shall I compare thee to a summer's day?" (Sonnet 18)
+- "Two households, both alike in dignity" (Romeo and Juliet)
+
+## Activity:
+Clap along to the rhythm of Shakespeare's lines!`,
+      quizId: quizId++,
+      assessmentType: 'english-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Shakespeare: Character Analysis",
+      emoji: '👥',
+      content: `# Character Analysis in Shakespeare 👥
+
+Study the complex characters in Shakespeare's plays!
+
+## Famous Characters:
+
+**Hamlet** (from Hamlet)
+- Prince of Denmark
+- Contemplates life and death
+- Struggles with revenge and morality
+
+**Lady Macbeth** (from Macbeth)
+- Ambitious and manipulative
+- Pushes her husband toward murder
+- Eventually consumed by guilt
+
+**Romeo and Juliet** (from Romeo and Juliet)
+- Young lovers from feuding families
+- Represent passion and tragedy
+- Their deaths unite their families
+
+**Prospero** (from The Tempest)
+- Powerful magician and rightful Duke
+- Uses magic for justice and forgiveness
+- Represents themes of power and redemption
+
+**Falstaff** (from Henry IV plays)
+- Comic character
+- Represents excess and wit
+- Friend and mentor figure to Prince Hal
+
+## Character Analysis Skills:
+- Motivations: What do they want?
+- Conflicts: What challenges do they face?
+- Development: How do they change?
+- Relationships: How do they interact with others?
+
+## Activity:
+Choose a Shakespeare character and analyze their motivations and conflicts.`,
+      quizId: quizId++,
+      assessmentType: 'english-game',
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year6',
+      subjectId: 'english',
+      lessonNumber: 5,
+      title: "Shakespeare: Themes and Messages",
+      emoji: '💭',
+      content: `# Themes and Messages in Shakespeare 💭
+
+Discover the universal themes that make Shakespeare's works timeless!
+
+## Major Themes:
+
+**Love and Romance**
+- True love vs. infatuation
+- Love's power and complications
+- Examples: Romeo and Juliet, Twelfth Night
+
+**Power and Ambition**
+- Corruption of power
+- Consequences of ambition
+- Examples: Macbeth, Julius Caesar
+
+**Appearance vs. Reality**
+- Things are not always as they seem
+- Deception and disguise
+- Examples: Hamlet, Much Ado About Nothing
+
+**Justice and Revenge**
+- Moral consequences of actions
+- Cycle of revenge
+- Examples: Hamlet, The Merchant of Venice
+
+**Fate vs. Free Will**
+- Destiny vs. personal choice
+- How characters shape their futures
+- Examples: Macbeth, Romeo and Juliet
+
+**Family and Loyalty**
+- Relationships between generations
+- Conflicts between duty and desire
+- Examples: King Lear, Hamlet
+
+## Why These Themes Matter:
+- Still relevant to modern audiences
+- Explore human nature and society
+- Encourage reflection on values
+
+## Activity:
+Identify themes in a Shakespeare play and connect them to modern life.`,
+      quizId: quizId++,
+      assessmentType: 'english-game',
+      categoryId: null,
+    })
 
   ];
 }

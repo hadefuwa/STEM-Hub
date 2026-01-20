@@ -19,7 +19,8 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
-  const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
+  const getNextLessonUrl = useDataStore(state => state.getNextLessonUrl);
+  const disableStudyMode = useDataStore(state => state.disableStudyMode);
   const iframeRef = useRef(null);
 
   // Convert local file paths to use custom protocol in Electron
@@ -136,14 +137,11 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
 
   const handleNextLesson = () => {
     if (lesson) {
-      const nextLesson = getNextLessonAfter(lesson);
-      if (nextLesson && nextLesson.id) {
-        navigate(`/lesson/${nextLesson.id}`);
-      } else if (lesson.subjectId) {
-        navigate(`/lessons?subjectId=${lesson.subjectId}`);
-      } else {
-        navigate('/');
+      const { url, shouldDisableStudyMode } = getNextLessonUrl(lesson);
+      if (shouldDisableStudyMode) {
+        disableStudyMode();
       }
+      navigate(url);
     }
   };
 

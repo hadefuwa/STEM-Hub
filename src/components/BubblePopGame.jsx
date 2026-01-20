@@ -6,7 +6,8 @@ import { Progress } from '../models/Progress';
 function BubblePopGame({ lesson }) {
   const navigate = useNavigate();
   const addProgress = useDataStore(state => state.addProgress);
-  const getNextLessonAfter = useDataStore(state => state.getNextLessonAfter);
+  const getNextLessonUrl = useDataStore(state => state.getNextLessonUrl);
+  const disableStudyMode = useDataStore(state => state.disableStudyMode);
   const getNextProgressId = useDataStore(state => state.getNextProgressId);
   const getUserId = useDataStore(state => state.getUserId);
   const saveData = useDataStore(state => state.saveData);
@@ -200,12 +201,17 @@ function BubblePopGame({ lesson }) {
     // Update refs immediately
     isPlayingRef.current = false;
     isGameOverRef.current = true;
-    
+
     if (gameTimerRef.current) clearInterval(gameTimerRef.current);
     if (bubbleTimerRef.current) clearInterval(bubbleTimerRef.current);
 
-    if (lesson) {
-      setTimeout(() => {
+    // Always save progress when game ends, regardless of score
+    // Award at least 5 participation points to encourage effort
+    const minParticipationScore = 5;
+    const finalScoreWithMin = Math.max(finalScore, minParticipationScore);
+
+    setTimeout(() => {
+      if (lesson) {
         const userId = getUserId();
         const progressId = getNextProgressId();
         const progress = new Progress({
@@ -216,17 +222,17 @@ function BubblePopGame({ lesson }) {
           yearId: lesson.yearId,
           subjectId: lesson.subjectId,
           lessonNumber: lesson.lessonNumber,
-          isCompleted: true,
+          isCompleted: true,  // Mark as completed when game ends
           completedAt: new Date(),
-          score: finalScore,
+          score: finalScoreWithMin,  // Save score with minimum participation points
         });
         addProgress(progress).then(() => {
           saveData();
         }).catch(err => {
           console.error('Error saving progress:', err);
         });
-      }, 0);
-    }
+      }
+    }, 0);
   };
 
   useEffect(() => {
@@ -237,10 +243,13 @@ function BubblePopGame({ lesson }) {
   }, []);
 
   const getGrade = () => {
+    // Use the actual score for grade calculation (not the minimum-adjusted score)
     if (score >= 200) return { name: 'Platinum', color: '#E5E4E2' };
     if (score >= 150) return { name: 'Gold', color: '#FFD700' };
     if (score >= 100) return { name: 'Silver', color: '#C0C0C0' };
-    return { name: 'Bronze', color: '#CD7F32' };
+    if (score >= 10) return { name: 'Bronze', color: '#CD7F32' }; // Minimum for progression
+    if (score > 0) return { name: 'Effort', color: '#808080' }; // For scores between 0 and 10
+    return { name: 'Participation', color: '#A9A9A9' }; // For zero score
   };
 
   const grade = getGrade();
@@ -287,7 +296,8 @@ function BubblePopGame({ lesson }) {
               borderRadius: '8px',
               color: '#856404',
             }}>
-              ⚠️ You need at least 10 points (Bronze) to progress. Try again!
+              ⚠️ You need at least 10 points (Bronze) to progress. Try again!<br/>
+              <small>Note: You'll always receive at least 5 participation points.</small>
             </div>
           )}
           <div style={{
@@ -315,12 +325,11 @@ function BubblePopGame({ lesson }) {
               <button
                 onClick={async () => {
                   await new Promise(resolve => setTimeout(resolve, 200));
-                  const nextLesson = getNextLessonAfter(lesson);
-                  if (nextLesson) {
-                    navigate(`/lesson/${nextLesson.id}`);
-                  } else {
-                    navigate(`/lessons?subjectId=${lesson.subjectId}`);
+                  const { url, shouldDisableStudyMode } = getNextLessonUrl(lesson);
+                  if (shouldDisableStudyMode) {
+                    disableStudyMode();
                   }
+                  navigate(url);
                 }}
                 style={{
                   padding: '12px 30px',

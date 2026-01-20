@@ -886,20 +886,26 @@ You need at least **Bronze** (1 point) to progress!`,
     }),
 
     // Phonics Lessons for 2-3 year olds - Lessons 1-8
+
     new Lesson({
       id: lessonId++,
       yearId: 'nursery',
       subjectId: 'english',
       lessonNumber: 1,
-      title: "Phonics: Vowel Sound Recognition",
+      title: "Phonics: Letter A Sound",
       emoji: '🔊',
-      content: `# Phonics: Vowel Sound Recognition 🔊
+      assessmentType: 'letter-a-video-quiz',
+      content: `# Learn the Letter A Sound 🅰️
 
-Learn to recognize vowel sounds!
+Watch the video to learn about the letter A sound!
 
-Tap the letters to hear their sounds!`,
+## What You'll Learn:
+- The sound that the letter A makes
+- Words that start with A
+- How to form the letter A
+
+After watching the video, you'll practice identifying words that start with the letter A.`,
       quizId: null,
-      assessmentType: 'phonics',
       categoryId: 'phonics',
     }),
 
@@ -908,15 +914,20 @@ Tap the letters to hear their sounds!`,
       yearId: 'nursery',
       subjectId: 'english',
       lessonNumber: 2,
-      title: "Phonics: Consonant Sound Recognition",
+      title: "Phonics: Letter B Sound",
       emoji: '🔊',
-      content: `# Phonics: Consonant Sound Recognition 🔊
+      assessmentType: 'letter-b-video-quiz',
+      content: `# Learn the Letter B Sound 🅱️
 
-Learn to recognize consonant sounds!
+Watch the video to learn about the letter B sound!
 
-Tap the letters to hear their sounds!`,
+## What You'll Learn:
+- The sound that the letter B makes
+- Words that start with B
+- How to form the letter B
+
+After watching the video, you'll practice identifying words that start with the letter B.`,
       quizId: null,
-      assessmentType: 'phonics',
       categoryId: 'phonics',
     }),
 
@@ -925,16 +936,654 @@ Tap the letters to hear their sounds!`,
       yearId: 'nursery',
       subjectId: 'english',
       lessonNumber: 3,
-      title: "Phonics: Consonant-Vowel Blending",
+      title: "Phonics: Letter C Sound",
       emoji: '🔊',
-      content: `# Phonics: Consonant-Vowel Blending 🔊
+      assessmentType: 'letter-c-video-quiz',
+      content: `# Learn the Letter C Sound 🅲
 
-Learn to blend consonant and vowel sounds together!
+Watch the video to learn about the letter C sound!
 
-Tap the blends to hear them spoken slowly then blended.`,
+## What You'll Learn:
+- The sound that the letter C makes
+- Words that start with C
+- How to form the letter C
+
+After watching the video, you'll practice identifying words that start with the letter C.`,
       quizId: null,
-      assessmentType: 'phonics',
       categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 4,
+      title: "Phonics: Letter D Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-d-video-quiz',
+      content: `# Learn the Letter D Sound 🅳
+
+Watch the video to learn about the letter D sound!
+
+## What You'll Learn:
+- The sound that the letter D makes
+- Words that start with D
+- How to form the letter D
+
+After watching the video, you'll practice identifying words that start with the letter D.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 5,
+      title: "Phonics: Letter E Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-e-video-quiz',
+      content: `# Learn the Letter E Sound 🅴
+
+Watch the video to learn about the letter E sound!
+
+## What You'll Learn:
+- The sound that the letter E makes
+- Words that start with E
+- How to form the letter E
+
+After watching the video, you'll practice identifying words that start with the letter E.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 6,
+      title: "Phonics: Letter F Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-f-video-quiz',
+      content: `# Learn the Letter F Sound 🅵
+
+Watch the video to learn about the letter F sound!
+
+## What You'll Learn:
+- The sound that the letter F makes
+- Words that start with F
+- How to form the letter F
+
+After watching the video, you'll practice identifying words that start with the letter F.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 7,
+      title: "Phonics: Letter G Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-g-video-quiz',
+      content: `# Learn the Letter G Sound 🅶
+
+Watch the video to learn about the letter G sound!
+
+## What You'll Learn:
+- The sound that the letter G makes
+- Words that start with G
+- How to form the letter G
+
+After watching the video, you'll practice identifying words that start with the letter G.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 8,
+      title: "Phonics: Letter H Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-h-video-quiz',
+      content: `# Learn the Letter H Sound 🅷
+
+Watch the video to learn about the letter H sound!
+
+## What You'll Learn:
+- The sound that the letter H makes
+- Words that start with H
+- How to form the letter H
+
+After watching the video, you'll practice identifying words that start with the letter H.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 9,
+      title: "Phonics: Letter I Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-i-video-quiz',
+      content: `# Learn the Letter I Sound 🅸
+
+Watch the video to learn about the letter I sound!
+
+## What You'll Learn:
+- The sound that the letter I makes
+- Words that start with I
+- How to form the letter I
+
+After watching the video, you'll practice identifying words that start with the letter I.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 10,
+      title: "Phonics: Letter J Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-j-video-quiz',
+      content: `# Learn the Letter J Sound
+
+Watch the video to learn about the letter J sound!
+
+## What You'll Learn:
+- The sound that the letter J makes
+- Words that start with J
+- How to form the letter J
+
+After watching the video, you'll practice identifying words that start with the letter J.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 11,
+      title: "Phonics: Letter K Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-k-video-quiz',
+      content: `# Learn the Letter K Sound
+
+Watch the video to learn about the letter K sound!
+
+## What You'll Learn:
+- The sound that the letter K makes
+- Words that start with K
+- How to form the letter K
+
+After watching the video, you'll practice identifying words that start with the letter K.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 12,
+      title: "Phonics: Letter L Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-l-video-quiz',
+      content: `# Learn the Letter L Sound
+
+Watch the video to learn about the letter L sound!
+
+## What You'll Learn:
+- The sound that the letter L makes
+- Words that start with L
+- How to form the letter L
+
+After watching the video, you'll practice identifying words that start with the letter L.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 13,
+      title: "Phonics: Letter M Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-m-video-quiz',
+      content: `# Learn the Letter M Sound
+
+Watch the video to learn about the letter M sound!
+
+## What You'll Learn:
+- The sound that the letter M makes
+- Words that start with M
+- How to form the letter M
+
+After watching the video, you'll practice identifying words that start with the letter M.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 14,
+      title: "Phonics: Letter N Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-n-video-quiz',
+      content: `# Learn the Letter N Sound
+
+Watch the video to learn about the letter N sound!
+
+## What You'll Learn:
+- The sound that the letter N makes
+- Words that start with N
+- How to form the letter N
+
+After watching the video, you'll practice identifying words that start with the letter N.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 15,
+      title: "Phonics: Letter O Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-o-video-quiz',
+      content: `# Learn the Letter O Sound
+
+Watch the video to learn about the letter O sound!
+
+## What You'll Learn:
+- The sound that the letter O makes
+- Words that start with O
+- How to form the letter O
+
+After watching the video, you'll practice identifying words that start with the letter O.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 16,
+      title: "Phonics: Letter P Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-p-video-quiz',
+      content: `# Learn the Letter P Sound
+
+Watch the video to learn about the letter P sound!
+
+## What You'll Learn:
+- The sound that the letter P makes
+- Words that start with P
+- How to form the letter P
+
+After watching the video, you'll practice identifying words that start with the letter P.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 17,
+      title: "Phonics: Letter Q Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-q-video-quiz',
+      content: `# Learn the Letter Q Sound 🅠
+
+Watch the video to learn about the letter Q sound!
+
+## What You'll Learn:
+- The sound that the letter Q makes
+- Words that start with Q
+- How to form the letter Q
+
+After watching the video, you'll practice identifying words that start with the letter Q.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 18,
+      title: "Phonics: Letter R Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-r-video-quiz',
+      content: `# Learn the Letter R Sound 🅡
+
+Watch the video to learn about the letter R sound!
+
+## What You'll Learn:
+- The sound that the letter R makes
+- Words that start with R
+- How to form the letter R
+
+After watching the video, you'll practice identifying words that start with the letter R.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 19,
+      title: "Phonics: Letter S Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-s-video-quiz',
+      content: `# Learn the Letter S Sound 🅢
+
+Watch the video to learn about the letter S sound!
+
+## What You'll Learn:
+- The sound that the letter S makes
+- Words that start with S
+- How to form the letter S
+
+After watching the video, you'll practice identifying words that start with the letter S.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 20,
+      title: "Phonics: Letter T Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-t-video-quiz',
+      content: `# Learn the Letter T Sound 🅣
+
+Watch the video to learn about the letter T sound!
+
+## What You'll Learn:
+- The sound that the letter T makes
+- Words that start with T
+- How to form the letter T
+
+After watching the video, you'll practice identifying words that start with the letter T.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 21,
+      title: "Phonics: Letter U Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-u-video-quiz',
+      content: `# Learn the Letter U Sound 🅤
+
+Watch the video to learn about the letter U sound!
+
+## What You'll Learn:
+- The sound that the letter U makes
+- Words that start with U
+- How to form the letter U
+
+After watching the video, you'll practice identifying words that start with the letter U.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 22,
+      title: "Phonics: Letter V Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-v-video-quiz',
+      content: `# Learn the Letter V Sound 🅥
+
+Watch the video to learn about the letter V sound!
+
+## What You'll Learn:
+- The sound that the letter V makes
+- Words that start with V
+- How to form the letter V
+
+After watching the video, you'll practice identifying words that start with the letter V.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 23,
+      title: "Phonics: Letter W Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-w-video-quiz',
+      content: `# Learn the Letter W Sound 🅦
+
+Watch the video to learn about the letter W sound!
+
+## What You'll Learn:
+- The sound that the letter W makes
+- Words that start with W
+- How to form the letter W
+
+After watching the video, you'll practice identifying words that start with the letter W.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 24,
+      title: "Phonics: Letter X Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-x-video-quiz',
+      content: `# Learn the Letter X Sound 🅭
+
+Watch the video to learn about the letter X sound!
+
+## What You'll Learn:
+- The sound that the letter X makes
+- Words that start with X
+- How to form the letter X
+
+After watching the video, you'll practice identifying words that start with the letter X.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 25,
+      title: "Phonics: Letter Y Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-y-video-quiz',
+      content: `# Learn the Letter Y Sound 🄎
+
+Watch the video to learn about the letter Y sound!
+
+## What You'll Learn:
+- The sound that the letter Y makes
+- Words that start with Y
+- How to form the letter Y
+
+After watching the video, you'll practice identifying words that start with the letter Y.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 26,
+      title: "Phonics: Letter Z Sound",
+      emoji: '🔊',
+      assessmentType: 'letter-z-video-quiz',
+      content: `# Learn the Letter Z Sound 🄏
+
+Watch the video to learn about the letter Z sound!
+
+## What You'll Learn:
+- The sound that the letter Z makes
+- Words that start with Z
+- How to form the letter Z
+
+After watching the video, you'll practice identifying words that start with the letter Z.`,
+      quizId: null,
+      categoryId: 'phonics',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 27,
+      title: "English: Letter Matching Game",
+      emoji: '🔤',
+      assessmentType: 'phonics-game',
+      content: `# Letter Matching Game 🔤
+
+Match uppercase and lowercase letters! This game helps you recognize letters in different forms.
+
+## How to Play:
+- Look at the uppercase letter shown
+- Find its matching lowercase letter
+- Drag or tap to match them together
+
+## Letters to Match:
+A/a, B/b, C/c, D/d, E/e, F/f, G/g, H/h, I/i, J/j, K/k, L/l, M/m, N/n, O/o, P/p, Q/q, R/r, S/s, T/t, U/u, V/v, W/w, X/x, Y/y, Z/z
+
+## Fun Tip:
+Letters can be big (uppercase) like "A" or small (lowercase) like "a" - they're the same letter!`,
+      quizId: null,
+      categoryId: 'letter-matching',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 28,
+      title: "English: Rhyming Words",
+      emoji: '🎵',
+      assessmentType: 'phonics-game',
+      content: `# Rhyming Words 🎵
+
+Find words that sound alike at the end! Rhyming words are fun to say.
+
+## Examples:
+- Cat and hat
+- Dog and log
+- Sun and fun
+- Pig and dig
+
+## How to Play:
+- Listen to the word
+- Choose the word that rhymes with it
+- Practice saying the rhyming pairs out loud
+
+## Fun Rhyming Pairs:
+- Big and dig
+- Hat and bat
+- Pen and hen
+- Top and hop
+
+## Activity:
+Try making up your own rhyming words!`,
+      quizId: null,
+      categoryId: 'rhyming-words',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 29,
+      title: "English: Beginning Sounds",
+      emoji: '👂',
+      assessmentType: 'phonics-game',
+      content: `# Beginning Sounds 👂
+
+Listen carefully! What sound does the word start with?
+
+## How to Play:
+- Hear the word spoken aloud
+- Look at the pictures
+- Choose the picture whose name starts with the same sound
+
+## Examples:
+- Apple starts with "A" sound
+- Ball starts with "B" sound
+- Car starts with "C" sound
+- Duck starts with "D" sound
+
+## Practice Words:
+- Fish, Goat, Hat, Ice, Jam, Kite, Lion, Mouse, Net, Orange
+
+## Fun Tip:
+The first sound you hear in a word is its beginning sound!`,
+      quizId: null,
+      categoryId: 'beginning-sounds',
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'nursery',
+      subjectId: 'english',
+      lessonNumber: 30,
+      title: "English: Word Families",
+      emoji: '🏠',
+      assessmentType: 'phonics-game',
+      content: `# Word Families 🏠
+
+Words that rhyme belong to the same word family! They share ending sounds.
+
+## Examples:
+- At family: cat, bat, hat, rat
+- Ig family: pig, big, dig, fig
+- Un family: sun, run, fun, bun
+- Ed family: bed, red, fed, led
+
+## How to Play:
+- See a word family
+- Choose words that belong to that family
+- Practice reading the words aloud
+
+## More Word Families:
+- An: can, man, pan, fan
+- Ot: pot, dot, hot, got
+- En: pen, hen, ten, men
+
+## Activity:
+Say these words out loud and listen to how they rhyme!`,
+      quizId: null,
+      categoryId: 'word-families',
     }),
 
     new Lesson({
@@ -1371,86 +2020,24 @@ Days of the week are important because they help us know what to do! Each day ha
     new Lesson({
       id: lessonId++,
       yearId: 'nursery',
-      subjectId: 'english',
-      lessonNumber: 4,
-      title: "Phonics: Vowel-Consonant Blending",
-      emoji: '🔊',
-      content: `# Phonics: Vowel-Consonant Blending 🔊
+      subjectId: 'art',
+      lessonNumber: 1,
+      title: "Simple Art: Red and Blue Shapes",
+      emoji: '🎨',
+      assessmentType: 'coloring-game',
+      content: `# Simple Art: Red and Blue Shapes 🎨
 
-Learn to blend vowel and consonant sounds together!
+Let's learn our colors!
 
-Watch the letters slide together as you hear the sounds!`,
+## Review Colors
+- **Red** 🔴
+- **Blue** 🔵
+
+## Instructions
+1. Select the **Red** color and paint the circle.
+2. Select the **Blue** color and paint the square.`,
       quizId: null,
-      assessmentType: 'phonics',
-      categoryId: 'phonics',
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'nursery',
-      subjectId: 'english',
-      lessonNumber: 5,
-      title: "Phonics: Sound-to-Letter Matching",
-      emoji: '🔊',
-      content: `# Phonics: Sound-to-Letter Matching 🔊
-
-Match sounds to letters!
-
-Look at the pictures and listen to the starting sounds.`,
-      quizId: null,
-      assessmentType: 'phonics',
-      categoryId: 'phonics',
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'nursery',
-      subjectId: 'english',
-      lessonNumber: 6,
-      title: "Phonics: Initial Sound Identification",
-      emoji: '🔊',
-      content: `# Phonics: Initial Sound Identification 🔊
-
-Identify the starting sound of words!
-
-Watch the animated scenes and listen carefully.`,
-      quizId: null,
-      assessmentType: 'phonics',
-      categoryId: 'phonics',
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'nursery',
-      subjectId: 'english',
-      lessonNumber: 7,
-      title: "Phonics: CVC Word Construction",
-      emoji: '🔊',
-      content: `# Phonics: CVC Word Construction 🔊
-
-Build simple words by dragging letters!
-
-Listen to the word, then drag letters to build it.`,
-      quizId: null,
-      assessmentType: 'phonics',
-      categoryId: 'phonics',
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'nursery',
-      subjectId: 'english',
-      lessonNumber: 8,
-      title: "Phonics: Review and Consolidation",
-      emoji: '🔊',
-      content: `# Phonics: Review and Consolidation 🔊
-
-Review everything you've learned!
-
-Complete mixed activities from all previous lessons.`,
-      quizId: null,
-      assessmentType: 'phonics',
-      categoryId: 'phonics',
+      categoryId: null,
     })
 
   ];

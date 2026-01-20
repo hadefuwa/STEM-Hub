@@ -21,7 +21,16 @@ const LANDMARKS = [
         x: 100,
         y: 100,
         fact: "This clock tower was built over 100 years ago! It used to help everyone in town know the time before people had watches.",
-        color: '#FF9F43'
+        color: '#FF9F43',
+        question: {
+            prompt: 'Why was the old clock tower important to the town?',
+            options: [
+                'It stored food for the town',
+                'It helped everyone know the time',
+                'It was a playground for kids'
+            ],
+            correctIndex: 1
+        }
     },
     {
         id: 2,
@@ -30,7 +39,16 @@ const LANDMARKS = [
         x: 600,
         y: 150,
         fact: "This statue honors a very brave person from our town who helped many people long ago.",
-        color: '#00D2D3'
+        color: '#00D2D3',
+        question: {
+            prompt: 'Why was this statue built?',
+            options: [
+                'To honor a brave helper from town',
+                'To decorate for a holiday',
+                'To point the way to school'
+            ],
+            correctIndex: 0
+        }
     },
     {
         id: 3,
@@ -39,7 +57,16 @@ const LANDMARKS = [
         x: 400,
         y: 350,
         fact: "Blue plaques are special markers that tell us a famous person lived or worked in this building!",
-        color: '#54A0FF'
+        color: '#54A0FF',
+        question: {
+            prompt: 'What does a blue plaque tell us?',
+            options: [
+                'A famous person lived or worked there',
+                'The building is empty',
+                'It is a grocery store'
+            ],
+            correctIndex: 0
+        }
     },
     {
         id: 4,
@@ -48,7 +75,16 @@ const LANDMARKS = [
         x: 150,
         y: 400,
         fact: "Inside this museum are many old treasures that tell the story of how our town changed over time.",
-        color: '#EE5253'
+        color: '#EE5253',
+        question: {
+            prompt: 'What can you discover inside the Heritage Museum?',
+            options: [
+                'Old treasures that tell the town\'s story',
+                'New video games to play',
+                'Snacks for visitors'
+            ],
+            correctIndex: 0
+        }
     },
     {
         id: 5,
@@ -57,7 +93,16 @@ const LANDMARKS = [
         x: 650,
         y: 420,
         fact: "This tree is the oldest living thing in our town. Imagine what it has seen in 200 years!",
-        color: '#10AC84'
+        color: '#10AC84',
+        question: {
+            prompt: 'Why is the Ancient Oak special?',
+            options: [
+                'It is the oldest living thing in town',
+                'It grows candy on its branches',
+                'It makes the weather change'
+            ],
+            correctIndex: 0
+        }
     },
 ];
 
@@ -80,6 +125,7 @@ function LocalHistoryGame({ lesson }) {
     const [player, setPlayer] = useState({ x: 400, y: 300, dir: 'down' });
     const [keys, setKeys] = useState({});
     const [timeElapsed, setTimeElapsed] = useState(0);
+    const [answerStatus, setAnswerStatus] = useState({ selected: null, isCorrect: false, hasAnswered: false });
     const timerRef = useRef(null);
 
     // Animation refs
@@ -175,19 +221,39 @@ function LocalHistoryGame({ lesson }) {
     const handleLandmarkFound = (landmark) => {
         setGameState('found_landmark');
         setCurrentLandmark(landmark);
-        setFoundLandmarks(prev => [...prev, landmark.id]);
+        setAnswerStatus({ selected: null, isCorrect: false, hasAnswered: false });
 
         // speak() automatically calls stop() internally with a safety buffer
-        speak(`You found ${landmark.name}! ${landmark.fact}`, { rate: 0.9, pitch: 1.1 });
+        speak(`You found ${landmark.name}! ${landmark.fact} Now answer this question: ${landmark.question.prompt}`, { rate: 0.9, pitch: 1.1 });
+    };
+
+    const handleAnswerSelect = (optionIndex) => {
+        if (!currentLandmark || answerStatus.isCorrect) return;
+        const isCorrect = optionIndex === currentLandmark.question.correctIndex;
+        setAnswerStatus({ selected: optionIndex, isCorrect, hasAnswered: true });
+
+        if (isCorrect) {
+            if (!foundRef.current.has(currentLandmark.id)) {
+                foundRef.current.add(currentLandmark.id);
+            }
+            setFoundLandmarks(prev => (
+                prev.includes(currentLandmark.id) ? prev : [...prev, currentLandmark.id]
+            ));
+            speak('Great observation! That\'s the right answer.', { rate: 0.95 });
+        } else {
+            speak('Not quite. Think about the clue and try another choice.', { rate: 0.95 });
+        }
     };
 
     const handleContinue = () => {
+        if (gameState === 'found_landmark' && !answerStatus.isCorrect) return;
         if (foundLandmarks.length === LANDMARKS.length) {
             setGameState('complete');
             completeGame();
         } else {
             setGameState('playing');
             setCurrentLandmark(null);
+            setAnswerStatus({ selected: null, isCorrect: false, hasAnswered: false });
         }
     };
 
@@ -342,6 +408,7 @@ function LocalHistoryGame({ lesson }) {
         foundRef.current = new Set();
         playerRef.current = { x: 400, y: 300, dir: 'down' };
         setPlayer({ x: 400, y: 300, dir: 'down' });
+        setAnswerStatus({ selected: null, isCorrect: false, hasAnswered: false });
         speak("Welcome, History Explorer! Move around the town and use your magnifying glass to find hidden treasures from the past!", { rate: 0.9 });
     };
 
@@ -434,13 +501,67 @@ function LocalHistoryGame({ lesson }) {
                             fontSize: '20px',
                             lineHeight: '1.5',
                             color: '#2d3436',
-                            marginBottom: '30px',
+                            marginBottom: '20px',
                             maxWidth: '500px',
                             boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)'
                         }}>
                             {currentLandmark.fact}
                         </div>
-                        <button onClick={handleContinue} style={{ ...buttonStyle, backgroundColor: currentLandmark.color }}>Continue →</button>
+                        <div style={{
+                            background: '#ffffff',
+                            padding: '20px',
+                            borderRadius: '15px',
+                            width: '100%',
+                            maxWidth: '520px',
+                            boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
+                            textAlign: 'left'
+                        }}>
+                            <div style={{ fontSize: '16px', color: '#636e72', textTransform: 'uppercase', marginBottom: '8px' }}>Quick Check</div>
+                            <div style={{ fontSize: '22px', fontWeight: '600', marginBottom: '16px', color: '#2d3436' }}>{currentLandmark.question.prompt}</div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                {currentLandmark.question.options.map((option, index) => {
+                                    const isSelected = answerStatus.selected === index;
+                                    const showStatus = answerStatus.hasAnswered && isSelected;
+                                    const borderColor = showStatus ? (answerStatus.isCorrect ? '#2ecc71' : '#e74c3c') : 'transparent';
+                                    return (
+                                        <button
+                                            key={option}
+                                            onClick={() => handleAnswerSelect(index)}
+                                            style={{
+                                                ...quizOptionStyle,
+                                                borderColor,
+                                                backgroundColor: isSelected ? 'rgba(72,52,212,0.08)' : '#f4f6fb',
+                                            }}
+                                        >
+                                            {option}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                            {answerStatus.hasAnswered && (
+                                <div style={{
+                                    marginTop: '16px',
+                                    fontWeight: '600',
+                                    color: answerStatus.isCorrect ? '#2ecc71' : '#e74c3c'
+                                }}>
+                                    {answerStatus.isCorrect ? 'Correct! You understood this part of local history.' : 'Try again. Use the clue to pick a better answer.'}
+                                </div>
+                            )}
+                        </div>
+                        <button
+                            onClick={handleContinue}
+                            disabled={!answerStatus.isCorrect}
+                            style={{
+                                ...buttonStyle,
+                                backgroundColor: currentLandmark.color,
+                                marginTop: '30px',
+                                opacity: answerStatus.isCorrect ? 1 : 0.5,
+                                cursor: answerStatus.isCorrect ? 'pointer' : 'not-allowed',
+                                boxShadow: answerStatus.isCorrect ? '0 8px 15px rgba(72, 52, 212, 0.2)' : 'none'
+                            }}
+                        >
+                            Continue →
+                        </button>
                     </div>
                 )}
 
@@ -508,6 +629,20 @@ const buttonStyle = {
     cursor: 'pointer',
     transition: 'transform 0.2s, box-shadow 0.2s',
     boxShadow: '0 8px 15px rgba(72, 52, 212, 0.2)',
+};
+
+const quizOptionStyle = {
+    width: '100%',
+    padding: '14px 18px',
+    borderRadius: '12px',
+    border: '2px solid transparent',
+    textAlign: 'left',
+    fontSize: '18px',
+    fontWeight: '600',
+    color: '#2d3436',
+    backgroundColor: '#f4f6fb',
+    cursor: 'pointer',
+    transition: 'all 0.2s',
 };
 
 export default LocalHistoryGame;

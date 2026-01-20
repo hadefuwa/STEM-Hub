@@ -9,6 +9,7 @@ import QuizScreen from './screens/QuizScreen';
 import ShopScreen from './screens/ShopScreen';
 import AdminPanel from './screens/AdminPanel';
 import ArtGradingScreen from './screens/ArtGradingScreen';
+import CharacterCustomizationScreen from './screens/CharacterCustomizationScreen';
 
 function App() {
   const initialize = useDataStore(state => state.initialize);
@@ -89,6 +90,7 @@ function App() {
         }}>
           <Routes>
             <Route path="/" element={<SubjectSelectionScreen />} />
+            <Route path="/character" element={<CharacterCustomizationScreen />} />
             <Route path="/lessons" element={<LessonsListScreen />} />
             <Route path="/lesson/:lessonId" element={<LessonViewScreen />} />
             <Route path="/quiz/:quizId" element={<QuizScreen />} />

@@ -1,8 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
 import UpdateChecker from './UpdateChecker';
+import { createAvatar } from '@dicebear/core';
+import { adventurer, adventurerNeutral, micah, notionists, thumbs, pixelArt, avataaars } from '@dicebear/collection';
+import { CHARACTER_LEVELS } from '../data/characters';
+import { buildAvatarOptions } from '../data/accessories';
 
 function TopNavigation() {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -24,6 +28,57 @@ function TopNavigation() {
   const pointsBalance = useDataStore(useCallback(state => state.data?.pointsBalance || 0, []));
   // Get lessons array reference for skip logic (avoid subscribing to entire data)
   const lessons = useDataStore(useCallback(state => state.data?.lessons || [], []));
+  const userId = useDataStore(state => state.getUserId());
+  const student = useDataStore(state => state.getStudentById(userId));
+  const getAllLessonsForSubject = useDataStore(state => state.getAllLessonsForSubject);
+  
+  // Calculate overall progress for level
+  const allSubjects = ['english', 'maths', 'science', 'history', 'geography', 'art', 'music', 'technology'];
+  let totalLessons = 0;
+  let totalCompleted = 0;
+  allSubjects.forEach(subjectId => {
+    const subjectLessons = getAllLessonsForSubject(subjectId);
+    totalLessons += subjectLessons.length;
+    subjectLessons.forEach(l => {
+      if (hasCompletedLesson(userId, l.yearId, l.subjectId, l.lessonNumber)) {
+        totalCompleted++;
+      }
+    });
+  });
+  const overallProgress = totalLessons > 0 ? (totalCompleted / totalLessons) * 100 : 0;
+  const levelIndex = (() => {
+    const foundIndex = CHARACTER_LEVELS.findIndex(level => overallProgress <= level.max);
+    return foundIndex === -1 ? CHARACTER_LEVELS.length - 1 : foundIndex;
+  })();
+  const currentLevel = CHARACTER_LEVELS[levelIndex];
+  const levelBadges = ['🌱', '🧭', '⚔️', '🌟', '👑'];
+  const levelBadge = levelBadges[levelIndex] || '⭐';
+
+  // Generate mini avatar
+  const avatarStyles = [
+    { id: 'adventurer', collection: adventurer },
+    { id: 'adventurerNeutral', collection: adventurerNeutral },
+    { id: 'notionists', collection: notionists },
+    { id: 'micah', collection: micah },
+    { id: 'thumbs', collection: thumbs },
+    { id: 'pixelArt', collection: pixelArt },
+    { id: 'avataaars', collection: avataaars },
+  ];
+  const storedAvatarConfig = student?.avatarConfig || {
+    style: 'adventurer',
+    seed: student?.name || 'Student',
+    backgroundColor: 'b6e3f4',
+  };
+  const selectedAccessories = student?.selectedAccessories || [];
+  const avatarStyle = avatarStyles.find(s => s.id === storedAvatarConfig.style) || avatarStyles[0];
+  const miniAvatarSvg = useMemo(() => {
+    const options = buildAvatarOptions(selectedAccessories, storedAvatarConfig.backgroundColor);
+    return createAvatar(avatarStyle.collection, {
+      seed: storedAvatarConfig.seed || 'Student',
+      size: 40,
+      ...options,
+    }).toString();
+  }, [storedAvatarConfig.backgroundColor, storedAvatarConfig.seed, avatarStyle.collection, selectedAccessories]);
   
   // Determine if we're on a lesson page
   const isLessonPage = location.pathname.startsWith('/lesson/');
@@ -285,6 +340,44 @@ function TopNavigation() {
       </div>
       
       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        {/* Mini Avatar with Level */}
+        <div
+          onClick={handleHome}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '6px 12px',
+            backgroundColor: '#f8f9fa',
+            border: '2px solid #e0e0e0',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            transition: 'transform 0.2s',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.05)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+          title={`Level ${levelIndex + 1}: ${currentLevel?.name}`}
+        >
+          <div
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              border: '2px solid #007bff',
+            }}
+            dangerouslySetInnerHTML={{ __html: miniAvatarSvg }}
+          />
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2' }}>
+            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#333' }}>{student?.name || 'Student'}</span>
+            <span style={{ fontSize: '10px', color: '#666' }}>{levelBadge} Lv.{levelIndex + 1}</span>
+          </div>
+        </div>
+        
         {/* Points Balance Display */}
         <div
           onClick={handleShop}
