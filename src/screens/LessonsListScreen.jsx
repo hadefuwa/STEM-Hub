@@ -36,6 +36,18 @@ function LessonsListScreen() {
   const getStudyModePlaylist = useDataStore(state => state.getStudyModePlaylist);
 
   const subject = subjectId ? Subject.getById(subjectId) : null;
+  const cardBase = {
+    backgroundColor: 'var(--surface-2)',
+    border: '1px solid var(--border-1)',
+    borderRadius: '8px',
+    boxShadow: 'var(--shadow-1)',
+  };
+  const cardRaised = {
+    backgroundColor: 'var(--surface-2)',
+    border: '1px solid var(--border-1)',
+    borderRadius: '12px',
+    boxShadow: 'var(--shadow-1)',
+  };
 
   const handleStartStudyMode = () => {
     if (subjectId) {
@@ -89,13 +101,14 @@ function LessonsListScreen() {
         <div style={{
           marginBottom: '20px',
           padding: '15px 20px',
-          backgroundColor: '#007bff',
-          color: 'white',
+          background: 'linear-gradient(135deg, rgba(72, 229, 255, 0.25), rgba(12, 24, 48, 0.95))',
+          color: 'var(--text-1)',
           borderRadius: '8px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+          border: '1px solid var(--border-1)',
+          boxShadow: 'var(--shadow-1)',
         }}>
           <div>
             <strong style={{ fontSize: '16px' }}>📚 Study Mode Active</strong>
@@ -107,9 +120,9 @@ function LessonsListScreen() {
             onClick={handleExitStudyMode}
             style={{
               padding: '8px 16px',
-              backgroundColor: 'white',
-              color: '#007bff',
-              border: 'none',
+              backgroundColor: 'rgba(8, 14, 28, 0.9)',
+              color: 'var(--text-1)',
+              border: '1px solid var(--border-1)',
               borderRadius: '6px',
               fontSize: '14px',
               fontWeight: '600',
@@ -126,9 +139,7 @@ function LessonsListScreen() {
         <div style={{
           marginBottom: '30px',
           padding: '20px',
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          ...cardBase,
         }}>
           <div style={{
             display: 'flex',
@@ -140,7 +151,7 @@ function LessonsListScreen() {
             <span style={{
               fontSize: '16px',
               fontWeight: '600',
-              color: '#007bff',
+              color: 'var(--accent-1)',
             }}>
               {Math.round(subjectProgress.progressPercentage)}% Complete
             </span>
@@ -148,21 +159,21 @@ function LessonsListScreen() {
           <div style={{
             width: '100%',
             height: '8px',
-            backgroundColor: '#e0e0e0',
+            backgroundColor: 'rgba(120, 190, 255, 0.2)',
             borderRadius: '4px',
             overflow: 'hidden',
           }}>
             <div style={{
               width: `${subjectProgress.progressPercentage}%`,
               height: '100%',
-              backgroundColor: '#007bff',
+              backgroundColor: 'var(--accent-1)',
               transition: 'width 0.3s',
             }} />
           </div>
           <p style={{
             margin: '10px 0 0 0',
             fontSize: '14px',
-            color: '#666',
+            color: 'var(--text-2)',
           }}>
             {subjectProgress.completedCount} of {subjectProgress.totalLessons} lessons completed
           </p>
@@ -174,7 +185,7 @@ function LessonsListScreen() {
               style={{
                 marginTop: '15px',
                 padding: '12px 24px',
-                backgroundColor: '#28a745',
+                backgroundColor: 'var(--accent-2)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '6px',
@@ -188,10 +199,10 @@ function LessonsListScreen() {
                 gap: '8px',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#218838';
+                e.currentTarget.style.backgroundColor = 'rgba(124, 247, 180, 0.85)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#28a745';
+                e.currentTarget.style.backgroundColor = 'var(--accent-2)';
               }}
             >
               <span>📚</span>
@@ -206,9 +217,7 @@ function LessonsListScreen() {
         <div style={{
           padding: '40px',
           textAlign: 'center',
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          ...cardBase,
         }}>
           <h2 style={{ marginBottom: '10px' }}>No Lessons Available</h2>
           <p>There are no lessons available for {subject.name} yet.</p>
@@ -221,7 +230,7 @@ function LessonsListScreen() {
               <h2 style={{
                 marginBottom: '20px',
                 fontSize: '20px',
-                color: '#333',
+                color: 'var(--text-1)',
               }}>
                 Continue Learning
               </h2>
@@ -229,20 +238,18 @@ function LessonsListScreen() {
                 onClick={() => navigate(`/lesson/${nextLesson.id}`)}
                 style={{
                   padding: '30px',
-                  backgroundColor: 'white',
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                  ...cardRaised,
                   cursor: 'pointer',
                   transition: 'transform 0.2s, box-shadow 0.2s',
-                  border: '2px solid #007bff',
+                  border: '2px solid rgba(72, 229, 255, 0.6)',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 6px 12px rgba(0,0,0,0.15)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-2)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-1)';
                 }}
               >
                 <div style={{
@@ -255,7 +262,7 @@ function LessonsListScreen() {
                 <h3 style={{
                   margin: '0 0 10px 0',
                   fontSize: '24px',
-                  color: '#333',
+                  color: 'var(--text-1)',
                   textAlign: 'center',
                 }}>
                   {nextLesson.title}
@@ -263,7 +270,7 @@ function LessonsListScreen() {
                 <p style={{
                   margin: '0 0 15px 0',
                   fontSize: '16px',
-                  color: '#666',
+                  color: 'var(--text-2)',
                   textAlign: 'center',
                 }}>
                   {Year.getById(nextLesson.yearId)?.name || nextLesson.yearId}
@@ -273,7 +280,7 @@ function LessonsListScreen() {
                 }}>
                   <button style={{
                     padding: '12px 24px',
-                    backgroundColor: '#007bff',
+                    backgroundColor: 'var(--accent-1)',
                     color: 'white',
                     border: 'none',
                     borderRadius: '6px',
@@ -293,7 +300,7 @@ function LessonsListScreen() {
             <h2 style={{
               marginBottom: '20px',
               fontSize: '20px',
-              color: '#333',
+              color: 'var(--text-1)',
             }}>
               All Lessons ({allLessons.length})
             </h2>
@@ -320,21 +327,19 @@ function LessonsListScreen() {
                     onClick={() => navigate(`/lesson/${lesson.id}`)}
                     style={{
                       padding: '20px',
-                      backgroundColor: 'white',
-                      borderRadius: '8px',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                      ...cardBase,
                       cursor: 'pointer',
                       transition: 'transform 0.2s, box-shadow 0.2s',
-                      border: isNextLesson ? '2px solid #007bff' : '1px solid #e0e0e0',
+                      border: isNextLesson ? '2px solid rgba(72, 229, 255, 0.6)' : '1px solid var(--border-1)',
                       position: 'relative',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+                      e.currentTarget.style.boxShadow = 'var(--shadow-2)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                      e.currentTarget.style.boxShadow = 'var(--shadow-1)';
                     }}
                   >
                     {isCompleted && (() => {
@@ -367,7 +372,7 @@ function LessonsListScreen() {
                         top: '10px',
                         left: '10px',
                         fontSize: '12px',
-                        backgroundColor: '#007bff',
+                        backgroundColor: 'rgba(72, 229, 255, 0.85)',
                         color: 'white',
                         padding: '4px 8px',
                         borderRadius: '4px',
@@ -386,7 +391,7 @@ function LessonsListScreen() {
                     <h3 style={{
                       margin: '0 0 8px 0',
                       fontSize: '18px',
-                      color: '#333',
+                      color: 'var(--text-1)',
                       textAlign: 'center',
                     }}>
                       {lesson.title}
@@ -394,7 +399,7 @@ function LessonsListScreen() {
                     <p style={{
                       margin: '0',
                       fontSize: '14px',
-                      color: '#666',
+                      color: 'var(--text-2)',
                       textAlign: 'center',
                     }}>
                       {Year.getById(lesson.yearId)?.name || lesson.yearId}

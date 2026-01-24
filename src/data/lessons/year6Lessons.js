@@ -1043,75 +1043,8 @@ In the game, you will evaluate these concepts. Can you distinguish between long-
       categoryId: null,
     }),
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year6',
-      subjectId: 'technology',
-      lessonNumber: 1,
-      title: "TapTapTap: Champion Level 1",
-      emoji: '👆',
-      content: `# TapTapTap: Champion Level 1 👆
+    
 
-The ultimate challenge! You've reached the champion level - the highest difficulty!
-
-## How to Play
-
-- Tap targets as they appear on screen
-- Targets appear every 0.6 seconds (incredibly fast!)
-- Targets are very small and require perfect precision
-- 30 seconds to score as many points as possible!
-
-## Scoring System
-
-- **Bronze**: 30-59 points
-- **Silver**: 60-89 points
-- **Gold**: 90-119 points
-- **Platinum**: 120+ points
-
-You need at least **Bronze** (30 points) to progress!
-
-## Tips
-
-- This is the hardest level - be patient!
-- Focus on accuracy over speed
-- Practice makes perfect - keep trying!`,
-      quizId: null,
-      assessmentType: null,
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year6',
-      subjectId: 'technology',
-      lessonNumber: 2,
-      title: "TapTapTap: Champion Level 2",
-      emoji: '👆',
-      content: `# TapTapTap: Champion Level 2 👆
-
-The final challenge! You're at the top level - show what you can do!
-
-## How to Play
-
-- Tap targets as they appear
-- Same speed as Level 1 - the ultimate test!
-- 30 seconds to score points
-
-## Scoring System
-
-- **Bronze**: 30-59 points
-- **Silver**: 60-89 points
-- **Gold**: 90-119 points
-- **Platinum**: 120+ points
-
-You need at least **Bronze** (30 points) to progress!
-
-## Challenge
-
-You've made it to the champion level! Can you achieve Platinum? You're a true tapping champion!`,
-      quizId: null,
-      assessmentType: null,
-      categoryId: null,
-    }),
+    
   ];
 }

@@ -43,7 +43,8 @@ function PythonCodeEditor({ lesson }) {
             instruction: instruction,
             expectedOutput: parsed.expectedOutput || null,
             expectedContains: parsed.expectedContains || null,
-            codePattern: parsed.codePattern || null
+            codePattern: parsed.codePattern || null,
+            starterCode: parsed.starterCode || null
           };
         }
         // If parsed but no instruction, treat as text
@@ -51,7 +52,8 @@ function PythonCodeEditor({ lesson }) {
           instruction: exerciseMatch[1].trim(),
           expectedOutput: null,
           expectedContains: null,
-          codePattern: null
+          codePattern: null,
+          starterCode: null
         };
       } catch (e) {
         // If not JSON, try to parse as simple text
@@ -59,7 +61,8 @@ function PythonCodeEditor({ lesson }) {
           instruction: exerciseMatch[1].trim(),
           expectedOutput: null,
           expectedContains: null,
-          codePattern: null
+          codePattern: null,
+          starterCode: null
         };
       }
     }
@@ -71,7 +74,8 @@ function PythonCodeEditor({ lesson }) {
         instruction: markdownExerciseMatch[1].trim(),
         expectedOutput: null,
         expectedContains: null,
-        codePattern: null
+        codePattern: null,
+        starterCode: null
       };
     }
     
@@ -82,42 +86,50 @@ function PythonCodeEditor({ lesson }) {
         instruction: 'Write a program that prints "Hello, World!"',
         expectedOutput: 'Hello, World!\n',
         expectedContains: 'Hello, World!',
-        codePattern: 'print.*Hello.*World'
+        codePattern: 'print.*Hello.*World',
+        starterCode: 'print("Hello, World!")'
       },
       2: {
         instruction: 'Print your name using the print() function. Example: print("Your Name")',
         expectedContains: null, // Just check that print is used
-        codePattern: 'print\\(.*\\)'
+        codePattern: 'print\\(.*\\)',
+        starterCode: 'name = ""  # TODO: write your name inside the quotes\nprint(name)'
       },
       3: {
         instruction: 'Create a variable called "name" and set it to your name, then print it',
         codePattern: 'name\\s*=\\s*["\'].*["\']|name\\s*=\\s*input',
-        expectedContains: null
+        expectedContains: null,
+        starterCode: 'name = ""  # TODO: put your name in quotes\nage = 0    # TODO: put your age (number)\nprint("Name:", name)\nprint("Age:", age)'
       },
       4: {
         instruction: 'Ask the user for their name using input() and print a greeting. Note: input() won\'t work in this simulator, so use: name = "Your Name" then print("Hello,", name)',
         codePattern: 'name\\s*=\\s*["\'].*["\']',
-        expectedContains: 'Hello'
+        expectedContains: 'Hello',
+        starterCode: 'name = ""  # TODO: pretend input() by writing your name here\nprint("Hello,", name)\n# TODO: add another line that says welcome!'
       },
       5: {
         instruction: 'Write an if statement that checks if a number is greater than 10. Example: number = 15\nif number > 10:\n    print("Greater than 10")',
         codePattern: 'if\\s+.*>\\s*10|if\\s+.*>=.*10',
-        expectedContains: null
+        expectedContains: null,
+        starterCode: 'number = 12  # TODO: change this number\n# TODO: write an if statement that checks if number > 10\n# If true, print "Greater than 10"'
       },
       6: {
         instruction: 'Write a for loop that prints numbers from 1 to 5',
         codePattern: 'for\\s+.*in\\s+range',
-        expectedContains: null
+        expectedContains: null,
+        starterCode: '# TODO: write a loop that prints 1 to 5\nfor i in range(1, 6):\n    print(i)'
       },
       7: {
         instruction: 'Create a function called greet() that prints "Hello!"',
         codePattern: 'def\\s+greet',
-        expectedContains: null
+        expectedContains: null,
+        starterCode: 'def greet():\n    # TODO: print "Hello!"\n    pass\n\n# TODO: call the function\n'
       },
       8: {
         instruction: 'Use turtle to draw a square. Example: import turtle\nt = turtle.Turtle()\nfor i in range(4):\n    t.forward(100)\n    t.left(90)',
         codePattern: 'import\\s+turtle|turtle\\.',
-        expectedContains: null
+        expectedContains: null,
+        starterCode: 'import turtle\n\nt = turtle.Turtle()\n# TODO: draw a square using a loop\nfor i in range(4):\n    t.forward(100)\n    t.left(90)'
       }
     };
     
@@ -125,7 +137,8 @@ function PythonCodeEditor({ lesson }) {
       instruction: 'Write Python code to complete this exercise',
       expectedOutput: null,
       expectedContains: null,
-      codePattern: null
+      codePattern: null,
+      starterCode: null
     };
   };
 
@@ -463,24 +476,25 @@ function PythonCodeEditor({ lesson }) {
       setError('');
       
       // Set default code based on lesson number
-      if (lesson.lessonNumber) {
-        const defaults = {
-          1: 'print("Hello, World!")', // Lesson 1: Code pre-written for first lesson
-          2: '', // Lesson 2: Students write their own code
-          3: '', // Lesson 3: Students learn to create variables themselves
-          4: '', // Lesson 4: Students learn input() and type conversion
-          5: '', // Lesson 5: Students learn if statements and decision-making
-          6: '', // Lesson 6: Students learn loops and repetition
-          7: '', // Lesson 7: Students learn functions and code organization
-          8: '', // Lesson 8: Students learn turtle graphics and creative coding
-        };
-        if (defaults[lesson.lessonNumber]) {
-          setCode(defaults[lesson.lessonNumber]);
+      const starterCode = exercise?.starterCode;
+      if (starterCode && typeof starterCode === 'string') {
+        setCode(starterCode);
+      } else {
+        if (lesson.lessonNumber) {
+          const defaults = {
+            1: 'print("Hello, World!")',
+            2: 'name = ""  # TODO: write your name inside the quotes\nprint(name)',
+            3: 'name = ""  # TODO: put your name in quotes\nage = 0    # TODO: put your age (number)\nprint("Name:", name)\nprint("Age:", age)',
+            4: 'name = ""  # TODO: pretend input() by writing your name here\nprint("Hello,", name)\n# TODO: add another line that says welcome!',
+            5: 'number = 12  # TODO: change this number\n# TODO: write an if statement that checks if number > 10\n# If true, print "Greater than 10"',
+            6: '# TODO: write a loop that prints 1 to 5\nfor i in range(1, 6):\n    print(i)',
+            7: 'def greet():\n    # TODO: print "Hello!"\n    pass\n\n# TODO: call the function\n',
+            8: 'import turtle\n\nt = turtle.Turtle()\n# TODO: draw a square using a loop\nfor i in range(4):\n    t.forward(100)\n    t.left(90)'
+          };
+          setCode(defaults[lesson.lessonNumber] || '');
         } else {
           setCode('');
         }
-      } else {
-        setCode('');
       }
     }
   }, [lesson?.id]); // Reset when lesson ID changes
@@ -593,6 +607,11 @@ function PythonCodeEditor({ lesson }) {
               <div style={{ color: '#004085', fontSize: '14px' }}>
                 {trimmed}
               </div>
+              {exercise?.starterCode && (
+                <div style={{ marginTop: '8px', fontSize: '12px', color: '#004085' }}>
+                  Tip: Look for TODO comments in the starter code and fill them in.
+                </div>
+              )}
             </div>
           );
         })()}
@@ -681,7 +700,11 @@ function PythonCodeEditor({ lesson }) {
             </button>
             <button
               onClick={() => {
-                setCode('');
+                if (exercise?.starterCode) {
+                  setCode(exercise.starterCode);
+                } else {
+                  setCode('');
+                }
                 setOutput('');
                 setError('');
                 setIsCorrect(false);

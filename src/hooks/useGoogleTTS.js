@@ -1,52 +1,33 @@
-import { useState, useEffect } from 'react';
-import ttsService from '../services/GoogleTTSService';
+import { useState } from 'react';
 
 /**
- * Hook for using TTS in components
+ * TTS hook (disabled)
+ * Keeps API shape for components without providing audio.
  */
 export const useGoogleTTS = () => {
-  const [state, setState] = useState(ttsService.getState());
-
-  useEffect(() => {
-    const unsubscribe = ttsService.subscribe((newState) => {
-      setState(newState);
-    });
-
-    return unsubscribe;
-  }, []);
+  const [state] = useState({
+    enabled: false,
+    speaking: false,
+    lastText: '',
+    rate: 1,
+    pitch: 0,
+    autoRead: false,
+    readAnswers: false,
+    voices: [],
+    currentVoice: null
+  });
 
   return {
     ...state,
-    speak: (text, options) => ttsService.speak(text, options),
-    stop: () => ttsService.stop(),
-    replay: () => ttsService.replay(),
-    setRate: (rate) => ttsService.setRate(rate),
-    setEnabled: (enabled) => ttsService.setEnabled(enabled),
-    setAutoRead: (enabled) => ttsService.setAutoRead(enabled),
+    speak: async () => Promise.resolve(),
+    stop: () => {},
+    replay: () => {},
+    setRate: () => {},
+    setEnabled: () => {},
+    setAutoRead: () => {},
   };
 };
 
-/**
- * Hook for auto-speaking text when component mounts or content changes
- * Use this in lesson/quiz components to automatically read content
- */
-export const useAutoSpeak = (text, options = {}) => {
-  const { enabled } = useGoogleTTS();
-  const { delay = 500, deps = [] } = options;
-
-  useEffect(() => {
-    if (!text || !enabled) return;
-
-    // Stop any current speech and start new one after delay
-    const timer = setTimeout(async () => {
-      await ttsService.stop();
-      await ttsService.speak(text, options);
-    }, delay);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [text, enabled, ...deps]);
-};
+export const useAutoSpeak = () => {};
 
 export default useGoogleTTS;

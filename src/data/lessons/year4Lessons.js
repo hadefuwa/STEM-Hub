@@ -447,7 +447,8 @@ print("Hello, World!")
 {
   "instruction": "The code is already written for you! Run it to see 'Hello, World!' appear. Then try changing the message to say hello to yourself!",
   "expectedContains": "Hello",
-  "codePattern": null
+  "codePattern": null,
+  "starterCode": "print(\"Hello, World!\")\\n# TODO: change the message to greet yourself"
 }
 <!-- EXERCISE_END -->
 
@@ -625,7 +626,8 @@ Now it's your turn! Write your own code in the editor below:
 {
   "instruction": "Write code to print your name and favorite color. Use the print() function!",
   "expectedContains": null,
-  "codePattern": "print\\(.*\\)"
+  "codePattern": "print\\(.*\\)",
+  "starterCode": "name = \"\"  # TODO: put your name in quotes\\ncolor = \"\"  # TODO: put your favorite color\\nprint(\"My name is\", name)\\nprint(\"My favorite color is\", color)"
 }
 <!-- EXERCISE_END -->
 
@@ -855,7 +857,8 @@ Now write your own code in the editor below! Try these challenges:
 {
   "instruction": "Create a variable called 'name' and set it to your name, then print it. Also create a variable for your age and print that too!",
   "codePattern": "name\\s*=\\s*[\"'].*[\"']|my_name\\s*=\\s*[\"'].*[\"']",
-  "expectedContains": null
+  "expectedContains": null,
+  "starterCode": "name = \"\"  # TODO: put your name in quotes\\nage = 0    # TODO: put your age (number)\\nprint(\"Name:\", name)\\nprint(\"Age:\", age)"
 }
 <!-- EXERCISE_END -->
 
@@ -1131,7 +1134,8 @@ Now write your own interactive programs! Try these challenges:
 {
   "instruction": "Create an interactive program that asks for the user's name and age, then calculates and prints how old they will be in 10 years. Remember: use int() to convert the age input to a number!",
   "codePattern": "int\\(input|age\\s*=\\s*int",
-  "expectedContains": null
+  "expectedContains": null,
+  "starterCode": "name = \"Ada\"  # TODO: change the name\\nage_text = \"10\"  # TODO: pretend input by changing this\\nage = int(age_text)\\nprint(name, \"will be\", age + 10, \"in 10 years\")"
 }
 <!-- EXERCISE_END -->
 
@@ -1458,7 +1462,8 @@ Create your own decision-making programs! Try these:
 {
   "instruction": "Create a program that asks for a number, then uses if/elif/else to check if it's positive, negative, or zero, and prints an appropriate message. Also check if the number is greater than 100!",
   "codePattern": "if.*>|elif.*<|else:",
-  "expectedContains": null
+  "expectedContains": null,
+  "starterCode": "number = 42  # TODO: change this number\\n# TODO: use if/elif/else to check positive/negative/zero\\nif number > 0:\\n    print(\"Positive\")\\nelif number < 0:\\n    print(\"Negative\")\\nelse:\\n    print(\"Zero\")\\n\\n# TODO: check if number is greater than 100\\nif number > 100:\\n    print(\"Greater than 100\")"
 }
 <!-- EXERCISE_END -->
 
@@ -1803,7 +1808,8 @@ print("Final total:", total)
 {
   "instruction": "Create a program that uses a for loop to print numbers from 1 to 10, then uses another loop to print the 5 times table (5 x 1 = 5, 5 x 2 = 10, etc. up to 5 x 10 = 50).",
   "codePattern": "for.*range|for.*in.*range",
-  "expectedContains": null
+  "expectedContains": null,
+  "starterCode": "# TODO: print numbers 1 to 10\\nfor i in range(1, 11):\\n    print(i)\\n\\n# TODO: print the 5 times table\\nfor i in range(1, 11):\\n    print(\"5 x\", i, \"=\", 5 * i)"
 }
 <!-- EXERCISE_END -->
 
@@ -2169,7 +2175,8 @@ Create these functions to practice:
 {
   "instruction": "Create a function called 'greet' that takes a name as a parameter and prints a greeting. Then create a function called 'add' that takes two numbers and returns their sum. Call both functions to test them!",
   "codePattern": "def\\s+greet|def\\s+add",
-  "expectedContains": null
+  "expectedContains": null,
+  "starterCode": "def greet(name):\\n    # TODO: print a greeting with the name\\n    print(\"Hello\", name)\\n\\n\\ndef add(a, b):\\n    # TODO: return the sum\\n    return a + b\\n\\n# TODO: call the functions\\ngreet(\"Alex\")\\nprint(\"2 + 3 =\", add(2, 3))"
 }
 <!-- EXERCISE_END -->
 
@@ -2545,7 +2552,8 @@ Create these drawings:
 {
   "instruction": "Use turtle graphics to draw a square. Then draw a triangle next to it. Use different colors for each shape! Remember to import turtle first.",
   "codePattern": "import\\s+turtle|turtle\\.Turtle|forward|left|right",
-  "expectedContains": null
+  "expectedContains": null,
+  "starterCode": "import turtle\\n\\nt = turtle.Turtle()\\n# TODO: set a color and draw a square\\nt.color(\"blue\")\\nfor i in range(4):\\n    t.forward(100)\\n    t.left(90)\\n\\n# TODO: move to the right and draw a triangle\\nt.penup()\\nt.forward(150)\\nt.pendown()\\nt.color(\"red\")\\nfor i in range(3):\\n    t.forward(100)\\n    t.left(120)"
 }
 <!-- EXERCISE_END -->
 
@@ -3049,7 +3057,8 @@ for i in range(3):
 {
   "instruction": "Create a simple project that combines what you've learned! Build a program that asks for the user's name and age, then uses if statements to give personalized advice based on their age, and uses a loop to print a fun message multiple times. Be creative!",
   "codePattern": "input|if|for|while",
-  "expectedContains": null
+  "expectedContains": null,
+  "starterCode": "try:\\n    user_name = input(\"What is your name? \")\\n    user_age = int(input(\"How old are you? \"))\\nexcept Exception:\\n    user_name = \"Alex\"  # TODO: change the name\\n    user_age = 10        # TODO: change the age\\n\\n# TODO: customize the message based on age\\nif user_age < 8:\\n    message = \"You're just getting started!\"\\nelif user_age < 12:\\n    message = \"You're a growing programmer!\"\\nelse:\\n    message = \"You're an experienced learner!\"\\n\\nprint(\"Hello\", user_name)\\nfor i in range(3):\\n    print(message)"
 }
 <!-- EXERCISE_END -->
 
@@ -6597,75 +6606,9 @@ STEP format should be used for manufacturing. It maintains precise geometry and 
       categoryId: 'fusion360',
     }),
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year4',
-      subjectId: 'technology',
-      lessonNumber: 22,
-      title: "TapTapTap: Expert Level 1",
-      emoji: '👆',
-      content: `# TapTapTap: Expert Level 1 👆
+    
 
-You're getting really good! This expert level will challenge your skills even more.
-
-## How to Play
-
-- Tap targets as they appear on screen
-- Targets appear every 1 second (very fast!)
-- Targets are smaller and more challenging
-- 30 seconds to score as many points as possible!
-
-## Scoring System
-
-- **Bronze**: 20-39 points
-- **Silver**: 40-59 points
-- **Gold**: 60-79 points
-- **Platinum**: 80+ points
-
-You need at least **Bronze** (20 points) to progress!
-
-## Tips
-
-- Stay calm and focused
-- Practice makes perfect
-- Challenge yourself to beat your best score!`,
-      quizId: null,
-      assessmentType: null,
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year4',
-      subjectId: 'technology',
-      lessonNumber: 23,
-      title: "TapTapTap: Expert Level 2",
-      emoji: '👆',
-      content: `# TapTapTap: Expert Level 2 👆
-
-Continue mastering your tapping skills at the expert level!
-
-## How to Play
-
-- Tap targets as they appear
-- Same speed as Level 1 - keep practicing!
-- 30 seconds to score points
-
-## Scoring System
-
-- **Bronze**: 20-39 points
-- **Silver**: 40-59 points
-- **Gold**: 60-79 points
-- **Platinum**: 80+ points
-
-You need at least **Bronze** (20 points) to progress!
-
-## Challenge
-
-Can you improve your score? Aim for Platinum!`,
-      quizId: null,
-      assessmentType: null,
-      categoryId: null,
-    }),
+    
   ];
 }
+

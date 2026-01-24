@@ -41,6 +41,12 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
   
   const finalUrl = getFinalUrl();
 
+  // Reset completion state when lesson or URL changes
+  useEffect(() => {
+    setGameCompleted(false);
+    setShowCompletionOverlay(false);
+  }, [lesson?.id, url]);
+
   // Listen for messages from the iframe (completion and TTS requests)
   useEffect(() => {
     const handleMessage = async (event) => {
@@ -141,6 +147,9 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
       if (shouldDisableStudyMode) {
         disableStudyMode();
       }
+      // Reset overlay state before navigating
+      setGameCompleted(false);
+      setShowCompletionOverlay(false);
       navigate(url);
     }
   };

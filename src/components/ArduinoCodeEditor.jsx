@@ -387,6 +387,13 @@ function ArduinoCodeEditor({ lesson }) {
     ? (allQuestionsCorrect && isCorrect)
     : isCorrect;
 
+  const cardBase = {
+    backgroundColor: 'var(--surface-2)',
+    border: '1px solid var(--border-1)',
+    borderRadius: '8px',
+    boxShadow: 'var(--shadow-1)',
+  };
+
   return (
     <div style={{
       display: 'flex',
@@ -397,26 +404,24 @@ function ArduinoCodeEditor({ lesson }) {
       {/* Header */}
       <div style={{
         padding: '20px',
-        backgroundColor: 'white',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        ...cardBase,
       }}>
-        <h2 style={{ margin: '0 0 10px 0', fontSize: '24px' }}>🔌 Arduino Code Editor</h2>
-        <p style={{ margin: '0 0 10px 0', color: '#666', fontSize: '14px' }}>
+        <h2 style={{ margin: '0 0 10px 0', fontSize: '24px', color: 'var(--text-1)' }}>🔌 Arduino Code Editor</h2>
+        <p style={{ margin: '0 0 10px 0', color: 'var(--text-2)', fontSize: '14px' }}>
           Write Arduino code and check it for correctness!
         </p>
         {exercise && (
           <div style={{
             padding: '12px',
-            backgroundColor: '#e7f3ff',
+            backgroundColor: 'rgba(72, 229, 255, 0.12)',
             borderRadius: '6px',
-            border: '1px solid #b3d9ff',
+            border: '1px solid rgba(72, 229, 255, 0.35)',
             marginTop: '10px',
           }}>
-            <div style={{ fontWeight: '600', marginBottom: '5px', color: '#004085' }}>
+            <div style={{ fontWeight: '600', marginBottom: '5px', color: 'var(--text-1)' }}>
               Exercise:
             </div>
-            <div style={{ color: '#004085', fontSize: '14px' }}>
+            <div style={{ color: 'var(--text-2)', fontSize: '14px' }}>
               {exercise.instruction}
             </div>
           </div>
@@ -435,9 +440,7 @@ function ArduinoCodeEditor({ lesson }) {
           flex: '0 0 40%',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          ...cardBase,
           overflow: 'hidden',
         }}>
           <div style={{
@@ -470,20 +473,18 @@ function ArduinoCodeEditor({ lesson }) {
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          ...cardBase,
           overflow: 'hidden',
         }}>
           <div style={{
             padding: '15px',
-            backgroundColor: '#f8f9fa',
-            borderBottom: '1px solid #e0e0e0',
+            backgroundColor: 'var(--surface-1)',
+            borderBottom: '1px solid var(--border-1)',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-            <span style={{ fontWeight: '600', fontSize: '14px', color: '#333' }}>
+            <span style={{ fontWeight: '600', fontSize: '14px', color: 'var(--text-1)' }}>
               Arduino Code (C++)
             </span>
           </div>
@@ -514,8 +515,8 @@ function ArduinoCodeEditor({ lesson }) {
           />
           <div style={{
             padding: '10px 15px',
-            backgroundColor: '#f8f9fa',
-            borderTop: '1px solid #e0e0e0',
+            backgroundColor: 'var(--surface-1)',
+            borderTop: '1px solid var(--border-1)',
             display: 'flex',
             gap: '10px',
           }}>
@@ -544,7 +545,7 @@ function ArduinoCodeEditor({ lesson }) {
               }}
               style={{
                 padding: '8px 16px',
-                backgroundColor: '#6c757d',
+                backgroundColor: 'rgba(120, 132, 160, 0.9)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '4px',
@@ -580,15 +581,13 @@ function ArduinoCodeEditor({ lesson }) {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '20px',
-        backgroundColor: 'white',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        ...cardBase,
       }}>
-        <div style={{ fontSize: '14px', color: '#666' }}>
+        <div style={{ fontSize: '14px', color: 'var(--text-2)' }}>
           {isInteractiveLesson ? (
             <>
               {canComplete ? (
-                <span style={{ color: '#28a745', fontWeight: '600' }}>
+                <span style={{ color: 'var(--accent-2)', fontWeight: '600' }}>
                   ✓ Code and questions completed correctly!
                 </span>
               ) : (
@@ -604,7 +603,7 @@ function ArduinoCodeEditor({ lesson }) {
           ) : (
             <>
               {isCorrect ? (
-                <span style={{ color: '#28a745', fontWeight: '600' }}>
+                <span style={{ color: 'var(--accent-2)', fontWeight: '600' }}>
                   ✓ Exercise completed correctly!
                 </span>
               ) : (
@@ -619,7 +618,7 @@ function ArduinoCodeEditor({ lesson }) {
           style={{
             padding: '12px 24px',
             fontSize: '16px',
-            backgroundColor: canComplete ? '#007bff' : '#6c757d',
+            backgroundColor: canComplete ? 'var(--accent-1)' : 'rgba(120, 132, 160, 0.9)',
             color: 'white',
             border: 'none',
             borderRadius: '6px',

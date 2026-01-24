@@ -307,7 +307,7 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
     <div className="markdown-content" style={{
       fontSize: '16px',
       lineHeight: '1.8',
-      color: '#333',
+      color: 'var(--text-2)',
     }}>
       {segments.map((segment, idx) => {
         if (segment.type === 'question') {

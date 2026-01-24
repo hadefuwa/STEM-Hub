@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockly Math Adventure</title>
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0 0 10px 0;
+      color: #667eea;
+      font-size: 2em;
+    }
+
+    .header p {
+      margin: 0;
+      color: #666;
+      font-size: 1.1em;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    .left-panel {
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .right-panel {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .challenge-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .challenge-box h2 {
+      margin-top: 0;
+      color: #667eea;
+      font-size: 1.5em;
+    }
+
+    .challenge-item {
+      background: #f8f9fa;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .challenge-item.complete {
+      background: #d4edda;
+      border-left-color: #28a745;
+    }
+
+    .output-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .output-box h3 {
+      margin-top: 0;
+      color: #667eea;
+    }
+
+    #outputArea {
+      flex: 1;
+      background: #1e1e1e;
+      color: #00ff00;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      overflow-y: auto;
+      min-height: 100px;
+    }
+
+    #blocklyDiv {
+      flex: 1;
+      min-height: 0;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button.secondary {
+      background: #6c757d;
+    }
+
+    button.secondary:hover {
+      background: #5a6268;
+    }
+
+    .success-message {
+      background: #28a745;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hint-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #856404;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .score {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #667eea;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 1024px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .right-panel {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🧮 Blockly Math Adventure 🚀</h1>
+    <p>Use code blocks to solve math challenges and help the robot collect treasures!</p>
+  </div>
+
+  <div class="container">
+    <div class="left-panel">
+      <div id="blocklyDiv"></div>
+      <div class="button-group">
+        <button onclick="runCode()">▶️ Run Code</button>
+        <button onclick="resetWorkspace()" class="secondary">🔄 Reset</button>
+        <button onclick="showHint()" class="secondary">💡 Hint</button>
+        <button onclick="nextChallenge()">➡️ Next Challenge</button>
+      </div>
+      <div id="successMessage" class="success-message"></div>
+      <div id="hintBox" class="hint-box"></div>
+    </div>
+
+    <div class="right-panel">
+      <div class="challenge-box">
+        <h2>🎯 Current Challenge</h2>
+        <div id="currentChallenge" class="challenge-item">
+          <strong>Level 1:</strong> Calculate 5 + 3 and print the result
+        </div>
+        <div class="score" id="scoreDisplay">Score: 0 / 5</div>
+      </div>
+
+      <div class="output-box">
+        <h3>📊 Output</h3>
+        <div id="outputArea">Ready to run your code...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Blockly workspace
+    const workspace = Blockly.inject('blocklyDiv', {
+      toolbox: `
+        <xml xmlns="https://developers.google.com/blockly/xml">
+          <category name="Math" colour="230">
+            <block type="math_number">
+              <field name="NUM">0</field>
+            </block>
+            <block type="math_arithmetic">
+              <field name="OP">ADD</field>
+            </block>
+            <block type="math_single">
+              <field name="OP">ROOT</field>
+            </block>
+          </category>
+          <category name="Text" colour="160">
+            <block type="text">
+              <field name="TEXT"></field>
+            </block>
+            <block type="text_print">
+              <value name="TEXT">
+                <shadow type="text">
+                  <field name="TEXT">Hello</field>
+                </shadow>
+              </value>
+            </block>
+          </category>
+          <category name="Variables" colour="330" custom="VARIABLE"></category>
+          <category name="Logic" colour="210">
+            <block type="controls_if"></block>
+            <block type="logic_compare">
+              <field name="OP">EQ</field>
+            </block>
+            <block type="logic_operation">
+              <field name="OP">AND</field>
+            </block>
+            <block type="logic_boolean">
+              <field name="BOOL">TRUE</field>
+            </block>
+          </category>
+          <category name="Loops" colour="120">
+            <block type="controls_repeat_ext">
+              <value name="TIMES">
+                <shadow type="math_number">
+                  <field name="NUM">3</field>
+                </shadow>
+              </value>
+            </block>
+            <block type="controls_whileUntil">
+              <field name="MODE">WHILE</field>
+            </block>
+          </category>
+        </xml>
+      `,
+      zoom: {
+        controls: true,
+        wheel: true,
+        startScale: 1.0,
+        maxScale: 3,
+        minScale: 0.3,
+        scaleSpeed: 1.2
+      },
+      trashcan: true,
+      grid: {
+        spacing: 20,
+        length: 3,
+        colour: '#ccc',
+        snap: true
+      }
+    });
+
+    // Game state
+    let currentLevel = 0;
+    let score = 0;
+    let outputLines = [];
+
+    const challenges = [
+      {
+        description: "Calculate 5 + 3 and print the result",
+        hint: "Use a math block with addition (+) and connect it to a print block",
+        checkSolution: (output) => output.includes('8'),
+        points: 1
+      },
+      {
+        description: "Calculate 10 × 4 and print the result",
+        hint: "Use a math block with multiplication (×) operator",
+        checkSolution: (output) => output.includes('40'),
+        points: 1
+      },
+      {
+        description: "Calculate (15 + 5) ÷ 2 and print the result",
+        hint: "Nest two math blocks - one for addition inside a division block",
+        checkSolution: (output) => output.includes('10'),
+        points: 1
+      },
+      {
+        description: "Print the square root of 16",
+        hint: "Use the math block with the square root (√) function",
+        checkSolution: (output) => output.includes('4'),
+        points: 1
+      },
+      {
+        description: "Calculate 5² (5 squared) and print the result",
+        hint: "You can use 5 × 5, or use the power function",
+        checkSolution: (output) => output.includes('25'),
+        points: 1
+      }
+    ];
+
+    function runCode() {
+      // Clear output
+      outputLines = [];
+      const outputArea = document.getElementById('outputArea');
+      outputArea.textContent = '';
+
+      // Generate JavaScript code
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      let code = Blockly.JavaScript.workspaceToCode(workspace);
+      
+      // Override alert to capture output
+      const originalAlert = window.alert;
+      window.alert = function(msg) {
+        addOutput(msg);
+      };
+
+      // Override console.log
+      const originalLog = console.log;
+      console.log = function(...args) {
+        addOutput(args.join(' '));
+        originalLog.apply(console, args);
+      };
+
+      try {
+        eval(code);
+        
+        // Check if solution is correct
+        const output = outputLines.join('\n');
+        if (challenges[currentLevel].checkSolution(output)) {
+          score++;
+          updateScore();
+          showSuccess("🎉 Correct! Well done!");
+          
+          if (currentLevel < challenges.length - 1) {
+            setTimeout(() => {
+              nextChallenge();
+            }, 2000);
+          } else {
+            setTimeout(() => {
+              showSuccess("🏆 Congratulations! You've completed all challenges! Final Score: " + score + "/" + challenges.length);
+            }, 2000);
+          }
+        } else {
+          addOutput('\n❌ Not quite right. Try again!');
+        }
+      } catch (e) {
+        addOutput('❌ Error: ' + e.message);
+      } finally {
+        // Restore original functions
+        window.alert = originalAlert;
+        console.log = originalLog;
+      }
+    }
+
+    function addOutput(text) {
+      outputLines.push(text);
+      const outputArea = document.getElementById('outputArea');
+      outputArea.textContent += text + '\n';
+    }
+
+    function showSuccess(message) {
+      const successBox = document.getElementById('successMessage');
+      successBox.textContent = message;
+      successBox.style.display = 'block';
+      setTimeout(() => {
+        successBox.style.display = 'none';
+      }, 3000);
+    }
+
+    function showHint() {
+      const hintBox = document.getElementById('hintBox');
+      hintBox.textContent = '💡 Hint: ' + challenges[currentLevel].hint;
+      hintBox.style.display = 'block';
+      setTimeout(() => {
+        hintBox.style.display = 'none';
+      }, 5000);
+    }
+
+    function nextChallenge() {
+      if (currentLevel < challenges.length - 1) {
+        currentLevel++;
+        updateChallenge();
+        document.getElementById('hintBox').style.display = 'none';
+      }
+    }
+
+    function updateChallenge() {
+      const challengeDiv = document.getElementById('currentChallenge');
+      challengeDiv.innerHTML = `<strong>Level ${currentLevel + 1}:</strong> ${challenges[currentLevel].description}`;
+      document.getElementById('outputArea').textContent = 'Ready to run your code...';
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Score: ${score} / ${challenges.length}`;
+    }
+
+    function resetWorkspace() {
+      if (confirm('Are you sure you want to clear your workspace?')) {
+        workspace.clear();
+        document.getElementById('outputArea').textContent = 'Workspace cleared. Ready to start!';
+      }
+    }
+
+    // Initialize
+    updateChallenge();
+    updateScore();
+
+    // Add some example blocks to get started
+    const xml = Blockly.utils.xml.textToDom(`
+      <xml xmlns="https://developers.google.com/blockly/xml">
+        <block type="text_print" x="20" y="20">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">Start coding here!</field>
+            </shadow>
+          </value>
+        </block>
+      </xml>
+    `);
+    Blockly.Xml.domToWorkspace(xml, workspace);
+  </script>
+</body>
+</html>

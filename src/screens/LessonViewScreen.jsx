@@ -606,6 +606,43 @@ function LessonViewScreen() {
           }}>
             <ArduinoCodeEditor lesson={lesson} />
           </div>
+        ) : lesson.title === 'Blockly Lesson 1: Hello World' || 
+             lesson.title === 'Blockly Lesson 2: Simple Math' || 
+             lesson.title === 'Blockly Lesson 3: Sequences & Patterns' ||
+             lesson.title === 'Blockly Lesson 4: Repeat Loops' ||
+             lesson.title === 'Blockly Lesson 5: Variables' ||
+             lesson.title === 'Blockly Lesson 6: Logic & Conditionals' ||
+             lesson.title === 'Blockly Lesson 7: Counting Loops' ||
+             lesson.title === 'Blockly Lesson 8: Text Joining' ||
+             lesson.title === 'Blockly Lesson 9: Functions' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed 
+                url={
+                  lesson.title === 'Blockly Lesson 1: Hello World' ? '/html-games/blockly-lesson-1-hello-world.html' :
+                  lesson.title === 'Blockly Lesson 2: Simple Math' ? '/html-games/blockly-lesson-2-simple-math.html' :
+                  lesson.title === 'Blockly Lesson 3: Sequences & Patterns' ? '/html-games/blockly-lesson-3-sequences.html' :
+                  lesson.title === 'Blockly Lesson 4: Repeat Loops' ? '/html-games/blockly-lesson-4-repeat-loops.html' :
+                  lesson.title === 'Blockly Lesson 5: Variables' ? '/html-games/blockly-lesson-5-variables.html' :
+                  lesson.title === 'Blockly Lesson 6: Logic & Conditionals' ? '/html-games/blockly-lesson-6-logic.html' :
+                  lesson.title === 'Blockly Lesson 7: Counting Loops' ? '/html-games/blockly-lesson-7-counting-loops.html' :
+                  lesson.title === 'Blockly Lesson 8: Text Joining' ? '/html-games/blockly-lesson-8-text-joining.html' :
+                  '/html-games/blockly-lesson-9-functions.html'
+                } 
+                height="100%" 
+                lesson={lesson} 
+              />
+            </ErrorBoundary>
+          </div>
         ) : lesson.title?.startsWith('Blockly') ? (
           <div style={{
             flex: 1,

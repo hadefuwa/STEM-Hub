@@ -67,8 +67,9 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
       padding: '12px 16px',
       margin: '8px 0',
       borderRadius: '8px',
-      border: '2px solid #e0e0e0',
-      backgroundColor: 'white',
+      border: '1px solid var(--border-1)',
+      backgroundColor: 'var(--surface-1)',
+      color: 'var(--text-1)',
       cursor: showFeedback ? 'default' : 'pointer',
       transition: 'all 0.2s',
       textAlign: 'left',
@@ -83,9 +84,9 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
     if (index === correctIndex) {
       return {
         ...baseStyle,
-        borderColor: '#28a745',
-        backgroundColor: '#d4edda',
-        color: '#155724',
+        borderColor: 'rgba(124, 247, 180, 0.7)',
+        backgroundColor: 'rgba(124, 247, 180, 0.18)',
+        color: 'var(--text-1)',
         fontWeight: '600',
       };
     }
@@ -93,9 +94,9 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
     if (index === selectedIndex && !isCorrect) {
       return {
         ...baseStyle,
-        borderColor: '#dc3545',
-        backgroundColor: '#f8d7da',
-        color: '#721c24',
+        borderColor: 'rgba(255, 93, 93, 0.7)',
+        backgroundColor: 'rgba(255, 93, 93, 0.18)',
+        color: 'var(--text-1)',
       };
     }
 
@@ -109,9 +110,10 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
     <div style={{
       margin: '30px 0',
       padding: '20px',
-      backgroundColor: '#f8f9fa',
+      backgroundColor: 'var(--surface-2)',
       borderRadius: '12px',
-      border: '1px solid #e0e0e0',
+      border: '1px solid var(--border-1)',
+      boxShadow: 'var(--shadow-1)',
     }}>
       <div style={{
         display: 'flex',
@@ -122,7 +124,7 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
         <div style={{
           fontSize: '18px',
           fontWeight: '600',
-          color: '#333',
+          color: 'var(--text-1)',
           flex: 1,
         }}>
           {question}
@@ -131,7 +133,7 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
           onClick={handleTTS}
           style={{
             padding: '8px 12px',
-            backgroundColor: '#007bff',
+            backgroundColor: 'var(--accent-1)',
             color: 'white',
             border: 'none',
             borderRadius: '6px',
@@ -144,11 +146,11 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
             flexShrink: 0,
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#0056b3';
+            e.currentTarget.style.backgroundColor = 'rgba(72, 229, 255, 0.8)';
             e.currentTarget.style.transform = 'scale(1.05)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#007bff';
+            e.currentTarget.style.backgroundColor = 'var(--accent-1)';
             e.currentTarget.style.transform = 'scale(1)';
           }}
           title="Listen to question"
@@ -165,14 +167,14 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
             style={getOptionStyle(index)}
             onMouseEnter={(e) => {
               if (!showFeedback) {
-                e.currentTarget.style.borderColor = '#007bff';
-                e.currentTarget.style.backgroundColor = '#f8f9fa';
+                e.currentTarget.style.borderColor = 'var(--border-2)';
+                e.currentTarget.style.backgroundColor = 'rgba(20, 34, 64, 0.9)';
               }
             }}
             onMouseLeave={(e) => {
               if (!showFeedback) {
-                e.currentTarget.style.borderColor = '#e0e0e0';
-                e.currentTarget.style.backgroundColor = 'white';
+                e.currentTarget.style.borderColor = 'var(--border-1)';
+                e.currentTarget.style.backgroundColor = 'var(--surface-1)';
               }
             }}
           >
@@ -186,12 +188,12 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
           marginTop: '15px',
           padding: '12px',
           borderRadius: '8px',
-          backgroundColor: isCorrect ? '#d4edda' : '#fff3cd',
-          border: `1px solid ${isCorrect ? '#28a745' : '#ffc107'}`,
+          backgroundColor: isCorrect ? 'rgba(124, 247, 180, 0.18)' : 'rgba(255, 182, 94, 0.18)',
+          border: `1px solid ${isCorrect ? 'rgba(124, 247, 180, 0.6)' : 'rgba(255, 182, 94, 0.6)'}`,
         }}>
           <div style={{
             fontWeight: '600',
-            color: isCorrect ? '#155724' : '#856404',
+            color: 'var(--text-1)',
             marginBottom: explanation ? '8px' : '0',
           }}>
             {isCorrect ? '✓ Correct!' : '✗ Incorrect'}
@@ -199,7 +201,7 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
           {!isCorrect && (
             <div style={{
               fontSize: '14px',
-              color: '#856404',
+              color: 'var(--text-2)',
               marginTop: '8px',
               fontWeight: '600',
             }}>
@@ -209,7 +211,7 @@ function InteractiveQuestion({ question, options, correctIndex, explanation, que
           {explanation && (
             <div style={{
               fontSize: '14px',
-              color: isCorrect ? '#155724' : '#856404',
+              color: 'var(--text-2)',
               marginTop: '5px',
             }}>
               {explanation}

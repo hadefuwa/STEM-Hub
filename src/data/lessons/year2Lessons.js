@@ -47,22 +47,6 @@ The \`setup()\` function is where you initialize your Arduino program. It's call
 
 
 
-## Syntax
-
-
-
-\`\`\`cpp
-
-void setup() {
-
-// Your initialization code goes here
-
-}
-
-\`\`\`
-
-
-
 ## Key Points
 
 
@@ -115,24 +99,6 @@ The setup() function is primarily used to initialize pins, configure the Arduino
 
 
 
-## Example
-
-
-
-\`\`\`cpp
-
-void setup() {
-
-pinMode(13, OUTPUT);  // Set pin 13 as output
-
-Serial.begin(9600);   // Start serial at 9600 baud
-
-}
-
-\`\`\`
-
-
-
 <!-- QUESTION_START -->
 Which of the following is typically done in setup() but NOT in loop()?
 <!-- OPTIONS -->
@@ -157,14 +123,6 @@ Setting pin modes with pinMode() should be done in setup() because it only needs
 
 
 
-## Exercise
-
-<!-- EXERCISE_START -->
-{"instruction": "Write a complete Arduino sketch with a setup() function that sets pin 13 as OUTPUT. Include both setup() and loop() functions.", "codePattern": "void\\s+setup\\s*\\(\\s*\\)", "requiredFunctions": ["setup"], "requiredStatements": ["pinMode"]}
-<!-- EXERCISE_END -->
-
-
-
 <!-- QUESTION_START -->
 If you forget to include setup() in your Arduino sketch, what happens?
 <!-- OPTIONS -->
@@ -173,7 +131,51 @@ The program runs normally|The code will not compile|Only the loop() function run
 1
 <!-- EXPLANATION -->
 The setup() function is required in every Arduino sketch. If it's missing, the code will not compile and you'll get an error.
-<!-- QUESTION_END -->`,
+<!-- QUESTION_END -->
+
+
+
+## Syntax
+
+
+
+\`\`\`cpp
+
+void setup() {
+
+// Your initialization code goes here
+
+}
+
+\`\`\`
+
+
+
+## Example
+
+
+
+\`\`\`cpp
+
+void setup() {
+
+pinMode(13, OUTPUT);  // Set pin 13 as output
+
+Serial.begin(9600);   // Start serial at 9600 baud
+
+}
+
+\`\`\`
+
+
+
+## Exercise
+
+
+
+<!-- EXERCISE_START -->
+{"instruction": "Write a complete Arduino sketch with a setup() function that sets pin 13 as OUTPUT. Include both setup() and loop() functions.", "codePattern": "void\\s+setup\\s*\\(\\s*\\)", "requiredFunctions": ["setup"], "requiredStatements": ["pinMode"]}
+<!-- EXERCISE_END -->`, 
       quizId: null,
       assessmentType: 'quiz',
       categoryId: null,

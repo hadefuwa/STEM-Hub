@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  color-scheme: dark;
+  --bg-0: #05070f;
+  --bg-1: #0a1224;
+  --bg-2: #0f1b33;
+  --surface-1: rgba(10, 18, 36, 0.86);
+  --surface-2: rgba(16, 26, 48, 0.9);
+  --surface-3: rgba(20, 34, 64, 0.92);
+  --text-1: #e8f2ff;
+  --text-2: #b7c4e3;
+  --text-3: #8a97bf;
+  --accent-1: #48e5ff;
+  --accent-2: #7cf7b4;
+  --accent-3: #ffb65e;
+  --border-1: rgba(120, 190, 255, 0.2);
+  --border-2: rgba(120, 190, 255, 0.35);
+  --glow-1: 0 0 20px rgba(72, 229, 255, 0.25);
+  --glow-2: 0 0 35px rgba(124, 247, 180, 0.25);
+  --shadow-1: 0 10px 40px rgba(2, 6, 20, 0.5);
+  --shadow-2: 0 20px 60px rgba(2, 6, 20, 0.65);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,14 +38,44 @@ html, body {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji',
-    sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8f9fa;
+  color: var(--text-1);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(72, 229, 255, 0.15), transparent 60%),
+    radial-gradient(900px 500px at 80% 0%, rgba(124, 247, 180, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 55%, var(--bg-2) 100%);
   overflow: hidden;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.7), transparent 40%),
+    radial-gradient(1px 1px at 30% 72%, rgba(255, 255, 255, 0.6), transparent 40%),
+    radial-gradient(1px 1px at 55% 28%, rgba(255, 255, 255, 0.5), transparent 40%),
+    radial-gradient(1px 1px at 78% 12%, rgba(255, 255, 255, 0.5), transparent 40%),
+    radial-gradient(1px 1px at 88% 62%, rgba(255, 255, 255, 0.6), transparent 40%),
+    radial-gradient(2px 2px at 18% 48%, rgba(124, 247, 180, 0.35), transparent 45%),
+    radial-gradient(2px 2px at 64% 78%, rgba(72, 229, 255, 0.35), transparent 45%);
+  opacity: 0.7;
+}
+
+body::after {
+  background:
+    radial-gradient(420px 220px at 12% 30%, rgba(72, 229, 255, 0.12), transparent 70%),
+    radial-gradient(520px 300px at 80% 70%, rgba(124, 247, 180, 0.1), transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
 }
 
 #root {
@@ -27,42 +84,137 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: var(--accent-1);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-2);
+  text-decoration: underline;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: var(--text-1);
+}
+
+button {
+  background: linear-gradient(145deg, rgba(20, 34, 64, 0.95), rgba(10, 18, 36, 0.95));
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+button:hover {
+  border-color: var(--border-2);
+  box-shadow: var(--shadow-1), var(--glow-1);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+input,
+select,
+textarea {
+  background: rgba(8, 14, 28, 0.85);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-3);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(72, 229, 255, 0.55);
+  outline-offset: 2px;
+  border-color: var(--border-2);
+  box-shadow: var(--glow-1);
+}
+
+::selection {
+  background: rgba(72, 229, 255, 0.35);
+  color: var(--text-1);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(6, 10, 20, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(72, 229, 255, 0.25);
+  border-radius: 999px;
+  border: 2px solid rgba(6, 10, 20, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 247, 180, 0.35);
 }
 
 /* Markdown content styling */
 .markdown-content {
-  color: #333;
+  color: var(--text-2);
   line-height: 1.8;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji',
-    sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  color: var(--text-1);
+  letter-spacing: 0.4px;
 }
 
 .markdown-content h1 {
-  font-size: 2em;
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
+  font-size: 2.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
   font-weight: 700;
-  color: #222;
-  border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 0.3em;
+  border-bottom: 2px solid rgba(72, 229, 255, 0.3);
+  padding-bottom: 0.35em;
 }
 
 .markdown-content h2 {
-  font-size: 1.5em;
-  margin-top: 1.2em;
-  margin-bottom: 0.5em;
+  font-size: 1.55em;
+  margin-top: 1.3em;
+  margin-bottom: 0.6em;
   font-weight: 600;
-  color: #333;
 }
 
 .markdown-content h3 {
   font-size: 1.25em;
-  margin-top: 1em;
-  margin-bottom: 0.4em;
+  margin-top: 1.1em;
+  margin-bottom: 0.5em;
   font-weight: 600;
-  color: #444;
 }
 
 .markdown-content p {
@@ -83,44 +235,62 @@ body {
 
 .markdown-content strong {
   font-weight: 600;
-  color: #222;
+  color: var(--text-1);
 }
 
 .markdown-content code {
-  background-color: #f4f4f4;
+  background-color: rgba(72, 229, 255, 0.12);
   padding: 2px 6px;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
   font-size: 0.9em;
+  color: var(--accent-2);
 }
 
 .markdown-content pre {
-  background-color: #f4f4f4;
+  background-color: rgba(8, 14, 28, 0.9);
   padding: 1em;
-  border-radius: 4px;
+  border-radius: 10px;
   overflow-x: auto;
   margin: 1em 0;
+  border: 1px solid var(--border-1);
+  box-shadow: var(--shadow-1);
 }
 
 .markdown-content pre code {
   background-color: transparent;
   padding: 0;
+  color: var(--text-1);
 }
 
 .markdown-content blockquote {
-  border-left: 4px solid #ddd;
+  border-left: 4px solid rgba(124, 247, 180, 0.5);
   padding-left: 1em;
   margin: 1em 0;
-  color: #666;
+  color: var(--text-3);
   font-style: italic;
+  background: rgba(10, 18, 36, 0.6);
+  border-radius: 8px;
 }
 
-.markdown-content a {
-  color: #007bff;
-  text-decoration: none;
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  background: rgba(10, 18, 36, 0.7);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-1);
 }
 
-.markdown-content a:hover {
-  text-decoration: underline;
+.markdown-content th,
+.markdown-content td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(120, 190, 255, 0.15);
 }
 
+.markdown-content th {
+  text-align: left;
+  color: var(--text-1);
+  background: rgba(20, 34, 64, 0.6);
+}

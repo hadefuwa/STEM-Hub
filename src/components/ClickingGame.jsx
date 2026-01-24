@@ -43,6 +43,14 @@ function ClickingGame({ lesson }) {
   const initialTargetLifetime = isHardMode ? 3000 : 4000;
   const minTargetLifetime = isHardMode ? 1000 : 1500;
 
+  // Create a ref for score to avoid stale closures in the timer interval
+  const scoreRef = useRef(0);
+
+  // Sync score state to ref
+  useEffect(() => {
+    scoreRef.current = score;
+  }, [score]);
+
   // Reset game state when lesson changes
   useEffect(() => {
     // Clear any existing timers
@@ -71,6 +79,7 @@ function ClickingGame({ lesson }) {
     // Reset refs
     isPlayingRef.current = false;
     isGameOverRef.current = false;
+    scoreRef.current = 0;
     targetSizeRef.current = initialTargetSize;
     spawnIntervalRef.current = initialSpawnInterval;
     targetLifetimeRef.current = initialTargetLifetime;
@@ -94,6 +103,7 @@ function ClickingGame({ lesson }) {
     targetSizeRef.current = initialTargetSize;
     spawnIntervalRef.current = initialSpawnInterval;
     targetLifetimeRef.current = initialTargetLifetime;
+    scoreRef.current = 0;
     
     // Use a single state update batch
     setIsPlaying(true);
@@ -185,8 +195,8 @@ function ClickingGame({ lesson }) {
   };
 
   const endGame = () => {
-    // Capture score before state updates
-    const finalScore = score;
+    // Capture score from ref to avoid stale closure in setInterval
+    const finalScore = scoreRef.current;
     
     setIsPlaying(false);
     setIsGameOver(true);

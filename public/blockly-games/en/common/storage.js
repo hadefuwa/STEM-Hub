@@ -160,9 +160,9 @@ window.addEventListener('unhandledrejection', function(event) {
       
       Object.defineProperty(originalLocation, 'host', {
         get: function() {
-          // Return empty string for blockly:// protocol to avoid malformed URLs
+          // Preserve host for blockly:// so level URLs stay on blockly-games
           if (originalProtocol === 'blockly:') {
-            return '';
+            return originalHost || 'blockly-games';
           }
           return originalHost || '';
         },

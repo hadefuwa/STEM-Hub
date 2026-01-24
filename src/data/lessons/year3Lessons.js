@@ -758,5 +758,199 @@ Can you beat your previous score? Aim for a higher medal!`,
       assessmentType: null,
       categoryId: null,
     }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 3,
+      title: "Blockly Puzzle",
+      emoji: '🧩',
+      content: `# Blockly Puzzle 🧩
+
+Learn to code with Blockly Games!
+
+In Puzzle, you'll learn the basics of programming by connecting blocks together to solve puzzles.
+
+## Instructions
+
+- Drag blocks from the toolbox to the workspace
+- Connect blocks together to create programs
+- Click "Run" to see your program in action
+- Complete each puzzle to move to the next level
+
+Have fun learning to code!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 4,
+      title: "Blockly Maze",
+      emoji: '🗺️',
+      content: `# Blockly Maze 🗺️
+
+Navigate through mazes using code!
+
+In Maze, you'll learn to use loops and conditionals to guide a character through mazes.
+
+## Instructions
+
+- Use movement blocks to navigate
+- Try using loops to repeat actions
+- Use conditionals to make decisions
+- Complete each maze to unlock the next one
+
+Challenge yourself to use fewer blocks!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 5,
+      title: "Blockly Bird",
+      emoji: '🐦',
+      content: `# Blockly Bird 🐦
+
+Help the bird catch worms!
+
+In Bird, you'll learn about conditionals and loops by helping a bird catch worms while avoiding obstacles.
+
+## Instructions
+
+- Use conditionals to check for worms
+- Use loops to repeat actions
+- Guide the bird to catch all the worms
+- Avoid obstacles and complete each level
+
+Think carefully about your code!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 6,
+      title: "Blockly Turtle",
+      emoji: '🐢',
+      content: `# Blockly Turtle 🐢
+
+Draw pictures with code!
+
+In Turtle, you'll learn to draw shapes and patterns by programming a turtle to move and draw.
+
+## Instructions
+
+- Use movement blocks to move the turtle
+- Use drawing blocks to create lines
+- Try using loops to create patterns
+- Experiment with angles and distances
+
+Create beautiful art with code!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 7,
+      title: "Blockly Movie",
+      emoji: '🎬',
+      content: `# Blockly Movie 🎬
+
+Create animations with code!
+
+In Movie, you'll learn to create animations by programming characters to move and interact.
+
+## Instructions
+
+- Use blocks to control character movement
+- Create sequences of actions
+- Use timing blocks to control speed
+- Make your own animated stories
+
+Bring your stories to life!
+
+## Note
+
+You may see console messages about "Pixel errors" or "Canvas2D" - these are normal! Blockly Movie checks your animation frame-by-frame to see if it matches the target. These messages don't affect the game.`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 8,
+      title: "Blockly Pond Tutor",
+      emoji: '🦆',
+      content: `# Blockly Pond Tutor 🦆
+
+Learn JavaScript with visual blocks!
+
+In Pond Tutor, you'll learn JavaScript programming concepts using visual blocks that translate to real code.
+
+## Instructions
+
+- Follow the tutorial to learn JavaScript
+- See how blocks translate to code
+- Complete exercises to practice
+- Build your programming skills
+
+Learn real programming concepts!
+
+## Note
+
+You may see console messages about "play() request was interrupted" - these are normal! Blockly Games preloads sound effects, which can trigger browser warnings. These messages don't affect the game and you can safely ignore them.`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year3',
+      subjectId: 'technology',
+      lessonNumber: 9,
+      title: "Blockly Pond",
+      emoji: '🌊',
+      content: `# Blockly Pond 🌊
+
+Write JavaScript code to compete!
+
+In Pond, you'll write JavaScript code to compete in a duck racing game.
+
+## Instructions
+
+- Write JavaScript code directly
+- Use functions and variables
+- Optimize your code for speed
+- Compete with others or yourself
+
+Master JavaScript programming!
+
+## Note
+
+You may see console messages about "play() request was interrupted" or "createRadialGradient" - these are normal! Blockly Games preloads sound effects and creates visual effects that can trigger browser warnings. These messages don't affect the game and you can safely ignore them.`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
   ];
 }

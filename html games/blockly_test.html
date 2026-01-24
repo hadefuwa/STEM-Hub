@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Quickstart Tutorial</title>
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+  
+  <style>
+    body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
+    #blocklyDiv { height: 480px; width: 100%; border: 1px solid #ccc; }
+    .button-row { margin: 10px 0; }
+    button { padding: 10px; cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 4px; }
+    #codeArea { background: #272822; color: white; padding: 15px; border-radius: 4px; margin-top: 10px; white-space: pre; }
+  </style>
+</head>
+<body>
+
+  <h2>My First Blockly Editor</h2>
+  <p>Drag blocks from the toolbox to the workspace, then click "Show JavaScript".</p>
+
+  <div class="button-row">
+    <button onclick="showCode()">Show JavaScript</button>
+    <button onclick="runCode()" style="background:#2196F3;">Run Code</button>
+  </div>
+
+  <div id="blocklyDiv"></div>
+
+  <xml id="toolbox" style="display: none">
+    <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+    </category>
+    <category name="Loops" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext"></block>
+    </category>
+    <category name="Math" colour="%{BKY_MATH_HUE}">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+    </category>
+    <category name="Text" colour="%{BKY_TEXT_HUE}">
+      <block type="text"></block>
+      <block type="text_print"></block>
+    </category>
+  </xml>
+
+  <h3>Generated JavaScript:</h3>
+  <div id="codeArea">Code will appear here...</div>
+
+  <script>
+    // 1. Inject Blockly into the div
+    const workspace = Blockly.inject('blocklyDiv', {
+      toolbox: document.getElementById('toolbox'),
+      scrollbars: true,
+      trashcan: true
+    });
+
+    // 2. Function to extract code from the blocks
+    function showCode() {
+      const code = Blockly.JavaScript.workspaceToCode(workspace);
+      document.getElementById('codeArea').innerText = code || "// No blocks in workspace";
+    }
+
+    // 3. Function to actually execute the code
+    function runCode() {
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      const code = Blockly.JavaScript.workspaceToCode(workspace);
+      try {
+        eval(code);
+      } catch (e) {
+        alert(e);
+      }
+    }
+  </script>
+
+</body>
+</html>

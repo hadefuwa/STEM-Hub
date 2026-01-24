@@ -86,20 +86,21 @@ function ActivityTable() {
     return (
       <div style={{
         padding: '20px',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--surface-2)',
+        border: '1px solid var(--border-1)',
         borderRadius: '12px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        boxShadow: 'var(--shadow-1)',
         width: '100%',
       }}>
         <h2 style={{
           margin: '0 0 20px 0',
           fontSize: '20px',
-          color: '#333',
+          color: 'var(--text-1)',
           textAlign: 'center',
         }}>
           📋 Recent Activity
         </h2>
-        <div style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
+        <div style={{ textAlign: 'center', padding: '20px', color: 'var(--text-2)' }}>
           Loading activity...
         </div>
       </div>
@@ -110,20 +111,21 @@ function ActivityTable() {
     return (
       <div style={{
         padding: '20px',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--surface-2)',
+        border: '1px solid var(--border-1)',
         borderRadius: '12px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        boxShadow: 'var(--shadow-1)',
         width: '100%',
       }}>
         <h2 style={{
           margin: '0 0 20px 0',
           fontSize: '20px',
-          color: '#333',
+          color: 'var(--text-1)',
           textAlign: 'center',
         }}>
           📋 Recent Activity
         </h2>
-        <div style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
+        <div style={{ textAlign: 'center', padding: '20px', color: 'var(--text-2)' }}>
           No activity yet. Start a lesson to see your activity here!
         </div>
       </div>
@@ -133,15 +135,16 @@ function ActivityTable() {
   return (
     <div style={{
       padding: '20px',
-      backgroundColor: 'white',
+      backgroundColor: 'var(--surface-2)',
+      border: '1px solid var(--border-1)',
       borderRadius: '12px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      boxShadow: 'var(--shadow-1)',
       width: '100%',
     }}>
       <h2 style={{
         margin: '0 0 20px 0',
         fontSize: '20px',
-        color: '#333',
+        color: 'var(--text-1)',
         textAlign: 'center',
       }}>
         📋 Recent Activity
@@ -155,14 +158,14 @@ function ActivityTable() {
         }}>
           <thead>
             <tr style={{
-              borderBottom: '2px solid #e0e0e0',
+              borderBottom: '1px solid var(--border-1)',
             }}>
               <th style={{
                 padding: '12px',
                 textAlign: 'left',
                 fontSize: '14px',
                 fontWeight: '600',
-                color: '#666',
+                color: 'var(--text-2)',
               }}>
                 Time
               </th>
@@ -171,7 +174,7 @@ function ActivityTable() {
                 textAlign: 'left',
                 fontSize: '14px',
                 fontWeight: '600',
-                color: '#666',
+                color: 'var(--text-2)',
               }}>
                 Student
               </th>
@@ -180,7 +183,7 @@ function ActivityTable() {
                 textAlign: 'left',
                 fontSize: '14px',
                 fontWeight: '600',
-                color: '#666',
+                color: 'var(--text-2)',
               }}>
                 Subject
               </th>
@@ -189,7 +192,7 @@ function ActivityTable() {
                 textAlign: 'left',
                 fontSize: '14px',
                 fontWeight: '600',
-                color: '#666',
+                color: 'var(--text-2)',
               }}>
                 Lesson
               </th>
@@ -201,13 +204,13 @@ function ActivityTable() {
                 key={index}
                 onClick={() => handleLessonClick(activity.lessonId)}
                 style={{
-                  borderBottom: '1px solid #f0f0f0',
+                  borderBottom: '1px solid rgba(120, 190, 255, 0.12)',
                   cursor: activity.lessonId ? 'pointer' : 'default',
                   transition: 'background-color 0.2s',
                 }}
                 onMouseEnter={(e) => {
                   if (activity.lessonId) {
-                    e.currentTarget.style.backgroundColor = '#f8f9fa';
+                    e.currentTarget.style.backgroundColor = 'rgba(72, 229, 255, 0.08)';
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -217,21 +220,21 @@ function ActivityTable() {
                 <td style={{
                   padding: '12px',
                   fontSize: '14px',
-                  color: '#666',
+                  color: 'var(--text-2)',
                 }}>
                   {formatTimestamp(activity.timestamp)}
                 </td>
                 <td style={{
                   padding: '12px',
                   fontSize: '14px',
-                  color: '#333',
+                  color: 'var(--text-1)',
                 }}>
                   {activity.studentName || 'Student'}
                 </td>
                 <td style={{
                   padding: '12px',
                   fontSize: '14px',
-                  color: '#333',
+                  color: 'var(--text-1)',
                 }}>
                   <span style={{ marginRight: '8px' }}>
                     {getSubjectEmoji(activity.subjectId)}
@@ -241,7 +244,7 @@ function ActivityTable() {
                 <td style={{
                   padding: '12px',
                   fontSize: '14px',
-                  color: '#333',
+                  color: 'var(--text-1)',
                   fontWeight: '500',
                 }}>
                   {activity.lessonTitle || `Lesson ${activity.lessonNumber || ''}`}

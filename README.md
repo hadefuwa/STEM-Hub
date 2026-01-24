@@ -26,7 +26,6 @@ STEM Hub is an educational platform designed to support families with interactiv
 - Virtual shop for purchasing rewards
 - Art grading and submission system
 - Interactive games using Phaser game engine
-- Text-to-speech functionality for accessibility
 
 ### 📊 Progress Tracking
 - Detailed progress monitoring
@@ -48,7 +47,6 @@ STEM Hub is an educational platform designed to support families with interactiv
 - **State Management**: Zustand
 - **Routing**: React Router DOM
 - **UI Components**: Custom-built with CSS
-- **Text-to-Speech**: Google TTS API and native OS TTS
 - **Game Engine**: Phaser for interactive games
 - **Code Editor**: Monaco Editor integration
 - **Markdown Rendering**: React Markdown

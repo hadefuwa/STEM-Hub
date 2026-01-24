@@ -116,6 +116,13 @@ function SubjectSelectionScreen() {
     navigate(`/lessons?subjectId=${subjectId}`);
   };
 
+  const cardBase = {
+    backgroundColor: 'var(--surface-2)',
+    border: '1px solid var(--border-1)',
+    borderRadius: '12px',
+    boxShadow: 'var(--shadow-1)',
+  };
+
   return (
     <div style={{ 
       flex: 1,
@@ -139,7 +146,7 @@ function SubjectSelectionScreen() {
       <h1 style={{ 
         textAlign: 'center', 
         marginBottom: '20px',
-        color: '#333'
+        color: 'var(--text-1)'
       }}>
         Select Subject
       </h1>
@@ -148,9 +155,7 @@ function SubjectSelectionScreen() {
       <div style={{
         marginBottom: '30px',
         padding: '16px 20px',
-        backgroundColor: 'white',
-        borderRadius: '12px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        ...cardBase,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -184,7 +189,7 @@ function SubjectSelectionScreen() {
           <div style={{
             background: levelIndex >= 4
               ? `radial-gradient(circle, ${levelColor}44, ${levelColor}11)`
-              : `linear-gradient(135deg, ${levelColor}33, #ffffff)`,
+              : `linear-gradient(135deg, ${levelColor}33, var(--surface-1))`,
             borderRadius: '12px',
             padding: '12px',
             border: levelIndex === CHARACTER_LEVELS.length - 1 
@@ -258,17 +263,17 @@ function SubjectSelectionScreen() {
           
           {/* Info */}
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: '18px', fontWeight: 700, color: '#333', marginBottom: '4px' }}>
+            <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-1)', marginBottom: '4px' }}>
               {student?.name || 'Student'}
             </div>
-            <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-2)', marginBottom: '8px' }}>
               Level {levelIndex + 1} · {currentLevel.name}
             </div>
             <div style={{
               width: '100%',
               maxWidth: '300px',
               height: '8px',
-              backgroundColor: '#e9ecef',
+              backgroundColor: 'rgba(120, 190, 255, 0.2)',
               borderRadius: '999px',
               overflow: 'hidden',
             }}>
@@ -279,7 +284,7 @@ function SubjectSelectionScreen() {
                 transition: 'width 0.3s ease',
               }} />
             </div>
-            <div style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
+            <div style={{ fontSize: '12px', color: 'var(--text-3)', marginTop: '4px' }}>
               {levelProgress}% to next level
             </div>
           </div>
@@ -298,7 +303,7 @@ function SubjectSelectionScreen() {
             fontWeight: 700,
             fontSize: '14px',
             whiteSpace: 'nowrap',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+            boxShadow: 'var(--shadow-1)',
           }}
         >
           🎨 Customize
@@ -309,14 +314,12 @@ function SubjectSelectionScreen() {
       <div style={{
         marginBottom: '30px',
         padding: '20px',
-        backgroundColor: 'white',
-        borderRadius: '12px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        ...cardBase,
       }}>
         <h2 style={{
           margin: '0 0 15px 0',
           fontSize: '20px',
-          color: '#333',
+          color: 'var(--text-1)',
           textAlign: 'center',
         }}>
           📊 Overall Progress
@@ -328,35 +331,35 @@ function SubjectSelectionScreen() {
           marginBottom: '20px',
         }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#007bff' }}>
+            <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--accent-1)' }}>
               {totalCompleted}
             </div>
-            <div style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-2)', marginTop: '5px' }}>
               Lessons Completed
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#28a745' }}>
+            <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--accent-2)' }}>
               {totalLessons}
             </div>
-            <div style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-2)', marginTop: '5px' }}>
               Total Lessons
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#ffc107' }}>
+            <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--accent-3)' }}>
               {stats.totalQuizzes}
             </div>
-            <div style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-2)', marginTop: '5px' }}>
               Quizzes Completed
             </div>
           </div>
           {stats.averageScore > 0 && (
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#17a2b8' }}>
+              <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'var(--accent-1)' }}>
                 {Math.round(stats.averageScore)}%
               </div>
-              <div style={{ fontSize: '14px', color: '#666', marginTop: '5px' }}>
+              <div style={{ fontSize: '14px', color: 'var(--text-2)', marginTop: '5px' }}>
                 Average Score
               </div>
             </div>
@@ -365,7 +368,7 @@ function SubjectSelectionScreen() {
         <div style={{
           width: '100%',
           height: '12px',
-          backgroundColor: '#e0e0e0',
+          backgroundColor: 'rgba(120, 190, 255, 0.2)',
           borderRadius: '6px',
           overflow: 'hidden',
           marginTop: '10px',
@@ -373,7 +376,7 @@ function SubjectSelectionScreen() {
           <div style={{
             width: `${overallProgress}%`,
             height: '100%',
-            backgroundColor: '#007bff',
+            backgroundColor: 'var(--accent-1)',
             transition: 'width 0.3s',
             borderRadius: '6px',
           }} />
@@ -383,7 +386,7 @@ function SubjectSelectionScreen() {
           marginTop: '10px',
           fontSize: '16px',
           fontWeight: '600',
-          color: '#333',
+          color: 'var(--text-1)',
         }}>
           {Math.round(overallProgress)}% Complete
         </div>
@@ -400,20 +403,22 @@ function SubjectSelectionScreen() {
             onClick={() => handleSubjectClick(subject.id)}
             style={{
               padding: '24px',
-              backgroundColor: 'white',
-              borderRadius: '12px',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              ...cardBase,
               cursor: 'pointer',
               textAlign: 'center',
               transition: 'transform 0.2s, box-shadow 0.2s',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-2)';
+              e.currentTarget.style.backgroundColor = 'rgba(20, 34, 64, 0.95)';
+              e.currentTarget.style.borderColor = 'var(--border-2)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-1)';
+              e.currentTarget.style.backgroundColor = 'var(--surface-2)';
+              e.currentTarget.style.borderColor = 'var(--border-1)';
             }}
           >
             <div style={{ fontSize: '48px', marginBottom: '12px' }}>
@@ -422,7 +427,7 @@ function SubjectSelectionScreen() {
             <div style={{ 
               fontSize: '18px', 
               fontWeight: '600',
-              color: '#333'
+              color: 'var(--text-1)'
             }}>
               {subject.name}
             </div>
@@ -434,15 +439,13 @@ function SubjectSelectionScreen() {
       <div style={{
         marginTop: '40px',
         padding: '20px',
-        backgroundColor: 'white',
-        borderRadius: '12px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        ...cardBase,
         width: '100%',
       }}>
         <h2 style={{
           margin: '0 0 20px 0',
           fontSize: '20px',
-          color: '#333',
+          color: 'var(--text-1)',
           textAlign: 'center',
         }}>
           🏆 Medals Earned
@@ -461,7 +464,7 @@ function SubjectSelectionScreen() {
             }}>
               {medalCounts.platinum}
             </div>
-            <div style={{ fontSize: '14px', color: '#666' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-2)' }}>
               Platinum
             </div>
           </div>
@@ -474,7 +477,7 @@ function SubjectSelectionScreen() {
             }}>
               {medalCounts.gold}
             </div>
-            <div style={{ fontSize: '14px', color: '#666' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-2)' }}>
               Gold
             </div>
           </div>
@@ -487,7 +490,7 @@ function SubjectSelectionScreen() {
             }}>
               {medalCounts.silver}
             </div>
-            <div style={{ fontSize: '14px', color: '#666' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-2)' }}>
               Silver
             </div>
           </div>
@@ -500,7 +503,7 @@ function SubjectSelectionScreen() {
             }}>
               {medalCounts.bronze}
             </div>
-            <div style={{ fontSize: '14px', color: '#666' }}>
+            <div style={{ fontSize: '14px', color: 'var(--text-2)' }}>
               Bronze
             </div>
           </div>

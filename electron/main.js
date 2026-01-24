@@ -5,7 +5,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import { loadData, saveData, writeActivityLog, readActivityLog } from './persistence.js';
-import say from 'say';
 
 // Load GitHub token for private repo updates
 let GITHUB_TOKEN = null;
@@ -435,96 +434,6 @@ ipcMain.handle('open-external', async (event, url) => {
   }
 });
 
-// TTS state management using say.js (native OS TTS)
-let currentTTSProcess = null;
-
-// IPC handlers for TTS using say.js (native OS TTS - Windows SAPI)
-ipcMain.handle('tts-speak', async (event, { text, voice }) => {
-  try {
-    // Stop any current speech
-    if (currentTTSProcess) {
-      say.stop();
-      currentTTSProcess = null;
-    }
-
-    if (!text || typeof text !== 'string') {
-      return { success: false, error: 'Invalid text provided' };
-    }
-
-    // Try multiple voice names - prefer female voices
-    const voicePriority = [
-      'Microsoft Susan - English (United Kingdom)',
-      'Microsoft Hazel - English (United Kingdom)',
-      'Microsoft Zira Desktop - English (United States)',
-      'Microsoft Zira Desktop',
-      'Microsoft Emma - English (United States)',
-      'Microsoft Emma',
-      'Microsoft Aria Online - English (United States)',
-      'Microsoft Aria',
-      'Microsoft David Desktop',
-      'Microsoft George - English (United Kingdom)'
-    ];
-    
-    let selectedVoice = voice;
-    if (!selectedVoice) {
-      // Try each voice in priority order
-      const availableVoices = say.getInstalledVoices();
-      console.log('Available voices:', availableVoices);
-      
-      for (const tryVoice of voicePriority) {
-        if (availableVoices && availableVoices.includes(tryVoice)) {
-          selectedVoice = tryVoice;
-          console.log('Selected voice:', selectedVoice);
-          break;
-        }
-      }
-      
-      if (!selectedVoice) {
-        selectedVoice = availableVoices && availableVoices[0];
-        console.log('Using first available voice:', selectedVoice);
-      }
-    }
-    
-    return new Promise((resolve) => {
-      say.speak(text, selectedVoice, 1.0, (err) => {
-        currentTTSProcess = null;
-        if (err) {
-          console.error('TTS error:', err);
-          resolve({ success: false, error: err.message });
-        } else {
-          resolve({ success: true });
-        }
-      });
-      currentTTSProcess = true;
-    });
-  } catch (error) {
-    console.error('Error in TTS speak:', error);
-    return { success: false, error: error.message };
-  }
-});
-
-ipcMain.handle('tts-stop', async () => {
-  try {
-    say.stop();
-    currentTTSProcess = null;
-    return { success: true };
-  } catch (error) {
-    console.error('Error stopping TTS:', error);
-    return { success: false, error: error.message };
-  }
-});
-
-ipcMain.handle('tts-get-voices', async () => {
-  try {
-    // Get available voices from the OS
-    const voices = say.getInstalledVoices() || [];
-    return { success: true, voices };
-  } catch (error) {
-    console.error('Error getting voices:', error);
-    return { success: false, error: error.message, voices: [] };
-  }
-});
-
 // IPC handler for saving drawings
 ipcMain.handle('save-drawing', async (event, { imageData, lessonId, lessonTitle, studentId }) => {
   try {
@@ -584,6 +493,10 @@ function registerBlocklyProtocol() {
   
   protocol.registerFileProtocol('blockly', (request, callback) => {
     let url = request.url.replace('blockly://', '').replace(/\/$/, ''); // Remove trailing slash
+    // Parse the URL to separate the path from query string/hash
+    const urlObj = new URL('blockly://' + url);
+    const pathname = urlObj.pathname.replace(/^\//, ''); // Remove leading slash
+    url = pathname;
     
     // Handle relative paths that don't include the full blockly-games path
     // When browser resolves relative paths in custom protocols, it sometimes

@@ -312,13 +312,13 @@ function TopNavigation() {
       position: 'sticky',
       top: 0,
       zIndex: 10000,
-      backgroundColor: 'white',
+      backgroundColor: 'var(--surface-2)',
       padding: '12px 20px',
-      borderBottom: '2px solid #e0e0e0',
+      borderBottom: '1px solid var(--border-1)',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      boxShadow: 'var(--shadow-1)',
     }}>
       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
         <button
@@ -341,11 +341,12 @@ function TopNavigation() {
             onClick={handleBack}
             style={{
               padding: '8px 16px',
-              backgroundColor: '#f5f5f5',
-              border: '1px solid #ddd',
+              backgroundColor: 'var(--surface-1)',
+              border: '1px solid var(--border-1)',
               borderRadius: '4px',
               cursor: 'pointer',
               fontSize: '14px',
+              color: 'var(--text-1)',
             }}
           >
             ← Back
@@ -362,8 +363,8 @@ function TopNavigation() {
             alignItems: 'center',
             gap: '8px',
             padding: '6px 12px',
-            backgroundColor: '#f8f9fa',
-            border: '2px solid #e0e0e0',
+            backgroundColor: 'var(--surface-1)',
+            border: '2px solid var(--border-1)',
             borderRadius: '20px',
             cursor: 'pointer',
             transition: 'transform 0.2s',
@@ -387,8 +388,8 @@ function TopNavigation() {
             dangerouslySetInnerHTML={{ __html: miniAvatarSvg }}
           />
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.2' }}>
-            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#333' }}>{student?.name || 'Student'}</span>
-            <span style={{ fontSize: '10px', color: '#666' }}>{levelBadge} Lv.{levelIndex + 1}</span>
+            <span style={{ fontSize: '12px', fontWeight: 'bold', color: 'var(--text-1)' }}>{student?.name || 'Student'}</span>
+            <span style={{ fontSize: '10px', color: 'var(--text-3)' }}>{levelBadge} Lv.{levelIndex + 1}</span>
           </div>
         </div>
         
@@ -400,23 +401,23 @@ function TopNavigation() {
             alignItems: 'center',
             gap: '6px',
             padding: '8px 16px',
-            backgroundColor: '#ffd700',
-            color: '#333',
-            border: '2px solid #ffed4e',
+            backgroundColor: 'rgba(255, 182, 94, 0.9)',
+            color: '#0b0f1f',
+            border: '2px solid rgba(255, 200, 120, 0.8)',
             borderRadius: '20px',
             cursor: 'pointer',
             fontSize: '16px',
             fontWeight: 'bold',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            boxShadow: 'var(--shadow-1)',
             transition: 'transform 0.2s, box-shadow 0.2s',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'scale(1.05)';
-            e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-2)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-1)';
           }}
           title="Click to open shop"
         >
@@ -512,15 +513,16 @@ function TopNavigation() {
           zIndex: 10001,
         }}>
           <div style={{
-            backgroundColor: 'white',
+            backgroundColor: 'var(--surface-2)',
+            border: '1px solid var(--border-1)',
             padding: '30px',
             borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+            boxShadow: 'var(--shadow-2)',
             maxWidth: '400px',
             width: '90%',
           }}>
-            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>Parental Override</h3>
-            <p style={{ marginBottom: '15px', color: '#666' }}>
+            <h3 style={{ marginTop: 0, marginBottom: '20px', color: 'var(--text-1)' }}>Parental Override</h3>
+            <p style={{ marginBottom: '15px', color: 'var(--text-2)' }}>
               Enter password to mark this lesson as completed:
             </p>
             <input
@@ -540,7 +542,7 @@ function TopNavigation() {
                 width: '100%',
                 padding: '10px',
                 fontSize: '16px',
-                border: '1px solid #ddd',
+                border: '1px solid var(--border-1)',
                 borderRadius: '4px',
                 marginBottom: '10px',
               }}
@@ -605,15 +607,16 @@ function TopNavigation() {
           zIndex: 10001,
         }}>
           <div style={{
-            backgroundColor: 'white',
+            backgroundColor: 'var(--surface-2)',
+            border: '1px solid var(--border-1)',
             padding: '30px',
             borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+            boxShadow: 'var(--shadow-2)',
             maxWidth: '400px',
             width: '90%',
           }}>
-            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>Admin Access</h3>
-            <p style={{ marginBottom: '15px', color: '#666' }}>
+            <h3 style={{ marginTop: 0, marginBottom: '20px', color: 'var(--text-1)' }}>Admin Access</h3>
+            <p style={{ marginBottom: '15px', color: 'var(--text-2)' }}>
               Enter password to access the admin panel:
             </p>
             <input
@@ -633,7 +636,7 @@ function TopNavigation() {
                 width: '100%',
                 padding: '10px',
                 fontSize: '16px',
-                border: '1px solid #ddd',
+                border: '1px solid var(--border-1)',
                 borderRadius: '4px',
                 marginBottom: '10px',
               }}

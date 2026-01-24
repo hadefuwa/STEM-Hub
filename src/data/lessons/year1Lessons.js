@@ -723,25 +723,46 @@ Learning about local history helps us understand our area and learn from the pas
       categoryId: null,
     }),
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     new Lesson({
       id: lessonId++,
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 1,
-      title: "Blockly Puzzle",
-      emoji: '🧩',
-      content: `# Blockly Puzzle 🧩
+      title: "Blockly Lesson 1: Hello World",
+      emoji: '👋',
+      content: `# Blockly Lesson 1: Hello World 👋
 
-Learn to code with Blockly Games!
+Learn to print messages and numbers with code blocks!
 
-In Puzzle, you'll learn the basics of programming by connecting blocks together to solve puzzles.
+This is your first coding lesson! You'll learn how to:
+- Print text messages
+- Print numbers
+- Create your first programs
 
 ## Instructions
 
-- Drag blocks from the toolbox to the workspace
-- Connect blocks together to create programs
-- Click "Run" to see your program in action
-- Complete each puzzle to move to the next level
+1. Read each challenge carefully
+2. Drag print blocks from the left toolbox
+3. Connect them like puzzle pieces
+4. Change the text inside the blocks
+5. Click "Run My Code" to test your program
+6. Click "Check Answer" when you think it's right!
+
+Complete all 3 challenges to earn your stars!
 
 Have fun learning to code!`,
       quizId: null,
@@ -754,22 +775,26 @@ Have fun learning to code!`,
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 2,
-      title: "Blockly Maze",
-      emoji: '🗺️',
-      content: `# Blockly Maze 🗺️
+      title: "Blockly Lesson 2: Simple Math",
+      emoji: '🔢',
+      content: `# Blockly Lesson 2: Simple Math 🔢
 
-Navigate through mazes using code!
+Learn to solve math problems using code!
 
-In Maze, you'll learn to use loops and conditionals to guide a character through mazes.
+Now you'll learn how to:
+- Use math blocks with different operations
+- Add, subtract, multiply, and divide
+- Combine print blocks with math blocks
 
 ## Instructions
 
-- Use movement blocks to navigate
-- Try using loops to repeat actions
-- Use conditionals to make decisions
-- Complete each maze to unlock the next one
+1. Look at each math problem
+2. Use a print block from the left
+3. Put a math block inside the print block
+4. Set the correct numbers and operation (+, -, ×, ÷)
+5. Run your code and check your answer!
 
-Challenge yourself to use fewer blocks!`,
+Complete all 4 math challenges to master coding math!`,
       quizId: null,
       assessmentType: null,
       categoryId: null,
@@ -780,22 +805,26 @@ Challenge yourself to use fewer blocks!`,
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 3,
-      title: "Blockly Bird",
-      emoji: '🐦',
-      content: `# Blockly Bird 🐦
+      title: "Blockly Lesson 3: Sequences & Patterns",
+      emoji: '🔄',
+      content: `# Blockly Lesson 3: Sequences & Patterns 🔄
 
-Help the bird catch worms!
+Learn to create patterns and sequences with multiple blocks!
 
-In Bird, you'll learn about conditionals and loops by helping a bird catch worms while avoiding obstacles.
+In this lesson you'll learn:
+- How to stack blocks together
+- Create number sequences (1, 2, 3)
+- Create letter patterns (A, B, C)
+- Make countdowns and patterns
 
 ## Instructions
 
-- Use conditionals to check for worms
-- Use loops to repeat actions
-- Guide the bird to catch all the worms
-- Avoid obstacles and complete each level
+1. Look at the pattern you need to create
+2. Stack multiple print blocks together (one under another)
+3. Each print block makes one line of output
+4. Match the pattern exactly!
 
-Think carefully about your code!`,
+Complete all 4 pattern challenges to become a pattern master!`,
       quizId: null,
       assessmentType: null,
       categoryId: null,
@@ -806,22 +835,26 @@ Think carefully about your code!`,
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 4,
-      title: "Blockly Turtle",
-      emoji: '🐢',
-      content: `# Blockly Turtle 🐢
+      title: "Blockly Lesson 4: Repeat Loops",
+      emoji: '🔁',
+      content: `# Blockly Lesson 4: Repeat Loops 🔁
 
-Draw pictures with code!
+Learn to use loops to repeat actions multiple times!
 
-In Turtle, you'll learn to draw shapes and patterns by programming a turtle to move and draw.
+In this lesson you'll learn:
+- How to use repeat blocks
+- Make code repeat 3, 5, or 10 times
+- Save time by not writing the same code over and over
+- Create patterns with loops
 
 ## Instructions
 
-- Use movement blocks to move the turtle
-- Use drawing blocks to create lines
-- Try using loops to create patterns
-- Experiment with angles and distances
+1. Drag a "repeat" block from the Loops category
+2. Set how many times to repeat
+3. Put blocks inside the repeat block
+4. Watch your code run multiple times!
 
-Create beautiful art with code!`,
+Master loops to become a more efficient coder!`,
       quizId: null,
       assessmentType: null,
       categoryId: null,
@@ -832,26 +865,28 @@ Create beautiful art with code!`,
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 5,
-      title: "Blockly Movie",
-      emoji: '🎬',
-      content: `# Blockly Movie 🎬
+      title: "Blockly Lesson 5: Variables",
+      emoji: '📦',
+      content: `# Blockly Lesson 5: Variables 📦
 
-Create animations with code!
+Learn to store and use information with variables!
 
-In Movie, you'll learn to create animations by programming characters to move and interact.
+In this lesson you'll learn:
+- What variables are (boxes that hold information)
+- How to create a variable
+- How to store numbers and text
+- How to change variable values
+- How to use variables in math
 
 ## Instructions
 
-- Use blocks to control character movement
-- Create sequences of actions
-- Use timing blocks to control speed
-- Make your own animated stories
+1. Click the "Variables" category
+2. Create a new variable with a name
+3. Use "set variable to" blocks
+4. Store numbers or text in your variables
+5. Print or use your variables!
 
-Bring your stories to life!
-
-## Note
-
-You may see console messages about "Pixel errors" or "Canvas2D" - these are normal! Blockly Movie checks your animation frame-by-frame to see if it matches the target. These messages don't affect the game.`,
+Variables help you remember and reuse information!`,
       quizId: null,
       assessmentType: null,
       categoryId: null,
@@ -862,26 +897,27 @@ You may see console messages about "Pixel errors" or "Canvas2D" - these are norm
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 6,
-      title: "Blockly Pond Tutor",
-      emoji: '🦆',
-      content: `# Blockly Pond Tutor 🦆
+      title: "Blockly Lesson 6: Logic & Conditionals",
+      emoji: '🤔',
+      content: `# Blockly Lesson 6: Logic & Conditionals 🤔
 
-Learn JavaScript with visual blocks!
+Learn to make decisions in your code with if/else blocks!
 
-In Pond Tutor, you'll learn JavaScript programming concepts using visual blocks that translate to real code.
+In this lesson you'll learn:
+- How to compare numbers (>, <, =)
+- If/else statements (if this, then that)
+- Making your code "think"
+- Conditional logic
 
 ## Instructions
 
-- Follow the tutorial to learn JavaScript
-- See how blocks translate to code
-- Complete exercises to practice
-- Build your programming skills
+1. Use "if" blocks from the Logic category
+2. Add comparison blocks (>, <, =)
+3. Put actions inside the if block
+4. Add "else" for what happens when false
+5. Watch your code make decisions!
 
-Learn real programming concepts!
-
-## Note
-
-You may see console messages about "play() request was interrupted" - these are normal! Blockly Games preloads sound effects, which can trigger browser warnings. These messages don't affect the game and you can safely ignore them.`,
+Logic makes your programs smart and interactive!`,
       quizId: null,
       assessmentType: null,
       categoryId: null,
@@ -892,26 +928,27 @@ You may see console messages about "play() request was interrupted" - these are 
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 7,
-      title: "Blockly Pond",
-      emoji: '🌊',
-      content: `# Blockly Pond 🌊
+      title: "Blockly Lesson 7: Counting Loops",
+      emoji: '🔢',
+      content: `# Blockly Lesson 7: Counting Loops 🔢
 
-Write JavaScript code to compete!
+Learn to use counting loops to repeat code a specific number of times!
 
-In Pond, you'll write JavaScript code to compete in a duck racing game.
+In this lesson you'll learn:
+- Using "count with" loops
+- Counting forward and backward
+- Counting by different amounts
+- Using the counter variable
 
 ## Instructions
 
-- Write JavaScript code directly
-- Use functions and variables
-- Optimize your code for speed
-- Compete with others or yourself
+1. Use "count with" loops from Loops category
+2. Set FROM, TO, and BY values
+3. Use the counter variable (like i)
+4. Print the counter to see it change
+5. Create different counting patterns!
 
-Master JavaScript programming!
-
-## Note
-
-You may see console messages about "play() request was interrupted" or "createRadialGradient" - these are normal! Blockly Games preloads sound effects and creates visual effects that can trigger browser warnings. These messages don't affect the game and you can safely ignore them.`,
+Counting loops are perfect for numbers and sequences!`,
       quizId: null,
       assessmentType: null,
       categoryId: null,
@@ -922,6 +959,68 @@ You may see console messages about "play() request was interrupted" or "createRa
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 8,
+      title: "Blockly Lesson 8: Text Joining",
+      emoji: '🔗',
+      content: `# Blockly Lesson 8: Text Joining 🔗
+
+Learn to join words and sentences together!
+
+In this lesson you'll learn:
+- Joining multiple text pieces
+- Adding spaces between words
+- Creating sentences from parts
+- Combining text with variables
+
+## Instructions
+
+1. Use "create text with" from Text category
+2. Add multiple text slots
+3. Join words with spaces
+4. Combine with variables
+5. Build complete sentences!
+
+Text joining lets you create dynamic messages!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'technology',
+      lessonNumber: 9,
+      title: "Blockly Lesson 9: Functions",
+      emoji: '⚙️',
+      content: `# Blockly Lesson 9: Functions ⚙️
+
+Learn to create reusable blocks of code called functions!
+
+In this lesson you'll learn:
+- Creating your own functions
+- Calling functions multiple times
+- Making code more organized
+- Reusing code without repeating
+
+## Instructions
+
+1. Click Functions category and create a function
+2. Give it a name (like "sayHello")
+3. Put blocks inside your function
+4. Call your function to run it
+5. Call it multiple times to reuse!
+
+Functions make your code cleaner and easier to manage!`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year1',
+      subjectId: 'technology',
+      lessonNumber: 10,
       title: "TapTapTap: Beginner Level 1",
       emoji: '👆',
       assessmentType: 'taptaptap-game',
@@ -932,7 +1031,7 @@ You may see console messages about "play() request was interrupted" or "createRa
       id: lessonId++,
       yearId: 'year1',
       subjectId: 'technology',
-      lessonNumber: 9,
+      lessonNumber: 11,
       title: "TapTapTap: Beginner Level 2",
       emoji: '👆',
       assessmentType: 'taptaptap-game',
@@ -943,7 +1042,7 @@ You may see console messages about "play() request was interrupted" or "createRa
       id: lessonId++,
       yearId: 'year1',
       subjectId: 'technology',
-      lessonNumber: 10,
+      lessonNumber: 12,
       title: "Flappy Bird Game",
       emoji: '🐦',
       assessmentType: 'flappy-bird-game',

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Blockly Lesson 1 - Hello World</title>
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
+    body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; flex-direction: column; }
+
+    /* Top Bar */
+    .top-bar {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    
+    .lesson-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #667eea;
+    }
+    
+    .progress-bar {
+      flex: 1;
+      max-width: 300px;
+      height: 30px;
+      background: #e0e0e0;
+      border-radius: 15px;
+      margin: 0 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transition: width 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .stars {
+      font-size: 1.5em;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    #blocklyDiv {
+      flex: 1;
+      height: 100%;
+    }
+
+    /* Challenge Overlay */
+    .challenge-overlay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      max-width: 350px;
+      z-index: 50;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    .challenge-header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .challenge-number {
+      font-size: 0.9em;
+      opacity: 0.9;
+      margin-bottom: 5px;
+    }
+    
+    .challenge-title {
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+    
+    .challenge-description {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border-left: 4px solid #667eea;
+      line-height: 1.6;
+    }
+    
+    .expected-output {
+      background: #e3f2fd;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+
+    /* Bottom Controls */
+    .bottom-controls {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+    
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    button:active { transform: translateY(0); }
+    
+    .btn-primary { background: #667eea; color: white; }
+    .btn-success { background: #28a745; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+    .btn-nav { background: #f8f9fa; color: #333; border: 2px solid #ddd; }
+    .btn-nav:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Feedback Messages */
+    .feedback {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      text-align: center;
+      z-index: 1000;
+      min-width: 300px;
+      animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    
+    @keyframes popIn {
+      to { transform: translate(-50%, -50%) scale(1); }
+    }
+    
+    .feedback-icon {
+      font-size: 4em;
+      margin-bottom: 15px;
+    }
+    
+    .feedback-message {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .feedback.success { border-top: 5px solid #28a745; }
+    .feedback.error { border-top: 5px solid #dc3545; }
+    
+    .backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: none;
+    }
+    
+    .backdrop.active { display: block; }
+
+    /* Hint Box */
+    .hint-box {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      color: #856404;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none;
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    .hint-box.show { display: block; }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .challenge-overlay { right: 10px; top: 10px; max-width: 300px; padding: 15px; }
+      .top-bar { flex-wrap: wrap; padding: 10px; }
+      .lesson-title { font-size: 1.2em; }
+      button { padding: 10px 18px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="lesson-title">👋 Hello World!</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressBar">0%</div>
+    </div>
+    <div class="stars" id="starsDisplay">⭐⭐⭐</div>
+  </div>
+
+  <div class="main-content">
+    <div id="blocklyDiv"></div>
+    
+    <div class="challenge-overlay">
+      <div class="challenge-header">
+        <div class="challenge-number" id="challengeNumber">Challenge 1 of 3</div>
+        <div class="challenge-title" id="challengeTitle">Print Hello World</div>
+      </div>
+      <div class="challenge-description" id="challengeDescription">
+        Use a print block to display the text "Hello World"
+      </div>
+      <div class="expected-output" id="expectedOutput">Expected: Hello World</div>
+      <div class="hint-box" id="hintBox"></div>
+    </div>
+  </div>
+
+  <div class="bottom-controls">
+    <button class="btn-nav" id="prevBtn" onclick="previousChallenge()" disabled>◀ Previous</button>
+    <button class="btn-secondary" onclick="resetWorkspace()">🔄 Reset</button>
+    <button class="btn-secondary" onclick="showHint()">💡 Hint</button>
+    <button class="btn-primary" onclick="runCode()">▶ Run Code</button>
+    <button class="btn-success" onclick="checkSolution()">✓ Check Answer</button>
+    <button class="btn-nav" id="nextBtn" onclick="nextChallenge()">Next ▶</button>
+  </div>
+
+  <div class="backdrop" id="backdrop"></div>
+
+  <script>
+    const workspace = Blockly.inject('blocklyDiv', {
+      toolbox: `
+        <xml xmlns="https://developers.google.com/blockly/xml">
+          <category name="🎨 Text" colour="160">
+            <block type="text"><field name="TEXT">Hello</field></block>
+            <block type="text_print">
+              <value name="TEXT">
+                <shadow type="text"><field name="TEXT">Type here</field></shadow>
+              </value>
+            </block>
+          </category>
+          <category name="🔢 Numbers" colour="230">
+            <block type="math_number"><field name="NUM">0</field></block>
+            <block type="text_print">
+              <value name="TEXT">
+                <shadow type="math_number"><field name="NUM">123</field></shadow>
+              </value>
+            </block>
+          </category>
+        </xml>
+      `,
+      zoom: { controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2 },
+      trashcan: true,
+      grid: { spacing: 20, length: 3, colour: '#ccc', snap: true }
+    });
+
+    let currentChallenge = 0;
+    let completedChallenges = [false, false, false];
+
+    const challenges = [
+      {
+        title: "Print Hello World",
+        description: 'Use a print block to display the text "Hello World"',
+        expected: "Hello World",
+        hint: 'Drag a "print" block from the Text category. Click on "Type here" and change it to say "Hello World"',
+        validate: (output) => output.trim().toLowerCase() === 'hello world'
+      },
+      {
+        title: "Print Your Name",
+        description: "Print any name you like (it can be your name or any other name!)",
+        expected: "A name",
+        hint: 'Use another print block. Click on the text inside and type a name like "Sarah" or "Alex"',
+        validate: (output) => {
+          const text = output.trim().toLowerCase();
+          return text.length > 0 && text !== 'type here' && text !== 'hello' && text !== 'hello world';
+        }
+      },
+      {
+        title: "Print the Number 100",
+        description: "Print the number 100",
+        expected: "100",
+        hint: 'Go to the Numbers category. Drag a "print" block with a number. Click on "123" and change it to "100"',
+        validate: (output) => output.trim() === '100'
+      }
+    ];
+
+    function updateUI() {
+      const challenge = challenges[currentChallenge];
+      document.getElementById('challengeNumber').textContent = `Challenge ${currentChallenge + 1} of 3`;
+      document.getElementById('challengeTitle').textContent = challenge.title;
+      document.getElementById('challengeDescription').textContent = challenge.description;
+      document.getElementById('expectedOutput').textContent = `Expected: ${challenge.expected}`;
+      document.getElementById('prevBtn').disabled = currentChallenge === 0;
+      document.getElementById('nextBtn').disabled = currentChallenge === challenges.length - 1;
+      updateProgress();
+      document.getElementById('hintBox').classList.remove('show');
+    }
+
+    function updateProgress() {
+      const completed = completedChallenges.filter(c => c).length;
+      const percent = Math.round((completed / challenges.length) * 100);
+      const progressBar = document.getElementById('progressBar');
+      progressBar.style.width = percent + '%';
+      progressBar.textContent = percent + '%';
+      
+      const stars = ['⭐', '⭐', '⭐'].map((s, i) => i < completed ? '⭐' : '☆').join('');
+      document.getElementById('starsDisplay').textContent = stars;
+    }
+
+    function runCode() {
+      let output = [];
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      let code = Blockly.JavaScript.workspaceToCode(workspace);
+      
+      if (!code.trim()) {
+        showFeedback('⚠️', 'Your workspace is empty!', 'Add some blocks first.', 'error');
+        return;
+      }
+
+      const originalAlert = window.alert;
+      window.alert = function(msg) { output.push(String(msg)); };
+
+      try {
+        eval(code);
+        if (output.length === 0) {
+          showFeedback('⚠️', 'No output!', 'Did you use a print block?', 'error');
+        } else {
+          showFeedback('✅', 'Code Ran!', output.join('\\n'), 'success');
+        }
+      } catch (e) {
+        showFeedback('❌', 'Error!', e.message, 'error');
+      } finally {
+        window.alert = originalAlert;
+      }
+    }
+
+    function checkSolution() {
+      let output = [];
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      let code = Blockly.JavaScript.workspaceToCode(workspace);
+      
+      if (!code.trim()) {
+        showFeedback('⚠️', 'Empty Workspace!', 'Add some blocks first.', 'error');
+        return;
+      }
+
+      const originalAlert = window.alert;
+      window.alert = function(msg) { output.push(String(msg)); };
+
+      try {
+        eval(code);
+        const result = output.length > 0 ? output[0] : '';
+        
+        if (challenges[currentChallenge].validate(result)) {
+          completedChallenges[currentChallenge] = true;
+          updateProgress();
+          
+          if (currentChallenge < challenges.length - 1) {
+            showFeedback('🎉', 'Correct!', 'Great job! Moving to next challenge...', 'success');
+            setTimeout(() => {
+              hideAllFeedback();
+              currentChallenge++;
+              updateUI();
+            }, 2000);
+          } else {
+            showFeedback('🏆', 'Lesson Complete!', `You earned ${completedChallenges.filter(c=>c).length} stars! Amazing work!`, 'success');
+            
+            // Notify parent window that lesson is complete
+            if (window.parent && window.parent !== window) {
+              window.parent.postMessage({
+                type: 'html-game-complete',
+                game: 'blockly-lesson-1'
+              }, '*');
+            }
+          }
+        } else {
+          showFeedback('❌', 'Not Quite Right', 'Check the expected output and try again!', 'error');
+        }
+      } catch (e) {
+        showFeedback('❌', 'Error!', e.message, 'error');
+      } finally {
+        window.alert = originalAlert;
+      }
+    }
+
+    function showHint() {
+      const hintBox = document.getElementById('hintBox');
+      hintBox.textContent = '💡 ' + challenges[currentChallenge].hint;
+      hintBox.classList.add('show');
+      setTimeout(() => hintBox.classList.remove('show'), 8000);
+    }
+
+    function nextChallenge() {
+      if (currentChallenge < challenges.length - 1) {
+        currentChallenge++;
+        updateUI();
+      }
+    }
+
+    function previousChallenge() {
+      if (currentChallenge > 0) {
+        currentChallenge--;
+        updateUI();
+      }
+    }
+
+    function resetWorkspace() {
+      if (confirm('Clear your workspace?')) {
+        workspace.clear();
+        showFeedback('🔄', 'Workspace Cleared', 'Start fresh!', 'success');
+      }
+    }
+
+    function showFeedback(icon, title, message, type) {
+      hideAllFeedback();
+      const feedback = document.createElement('div');
+      feedback.className = `feedback ${type}`;
+      feedback.innerHTML = `
+        <div class="feedback-icon">${icon}</div>
+        <div class="feedback-message">${title}</div>
+        <div>${message}</div>
+      `;
+      document.body.appendChild(feedback);
+      document.getElementById('backdrop').classList.add('active');
+      
+      setTimeout(hideAllFeedback, 3000);
+    }
+
+    function hideAllFeedback() {
+      document.querySelectorAll('.feedback').forEach(f => f.remove());
+      document.getElementById('backdrop').classList.remove('active');
+    }
+
+    document.getElementById('backdrop').addEventListener('click', hideAllFeedback);
+    updateUI();
+  </script>
+</body>
+</html>
