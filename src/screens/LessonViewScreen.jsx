@@ -2033,7 +2033,7 @@ function LessonViewScreen() {
               display: 'flex',
               flexDirection: 'column',
               minHeight: 0,
-              backgroundColor: 'white',
+              backgroundColor: 'var(--background)',
               padding: '20px',
               borderRadius: '8px',
               boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
@@ -2271,7 +2271,7 @@ function LessonViewScreen() {
               minHeight: 0,
               display: 'flex',
               flexDirection: 'column',
-              backgroundColor: 'white',
+              backgroundColor: 'var(--background)',
               borderRadius: '8px',
               boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               overflow: 'hidden',
@@ -2293,8 +2293,8 @@ function LessonViewScreen() {
                 <div style={{
                   flexShrink: 0,
                   padding: '20px 30px',
-                  borderTop: '2px solid #e0e0e0',
-                  backgroundColor: '#f8f9fa',
+                  borderTop: '2px solid var(--border-color, #e0e0e0)',
+                  backgroundColor: 'var(--card-background, #f8f9fa)',
                 }}>
                   {hasIncorrectAnswer ? (
                     <div style={{

@@ -1016,33 +1016,15 @@ Functions make your code cleaner and easier to manage!`,
       categoryId: null,
     }),
 
+
+
+
+
     new Lesson({
       id: lessonId++,
       yearId: 'year1',
       subjectId: 'technology',
       lessonNumber: 10,
-      title: "TapTapTap: Beginner Level 1",
-      emoji: '👆',
-      assessmentType: 'taptaptap-game',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year1',
-      subjectId: 'technology',
-      lessonNumber: 11,
-      title: "TapTapTap: Beginner Level 2",
-      emoji: '👆',
-      assessmentType: 'taptaptap-game',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year1',
-      subjectId: 'technology',
-      lessonNumber: 12,
       title: "Flappy Bird Game",
       emoji: '🐦',
       assessmentType: 'flappy-bird-game',

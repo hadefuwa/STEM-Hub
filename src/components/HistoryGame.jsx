@@ -246,7 +246,7 @@ function HistoryGame({ lesson }) {
           fontSize: '24px',
           marginBottom: '30px',
           padding: '20px',
-          backgroundColor: 'white',
+          backgroundColor: 'var(--card-background, white)',
           borderRadius: '12px',
           boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
           minWidth: '300px',
@@ -255,13 +255,13 @@ function HistoryGame({ lesson }) {
             <div style={{ fontSize: '48px', fontWeight: 'bold', color: medal.color, marginBottom: '10px' }}>
               {medal.name} Medal
             </div>
-            <div style={{ fontSize: '32px', color: '#333', marginBottom: '10px' }}>
+            <div style={{ fontSize: '32px', color: 'var(--text-primary, #333)', marginBottom: '10px' }}>
               Score: {percentage}%
             </div>
-            <div style={{ fontSize: '18px', color: '#666' }}>
+            <div style={{ fontSize: '18px', color: 'var(--text-secondary, #666)' }}>
               {correctAnswers} out of {totalQuestions} correct
             </div>
-            <div style={{ fontSize: '18px', color: '#666', marginTop: '10px' }}>
+            <div style={{ fontSize: '18px', color: 'var(--text-secondary, #666)', marginTop: '10px' }}>
               Time: {Math.floor(timeElapsed / 60)}:{(timeElapsed % 60).toString().padStart(2, '0')}
             </div>
           </div>
@@ -322,18 +322,18 @@ function HistoryGame({ lesson }) {
         marginBottom: '30px',
         textAlign: 'center',
         padding: '20px',
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'var(--card-background, #f8f9fa)',
         borderRadius: '12px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
       }}>
-        <h2 style={{ fontSize: '28px', marginBottom: '15px', color: '#333' }}>
+        <h2 style={{ fontSize: '28px', marginBottom: '15px', color: 'var(--text-primary, #333)' }}>
           {lesson.emoji} {lesson.title}
         </h2>
         <div style={{
           display: 'flex',
           justifyContent: 'space-around',
           fontSize: '18px',
-          color: '#666',
+          color: 'var(--text-secondary, #666)',
         }}>
           <div>
             <strong>Question:</strong> {currentQuestionIndex + 1} / {totalQuestions}
@@ -350,7 +350,7 @@ function HistoryGame({ lesson }) {
           marginTop: '15px',
           width: '100%',
           height: '10px',
-          backgroundColor: '#e0e0e0',
+          backgroundColor: 'var(--progress-bg, #e0e0e0)',
           borderRadius: '5px',
           overflow: 'hidden',
         }}>
@@ -370,7 +370,7 @@ function HistoryGame({ lesson }) {
         flexDirection: 'column',
         justifyContent: 'center',
         padding: '30px',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--card-background, white)',
         borderRadius: '12px',
         boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
         marginBottom: '20px',
@@ -383,7 +383,7 @@ function HistoryGame({ lesson }) {
         }}>
           <h3 style={{
             fontSize: '24px',
-            color: '#333',
+            color: 'var(--text-primary, #333)',
             margin: 0,
             flex: 1,
           }}>
@@ -394,7 +394,7 @@ function HistoryGame({ lesson }) {
             style={{
               padding: '10px 15px',
               fontSize: '20px',
-              backgroundColor: '#f0f0f0',
+              backgroundColor: 'var(--button-secondary-bg, #f0f0f0)',
               border: 'none',
               borderRadius: '8px',
               cursor: 'pointer',
@@ -413,11 +413,11 @@ function HistoryGame({ lesson }) {
               padding: '18px 24px',
               fontSize: '18px',
               textAlign: 'left',
-              border: '2px solid #ddd',
+              border: '2px solid var(--border-color, #ddd)',
               borderRadius: '10px',
               cursor: showFeedback ? 'default' : 'pointer',
-              backgroundColor: 'white',
-              color: '#333',
+              backgroundColor: 'var(--option-bg, white)',
+              color: 'var(--text-primary, #333)',
               transition: 'all 0.3s ease',
               fontWeight: '500',
             };

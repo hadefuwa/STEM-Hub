@@ -688,82 +688,15 @@ In the game, you will handle the difficult challenges of the late empire. Can yo
       categoryId: null,
     }),
 
+
+
+
+
     new Lesson({
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'technology',
       lessonNumber: 1,
-      title: "TapTapTap: Advanced Level 1",
-      emoji: '👆',
-      content: `# TapTapTap: Advanced Level 1 👆
-
-Time to step up your game! This level is faster and more challenging.
-
-## How to Play
-
-- Tap targets as they appear on screen
-- Targets appear every 1.2 seconds (even faster!)
-- Targets are smaller and move faster
-- 30 seconds to score as many points as possible!
-
-## Scoring System
-
-- **Bronze**: 15-29 points
-- **Silver**: 30-44 points
-- **Gold**: 45-59 points
-- **Platinum**: 60+ points
-
-You need at least **Bronze** (15 points) to progress!
-
-## Tips
-
-- Stay focused - targets appear quickly
-- Practice your hand-eye coordination
-- Don't give up if you miss some - keep trying!`,
-      quizId: null,
-      assessmentType: null,
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year3',
-      subjectId: 'technology',
-      lessonNumber: 2,
-      title: "TapTapTap: Advanced Level 2",
-      emoji: '👆',
-      content: `# TapTapTap: Advanced Level 2 👆
-
-Keep challenging yourself! This level continues to build your skills.
-
-## How to Play
-
-- Tap targets as they appear
-- Same speed as Level 1 - keep practicing!
-- 30 seconds to score points
-
-## Scoring System
-
-- **Bronze**: 15-29 points
-- **Silver**: 30-44 points
-- **Gold**: 45-59 points
-- **Platinum**: 60+ points
-
-You need at least **Bronze** (15 points) to progress!
-
-## Challenge
-
-Can you beat your previous score? Aim for a higher medal!`,
-      quizId: null,
-      assessmentType: null,
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year3',
-      subjectId: 'technology',
-      lessonNumber: 3,
       title: "Blockly Puzzle",
       emoji: '🧩',
       content: `# Blockly Puzzle 🧩
@@ -789,7 +722,7 @@ Have fun learning to code!`,
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'technology',
-      lessonNumber: 4,
+      lessonNumber: 2,
       title: "Blockly Maze",
       emoji: '🗺️',
       content: `# Blockly Maze 🗺️
@@ -815,7 +748,7 @@ Challenge yourself to use fewer blocks!`,
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'technology',
-      lessonNumber: 5,
+      lessonNumber: 3,
       title: "Blockly Bird",
       emoji: '🐦',
       content: `# Blockly Bird 🐦
@@ -841,7 +774,7 @@ Think carefully about your code!`,
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'technology',
-      lessonNumber: 6,
+      lessonNumber: 4,
       title: "Blockly Turtle",
       emoji: '🐢',
       content: `# Blockly Turtle 🐢
@@ -867,7 +800,7 @@ Create beautiful art with code!`,
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'technology',
-      lessonNumber: 7,
+      lessonNumber: 5,
       title: "Blockly Movie",
       emoji: '🎬',
       content: `# Blockly Movie 🎬
@@ -897,7 +830,7 @@ You may see console messages about "Pixel errors" or "Canvas2D" - these are norm
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'technology',
-      lessonNumber: 8,
+      lessonNumber: 6,
       title: "Blockly Pond Tutor",
       emoji: '🦆',
       content: `# Blockly Pond Tutor 🦆
@@ -927,7 +860,7 @@ You may see console messages about "play() request was interrupted" - these are 
       id: lessonId++,
       yearId: 'year3',
       subjectId: 'technology',
-      lessonNumber: 9,
+      lessonNumber: 7,
       title: "Blockly Pond",
       emoji: '🌊',
       content: `# Blockly Pond 🌊

@@ -12,7 +12,7 @@ export function getYear2Lessons(startLessonId, startQuizId) {
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 4,
+      lessonNumber: 1,
       title: "Arduino Lesson 1: Understanding void setup()",
       emoji: '🔌',
       content: `# Arduino Lesson 1: Understanding void setup()
@@ -185,7 +185,7 @@ Serial.begin(9600);   // Start serial at 9600 baud
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 5,
+      lessonNumber: 2,
       title: "Arduino Lesson 3: The Importance of Semicolons",
       emoji: '🔤',
       content: `# Arduino Lesson 3: The Importance of Semicolons
@@ -422,7 +422,7 @@ When the compiler reports an error on a specific line saying "expected ';' befor
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 6,
+      lessonNumber: 3,
       title: "Arduino Lesson 4: Variables and Data Types",
       emoji: '📦',
       content: `# Arduino Lesson 4: Variables and Data Types
@@ -713,7 +713,7 @@ If you declare a variable inside setup(), it is local to that function and canno
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 7,
+      lessonNumber: 4,
       title: "Arduino Lesson 5: Digital Input and Output",
       emoji: '⚡',
       content: `# Arduino Lesson 5: Digital Input and Output
@@ -982,7 +982,7 @@ If you try to use digitalWrite() on a pin configured as INPUT, it will have no e
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 8,
+      lessonNumber: 5,
       title: "Arduino Lesson 6: Analog Input and Output (PWM)",
       emoji: '📊',
       content: `# Arduino Lesson 6: Analog Input and Output (PWM)
@@ -1249,7 +1249,7 @@ To get 50% brightness, you need a value of 128 (half of 255). The sensor value o
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 9,
+      lessonNumber: 6,
       title: "Arduino Lesson 7: Control Structures (if/else, loops)",
       emoji: '🔀',
       content: `# Arduino Lesson 7: Control Structures
@@ -1612,7 +1612,7 @@ The condition sensorValue > 500 && sensorValue < 800 will be true when sensorVal
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 10,
+      lessonNumber: 7,
       title: "Arduino Lesson 8: Creating Custom Functions",
       emoji: '⚙️',
       content: `# Arduino Lesson 8: Creating Custom Functions
@@ -1963,7 +1963,7 @@ If you try to return a value from a void function, the code will not compile. Vo
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 11,
+      lessonNumber: 8,
       title: "Arduino Lesson 9: Working with Arrays",
       emoji: '📋',
       content: `# Arduino Lesson 9: Working with Arrays
@@ -2130,7 +2130,7 @@ void loop() {
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 12,
+      lessonNumber: 9,
       title: "Arduino Lesson 10: Libraries and Serial Communication",
       emoji: '📚',
       content: `# Arduino Lesson 10: Libraries and Serial Communication
@@ -3395,7 +3395,7 @@ All civilizations built amazing things, created writing systems, had strong gove
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 13,
+      lessonNumber: 10,
       title: "HTML Programming: SVG Graphics",
       emoji: '🎨',
       content: `# HTML Programming: SVG Graphics 🎨
@@ -3439,7 +3439,7 @@ SVG stands for **Scalable Vector Graphics** - images created with code that can 
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 14,
+      lessonNumber: 11,
       title: "HTML Programming: SVG Graphics - Rectangles",
       emoji: '⬜',
       content: `# HTML Programming: SVG Graphics - Rectangles ⬜
@@ -3472,7 +3472,7 @@ Learn to create rectangles and squares with SVG!
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 15,
+      lessonNumber: 12,
       title: "HTML Programming: SVG Graphics - Lines",
       emoji: '📏',
       content: `# HTML Programming: SVG Graphics - Lines 📏
@@ -3505,7 +3505,7 @@ Learn to draw lines and create patterns with SVG!
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 16,
+      lessonNumber: 13,
       title: "HTML Programming: SVG Graphics - Ellipses & Text",
       emoji: '🔵',
       content: `# HTML Programming: SVG Graphics - Ellipses & Text 🔵
@@ -3546,7 +3546,7 @@ Learn to create ovals and add text to your SVG graphics!
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 17,
+      lessonNumber: 14,
       title: "HTML Programming: SVG Graphics - Polygons",
       emoji: '🔺',
       content: `# HTML Programming: SVG Graphics - Polygons 🔺
@@ -3576,33 +3576,15 @@ This creates a diamond shape by connecting 4 points!
       categoryId: null,
     }),
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'technology',
-      lessonNumber: 18,
-      title: "TapTapTap: Intermediate Level 1",
-      emoji: '👆',
-      assessmentType: 'taptaptap-game',
-      categoryId: null,
-    }),
+
+
+
 
     new Lesson({
       id: lessonId++,
       yearId: 'year2',
       subjectId: 'technology',
-      lessonNumber: 19,
-      title: "TapTapTap: Intermediate Level 2",
-      emoji: '👆',
-      assessmentType: 'taptaptap-game',
-      categoryId: null,
-    }),
-
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year2',
-      subjectId: 'technology',
-      lessonNumber: 20,
+      lessonNumber: 15,
       title: "Flappy Bird Game",
       emoji: '🐦',
       assessmentType: 'flappy-bird-game',
