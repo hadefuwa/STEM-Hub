@@ -25,6 +25,7 @@ function InfoButton({ content, title = 'Instructions' }) {
       return true;
     })
     .join('\n')
+    .replace(/<!--\s*MODEL_VIEWER[\s\S]*?-->/g, '')
     .trim();
 
   return (

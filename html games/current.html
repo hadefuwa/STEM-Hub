@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Commander: The Fuse Challenge</title>
+    <style>
+        body { font-family: 'Comic Sans MS', cursive; text-align: center; background: #f0f4f8; }
+        #game-box { background: white; border: 5px solid #9b59b6; border-radius: 20px; padding: 20px; max-width: 500px; margin: 20px auto; }
+        .wire-box { background: #333; height: 50px; position: relative; overflow: hidden; margin: 20px 0; border-radius: 10px; }
+        .electron { width: 12px; height: 12px; background: #00fbff; border-radius: 50%; position: absolute; top: 19px; }
+        .fuse { width: 40px; height: 60px; background: #e74c3c; display: inline-block; border: 3px solid #c0392b; border-radius: 5px; line-height: 60px; color: white; font-weight: bold; }
+        .fuse.blown { background: #333; border-color: #000; text-decoration: line-through; }
+        .toy-btn { padding: 15px; font-size: 30px; margin: 5px; cursor: pointer; border: 2px solid #ddd; border-radius: 10px; background: #fff; }
+        .toy-btn.active { background: #ffeaa7; border-color: #f1c40f; }
+        .stats { font-size: 22px; margin: 15px; }
+        #amp-val { color: #e67e22; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="game-box">
+    <h2>🔌 The Fuse Challenge</h2>
+    <p>Voltage is fixed at <b>12V</b>. Adding toys adds <b>Current</b>!</p>
+    
+    <div class="stats">
+        Current Flow: <span id="amp-val">0</span> Amps / <small>Limit: 10A</small>
+    </div>
+
+    <div class="fuse" id="fuse-box">SAFE</div>
+
+    <div class="wire-box" id="wire"></div>
+
+    <div id="toy-shelf">
+        <button class="toy-btn" onclick="toggleToy(this, 1)">🧸<br><small>1A</small></button>
+        <button class="toy-btn" onclick="toggleToy(this, 2)">🏎️<br><small>2A</small></button>
+        <button class="toy-btn" onclick="toggleToy(this, 3)">🤖<br><small>3A</small></button>
+        <button class="toy-btn" onclick="toggleToy(this, 5)">📺<br><small>5A</small></button>
+    </div>
+
+    <h3 id="msg">Turn on some toys!</h3>
+    <button id="reset" onclick="resetGame()" style="display:none; padding:10px; background:#2ecc71; color:white; border:none; border-radius:5px;">Replace Fuse</button>
+</div>
+
+<script>
+    let currentAmps = 0;
+    const limit = 10;
+    const wire = document.getElementById('wire');
+    const ampDisplay = document.getElementById('amp-val');
+    const fuseBox = document.getElementById('fuse-box');
+    const msg = document.getElementById('msg');
+    const resetBtn = document.getElementById('reset');
+
+    // Setup 15 electrons
+    for(let i=0; i<15; i++) {
+        let e = document.createElement('div');
+        e.className = 'electron';
+        e.style.left = (i * 40) + 'px';
+        wire.appendChild(e);
+    }
+    const electrons = document.querySelectorAll('.electron');
+    let pos = Array.from({length: 15}, (_, i) => i * 40);
+
+    function toggleToy(btn, val) {
+        if(fuseBox.classList.contains('blown')) return;
+
+        if(btn.classList.contains('active')) {
+            btn.classList.remove('active');
+            currentAmps -= val;
+        } else {
+            btn.classList.add('active');
+            currentAmps += val;
+        }
+        updateGame();
+    }
+
+    function updateGame() {
+        ampDisplay.innerText = currentAmps;
+        
+        if (currentAmps > limit) {
+            fuseBox.innerText = "POP!";
+            fuseBox.classList.add('blown');
+            msg.innerHTML = "<span style='color:red'>GAME OVER! Too much flow melted the fuse!</span>";
+            resetBtn.style.display = "inline-block";
+        } else if (currentAmps === limit) {
+            msg.innerText = "MAX POWER! Be careful!";
+        } else if (currentAmps > 0) {
+            msg.innerText = "Everything is working perfectly.";
+        }
+    }
+
+    function animate() {
+        if (!fuseBox.classList.contains('blown')) {
+            electrons.forEach((e, i) => {
+                pos[i] += currentAmps * 0.5; // Flow speed based on Amps
+                if(pos[i] > 500) pos[i] = -15;
+                e.style.left = pos[i] + 'px';
+                e.style.opacity = currentAmps > 0 ? "1" : "0.2";
+            });
+        }
+        requestAnimationFrame(animate);
+    }
+
+    function resetGame() {
+        currentAmps = 0;
+        ampDisplay.innerText = 0;
+        fuseBox.innerText = "SAFE";
+        fuseBox.classList.remove('blown');
+        msg.innerText = "Try again!";
+        resetBtn.style.display = "none";
+        document.querySelectorAll('.toy-btn').forEach(b => b.classList.remove('active'));
+    }
+
+    animate();
+</script>
+</body>
+</html>

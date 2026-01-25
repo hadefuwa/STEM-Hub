@@ -3585,6 +3585,146 @@ This creates a diamond shape by connecting 4 points!
       yearId: 'year2',
       subjectId: 'technology',
       lessonNumber: 15,
+      title: "HTML Programming: SVG Graphics - Paths",
+      emoji: '🧭',
+      content: `# HTML Programming: SVG Graphics - Paths 🧭
+
+Learn to draw custom shapes using SVG paths!
+
+## Path Basics
+
+- **\`<path>\`**: Draws any shape using commands in the \`d\` attribute
+- **M x y**: Move to a point
+- **L x y**: Draw a line to a point
+- **Q x1 y1 x y**: Quadratic curve
+- **C x1 y1 x2 y2 x y**: Cubic curve
+- **Z**: Close the shape
+
+## Example
+
+\`\`\`html
+<svg width="220" height="200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 30 160 L 110 40 L 190 160 Z" fill="orange" stroke="black" stroke-width="3"/>
+</svg>
+\`\`\`
+
+This draws a triangle using path commands!
+
+**Edit the code in the editor below and create your own custom path shapes!**`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 16,
+      title: "HTML Programming: SVG Graphics - Gradients",
+      emoji: '🌈',
+      content: `# HTML Programming: SVG Graphics - Gradients 🌈
+
+Make your SVG shapes look 3D and colorful using gradients!
+
+## Gradient Basics
+
+- **\`<linearGradient>\`**: Color changes in a straight line
+- **\`<radialGradient>\`**: Color changes in a circle
+- **\`stop\`**: Defines a color point in the gradient
+
+## Example
+
+\`\`\`html
+<svg width="220" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5ee7ff" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+  </defs>
+  <rect x="20" y="20" width="180" height="160" fill="url(#sky)" />
+</svg>
+\`\`\`
+
+**Edit the code in the editor below and experiment with different gradients!**`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 17,
+      title: "HTML Programming: SVG Graphics - Transforms",
+      emoji: '🧩',
+      content: `# HTML Programming: SVG Graphics - Transforms 🧩
+
+Rotate, move, and scale shapes using SVG transforms!
+
+## Transform Basics
+
+- **translate(x, y)**: Move a shape
+- **rotate(angle)**: Rotate a shape
+- **scale(x, y)**: Stretch or shrink a shape
+
+## Example
+
+\`\`\`html
+<svg width="220" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="70" y="60" width="80" height="80" fill="lime" transform="rotate(20 110 100)" />
+  <circle cx="60" cy="150" r="20" fill="gold" transform="translate(30, -10)" />
+</svg>
+\`\`\`
+
+**Edit the code in the editor below and transform your shapes!**`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 18,
+      title: "HTML Programming: SVG Graphics - Grouping & Layers",
+      emoji: '🧱',
+      content: `# HTML Programming: SVG Graphics - Grouping & Layers 🧱
+
+Organize shapes using groups, and control the order they appear!
+
+## Grouping Basics
+
+- **\`<g>\`**: Group shapes together
+- You can apply a single \`transform\` or \`opacity\` to the whole group
+- Shapes drawn later appear on top (layers)
+
+## Example
+
+\`\`\`html
+<svg width="220" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="180" height="160" fill="#0ea5e9" />
+  <g transform="translate(40, 30)">
+    <circle cx="40" cy="40" r="30" fill="#22c55e" />
+    <circle cx="90" cy="60" r="30" fill="#f59e0b" />
+  </g>
+</svg>
+\`\`\`
+
+**Edit the code in the editor below and create layered SVG art!**`,
+      quizId: null,
+      assessmentType: null,
+      categoryId: null,
+    }),
+
+    new Lesson({
+      id: lessonId++,
+      yearId: 'year2',
+      subjectId: 'technology',
+      lessonNumber: 19,
       title: "Flappy Bird Game",
       emoji: '🐦',
       assessmentType: 'flappy-bird-game',

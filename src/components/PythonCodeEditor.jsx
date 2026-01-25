@@ -389,6 +389,24 @@ function PythonCodeEditor({ lesson }) {
 
     let correct = false;
     let message = '';
+    const normalizedCode = (code || '')
+      .replace(/\r\n/g, '\n')
+      .trim()
+      .replace(/[ \t]+$/gm, '');
+    const normalizedStarter = (exercise?.starterCode || '')
+      .replace(/\r\n/g, '\n')
+      .trim()
+      .replace(/[ \t]+$/gm, '');
+
+    const lessonNumber = Number(lesson?.lessonNumber || 0);
+    const requiresChange = lessonNumber > 1 && normalizedStarter.length > 0;
+    const hasChangedFromStarter = !requiresChange || normalizedCode !== normalizedStarter;
+
+    if (!hasChangedFromStarter) {
+      setIsCorrect(false);
+      setVerificationMessage('âœ— Please change the starter code before completing this lesson.');
+      return;
+    }
 
     // Check expected output
     if (exercise.expectedOutput) {

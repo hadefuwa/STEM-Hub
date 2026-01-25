@@ -392,7 +392,7 @@
 
       try {
         eval(code);
-        const result = output.length > currentChallenge ? output[currentChallenge] : '';
+        const result = output.length > 0 ? output[0] : '';
         
         if (challenges[currentChallenge].validate(result)) {
           completedChallenges[currentChallenge] = true;

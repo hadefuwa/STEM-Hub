@@ -30,7 +30,7 @@ In a time when few could read, monks in monasteries became the keepers of knowle
 
 In the game, you will explore this era of transition. Learn about the technology of the Viking ships, the lifestyle of the Anglo-Saxons, and the legendary King Alfred the Great!`,
       quizId: null,
-      assessmentType: 'dark-ages-game',
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -196,8 +196,8 @@ Only stories|The Old and New Testaments telling Jesus' story|Only laws|Only poem
 <!-- EXPLANATION -->
 The Bible has the Old and New Testaments and tells Jesus' story! It's an important book that many people read today!
 <!-- QUESTION_END -->`,
-      quizId: 70,
-      assessmentType: 'history-game',
+      quizId: null,
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -227,7 +227,7 @@ Society was organized like a pyramid, with every person knowing their place.
 
 In the game, you will explore the defenses of a medieval castle and then prove your knowledge by organizing the Feudal System for the King!`,
       quizId: null,
-      assessmentType: 'medieval-castle-game',
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -257,7 +257,7 @@ Peasants were either **Freemen** (who paid rent) or **Serfs** (who belonged to t
 
 In the game, you will step into the boots of a villager. Can you complete the tasks needed to keep the community fed and thriving?`,
       quizId: null,
-      assessmentType: 'medieval-daily-life-game',
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -286,7 +286,7 @@ While the wars were violent, they led to an explosion of new knowledge in Europe
 
 In the game, you will navigate the decisions and difficulties of a Crusader. Can you understand the legacy of these massive world events?`,
       quizId: null,
-      assessmentType: 'crusades-game',
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -339,7 +339,7 @@ Earn points in every phase. A perfect run scores 100%.
 - Art, science, and exploration are connected—changing one sparks the others.
 - Asking better questions and testing ideas is what launches a new era!`,
       quizId: null,
-      assessmentType: 'renaissance-game',
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -370,7 +370,7 @@ The voyages of Columbus and others led to a massive exchange of plants, animals,
 
 In the game, you will follow the paths of great explorers and test your knowledge of how the world became connected!`,
       quizId: null,
-      assessmentType: 'exploration-game',
+      assessmentType: null,
       categoryId: null,
     }),
 
@@ -458,8 +458,8 @@ print("Hello, World!")
 - Use quotes around text (strings)
 - Save your work often
 - Don't be afraid to experiment!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
@@ -637,8 +637,8 @@ Now it's your turn! Write your own code in the editor below:
 - Numbers don't need quotes
 - \`print()\` can display text, numbers, and calculations
 - Use commas to separate multiple items`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
@@ -869,8 +869,8 @@ Now write your own code in the editor below! Try these challenges:
 - Variable names should be clear and descriptive
 - You can change variable values anytime
 - Text needs quotes, numbers don't`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
@@ -1147,8 +1147,8 @@ Now write your own interactive programs! Try these challenges:
 - Write clear, helpful prompts so users know what to enter
 - Test your programs with different inputs to make sure they work
 - Interactive programs make coding much more fun and useful!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
@@ -1476,8 +1476,8 @@ Create your own decision-making programs! Try these:
 - Use \`or\` when EITHER condition can be true
 - Test your programs with different values to make sure all paths work
 - Decision-making is what makes programs smart and useful!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
@@ -1823,8 +1823,8 @@ print("Final total:", total)
 - \`range(5)\` gives you 0, 1, 2, 3, 4 (5 numbers, starting at 0)
 - Loops make programs powerful - you can process lots of data or repeat actions easily
 - Practice with different ranges and conditions to master loops!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
@@ -2190,8 +2190,8 @@ Create these functions to practice:
 - Functions make code organized, reusable, and easier to understand
 - Break big problems into smaller functions - it's like building with LEGO blocks!
 - Practice creating functions for common tasks you do repeatedly`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
@@ -2572,8 +2572,8 @@ Create these drawings:
 - Use loops to create repeating patterns
 - Combine shapes to create complex drawings
 - Experiment and have fun - that's the best way to learn!`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
@@ -3071,248 +3071,38 @@ for i in range(3):
 - When stuck, break the problem into smaller pieces
 - Read error messages carefully - they tell you what's wrong
 - Most importantly: **Have fun and be creative!**`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
+      quizId: null,
+      assessmentType: null,
       categoryId: 'python',
     }),
 
-    new Lesson({
-      id: lessonId++,
-      yearId: 'year4',
-      subjectId: 'technology',
-      lessonNumber: 11,
-      title: "Fusion 360 Step 1: User Interface",
-      emoji: '🖥️',
-      content: `# Fusion 360 Step 1: User Interface
 
-## Learn Autodesk Fusion - User Interface (2025/2026)
-
-**Topic**: Introduction to the canvas, toolbar, data panel, and navigation.
-
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=zxfOqjqIZfc&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=1&pp=iAQB)
-
-This lesson introduces you to the Fusion 360 interface and navigation.
-
-
-
-## The Canvas
-
-The Canvas is the main central area where your model is displayed and where you will do most of your work. You can right-click in this space to access a menu of frequently used tools or context-sensitive functions.
-
-
-
-## The View Cube
-
-Located within the canvas area, the View Cube allows you to rotate your model to view it from different angles. Clicking the "home" icon on the cube returns the model to the standard view. Right-clicking the cube offers additional options like changing perspective.
-
-
-
-<!-- QUESTION_START -->
-What is the main purpose of the View Cube in Fusion 360?
-<!-- OPTIONS -->
-To save your designs|To rotate your model and view it from different angles|To access file operations|To organize your projects
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The View Cube is located within the canvas area and allows you to rotate your model to view it from different angles. Clicking the "home" icon returns the model to the standard view.
-<!-- QUESTION_END -->
-
-
-
-## The Data Panel
-
-Accessed via a button in the top left, the Data Panel is used to organize files and create new projects. Since Fusion is cloud-based, all files saved here are stored in the cloud. It includes refresh and search functions.
-
-
-
-<!-- QUESTION_START -->
-Where are files stored when you save them in Fusion 360's Data Panel?
-<!-- OPTIONS -->
-On your local computer only|In the cloud|On an external hard drive|In a separate application
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Since Fusion 360 is cloud-based, all files saved in the Data Panel are stored in the cloud, allowing you to access your designs from anywhere.
-<!-- QUESTION_END -->
-
-
-
-## The Application Bar
-
-The Application Bar is the top bar that contains standard file operations like save, export, undo, and redo. It functions similarly to a web browser, allowing you to open multiple designs in different tabs. On the far right, you can access your Autodesk profile to change preferences or sign out.
-
-
-
-<!-- QUESTION_START -->
-What can you do with the Application Bar in Fusion 360?
-<!-- OPTIONS -->
-Only view your model|Save, export, undo, and redo operations|Only create new projects|Only access the toolbar
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Application Bar contains standard file operations like save, export, undo, and redo. It functions similarly to a web browser, allowing you to open multiple designs in different tabs.
-<!-- QUESTION_END -->
-
-
-
-## The Toolbar
-
-The Toolbar is the primary location for accessing tools. It features various tabs for different workflows, such as Solid modeling, Surface modeling, Mesh, Sheet Metal, and Utilities. The toolbar is dynamic; for example, entering "sketch mode" will display additional, relevant options.
-
-
-
-<!-- QUESTION_START -->
-What happens to the Toolbar when you enter sketch mode in Fusion 360?
-<!-- OPTIONS -->
-It disappears|It displays additional, relevant options|It becomes locked|It changes color
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The toolbar is dynamic and context-sensitive. When you enter sketch mode, it will display additional, relevant options for sketching.
-<!-- QUESTION_END -->
-
-
-
-## The Navigation Bar
-
-Located below the canvas, the Navigation Bar provides options for viewing the model (like panning or zooming). While useful for trackpad users, mouse users often prefer using the scroll wheel for these actions. The right side of this bar contains display settings to change visual styles.
-
-
-
-<!-- QUESTION_START -->
-Where is the Navigation Bar located in Fusion 360?
-<!-- OPTIONS -->
-At the top of the screen|Below the canvas|On the left side|On the right side
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Navigation Bar is located below the canvas and provides options for viewing the model, such as panning or zooming.
-<!-- QUESTION_END -->
-
-
-
-## The Browser
-
-Found on the left side of the screen, the Browser displays the hierarchy of your assembly, including all components, bodies, and sketches. You can toggle the visibility of any item here by clicking the "eye" icon.
-
-
-
-<!-- QUESTION_START -->
-How can you toggle the visibility of items in the Browser?
-<!-- OPTIONS -->
-By double-clicking them|By clicking the "eye" icon|By right-clicking them|By dragging them
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Browser displays the hierarchy of your assembly. You can toggle the visibility of any item by clicking the "eye" icon next to it.
-<!-- QUESTION_END -->
-
-
-
-## The Timeline
-
-Located at the bottom, the Timeline tracks the history of your design. You can play back the creation process or step backward and forward to modify specific elements or features created earlier in the workflow.
-
-
-
-<!-- QUESTION_START -->
-What does the Timeline in Fusion 360 allow you to do?
-<!-- OPTIONS -->
-Only view your current design|Track the history of your design and modify previous features|Only save your work|Only export your files
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Timeline tracks the history of your design. You can play back the creation process or step backward and forward to modify specific elements or features created earlier in the workflow.
-<!-- QUESTION_END -->
-
-
-
-## What is Fusion 360?
-
-Fusion 360 is a cloud-based 3D CAD (Computer-Aided Design), CAM (Computer-Aided Manufacturing), and CAE (Computer-Aided Engineering) software platform. It's used to design, test, and manufacture products.
-
-
-
-## Key Features
-
-- **3D Modeling**: Create complex 3D models and assemblies
-
-- **Cloud-Based**: Access your designs from anywhere
-
-- **Collaboration**: Share and collaborate with team members
-
-- **Simulation**: Test your designs before manufacturing
-
-- **Manufacturing**: Generate toolpaths for CNC machines and 3D printers
-
-
-
-## Workspaces
-
-Fusion 360 has different workspaces for different tasks:
-
-- **Design**: Create 3D models
-
-- **Render**: Create photorealistic images
-
-- **Animation**: Create animations of your designs
-
-- **Simulation**: Test structural and thermal properties
-
-- **Manufacture**: Create toolpaths for manufacturing
-
-
-
-## Basic Navigation
-
-- **Orbit**: Middle mouse button (or Shift + Right-click)
-
-- **Pan**: Shift + Middle mouse button (or Middle mouse button)
-
-- **Zoom**: Scroll wheel (or Ctrl + Right-click and drag)
-
-- **Fit**: Press 'F' to fit all objects in view
-
-
-
-## Creating Your First Project
-
-1. Click "New Project" in the Data Panel
-
-2. Name your project
-
-3. Start creating your first design!
-
-
-
-## Important Notes
-
-- Fusion 360 is free for students and hobbyists
-
-- Your designs are saved to the cloud automatically
-
-- You can work offline, but need internet to sync
-
-- The interface adapts to your current task`,
-      quizId: quizId++,
-      assessmentType: 'history-game',
-      categoryId: 'fusion360',
-    }),
 
     new Lesson({
       id: lessonId++,
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 12,
-      title: "Fusion 360 Step 1: Sketching",
+      title: "3D Modeling Step 1: Sketching",
       emoji: '✏️',
-      content: `# Fusion 360 Step 1: Sketching
+      content: `# 3D Modeling Step 1: Sketching
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 1 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Creating a simple smartphone model using 2D sketches, extrusion, and fillets.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=YVSURhX8Qu0&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=2&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/Astronaut.glb" alt="Astronaut model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the astronaut and find the helmet.
+- Zoom in on the backpack and spot a flat surface.
+- Pan the view and point out one small detail on the suit.
+
 
 This tutorial guides beginners through creating a simple smartphone model using 2D sketches, extrusion, and fillets.
 
@@ -3325,7 +3115,7 @@ Before starting, restore default settings via the user profile icon (top right) 
 
 
 <!-- QUESTION_START -->
-How do you restore default settings in Fusion 360?
+How do you restore default settings in 3D modeling software?
 <!-- OPTIONS -->
 Through the Data Panel|Through the user profile icon (top right) > Preferences > Restore Defaults|Through the Timeline|Through the Browser
 <!-- CORRECT -->
@@ -3338,7 +3128,7 @@ You restore default settings via the user profile icon in the top right, then go
 
 ## Saving and Project Management
 
-Fusion is cloud-based. You start by opening the Data Panel, creating a new project named "smartphone," and entering that folder.
+Many 3D modeling tools are cloud-based. You start by opening the Data Panel, creating a new project named "smartphone," and entering that folder.
 
 
 
@@ -3355,13 +3145,13 @@ The file is explicitly saved as "smartphone" to ensure progress is stored in the
 
 
 <!-- QUESTION_START -->
-Where are Fusion 360 files stored?
+Where are 3D modeling software files stored?
 <!-- OPTIONS -->
 Only on your local computer|In the cloud|On an external drive|In a separate folder on your desktop
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-Fusion 360 is cloud-based, so all files are stored in the cloud, allowing you to access your designs from anywhere.
+3D modeling software is cloud-based, so all files are stored in the cloud, allowing you to access your designs from anywhere.
 <!-- QUESTION_END -->
 
 
@@ -3513,9 +3303,9 @@ Small fillets of 0.3 mm are applied to the edges of the camera bumps to smooth t
 - The Timeline records all your design history
 - Patterns save time compared to manual copying
 - Small fillets add professional finishing touches`,
-      quizId: quizId++,
-      assessmentType: 'history-game',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -3523,15 +3313,26 @@ Small fillets of 0.3 mm are applied to the edges of the camera bumps to smooth t
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 13,
-      title: "Fusion 360 Step 2: Coat Hanger (Sweeps)",
+      title: "3D Modeling Step 2: Coat Hanger (Sweeps)",
       emoji: '👔',
-      content: `# Fusion 360 Step 2: Coat Hanger (Sweeps)
+      content: `# 3D Modeling Step 2: Coat Hanger (Sweeps)
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 2 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Creating a coat hanger using sketching, curves, construction lines, and sweeping.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=YVSURhX8Qu0&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=2&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/RobotExpressive.glb" alt="Robot model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the robot and find the face.
+- Zoom in on one arm and notice a joint.
+- Spin the model and see how the outline changes.
+
 
 This tutorial guides you through creating a coat hanger using the Sweep tool, which extrudes a profile along a path.
 
@@ -3544,7 +3345,7 @@ The video starts by saving the new file. A new project folder named "coat hanger
 
 
 <!-- QUESTION_START -->
-How do you create a new project in Fusion 360?
+How do you create a new project in 3D modeling software?
 <!-- OPTIONS -->
 Through the Timeline|Through the Data Panel by selecting "New Project"|Through the Browser|Through the Toolbar
 <!-- CORRECT -->
@@ -3576,13 +3377,13 @@ A new sketch is started on the ZX plane. The Line Tool is used to draw the profi
 
 
 <!-- QUESTION_START -->
-What does it mean when a line turns black in a Fusion 360 sketch?
+What does it mean when a line turns black in a 3D modeling software sketch?
 <!-- OPTIONS -->
 The line is selected|The line is fully defined/constrained|The line is locked|The line is hidden
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-When a line turns black in Fusion 360, it means the line is fully defined/constrained. This indicates that all dimensions and constraints have been applied, and the line cannot move.
+When a line turns black in 3D modeling software, it means the line is fully defined/constrained. This indicates that all dimensions and constraints have been applied, and the line cannot move.
 <!-- QUESTION_END -->
 
 
@@ -3712,7 +3513,7 @@ The path|The profile|Either one|The plane
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-When using the Sweep tool, the profile (the rectangle) is selected first, then the path (the line drawing) is selected. This tells Fusion 360 to move the profile along the path.
+When using the Sweep tool, the profile (the rectangle) is selected first, then the path (the line drawing) is selected. This tells 3D modeling software to move the profile along the path.
 <!-- QUESTION_END -->
 
 
@@ -3756,9 +3557,9 @@ Fillets of 0.5 mm are added to the end faces of the hanger to round off the shar
 - Rename sketches and bodies for better organization
 - Sketch fillets can be used, but modeling fillets are generally preferred
 - The Sweep tool requires both a profile and a path`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -3766,15 +3567,26 @@ Fillets of 0.5 mm are added to the end faces of the hanger to round off the shar
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 14,
-      title: "Fusion 360 Step 3: Greek Vase (Revolve & Splines)",
+      title: "3D Modeling Step 3: Greek Vase (Revolve & Splines)",
       emoji: '🏺',
-      content: `# Fusion 360 Step 3: Greek Vase (Revolve & Splines)
+      content: `# 3D Modeling Step 3: Greek Vase (Revolve & Splines)
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 3 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Creating a 3D model of a Greek vase using reference images, splines, and the revolve tool.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=RN41OedpMJ4&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=4&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/DamagedHelmet.glb" alt="Helmet model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the helmet and find the visor opening.
+- Zoom in and spot a shiny edge or highlight.
+- Look for symmetry: is the left side like the right side?
+
 
 This tutorial guides you through creating a Greek vase using reference images, splines for smooth curves, and the Revolve tool to create the 3D shape.
 
@@ -3829,7 +3641,7 @@ The image of the Greek vase is inserted onto the ZX plane. This plane is used be
 
 
 <!-- QUESTION_START -->
-How do you calibrate a canvas in Fusion 360?
+How do you calibrate a canvas in 3D modeling software?
 <!-- OPTIONS -->
 Through the Toolbar|By right-clicking the canvas in the browser and selecting "Calibrate"|Through the Timeline|Through the Data Panel
 <!-- CORRECT -->
@@ -4060,9 +3872,9 @@ Small fillets of 0.3 mm are added to the edges to smooth them out. This gives th
 - Shell tool creates hollow objects with specified wall thickness
 - Small fillets add professional finishing touches
 - The Revolve tool is ideal for creating symmetrical, round objects`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -4070,15 +3882,26 @@ Small fillets of 0.3 mm are added to the edges to smooth them out. This gives th
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 15,
-      title: "Fusion 360 Step 4: Engine Block (Extruded Cuts & Patterns)",
+      title: "3D Modeling Step 4: Engine Block (Extruded Cuts & Patterns)",
       emoji: '🔧',
-      content: `# Fusion 360 Step 4: Engine Block (Extruded Cuts & Patterns)
+      content: `# 3D Modeling Step 4: Engine Block (Extruded Cuts & Patterns)
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 4 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Creating an engine block shape using extruded cuts and pattern tools.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=jlJNlLaslrk&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=5&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/SheenChair.glb" alt="Chair model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the chair and find the seat cushion.
+- Zoom in and notice a smooth curve.
+- Look for repeated parts (like legs) and count them.
+
 
 This tutorial demonstrates how to "sculpt" by removing material, creating an engine block using extruded cuts and pattern tools.
 
@@ -4139,7 +3962,7 @@ A line is drawn from the center point to the top edge (90 degrees). Pressing 'X'
 
 
 <!-- QUESTION_START -->
-How do you toggle a line to a construction line in Fusion 360?
+How do you toggle a line to a construction line in 3D modeling software?
 <!-- OPTIONS -->
 Press 'X'|Press 'C'|Press 'L'|Right-click and select "Construction"
 <!-- CORRECT -->
@@ -4206,7 +4029,7 @@ To create multiple holes efficiently, the Rectangular Pattern tool is used inste
 
 ### Object Type
 
-Set to "Features" to select the cut extrusion from the timeline. This tells Fusion 360 to pattern the cut feature, not just the sketch.
+Set to "Features" to select the cut extrusion from the timeline. This tells 3D modeling software to pattern the cut feature, not just the sketch.
 
 
 
@@ -4358,9 +4181,9 @@ The model represents a rough engine block concept, demonstrating how to "sculpt"
 - The Object Type must be set to "Features" to pattern cuts
 - Symmetrical patterns create balanced designs
 - Construction lines help position elements but don't create features`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -4368,15 +4191,26 @@ The model represents a rough engine block concept, demonstrating how to "sculpt"
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 16,
-      title: "Fusion 360 Step 5: Bottle (Lofts & Offset Planes)",
+      title: "3D Modeling Step 5: Bottle (Lofts & Offset Planes)",
       emoji: '🍾',
-      content: `# Fusion 360 Step 5: Bottle (Lofts & Offset Planes)
+      content: `# 3D Modeling Step 5: Bottle (Lofts & Offset Planes)
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 5 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Creating a bottle shape using offset planes, lofts, and guide rails.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=E-fs6jrdct0&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=6&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/Astronaut.glb" alt="Astronaut model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the astronaut and find the visor.
+- Zoom in and spot a rounded edge.
+- Imagine which parts are made from simple shapes.
+
 
 This tutorial demonstrates creating a complex bottle shape by blending multiple profiles together using the Loft tool with guide rails.
 
@@ -4706,9 +4540,9 @@ Small 0.5mm fillets are added to the top edges for a smooth finish. This gives t
 - Shell tool creates hollow objects with specified wall thickness
 - Multiple fillets can be applied for different finishing effects
 - The Loft tool is ideal for creating complex, organic shapes`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -4716,15 +4550,26 @@ Small 0.5mm fillets are added to the top edges for a smooth finish. This gives t
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 17,
-      title: "Fusion 360 Step 6: Emboss & Deboss",
+      title: "3D Modeling Step 6: Emboss & Deboss",
       emoji: '📝',
-      content: `# Fusion 360 Step 6: Emboss & Deboss
+      content: `# 3D Modeling Step 6: Emboss & Deboss
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 6 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Using the emboss and deboss features, including on curved surfaces.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=qKZBlH22-gY&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=7&pp=iAQB0gcJCU0KAYcqIYzv)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/RobotExpressive.glb" alt="Robot model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the robot and find a raised detail (emboss).
+- Zoom in and look for an indented panel (deboss).
+- Pan around and find the feet.
+
 
 This tutorial demonstrates how to add text and designs to both flat and curved surfaces using the Emboss and Deboss tools.
 
@@ -5081,9 +4926,9 @@ The text is embossed by 2mm on the curved surface of the cylinder. The text wrap
 - Construction lines help position curved paths
 - Splines create smooth curves for text to follow
 - The Emboss tool is found in the Create menu`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -5091,15 +4936,26 @@ The text is embossed by 2mm on the curved surface of the cylinder. The text wrap
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 18,
-      title: "Fusion 360 Step 7: Import/Export, Holes & Fasteners",
+      title: "3D Modeling Step 7: Import/Export, Holes & Fasteners",
       emoji: '📎',
-      content: `# Fusion 360 Step 7: Import/Export, Holes & Fasteners
+      content: `# 3D Modeling Step 7: Import/Export, Holes & Fasteners
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 7 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Using import/export, the hole tool, and inserting fasteners.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=SG8GD8De6xA&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=8&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/DamagedHelmet.glb" alt="Helmet model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the helmet and find the front opening.
+- Zoom in and spot a round detail or hole.
+- Pan to keep the helmet centered as you rotate.
+
 
 This tutorial demonstrates how to export and import files, create holes for fasteners, and insert screws and bolts from the fastener library.
 
@@ -5137,13 +4993,13 @@ The rectangle is extruded by 50mm to create a cube. This provides a solid block 
 
 ## Exporting Files
 
-The video explains how to export the design by going to File > Export. Different file types are used for different purposes.
+This lesson explains how to export the design by going to File > Export. Different file types are used for different purposes.
 
 
 
 ### File Types
 
-- **.f3d**: Best for reopening in Fusion to keep design history. This is Fusion 360's native format.
+- **Native project file**: Best for reopening in your 3D modeling tool to keep design history. This is the app-specific format (e.g., .blend, .skp, .f3d).
 
 - **.fbx / .obj**: Best for rendering or animation (e.g., Blender). These formats preserve geometry for 3D graphics software.
 
@@ -5156,13 +5012,13 @@ The user demonstrates exporting as an STL file to the desktop.
 
 
 <!-- QUESTION_START -->
-Which file format is best for reopening in Fusion 360 to keep design history?
+Which file format is best for reopening in 3D modeling software to keep design history?
 <!-- OPTIONS -->
-.f3d|.stl|.step|.obj
+Native project file (app-specific)|.stl|.step|.obj
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-The .f3d format is Fusion 360's native format and is best for reopening in Fusion to keep design history. Other formats may lose parametric features.
+The native project file for your app is best for reopening a model with full history. Other formats may lose parametric features.
 <!-- QUESTION_END -->
 
 
@@ -5170,7 +5026,7 @@ The .f3d format is Fusion 360's native format and is best for reopening in Fusio
 <!-- QUESTION_START -->
 Which file format is best for 3D printing?
 <!-- OPTIONS -->
-.f3d|.stl|.step|.fbx
+Native project file|.stl|.step|.fbx
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
@@ -5182,7 +5038,7 @@ The .stl format is best for 3D printing. This format is used by most 3D printers
 <!-- QUESTION_START -->
 Which file format is best for other CAD programs like SolidWorks?
 <!-- OPTIONS -->
-.f3d|.stl|.step|.obj
+Native project file|.stl|.step|.obj
 <!-- CORRECT -->
 2
 <!-- EXPLANATION -->
@@ -5194,7 +5050,7 @@ The .step format is best for other CAD programs (e.g., SolidWorks). This is a st
 <!-- QUESTION_START -->
 Which file formats are best for rendering or animation (e.g., Blender)?
 <!-- OPTIONS -->
-.f3d and .stl|.fbx and .obj|.step and .stl|.f3d and .step
+Native project file and .stl|.fbx and .obj|.step and .stl|Native project file and .step
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
@@ -5216,7 +5072,7 @@ The solid body is filled (solid geometry), while the mesh is hollow (surface onl
 
 
 <!-- QUESTION_START -->
-How do you import a mesh file in Fusion 360?
+How do you import a mesh file in 3D modeling software?
 <!-- OPTIONS -->
 File > Import|Insert > Insert Mesh|Create > Import|Tools > Import
 <!-- CORRECT -->
@@ -5374,7 +5230,7 @@ A Joint is automatically created to position the screw within the assembly. This
 ## Key Concepts Learned
 
 - **File Export**: Saving designs in different formats for different purposes
-- **File Import**: Bringing mesh files into Fusion 360
+- **File Import**: Bringing mesh files into 3D modeling software
 - **Solid vs Mesh**: Understanding the difference between filled and surface-only geometry
 - **Hole Tool**: Creating precise holes with various types and options
 - **Hole Types**: Simple, Counterbore, and Countersink
@@ -5388,7 +5244,7 @@ A Joint is automatically created to position the screw within the assembly. This
 
 ## Important Notes
 
-- Different file formats serve different purposes (.f3d for Fusion, .stl for 3D printing, .step for CAD exchange)
+- Different file formats serve different purposes (native project file for editing, .stl for 3D printing, .step for CAD exchange)
 - Meshes are surface-only, while solids have volume
 - The Hole tool offers many options for different fastener types
 - Counterbore and Countersink allow screw heads to sit flush
@@ -5398,9 +5254,9 @@ A Joint is automatically created to position the screw within the assembly. This
 - Joints are automatically created when inserting fasteners
 - Metric sizing (M3, M4, etc.) refers to the diameter in millimeters
 - The fastener library provides standard sizes for common fasteners`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -5408,15 +5264,26 @@ A Joint is automatically created to position the screw within the assembly. This
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 19,
-      title: "Fusion 360 Step 8: Hinged Box (Components & Joints)",
+      title: "3D Modeling Step 8: Hinged Box (Components & Joints)",
       emoji: '📦',
-      content: `# Fusion 360 Step 8: Hinged Box (Components & Joints)
+      content: `# 3D Modeling Step 8: Hinged Box (Components & Joints)
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 8 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Creating a box with a hinged lid using components and joints.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=AbC3d1x0R48&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=8&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/SheenChair.glb" alt="Chair model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the chair and identify the backrest.
+- Find where a joint could make the backrest move.
+- Zoom out and describe the whole shape in one sentence.
+
 
 This tutorial demonstrates how to create an assembly with moving parts by building a box with a hinged lid using components and joints.
 
@@ -5797,9 +5664,9 @@ The user can double-click the flag icon on the joint to manually open and close 
 - Shell tool creates hollow interiors
 - Join operation adds material to existing bodies
 - New Body operation creates separate bodies for different components`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -5807,15 +5674,26 @@ The user can double-click the flag icon on the joint to manually open and close 
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 20,
-      title: "Fusion 360 Step 9: Aftershave Bottle (Primitives & Appearances)",
+      title: "3D Modeling Step 9: Aftershave Bottle (Primitives & Appearances)",
       emoji: '🧴',
-      content: `# Fusion 360 Step 9: Aftershave Bottle (Primitives & Appearances)
+      content: `# 3D Modeling Step 9: Aftershave Bottle (Primitives & Appearances)
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 9 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Creating an aftershave bottle using primitive shapes and appearances.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=qlxM26qKBJI&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=9&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/Astronaut.glb" alt="Astronaut model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the helmet and identify the biggest shape.
+- Zoom in and notice different materials or colors.
+- Count two simple shapes you could use to rebuild it.
+
 
 This tutorial demonstrates using primitive shapes (Box and Cylinder) instead of sketches, and applying materials/appearances to create a realistic product design.
 
@@ -5907,7 +5785,7 @@ The Primitive Cylinder tool is used on the top surface of the box to create the 
 
 ### Positioning
 
-The center point is found by hovering to infer the center. This uses Fusion 360's inference system to automatically snap to the center of the face.
+The center point is found by hovering to infer the center. This uses the 3D modeling software's inference system to automatically snap to the center of the face.
 
 
 
@@ -5934,7 +5812,7 @@ By measuring|By hovering to infer the center|By drawing construction lines|By gu
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-The center point is found by hovering to infer the center. This uses Fusion 360's inference system to automatically snap to the center of the face.
+The center point is found by hovering to infer the center. This uses the 3D modeling software's inference system to automatically snap to the center of the face.
 <!-- QUESTION_END -->
 
 
@@ -6090,13 +5968,13 @@ The library is browsed to find Paint > Enamel Gloss Black. The material is dragg
 
 
 <!-- QUESTION_START -->
-What is the default material color in Fusion 360?
+What is the default material color in 3D modeling software?
 <!-- OPTIONS -->
 White|Black|Steel gray|Blue
 <!-- CORRECT -->
 2
 <!-- EXPLANATION -->
-The default material in Fusion 360 is steel gray. Materials can be changed using the Appearance menu to apply different colors and finishes.
+The default material in 3D modeling software is steel gray. Materials can be changed using the Appearance menu to apply different colors and finishes.
 <!-- QUESTION_END -->
 
 
@@ -6146,9 +6024,9 @@ The Render workspace shows the material properties (like glossiness) more realis
 - Naming bodies helps organize complex designs
 - Primitives are great for quick prototyping but sketches offer more control
 - Different fillet sizes can be applied to different edges for varied effects`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     new Lesson({
@@ -6156,15 +6034,26 @@ The Render workspace shows the material properties (like glossiness) more realis
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 21,
-      title: "Fusion 360 Step 10: Exporting & Manufacturing",
+      title: "3D Modeling Step 10: Exporting & Manufacturing",
       emoji: '📤',
-      content: `# Fusion 360 Step 10: Exporting & Manufacturing
+      content: `# 3D Modeling Step 10: Exporting & Manufacturing
 
-## Learn Autodesk Fusion in 10 Easy Steps - Step 10 (2025/2026)
+## Learn 3D Modeling in 10 Easy Steps (2025/2026)
 
 **Topic**: Exporting your designs for 3D printing, manufacturing, and sharing.
 
-**YouTube Video**: [Watch on YouTube](https://www.youtube.com/watch?v=iUbGPrUilno&list=PLc_LgFscXJeVnF7K_CwavgPwL_siJWMv7&index=11&pp=iAQB)
+
+**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+
+<!-- MODEL_VIEWER src="/models/RobotExpressive.glb" alt="Robot model" auto-rotate="true" camera-controls="true" -->
+
+
+### Mini Mission
+
+- Rotate the robot and find the front view you would export.
+- Zoom in and spot a small detail for high quality.
+- Zoom out and see how the full shape reads.
+
 
 
 
@@ -6392,7 +6281,7 @@ The model is round|All surfaces must connect properly|The model is flat|The mode
 
 ## Manufacturing Workspace
 
-Fusion 360 includes CAM (Computer-Aided Manufacturing) tools:
+3D modeling software includes CAM (Computer-Aided Manufacturing) tools:
 
 
 
@@ -6413,7 +6302,7 @@ Computer-Aided Manufacturing|Computer-Aided Modeling|Computer-Aided Machining|Co
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-CAM stands for Computer-Aided Manufacturing. Fusion 360 includes CAM tools for creating toolpaths for manufacturing machines.
+CAM stands for Computer-Aided Manufacturing. 3D modeling software includes CAM tools for creating toolpaths for manufacturing machines.
 <!-- QUESTION_END -->
 
 
@@ -6556,7 +6445,7 @@ Before exporting for 3D printing, you should check that the model is watertight 
 
 
 
-- Always save your Fusion 360 file first
+- Always save your 3D modeling software file first
 
 - Export formats depend on your use case
 
@@ -6564,18 +6453,18 @@ Before exporting for 3D printing, you should check that the model is watertight 
 
 - Test exports before sending to machines
 
-- Keep original Fusion 360 files for editing
+- Keep original 3D modeling software files for editing
 
 
 
 <!-- QUESTION_START -->
 What should you always do before exporting?
 <!-- OPTIONS -->
-Check file size|Save your Fusion 360 file first|Close other programs|Restart Fusion 360
+Check file size|Save your 3D modeling software file first|Close other programs|Restart 3D modeling software
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-Always save your Fusion 360 file first before exporting. This ensures you have a backup of your work in case something goes wrong.
+Always save your 3D modeling software file first before exporting. This ensures you have a backup of your work in case something goes wrong.
 <!-- QUESTION_END -->
 
 
@@ -6601,9 +6490,9 @@ STL|STEP|OBJ|DXF
 <!-- EXPLANATION -->
 STEP format should be used for manufacturing. It maintains precise geometry and is an industry standard for CAD exchange.
 <!-- QUESTION_END -->`,
-      quizId: quizId++,
-      assessmentType: 'quiz',
-      categoryId: 'fusion360',
+      quizId: null,
+      assessmentType: null,
+      categoryId: '3d-modeling',
     }),
 
     

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import YouTubeEmbed from './YouTubeEmbed';
+import ModelViewerEmbed from './ModelViewerEmbed';
 import InteractiveQuestion from './InteractiveQuestion';
 import { extractYouTubeVideosFromContent } from '../utils/youtube';
 import { speak } from '../utils/textToSpeech';
@@ -14,6 +15,25 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
 
   // Extract all YouTube videos from content
   const videos = extractYouTubeVideosFromContent(content);
+  
+  // Extract model-viewer embeds from content
+  const modelViewerRegex = /<!--\s*MODEL_VIEWER\s+([\s\S]*?)-->/g;
+  const modelViewers = [];
+  let modelMatch;
+  while ((modelMatch = modelViewerRegex.exec(content)) !== null) {
+    const attrs = modelMatch[1] || '';
+    const attrRegex = /([a-zA-Z0-9_-]+)\s*=\s*"([^"]*)"/g;
+    const parsedAttrs = {};
+    let attrMatch;
+    while ((attrMatch = attrRegex.exec(attrs)) !== null) {
+      parsedAttrs[attrMatch[1]] = attrMatch[2];
+    }
+    modelViewers.push({
+      index: modelMatch.index,
+      fullMatch: modelMatch[0],
+      attrs: parsedAttrs,
+    });
+  }
   
   // Extract interactive questions from content
   const questionRegex = /<!-- QUESTION_START -->\s*([\s\S]*?)\s*<!-- OPTIONS -->\s*([\s\S]*?)\s*<!-- CORRECT -->\s*(\d+)\s*(?:<!-- EXPLANATION -->\s*([\s\S]*?))?\s*<!-- QUESTION_END -->/g;
@@ -63,20 +83,29 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
       .trim();
   };
 
-  // Helper function to split content and insert YouTube embeds
-  const processContentWithVideos = (contentText, segmentStartIndex = 0, isFirstSegment = false) => {
-    // Filter videos that are within this segment
+  // Helper function to split content and insert embeds (YouTube + model-viewer)
+  const processContentWithEmbeds = (contentText, segmentStartIndex = 0, isFirstSegment = false) => {
     const segmentEndIndex = segmentStartIndex + contentText.length;
     const segmentVideos = videos
       .filter(video => video.index >= segmentStartIndex && video.index < segmentEndIndex)
       .map(video => ({
+        type: 'youtube',
         ...video,
-        // Adjust index to be relative to segment start
         relativeIndex: video.index - segmentStartIndex,
-      }))
+      }));
+
+    const segmentModelViewers = modelViewers
+      .filter(viewer => viewer.index >= segmentStartIndex && viewer.index < segmentEndIndex)
+      .map(viewer => ({
+        type: 'modelViewer',
+        ...viewer,
+        relativeIndex: viewer.index - segmentStartIndex,
+      }));
+
+    const segmentEmbeds = [...segmentVideos, ...segmentModelViewers]
       .sort((a, b) => a.relativeIndex - b.relativeIndex);
 
-    if (segmentVideos.length === 0) {
+    if (segmentEmbeds.length === 0) {
       return [{
         type: 'markdown',
         content: isFirstSegment ? removeTitleFromContent(contentText) : contentText,
@@ -87,10 +116,9 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
     let lastIndex = 0;
     let titleRemoved = false;
 
-    segmentVideos.forEach((video) => {
-      // Add markdown content before this video
-      if (video.relativeIndex > lastIndex) {
-        const beforeContent = contentText.substring(lastIndex, video.relativeIndex);
+    segmentEmbeds.forEach((embed) => {
+      if (embed.relativeIndex > lastIndex) {
+        const beforeContent = contentText.substring(lastIndex, embed.relativeIndex);
         const processedContent = isFirstSegment && !titleRemoved 
           ? removeTitleFromContent(beforeContent)
           : beforeContent;
@@ -105,17 +133,21 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
         }
       }
       
-      // Add YouTube embed
-      elements.push({
-        type: 'youtube',
-        videoId: video.id,
-      });
+      if (embed.type === 'youtube') {
+        elements.push({
+          type: 'youtube',
+          videoId: embed.id,
+        });
+      } else if (embed.type === 'modelViewer') {
+        elements.push({
+          type: 'modelViewer',
+          attrs: embed.attrs,
+        });
+      }
       
-      // Move past the YouTube link
-      lastIndex = video.relativeIndex + video.fullMatch.length;
+      lastIndex = embed.relativeIndex + embed.fullMatch.length;
     });
     
-    // Add remaining markdown content
     if (lastIndex < contentText.length) {
       const remainingContent = contentText.substring(lastIndex);
       if (remainingContent.trim()) {
@@ -126,7 +158,6 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
       }
     }
     
-    // If no videos were found in this segment, just return the markdown
     if (elements.length === 0) {
       return [{
         type: 'markdown',
@@ -147,7 +178,7 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
       // Add markdown content before this question (may include YouTube videos)
       if (qm.index > lastIndex) {
         const segmentContent = content.substring(lastIndex, qm.index);
-        const processedElements = processContentWithVideos(segmentContent, lastIndex, isFirstSegment);
+        const processedElements = processContentWithEmbeds(segmentContent, lastIndex, isFirstSegment);
         segments.push(...processedElements);
         isFirstSegment = false;
       }
@@ -164,12 +195,12 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
     // Add remaining markdown content
     if (lastIndex < content.length) {
       const segmentContent = content.substring(lastIndex);
-      const processedElements = processContentWithVideos(segmentContent, lastIndex, isFirstSegment);
+      const processedElements = processContentWithEmbeds(segmentContent, lastIndex, isFirstSegment);
       segments.push(...processedElements);
     }
   } else {
     // No questions, just render all content with YouTube videos
-    const processedElements = processContentWithVideos(content, 0, true);
+    const processedElements = processContentWithEmbeds(content, 0, true);
     segments.push(...processedElements);
   }
 
@@ -331,6 +362,17 @@ function MarkdownWithYouTube({ content, removeTitle = true, onQuestionAnswer }) 
             <YouTubeEmbed 
               key={`youtube-${segment.videoId}-${idx}`} 
               videoId={segment.videoId} 
+            />
+          );
+        } else if (segment.type === 'modelViewer') {
+          return (
+            <ModelViewerEmbed
+              key={`model-viewer-${idx}`}
+              src={segment.attrs?.src}
+              alt={segment.attrs?.alt}
+              poster={segment.attrs?.poster}
+              autoRotate={segment.attrs?.['auto-rotate'] !== 'false'}
+              cameraControls={segment.attrs?.['camera-controls'] !== 'false'}
             />
           );
         } else {

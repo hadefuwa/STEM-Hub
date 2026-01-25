@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resistor Hero: Safety First!</title>
+    <style>
+        body { font-family: 'Comic Sans MS', cursive; text-align: center; background: #fdfdfd; padding: 20px; }
+        #game-box { background: white; border: 6px solid #2980b9; border-radius: 25px; padding: 25px; max-width: 550px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        .resistor-setup { position: relative; height: 120px; margin: 20px 0; }
+        .wire-line { width: 100%; height: 8px; background: #7f8c8d; position: absolute; top: 50%; transform: translateY(-50%); z-index: 1; }
+        
+        .resistor-body {
+            width: 140px; height: 50px; background: #a5d6f7; 
+            margin: 0 auto; border-radius: 12px; position: relative; z-index: 2;
+            border: 3px solid #5dade2; display: flex; justify-content: space-around; align-items: center;
+        }
+        .band { width: 10px; height: 100%; }
+        
+        .stats { display: flex; justify-content: space-around; margin: 20px 0; padding: 15px; background: #f1f1f1; border-radius: 15px; }
+        .val { font-size: 26px; font-weight: bold; display: block; }
+        
+        input[type=range] { width: 90%; cursor: pointer; height: 20px; }
+        .led { font-size: 90px; margin: 20px; transition: 0.1s; display: inline-block; }
+        .btn-reset { padding: 12px 24px; background: #e74c3c; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; display: none; }
+    </style>
+</head>
+<body>
+
+<div id="game-box">
+    <h2>🛡️ Safety First!</h2>
+    <p>We are starting with <b>High Resistance</b> (a big squeeze). <br>Slowly lower the resistance to let the light shine!</p>
+
+    <div class="stats">
+        <div>Resistance<br><span id="r-val" class="val">10000</span> Ω</div>
+        <div>Flow (Current)<br><span id="i-val" class="val" style="color:#7f8c8d">None</span></div>
+    </div>
+
+    <div class="resistor-setup">
+        <div class="wire-line"></div>
+        <div class="resistor-body">
+            <div class="band" style="background: brown;"></div> <div class="band" id="band2" style="background: black;"></div> <div class="band" id="band3" style="background: orange;"></div> </div>
+    </div>
+
+    <input type="range" id="resistor-slider" min="0" max="10000" value="10000">
+
+    <br>
+    <div id="led-light" class="led">⚫</div>
+    <h3 id="status-msg">The squeeze is too tight! No flow.</h3>
+    <button id="reset-btn" class="btn-reset" onclick="resetGame()">New LED + Safety Check</button>
+</div>
+
+<script>
+    const slider = document.getElementById('resistor-slider');
+    const rVal = document.getElementById('r-val');
+    const iVal = document.getElementById('i-val');
+    const led = document.getElementById('led-light');
+    const msg = document.getElementById('status-msg');
+    const resetBtn = document.getElementById('reset-btn');
+    const band2 = document.getElementById('band2');
+    const band3 = document.getElementById('band3');
+
+    slider.addEventListener('input', () => {
+        const R = parseInt(slider.value);
+        rVal.innerText = R.toLocaleString();
+
+        // Update bands to look like real values (simplified for kids)
+        if (R > 5000) { band3.style.background = "orange"; } 
+        else if (R > 500) { band3.style.background = "red"; }
+        else { band3.style.background = "brown"; }
+
+        if (R > 1000) {
+            iVal.innerText = "Too Weak";
+            iVal.style.color = "#7f8c8d";
+            led.innerText = "⚫";
+            led.style.textShadow = "none";
+            msg.innerText = "The resistance is too high for the 5V push!";
+        } else if (R >= 220 && R <= 1000) {
+            iVal.innerText = "Safe Flow";
+            iVal.style.color = "green";
+            led.innerText = "🔴";
+            let brightness = (1000 - R) / 8;
+            led.style.textShadow = `0 0 ${brightness}px red`;
+            msg.innerText = "Perfect! The LED is glowing safely.";
+        } else if (R < 220) {
+            iVal.innerText = "DANGER!";
+            iVal.style.color = "red";
+            led.innerText = "💥";
+            msg.innerText = "POP! You lowered the resistance too much!";
+            slider.disabled = true;
+            resetBtn.style.display = "inline-block";
+        }
+    });
+
+    function resetGame() {
+        slider.value = 10000;
+        slider.disabled = false;
+        rVal.innerText = "10,000";
+        iVal.innerText = "None";
+        led.innerText = "⚫";
+        led.style.textShadow = "none";
+        msg.innerText = "Starting at 10k Ohms. Slide left to reduce resistance.";
+        resetBtn.style.display = "none";
+        band3.style.background = "orange";
+    }
+</script>
+</body>
+</html>

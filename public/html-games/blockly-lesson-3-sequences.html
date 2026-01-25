@@ -313,7 +313,10 @@
         hint: 'Stack 3 print blocks vertically. Change each number: first block = 1, second = 2, third = 3',
         validate: (output) => {
           const lines = output.split('\n').map(l => l.trim());
-          return lines.length === 3 && lines[0] === '1' && lines[1] === '2' && lines[2] === '3';
+          return lines.length === 3 && 
+                 (lines[0] === '1' || lines[0] === '1.0') && 
+                 (lines[1] === '2' || lines[1] === '2.0') && 
+                 (lines[2] === '3' || lines[2] === '3.0');
         }
       },
       {
@@ -332,8 +335,14 @@
         expected: "3\n2\n1\nBlast Off!",
         hint: 'Stack 4 print blocks. First 3 are numbers (3, 2, 1), last one is text "Blast Off!"',
         validate: (output) => {
-          const lines = output.split('\n').map(l => l.trim().toLowerCase());
-          return lines.length === 4 && lines[0] === '3' && lines[1] === '2' && lines[2] === '1' && lines[3] === 'blast off!';
+          const lines = output.split('\n').map(l => l.trim());
+          if (lines.length !== 4) return false;
+          if (!['3', '3.0'].includes(lines[0])) return false;
+          if (!['2', '2.0'].includes(lines[1])) return false;
+          if (!['1', '1.0'].includes(lines[2])) return false;
+          // Accept any variation of "blast off" regardless of capitalization or punctuation
+          const lastLine = lines[3].toLowerCase().replace(/[^a-z]/g, '');
+          return lastLine === 'blastoff';
         }
       },
       {
@@ -343,7 +352,11 @@
         hint: 'Stack 4 print blocks with numbers. Set them to 2, 4, 6, 8',
         validate: (output) => {
           const lines = output.split('\n').map(l => l.trim());
-          return lines.length === 4 && lines[0] === '2' && lines[1] === '4' && lines[2] === '6' && lines[3] === '8';
+          return lines.length === 4 && 
+                 (lines[0] === '2' || lines[0] === '2.0') && 
+                 (lines[1] === '4' || lines[1] === '4.0') && 
+                 (lines[2] === '6' || lines[2] === '6.0') && 
+                 (lines[3] === '8' || lines[3] === '8.0');
         }
       }
     ];

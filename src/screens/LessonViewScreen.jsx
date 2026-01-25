@@ -97,6 +97,10 @@ import ReadingComprehensionGame from '../components/ReadingComprehensionGame';
 import CreativeWritingGame from '../components/CreativeWritingGame';
 import SpellingGame from '../components/SpellingGame';
 import PrefixSuffixGame from '../components/PrefixSuffixGame';
+import WebCodeEditor from '../components/WebCodeEditor';
+import BinaryGame from '../components/BinaryGame';
+import NetworkRequestGame from '../components/NetworkRequestGame';
+import PhishingGame from '../components/PhishingGame';
 import { Progress } from '../models/Progress';
 import { Year } from '../models/Year';
 
@@ -606,15 +610,70 @@ function LessonViewScreen() {
           }}>
             <ArduinoCodeEditor lesson={lesson} />
           </div>
-        ) : lesson.title === 'Blockly Lesson 1: Hello World' || 
-             lesson.title === 'Blockly Lesson 2: Simple Math' || 
-             lesson.title === 'Blockly Lesson 3: Sequences & Patterns' ||
-             lesson.title === 'Blockly Lesson 4: Repeat Loops' ||
-             lesson.title === 'Blockly Lesson 5: Variables' ||
-             lesson.title === 'Blockly Lesson 6: Logic & Conditionals' ||
-             lesson.title === 'Blockly Lesson 7: Counting Loops' ||
-             lesson.title === 'Blockly Lesson 8: Text Joining' ||
-             lesson.title === 'Blockly Lesson 9: Functions' ? (
+        ) : lesson.assessmentType === 'web-code-editor' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <WebCodeEditor lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'binary-game' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <BinaryGame lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'network-request-game' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <NetworkRequestGame lesson={lesson} />
+          </div>
+        ) : lesson.assessmentType === 'phishing-game' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <PhishingGame lesson={lesson} />
+          </div>
+        ) : lesson.title === 'Blockly Lesson 1: Hello World' ||
+          lesson.title === 'Blockly Lesson 2: Simple Math' ||
+          lesson.title === 'Blockly Lesson 3: Sequences & Patterns' ||
+          lesson.title === 'Blockly Lesson 4: Repeat Loops' ||
+          lesson.title === 'Blockly Lesson 5: Variables' ||
+          lesson.title === 'Blockly Lesson 6: Logic & Conditionals' ||
+          lesson.title === 'Blockly Lesson 7: Counting Loops' ||
+          lesson.title === 'Blockly Lesson 8: Text Joining' ||
+          lesson.title === 'Blockly Lesson 9: Functions' ||
+          lesson.title === 'Electronics 1: Understanding Resistance' ||
+          lesson.title === 'Electronics 2: Understanding Voltage' ||
+          lesson.title === 'Electronics 3: Understanding Current' ? (
           <div style={{
             flex: 1,
             display: 'flex',
@@ -626,20 +685,23 @@ function LessonViewScreen() {
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
           }}>
             <ErrorBoundary>
-              <HTMLGameEmbed 
+              <HTMLGameEmbed
                 url={
                   lesson.title === 'Blockly Lesson 1: Hello World' ? '/html-games/blockly-lesson-1-hello-world.html' :
-                  lesson.title === 'Blockly Lesson 2: Simple Math' ? '/html-games/blockly-lesson-2-simple-math.html' :
-                  lesson.title === 'Blockly Lesson 3: Sequences & Patterns' ? '/html-games/blockly-lesson-3-sequences.html' :
-                  lesson.title === 'Blockly Lesson 4: Repeat Loops' ? '/html-games/blockly-lesson-4-repeat-loops.html' :
-                  lesson.title === 'Blockly Lesson 5: Variables' ? '/html-games/blockly-lesson-5-variables.html' :
-                  lesson.title === 'Blockly Lesson 6: Logic & Conditionals' ? '/html-games/blockly-lesson-6-logic.html' :
-                  lesson.title === 'Blockly Lesson 7: Counting Loops' ? '/html-games/blockly-lesson-7-counting-loops.html' :
-                  lesson.title === 'Blockly Lesson 8: Text Joining' ? '/html-games/blockly-lesson-8-text-joining.html' :
-                  '/html-games/blockly-lesson-9-functions.html'
-                } 
-                height="100%" 
-                lesson={lesson} 
+                    lesson.title === 'Blockly Lesson 2: Simple Math' ? '/html-games/blockly-lesson-2-simple-math.html' :
+                      lesson.title === 'Blockly Lesson 3: Sequences & Patterns' ? '/html-games/blockly-lesson-3-sequences.html' :
+                        lesson.title === 'Blockly Lesson 4: Repeat Loops' ? '/html-games/blockly-lesson-4-repeat-loops.html' :
+                          lesson.title === 'Blockly Lesson 5: Variables' ? '/html-games/blockly-lesson-5-variables.html' :
+                            lesson.title === 'Blockly Lesson 6: Logic & Conditionals' ? '/html-games/blockly-lesson-6-logic.html' :
+                              lesson.title === 'Blockly Lesson 7: Counting Loops' ? '/html-games/blockly-lesson-7-counting-loops.html' :
+                                lesson.title === 'Blockly Lesson 8: Text Joining' ? '/html-games/blockly-lesson-8-text-joining.html' :
+                                  lesson.title === 'Blockly Lesson 9: Functions' ? '/html-games/blockly-lesson-9-functions.html' :
+                                    lesson.title === 'Electronics 1: Understanding Resistance' ? '/html-games/resistor.html' :
+                                      lesson.title === 'Electronics 2: Understanding Voltage' ? '/html-games/voltage.html' :
+                                        '/html-games/current.html'
+                }
+                height="100%"
+                lesson={lesson}
               />
             </ErrorBoundary>
           </div>
@@ -1154,7 +1216,7 @@ function LessonViewScreen() {
           }}>
             {/* Info button with instructions */}
             <InfoButton content={lesson.content} title={lesson.title} />
-            
+
             <ErrorBoundary>
               <PlaceValueGame lesson={lesson} />
             </ErrorBoundary>
@@ -1381,10 +1443,10 @@ function LessonViewScreen() {
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
           }}>
             <ErrorBoundary>
-              <HTMLGameEmbed 
-                url={`/html-games/fractions.html?level=${lesson.assessmentType.replace('fractions-pizza-', '')}`} 
-                height="100%" 
-                lesson={lesson} 
+              <HTMLGameEmbed
+                url={`/html-games/fractions.html?level=${lesson.assessmentType.replace('fractions-pizza-', '')}`}
+                height="100%"
+                lesson={lesson}
               />
             </ErrorBoundary>
           </div>

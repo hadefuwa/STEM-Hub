@@ -9,11 +9,12 @@ import { getYear3Lessons } from './lessons/year3Lessons.js';
 import { getYear4Lessons } from './lessons/year4Lessons.js';
 import { getYear5Lessons } from './lessons/year5Lessons.js';
 import { getYear6Lessons } from './lessons/year6Lessons.js';
+import { getYear7Lessons } from './lessons/year7Lessons.js';
 import { getDefaultQuizzes } from './defaultQuizzes.js';
 
 /**
  * Get default data structure
- * Loads all lessons from nursery to year 6 in progression order
+ * Loads all lessons from nursery to year 7 in progression order
  */
 export const getDefaultData = () => {
   return {
@@ -81,6 +82,12 @@ function getDefaultLessons() {
   lessonId += year6Lessons.length;
   quizId += year6Lessons.filter(l => l.quizId !== null).length;
 
+  // Year 7 lessons
+  const year7Lessons = getYear7Lessons(lessonId, quizId);
+  allLessons.push(...year7Lessons);
+  lessonId += year7Lessons.length;
+  quizId += year7Lessons.filter(l => l.quizId !== null).length;
+
   return allLessons.map(l => l.toJSON());
 }
 
@@ -122,4 +129,3 @@ function getDefaultRewards() {
     },
   ];
 }
-

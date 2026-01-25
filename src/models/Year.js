@@ -14,6 +14,7 @@ export class Year {
     new Year({ id: 'year4', name: 'Year 4', order: 5 }),
     new Year({ id: 'year5', name: 'Year 5', order: 6 }),
     new Year({ id: 'year6', name: 'Year 6', order: 7 }),
+    new Year({ id: 'year7', name: 'Year 7', order: 8 }),
   ];
 
   static getById(id) {
