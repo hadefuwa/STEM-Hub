@@ -1167,6 +1167,12 @@ const useDataStore = create((set, get) => ({
       else if (score >= 85) medal = 'Gold';
       else if (score >= 70) medal = 'Silver';
       else medal = 'Bronze';
+    } else if (lesson.assessmentType === 'network-request-game') {
+      // Network Request Game: Simple completion scoring
+      if (score >= 98 || score === 100) medal = 'Platinum';
+      else if (score >= 85) medal = 'Gold';
+      else if (score >= 70) medal = 'Silver';
+      else medal = 'Bronze';
     } else {
       // Default score-based thresholds for all other lessons (including English/Phonics/Math/History)
       if (score >= 98 || score === 100) medal = 'Platinum';

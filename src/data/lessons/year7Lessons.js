@@ -15,20 +15,36 @@ export function getYear7Lessons(startLessonId, startQuizId) {
       lessonNumber: 1,
       title: "How the Web Works",
       emoji: '🌐',
-      content: `# How the Web Works 🌐
+      content: `# 🌐 How the Web Works - Network Protocol Challenge! 🏆
 
-## The Invisible Network
+## Welcome to the Network Protocol Game!
 
-When you type a web address, a complex journey happens in milliseconds!
+**Ready to become a web protocol master?** This interactive game will guide you through the invisible journey that happens every time you visit a website!
 
-### The Journey
-1. **You (Client)**: Request a page.
-2. **DNS**: Translates name to numbers.
-3. **Connection**: Shake hands with the server.
-4. **Server**: Finds the file and sends it.
+### 🎯 Your Mission
+Navigate through 6 challenging steps of the web request process. Answer questions correctly to earn points and avoid mistakes to achieve the highest medal ranking!
 
-## Interactive Challenge
-Trace the journey of a web request in the simulator below!`,
+### 🏅 Medal System
+- **🏆 Platinum**: Perfect score (95%+) with zero mistakes
+- **🥇 Gold**: Excellent performance (85%+)
+- **🥈 Silver**: Good understanding (75%+)
+- **🥉 Bronze**: Basic knowledge achieved
+
+### 🎮 Game Features
+- **Points System**: Earn 10-20 points per correct answer
+- **Speed Bonus**: Complete faster for extra points
+- **Accuracy Bonus**: Fewer mistakes = higher score
+- **Visual Feedback**: Watch the network request come to life!
+
+### 🌟 What You'll Learn
+1. **DNS Lookup**: How websites get their addresses
+2. **TCP Handshake**: Establishing secure connections  
+3. **HTTP Requests**: Asking for web content
+4. **Server Response**: Getting the data back
+5. **Status Codes**: Understanding success/failure
+6. **Rendering**: Turning code into visual websites
+
+**Click "Start Game" to begin your network protocol adventure!** 🚀`,
       quizId: null,
       assessmentType: 'network-request-game',
       categoryId: 'technology',

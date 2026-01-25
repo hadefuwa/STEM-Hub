@@ -1,6 +1,6 @@
 {
   "name": "stem-hub",
-  "version": "1.9.1",
+  "version": "1.9.3",
   "description": "A cross-platform STEM learning management application",
   "main": "electron/main.js",
   "type": "module",

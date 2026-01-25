@@ -1341,6 +1341,21 @@ function LessonViewScreen() {
               <MoneyDragGame lesson={lesson} />
             </ErrorBoundary>
           </div>
+        ) : lesson.title === '3D Modeling Step 1: Sketching' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-first-principle.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
         ) : lesson.title === 'Dinosaurs - Big and Small' ? (
           <div style={{
             flex: 1,

@@ -237,40 +237,48 @@ function LessonsListScreen() {
               <div
                 onClick={() => navigate(`/lesson/${nextLesson.id}`)}
                 style={{
-                  padding: '30px',
-                  ...cardRaised,
+                  padding: '32px',
+                  background: 'linear-gradient(145deg, rgba(72, 229, 255, 0.15), rgba(20, 34, 64, 0.95))',
+                  borderRadius: '16px',
+                  boxShadow: 'var(--shadow-2), 0 0 40px rgba(72, 229, 255, 0.15)',
                   cursor: 'pointer',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   border: '2px solid rgba(72, 229, 255, 0.6)',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-2)';
+                  e.currentTarget.style.transform = 'translateY(-6px) scale(1.01)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-2), 0 0 60px rgba(72, 229, 255, 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-1)';
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-2), 0 0 40px rgba(72, 229, 255, 0.15)';
                 }}
               >
                 <div style={{
-                  fontSize: '64px',
-                  marginBottom: '15px',
+                  fontSize: '72px',
+                  marginBottom: '20px',
                   textAlign: 'center',
+                  filter: 'drop-shadow(0 4px 12px rgba(72, 229, 255, 0.4))',
                 }}>
                   {nextLesson.emoji || '📚'}
                 </div>
                 <h3 style={{
-                  margin: '0 0 10px 0',
-                  fontSize: '24px',
+                  margin: '0 0 12px 0',
+                  fontSize: '26px',
+                  fontWeight: '700',
                   color: 'var(--text-1)',
                   textAlign: 'center',
+                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)',
                 }}>
                   {nextLesson.title}
                 </h3>
                 <p style={{
                   margin: '0 0 15px 0',
                   fontSize: '16px',
-                  color: 'var(--text-2)',
+                  fontWeight: '500',
+                  color: 'var(--accent-1)',
                   textAlign: 'center',
                 }}>
                   {Year.getById(nextLesson.yearId)?.name || nextLesson.yearId}
@@ -279,15 +287,26 @@ function LessonsListScreen() {
                   textAlign: 'center',
                 }}>
                   <button style={{
-                    padding: '12px 24px',
-                    backgroundColor: 'var(--accent-1)',
-                    color: 'white',
+                    padding: '14px 32px',
+                    background: 'linear-gradient(145deg, var(--accent-1), var(--accent-2))',
+                    color: '#0a1224',
                     border: 'none',
-                    borderRadius: '6px',
-                    fontSize: '16px',
-                    fontWeight: '600',
+                    borderRadius: '8px',
+                    fontSize: '17px',
+                    fontWeight: '700',
                     cursor: 'pointer',
-                  }}>
+                    boxShadow: '0 4px 12px rgba(72, 229, 255, 0.4)',
+                    transition: 'all 0.3s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(72, 229, 255, 0.6)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(72, 229, 255, 0.4)';
+                  }}
+                  >
                     Start Lesson →
                   </button>
                 </div>
@@ -298,16 +317,18 @@ function LessonsListScreen() {
           {/* All Lessons List */}
           <div>
             <h2 style={{
-              marginBottom: '20px',
-              fontSize: '20px',
+              marginBottom: '24px',
+              fontSize: '22px',
+              fontWeight: '600',
               color: 'var(--text-1)',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
             }}>
               All Lessons ({allLessons.length})
             </h2>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-              gap: '20px',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: '24px',
             }}>
               {allLessons.map((lesson, index) => {
                 const isCompleted = hasCompletedLesson(
@@ -326,20 +347,27 @@ function LessonsListScreen() {
                     key={uniqueKey}
                     onClick={() => navigate(`/lesson/${lesson.id}`)}
                     style={{
-                      padding: '20px',
-                      ...cardBase,
-                      cursor: 'pointer',
-                      transition: 'transform 0.2s, box-shadow 0.2s',
+                      padding: '24px',
+                      background: isNextLesson 
+                        ? 'linear-gradient(145deg, rgba(72, 229, 255, 0.12), rgba(20, 34, 64, 0.95))' 
+                        : 'linear-gradient(145deg, rgba(20, 34, 64, 0.95), rgba(10, 18, 36, 0.9))',
                       border: isNextLesson ? '2px solid rgba(72, 229, 255, 0.6)' : '1px solid var(--border-1)',
+                      borderRadius: '12px',
+                      boxShadow: 'var(--shadow-1)',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       position: 'relative',
+                      overflow: 'hidden',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = 'var(--shadow-2)';
+                      e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+                      e.currentTarget.style.boxShadow = 'var(--shadow-2), 0 0 30px rgba(72, 229, 255, 0.2)';
+                      e.currentTarget.style.borderColor = 'var(--border-2)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.transform = 'translateY(0) scale(1)';
                       e.currentTarget.style.boxShadow = 'var(--shadow-1)';
+                      e.currentTarget.style.borderColor = isNextLesson ? 'rgba(72, 229, 255, 0.6)' : 'var(--border-1)';
                     }}
                   >
                     {isCompleted && (() => {
@@ -355,12 +383,14 @@ function LessonsListScreen() {
                       return (
                         <div style={{
                           position: 'absolute',
-                          top: '10px',
-                          right: '10px',
-                          fontSize: '24px',
+                          top: '12px',
+                          right: '12px',
+                          fontSize: '28px',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '4px',
+                          filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))',
+                          animation: 'pulse 2s ease-in-out infinite',
                         }}>
                           <span title={`${config.label} Medal`}>{config.emoji}</span>
                         </div>
@@ -369,38 +399,49 @@ function LessonsListScreen() {
                     {isNextLesson && (
                       <div style={{
                         position: 'absolute',
-                        top: '10px',
-                        left: '10px',
+                        top: '12px',
+                        left: '12px',
                         fontSize: '12px',
-                        backgroundColor: 'rgba(72, 229, 255, 0.85)',
-                        color: 'white',
-                        padding: '4px 8px',
-                        borderRadius: '4px',
-                        fontWeight: 'bold',
+                        fontWeight: '700',
+                        backgroundColor: 'rgba(72, 229, 255, 0.95)',
+                        color: '#0a1224',
+                        padding: '6px 12px',
+                        borderRadius: '6px',
+                        boxShadow: '0 2px 8px rgba(72, 229, 255, 0.4)',
                       }}>
                         Continue
                       </div>
                     )}
                     <div style={{
-                      fontSize: '48px',
-                      marginBottom: '10px',
+                      fontSize: '64px',
+                      marginBottom: '16px',
                       textAlign: 'center',
-                    }}>
+                      filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
+                      transition: 'transform 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) rotate(0deg)'}
+                    >
                       {lesson.emoji || '📚'}
                     </div>
                     <h3 style={{
-                      margin: '0 0 8px 0',
-                      fontSize: '18px',
+                      margin: '0 0 10px 0',
+                      fontSize: '19px',
+                      fontWeight: '600',
                       color: 'var(--text-1)',
                       textAlign: 'center',
+                      lineHeight: '1.4',
+                      textShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
                     }}>
                       {lesson.title}
                     </h3>
                     <p style={{
                       margin: '0',
                       fontSize: '14px',
+                      fontWeight: '500',
                       color: 'var(--text-2)',
                       textAlign: 'center',
+                      opacity: 0.9,
                     }}>
                       {Year.getById(lesson.yearId)?.name || lesson.yearId}
                     </p>

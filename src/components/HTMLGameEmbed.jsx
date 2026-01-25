@@ -77,6 +77,9 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
       // Only accept messages from our HTML game
       if (event.data && event.data.type === 'html-game-complete') {
         setGameCompleted(true);
+        const rawScore = Number(event.data.score);
+        const hasScore = Number.isFinite(rawScore);
+        const score = hasScore ? Math.min(100, Math.max(0, Math.round(rawScore))) : 100;
         
         // Save progress if lesson is provided
         if (lesson) {
@@ -92,7 +95,7 @@ function HTMLGameEmbed({ url = '/html-games/days.html', width = '100%', height =
             lessonNumber: lesson.lessonNumber,
             isCompleted: true,
             completedAt: new Date(),
-            score: 100, // Perfect score for completing the game
+            score: score, // Score reported by the HTML game (0-100)
           });
           addProgress(progress);
           saveData();

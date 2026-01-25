@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useDataStore from '../store/dataStore';
 import { Progress } from '../models/Progress';
@@ -12,95 +12,247 @@ function NetworkRequestGame({ lesson }) {
     const getUserId = useDataStore(state => state.getUserId);
     const saveData = useDataStore(state => state.saveData);
 
-    const [step, setStep] = useState(0);
-    const [complete, setComplete] = useState(false);
-    const [feedback, setFeedback] = useState(null);
-    const [failedAttempts, setFailedAttempts] = useState(0);
+    const [currentStep, setCurrentStep] = useState(0);
+    const [packets, setPackets] = useState([]);
+    const [score, setScore] = useState(0);
+    const [isComplete, setIsComplete] = useState(false);
+    const [draggedPacket, setDraggedPacket] = useState(null);
+    const [showInstructions, setShowInstructions] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupContent, setPopupContent] = useState(null);
 
-    // Each step has a multiple choice question
-    const steps = [
+    const networkSteps = [
         {
-            title: "1. The Request",
-            description: "You are in the browser and want to visit 'google.com'. What is the very first thing that needs to happen?",
-            animation: "user",
-            options: [
-                { id: 'a', text: "The browser downloads the images immediately", correct: false, reason: "The browser doesn't know where the images are yet!" },
-                { id: 'b', text: "The browser sends a request to the DNS server", correct: true, reason: "Correct! We need to find the IP address first." },
-                { id: 'c', text: "The screen turns off", correct: false, reason: "No, the computer stays on!" }
-            ]
+            id: 'browser',
+            title: '🌐 Browser',
+            description: 'You want to visit google.com',
+            instruction: 'Click the packet to send it to DNS!',
+            packetText: 'google.com',
+            nextStep: 'dns',
+            educationalContent: {
+                title: '🌐 The Browser - Your Gateway to the Web',
+                content: `The browser is your window to the internet. When you type "google.com" into the address bar, you're asking the browser to fetch that website for you.
+
+**What the browser does:**
+• Parses the URL you entered
+• Checks its cache for the website
+• If not cached, it needs to find where "google.com" lives on the internet
+• This starts the journey of a web request!
+
+**Fun fact:** The first web browser was created by Tim Berners-Lee in 1990 and was called "WorldWideWeb" (no spaces!).`,
+                keyPoints: [
+                    'Browser = Your internet window',
+                    'URL = Address of the website',
+                    'Cache = Temporary storage for faster loading'
+                ]
+            }
         },
         {
-            title: "2. DNS Lookup",
-            description: "You need the IP address for 'google.com'. The DNS Server is like a phonebook. What does it return?",
-            animation: "dns",
-            options: [
-                { id: 'a', text: "The website logo", correct: false, reason: "DNS only handles addresses, not images." },
-                { id: 'b', text: "A number like 142.250.187.14", correct: true, reason: "Correct! Computers use IP addresses to find each other." },
-                { id: 'c', text: "The HTML code", correct: false, reason: "Not yet! We still need to connect to the web server." }
-            ]
+            id: 'dns',
+            title: '📞 DNS Server',
+            description: 'DNS translates names to numbers',
+            instruction: 'Drag the packet to find the IP address!',
+            packetText: '142.250.187.14',
+            nextStep: 'connection',
+            educationalContent: {
+                title: '📞 DNS - The Internet\'s Phone Book',
+                content: `DNS (Domain Name System) is like the phone book of the internet. Computers don't understand names like "google.com" - they need numbers called IP addresses.
+
+**How DNS works:**
+• Your computer asks: "What's the IP address for google.com?"
+• DNS servers look up the answer (like 142.250.187.14)
+• Your computer can now find Google's servers
+• This happens in milliseconds!
+
+**Fun fact:** There are 13 root DNS servers worldwide that handle billions of requests every day.`,
+                keyPoints: [
+                    'DNS = Domain Name System',
+                    'Translates names to IP addresses',
+                    'Like a phone book for the internet'
+                ]
+            }
         },
         {
-            title: "3. Connection (Handshake)",
-            description: "We have the IP address. Now the browser introduces itself to the server. This is called a TCP Handshake. What happens?",
-            animation: "connect",
-            options: [
-                { id: 'a', text: "They exchange SYN and ACK packets", correct: true, reason: "Correct! SYN (Synchronize) and ACK (Acknowledge) establish the connection." },
-                { id: 'b', text: "They exchange phone numbers", correct: false, reason: "Computers exchange packets, not phone numbers." },
-                { id: 'c', text: "The server sends a virus", correct: false, reason: "Hopefully not! The handshake is just to say 'Hello'." }
-            ]
+            id: 'connection',
+            title: '🤝 TCP Handshake',
+            description: 'Establishing a secure connection',
+            instruction: 'Connect to the web server!',
+            packetText: 'SYN → ACK',
+            nextStep: 'request',
+            educationalContent: {
+                title: '🤝 TCP Handshake - Making Friends Online',
+                content: `Before sending data, computers need to establish a reliable connection. This is called a TCP (Transmission Control Protocol) handshake - like two people greeting each other.
+
+**The three-way handshake:**
+1. Client sends SYN (Synchronize) - "Hello, can we talk?"
+2. Server sends SYN-ACK (Synchronize-Acknowledge) - "Hello! Yes, let's talk!"
+3. Client sends ACK (Acknowledge) - "Great! Connection established!"
+
+**Why this matters:** TCP ensures data arrives in order and without errors, making the web reliable.`,
+                keyPoints: [
+                    'TCP = Transmission Control Protocol',
+                    'Three-way handshake establishes connection',
+                    'Ensures reliable data delivery'
+                ]
+            }
         },
         {
-            title: "4. The GET Request",
-            description: "Connected! Now we need to ask for the specific webpage file. What command does the browser send?",
-            animation: "request",
-            options: [
-                { id: 'a', text: "GIVE ME /index.html", correct: false, reason: "Close, but the standard command is just GET." },
-                { id: 'b', text: "GET /index.html", correct: true, reason: "Correct! HTTP uses verbs like GET, POST, and DELETE." },
-                { id: 'c', text: "PLEASE /index.html", correct: false, reason: "Computers are polite, but they use strict commands like GET." }
-            ]
+            id: 'request',
+            title: '📤 HTTP Request',
+            description: 'Asking for the webpage',
+            instruction: 'Send your request!',
+            packetText: 'GET /index.html',
+            nextStep: 'server',
+            educationalContent: {
+                title: '📤 HTTP Request - Asking for What You Want',
+                content: `Now that you're connected, you can ask for the webpage! HTTP (HyperText Transfer Protocol) is the language browsers and servers use to communicate.
+
+**Common HTTP methods:**
+• GET - "Give me this page" (most common)
+• POST - "Take this data and process it"
+• PUT - "Update this resource"
+• DELETE - "Remove this resource"
+
+**HTTP Status Codes:**
+• 200 OK - Success!
+• 404 Not Found - Page doesn't exist
+• 500 Server Error - Server problem
+
+**Fun fact:** HTTPS adds encryption (the 'S') to keep your data secure.`,
+                keyPoints: [
+                    'HTTP = HyperText Transfer Protocol',
+                    'GET requests ask for web pages',
+                    'Status codes show if request succeeded'
+                ]
+            }
         },
         {
-            title: "5. The Response",
-            description: "The server found the file! It sends it back with a status code. Which code means 'Success'?",
-            animation: "response",
-            options: [
-                { id: 'a', text: "404 Not Found", correct: false, reason: "404 means the page is missing!" },
-                { id: 'b', text: "500 Server Error", correct: false, reason: "500 means the server crashed!" },
-                { id: 'c', text: "200 OK", correct: true, reason: "Correct! 200 OK means everything went perfectly." }
-            ]
+            id: 'server',
+            title: '🖥️ Web Server',
+            description: 'The server processes your request',
+            instruction: 'The server sends back the webpage!',
+            packetText: '200 OK + HTML',
+            nextStep: 'render',
+            educationalContent: {
+                title: '🖥️ Web Server - The Heart of Websites',
+                content: `Web servers are powerful computers that store websites and respond to requests. When you visit a site, you're connecting to one of these servers somewhere in the world.
+
+**What servers do:**
+• Receive your HTTP request
+• Find the requested files (HTML, CSS, images)
+• Send them back to your browser
+• Handle thousands of requests simultaneously
+
+**Server types:**
+• Apache - Most popular web server
+• Nginx - Fast and efficient
+• IIS - Microsoft's web server
+
+**Fun fact:** The largest web servers can handle millions of requests per second!`,
+                keyPoints: [
+                    'Servers store and serve websites',
+                    'Handle HTTP requests from browsers',
+                    'Can be anywhere in the world'
+                ]
+            }
         },
         {
-            title: "6. Render",
-            description: "The browser has the HTML code. What does it do now?",
-            animation: "render",
-            options: [
-                { id: 'a', text: "Printers it out on paper", correct: false, reason: "No, it displays it on the screen." },
-                { id: 'b', text: "Parses the HTML and paints the pixels", correct: true, reason: "Correct! It turns code into the visual website you see." },
-                { id: 'c', text: "Sends it back to the server", correct: false, reason: "We just got it! We keep it to show the user." }
-            ]
+            id: 'render',
+            title: '✨ Browser Render',
+            description: 'Your browser displays the website',
+            instruction: 'You can now see the website!',
+            packetText: '🎉 Complete!',
+            nextStep: null,
+            educationalContent: {
+                title: '✨ Browser Rendering - Bringing Websites to Life',
+                content: `Once the browser receives the HTML, CSS, and JavaScript files, it needs to turn them into the beautiful website you see. This process is called rendering.
+
+**The rendering process:**
+1. **Parse HTML** - Build the page structure
+2. **Load CSS** - Apply styles and layout
+3. **Execute JavaScript** - Add interactivity
+4. **Paint pixels** - Draw everything on screen
+
+**Critical Rendering Path:** The sequence of steps browsers take to convert HTML, CSS, and JavaScript into pixels.
+
+**Fun fact:** Modern browsers can render complex websites in under 100 milliseconds!`,
+                keyPoints: [
+                    'Rendering turns code into visual websites',
+                    'HTML = Structure, CSS = Style, JS = Interactivity',
+                    'Happens incredibly fast in modern browsers'
+                ]
+            }
         }
     ];
 
-    const handleOptionClick = (option) => {
-        if (feedback) return; // Prevent clicking while showing feedback
-
-        if (option.correct) {
-            setFeedback({ correct: true, message: option.reason });
-            setTimeout(() => {
-                setFeedback(null);
-                if (step < steps.length - 1) {
-                    setStep(step + 1);
-                } else {
-                    setComplete(true);
-                }
-            }, 2000);
-        } else {
-            setFailedAttempts(prev => prev + 1);
-            setFeedback({ correct: false, message: option.reason });
-            setTimeout(() => {
-                setFeedback(null);
-            }, 2500);
+    const handlePacketClick = (stepId) => {
+        if (stepId === 'browser' && currentStep === 0) {
+            // Create initial packet
+            const newPacket = {
+                id: Date.now(),
+                text: 'google.com',
+                x: 100,
+                y: 200,
+                step: 'browser'
+            };
+            setPackets([newPacket]);
+            setCurrentStep(1);
+            setScore(prev => prev + 10);
         }
+    };
+
+    const handleStepClick = (stepIndex) => {
+        const step = networkSteps[stepIndex];
+        if (step && step.educationalContent) {
+            setPopupContent(step.educationalContent);
+            setShowPopup(true);
+        }
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+        setPopupContent(null);
+    };
+
+    const handleDrop = (e, targetStep) => {
+        e.preventDefault();
+        if (!draggedPacket) return;
+
+        const packet = packets.find(p => p.id === draggedPacket);
+        if (!packet) return;
+
+        // Check if this is the correct next step
+        const currentNetworkStep = networkSteps[currentStep - 1];
+        if (targetStep === currentNetworkStep.nextStep) {
+            // Correct drop!
+            const updatedPackets = packets.map(p =>
+                p.id === draggedPacket
+                    ? { ...p, step: targetStep, x: e.clientX - 50, y: e.clientY - 50 }
+                    : p
+            );
+            setPackets(updatedPackets);
+            setScore(prev => prev + 20);
+
+            if (currentStep < networkSteps.length - 1) {
+                setTimeout(() => {
+                    setCurrentStep(prev => prev + 1);
+                }, 1000);
+            } else {
+                // Game complete!
+                setTimeout(() => {
+                    setIsComplete(true);
+                }, 1500);
+            }
+        } else {
+            // Wrong drop - packet bounces back
+            setScore(prev => Math.max(0, prev - 5));
+        }
+
+        setDraggedPacket(null);
+    };
+
+    const handleDragStart = (packetId) => {
+        setDraggedPacket(packetId);
     };
 
     const handleComplete = async () => {
@@ -109,9 +261,6 @@ function NetworkRequestGame({ lesson }) {
         try {
             const userId = getUserId();
             const progressId = getNextProgressId();
-            // Calculate score based on mistakes, but ensure passing grade if they reached the end
-            const finalScore = Math.max(70, 100 - (failedAttempts * 10)); // Deduct 10 points per mistake, min 70
-
             const progress = new Progress({
                 id: progressId,
                 studentId: userId,
@@ -122,7 +271,7 @@ function NetworkRequestGame({ lesson }) {
                 lessonNumber: lesson.lessonNumber,
                 isCompleted: true,
                 completedAt: new Date(),
-                score: finalScore,
+                score: 100, // Perfect score for completing the game
             });
             await addProgress(progress);
             await saveData();
@@ -137,7 +286,7 @@ function NetworkRequestGame({ lesson }) {
         }
     };
 
-    const currentStep = steps[step];
+    const currentNetworkStep = networkSteps[currentStep];
 
     return (
         <div style={{
@@ -149,6 +298,7 @@ function NetworkRequestGame({ lesson }) {
             alignItems: 'center',
             color: 'var(--text-1)',
         }}>
+            {/* Header */}
             <div style={{
                 padding: '20px',
                 backgroundColor: 'var(--surface-2)',
@@ -160,180 +310,267 @@ function NetworkRequestGame({ lesson }) {
                 boxShadow: 'var(--shadow-1)',
             }}>
                 <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>🌐 How the Web Works</h2>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '5px', marginBottom: '10px' }}>
-                    {steps.map((_, i) => (
-                        <div
-                            key={i}
-                            style={{
-                                width: '40px',
-                                height: '8px',
-                                backgroundColor: i <= step ? 'var(--accent-1)' : 'var(--bg-2)',
-                                borderRadius: '4px',
-                                transition: 'all 0.3s'
-                            }}
-                        />
-                    ))}
-                </div>
-                <p style={{ color: 'var(--text-2)', fontSize: '14px' }}>
-                    Correctly guide the request to load the website!
-                </p>
-            </div>
-
-            {!complete ? (
                 <div style={{
-                    flex: 1,
                     display: 'flex',
-                    flexDirection: 'column',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '30px',
-                    width: '100%',
-                    maxWidth: '800px',
+                    marginBottom: '10px'
                 }}>
-                    {/* Visualization Area */}
+                    <p style={{ color: 'var(--text-2)', fontSize: '14px', margin: 0 }}>
+                        {currentNetworkStep?.description || 'Welcome to the Web!'}
+                    </p>
                     <div style={{
-                        width: '100%',
-                        height: '250px',
-                        backgroundColor: 'var(--bg-1)',
-                        borderRadius: 'var(--radius-lg)',
+                        backgroundColor: 'var(--surface-3)',
+                        padding: '8px 16px',
+                        borderRadius: '20px',
                         border: '1px solid var(--border-2)',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        color: 'var(--accent-1)',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        position: 'relative',
-                        overflow: 'hidden'
+                        gap: '8px'
                     }}>
-                        <div style={{
-                            fontSize: '80px',
-                            transition: 'all 0.5s',
-                            animation: feedback?.correct ? 'bounce 0.5s' : 'none'
-                        }}>
-                            {step === 0 && '⌨️'}
-                            {step === 1 && '📞'}
-                            {step === 2 && '🤝'}
-                            {step === 3 && '📤'}
-                            {step === 4 && '📥'}
-                            {step === 5 && '✨'}
-                        </div>
+                        <span>⭐</span>
+                        <span>{score} Points</span>
+                    </div>
+                </div>
+            </div>
 
-                        {/* Simple feedback overlay inside the visual */}
-                        {feedback && (
-                            <div style={{
-                                position: 'absolute',
-                                bottom: '20px',
-                                padding: '10px 20px',
-                                borderRadius: '20px',
-                                backgroundColor: feedback.correct ? 'rgba(40, 167, 69, 0.9)' : 'rgba(220, 53, 69, 0.9)',
-                                color: 'white',
-                                fontWeight: 'bold',
-                                boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-                                animation: 'fadeIn 0.3s'
-                            }}>
-                                {feedback.correct ? "✅ Great Job!" : "❌ Try Again!"}
+            {/* Instructions */}
+            {showInstructions && (
+                <div style={{
+                    backgroundColor: 'var(--surface-1)',
+                    padding: '20px',
+                    borderRadius: 'var(--radius-md)',
+                    border: '1px solid var(--border-1)',
+                    width: '100%',
+                    maxWidth: '800px',
+                    textAlign: 'center',
+                    boxShadow: 'var(--shadow-1)',
+                }}>
+                    <h3 style={{ color: 'var(--accent-1)', marginBottom: '10px' }}>🎮 How to Play</h3>
+                    <p style={{ fontSize: '16px', marginBottom: '15px' }}>
+                        Help deliver a web request! Click and drag packets through the network components.
+                        <br/>
+                        <strong>💡 Tip:</strong> Click on any network component to learn more about how the web works!
+                    </p>
+                    <button
+                        onClick={() => setShowInstructions(false)}
+                        style={{
+                            padding: '10px 20px',
+                            backgroundColor: 'var(--accent-1)',
+                            color: 'var(--bg-0)',
+                            border: 'none',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        Start Game! 🚀
+                    </button>
+                </div>
+            )}
+
+            {!isComplete && !showInstructions && (
+                <>
+                    {/* Network Visualization */}
+                    <div style={{
+                        width: '100%',
+                        maxWidth: '800px',
+                        height: '400px',
+                        backgroundColor: 'var(--bg-1)',
+                        borderRadius: 'var(--radius-lg)',
+                        border: '2px solid var(--border-2)',
+                        position: 'relative',
+                        overflow: 'hidden',
+                    }}>
+                        {/* Network Steps */}
+                        {networkSteps.map((step, index) => (
+                            <div
+                                key={step.id}
+                                onDrop={(e) => handleDrop(e, step.id)}
+                                onDragOver={(e) => e.preventDefault()}
+                                onClick={() => {
+                                    handlePacketClick(step.id);
+                                    handleStepClick(index);
+                                }}
+                                style={{
+                                    position: 'absolute',
+                                    left: `${10 + index * 15}%`,
+                                    top: `${20 + (index % 2) * 30}%`,
+                                    width: '120px',
+                                    height: '80px',
+                                    backgroundColor: index <= currentStep ? 'var(--accent-1)' : 'var(--surface-2)',
+                                    border: `2px solid ${index === currentStep ? 'var(--accent-2)' : 'var(--border-1)'}`,
+                                    borderRadius: '12px',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: index === 0 && currentStep === 0 ? 'pointer' : 'pointer',
+                                    transition: 'all 0.3s ease',
+                                    boxShadow: index === currentStep ? '0 0 20px rgba(72, 229, 255, 0.5)' : 'var(--shadow-1)',
+                                }}
+                            >
+                                <div style={{ fontSize: '24px', marginBottom: '5px' }}>
+                                    {step.title.split(' ')[0]}
+                                </div>
+                                <div style={{ fontSize: '12px', textAlign: 'center', lineHeight: '1.2' }}>
+                                    {step.title.split(' ').slice(1).join(' ')}
+                                </div>
                             </div>
-                        )}
+                        ))}
+
+                        {/* Packets */}
+                        {packets.map((packet) => (
+                            <div
+                                key={packet.id}
+                                draggable
+                                onDragStart={() => handleDragStart(packet.id)}
+                                style={{
+                                    position: 'absolute',
+                                    left: packet.x,
+                                    top: packet.y,
+                                    width: '100px',
+                                    height: '50px',
+                                    backgroundColor: 'var(--accent-2)',
+                                    border: '2px solid var(--accent-1)',
+                                    borderRadius: '8px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    cursor: 'grab',
+                                    fontSize: '12px',
+                                    fontWeight: 'bold',
+                                    color: 'var(--bg-0)',
+                                    textAlign: 'center',
+                                    userSelect: 'none',
+                                    boxShadow: 'var(--shadow-2)',
+                                    transition: 'all 0.2s ease',
+                                }}
+                            >
+                                📦<br/>{packet.text}
+                            </div>
+                        ))}
+
+                        {/* Connection Lines */}
+                        <svg style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            pointerEvents: 'none'
+                        }}>
+                            {networkSteps.slice(0, -1).map((step, index) => {
+                                const nextStep = networkSteps[index + 1];
+                                const startX = 10 + index * 15 + 6; // center of current step
+                                const startY = 20 + (index % 2) * 30 + 4;
+                                const endX = 10 + (index + 1) * 15 + 6;
+                                const endY = 20 + ((index + 1) % 2) * 30 + 4;
+
+                                return (
+                                    <line
+                                        key={`line-${index}`}
+                                        x1={`${startX}%`}
+                                        y1={`${startY}%`}
+                                        x2={`${endX}%`}
+                                        y2={`${endY}%`}
+                                        stroke={index < currentStep ? 'var(--accent-1)' : 'var(--border-2)'}
+                                        strokeWidth="2"
+                                        strokeDasharray={index < currentStep ? 'none' : '5,5'}
+                                    />
+                                );
+                            })}
+                        </svg>
                     </div>
 
+                    {/* Current Instruction */}
                     <div style={{
                         backgroundColor: 'var(--surface-1)',
-                        padding: '30px',
+                        padding: '20px',
                         borderRadius: 'var(--radius-md)',
                         border: '1px solid var(--border-1)',
                         width: '100%',
-                        animation: 'fadeIn 0.5s',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '20px'
+                        maxWidth: '800px',
+                        textAlign: 'center',
+                        boxShadow: 'var(--shadow-1)',
                     }}>
-                        <div>
-                            <h3 style={{ fontSize: '24px', color: 'var(--accent-1)', marginBottom: '10px' }}>{currentStep.title}</h3>
-                            <p style={{ fontSize: '18px', color: 'var(--text-1)', lineHeight: '1.6' }}>
-                                {currentStep.description}
-                            </p>
-                        </div>
-
-                        {/* Multiple Choice Options */}
-                        <div style={{ display: 'grid', gap: '15px' }}>
-                            {currentStep.options.map((option) => (
-                                <button
-                                    key={option.id}
-                                    onClick={() => handleOptionClick(option)}
-                                    disabled={!!feedback}
-                                    style={{
-                                        padding: '15px 20px',
-                                        textAlign: 'left',
-                                        backgroundColor: feedback?.correct && option.correct ? 'rgba(40, 167, 69, 0.2)' :
-                                            feedback && !feedback.correct && option.text === feedback.message ? 'rgba(220, 53, 69, 0.2)' : // highlight wrong choice if we knew which one was clicked, but simple logic for now
-                                                'var(--bg-2)',
-                                        color: 'var(--text-1)',
-                                        border: feedback?.correct && option.correct ? '2px solid var(--accent-2)' : '1px solid var(--border-2)',
-                                        borderRadius: '12px',
-                                        cursor: !!feedback ? 'default' : 'pointer',
-                                        transition: 'all 0.2s',
-                                        fontSize: '16px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '10px'
-                                    }}
-                                    onMouseOver={(e) => !feedback && (e.currentTarget.style.backgroundColor = 'var(--surface-3)')}
-                                    onMouseOut={(e) => !feedback && (e.currentTarget.style.backgroundColor = 'var(--bg-2)')}
-                                >
-                                    <span style={{
-                                        width: '30px',
-                                        height: '30px',
-                                        borderRadius: '50%',
-                                        backgroundColor: 'var(--surface-3)',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        fontWeight: 'bold',
-                                        color: 'var(--accent-1)'
-                                    }}>
-                                        {option.id.toUpperCase()}
-                                    </span>
-                                    {option.text}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Feedback Message Area */}
-                        {feedback && (
+                        <h3 style={{ color: 'var(--accent-1)', marginBottom: '10px' }}>
+                            {currentNetworkStep?.title}
+                        </h3>
+                        <p style={{ fontSize: '16px', marginBottom: '10px' }}>
+                            {currentNetworkStep?.instruction}
+                        </p>
+                        {currentStep > 0 && (
                             <div style={{
-                                padding: '15px',
+                                backgroundColor: 'var(--surface-2)',
+                                padding: '10px',
                                 borderRadius: '8px',
-                                backgroundColor: feedback.correct ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)',
-                                border: `1px solid ${feedback.correct ? 'var(--accent-2)' : '#dc3545'}`,
-                                color: feedback.correct ? 'var(--accent-2)' : '#ff6b6b',
-                                fontWeight: '500',
-                                textAlign: 'center'
+                                display: 'inline-block',
+                                fontFamily: 'monospace',
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                color: 'var(--accent-1)',
                             }}>
-                                {feedback.message}
+                                {currentNetworkStep?.packetText}
                             </div>
                         )}
                     </div>
-                </div>
-            ) : (
+                </>
+            )}
+
+            {/* Completion Screen */}
+            {isComplete && (
                 <div style={{
                     backgroundColor: 'var(--surface-1)',
                     padding: '50px',
                     borderRadius: 'var(--radius-lg)',
-                    border: '1px solid var(--accent-2)',
+                    border: '2px solid var(--accent-2)',
                     textAlign: 'center',
                     boxShadow: 'var(--glow-2)',
                     maxWidth: '600px',
                     animation: 'popIn 0.5s',
                 }}>
                     <div style={{ fontSize: '60px', marginBottom: '20px' }}>🎉</div>
-                    <h2 style={{ color: 'var(--accent-2)', fontSize: '32px', marginBottom: '15px' }}>Protocol Mastered!</h2>
-                    <p style={{ fontSize: '18px', color: 'var(--text-1)', marginBottom: '30px' }}>
-                        You successfully routed the request through the network!
+                    <h2 style={{ color: 'var(--accent-2)', fontSize: '32px', marginBottom: '15px' }}>Network Master!</h2>
+                    <p style={{ fontSize: '18px', color: 'var(--text-1)', marginBottom: '20px' }}>
+                        You successfully delivered the web request! You now understand how the web works.
                     </p>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '15px',
+                        marginBottom: '30px',
+                        fontSize: '16px'
+                    }}>
+                        <div style={{
+                            backgroundColor: 'var(--surface-2)',
+                            padding: '15px',
+                            borderRadius: '8px',
+                            border: '1px solid var(--border-1)'
+                        }}>
+                            <div style={{ color: 'var(--text-2)', marginBottom: '5px' }}>Final Score</div>
+                            <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--accent-1)' }}>{score}</div>
+                        </div>
+                        <div style={{
+                            backgroundColor: 'var(--surface-2)',
+                            padding: '15px',
+                            borderRadius: '8px',
+                            border: '1px solid var(--border-1)'
+                        }}>
+                            <div style={{ color: 'var(--text-2)', marginBottom: '5px' }}>Packets Delivered</div>
+                            <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'var(--accent-2)' }}>{packets.length}</div>
+                        </div>
+                    </div>
                     <button
                         onClick={handleComplete}
                         style={{
                             padding: '15px 30px',
-                            backgroundColor: 'var(--accent-2)',
-                            color: 'var(--bg-0)',
+                            background: 'linear-gradient(145deg, var(--accent-1), var(--accent-2))',
+                            color: '#0a1224',
                             border: 'none',
                             borderRadius: 'var(--radius-sm)',
                             cursor: 'pointer',
@@ -342,11 +579,168 @@ function NetworkRequestGame({ lesson }) {
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '10px',
+                            boxShadow: '0 4px 12px rgba(72, 229, 255, 0.4)',
+                            transition: 'all 0.3s ease'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-2px)';
+                            e.currentTarget.style.boxShadow = '0 8px 20px rgba(72, 229, 255, 0.6)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'translateY(0)';
+                            e.currentTarget.style.boxShadow = '0 4px 12px rgba(72, 229, 255, 0.4)';
                         }}
                     >
-                        <span>Finish Lesson & Collect Points</span>
+                        <span>Complete Lesson</span>
                         <span>🏆</span>
                     </button>
+                </div>
+            )}
+
+            {/* Educational Popup */}
+            {showPopup && popupContent && (
+                <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    zIndex: 1000,
+                    animation: 'fadeIn 0.3s',
+                }}>
+                    <div style={{
+                        backgroundColor: 'var(--surface-1)',
+                        borderRadius: 'var(--radius-lg)',
+                        border: '2px solid var(--accent-1)',
+                        padding: '30px',
+                        maxWidth: '600px',
+                        maxHeight: '80vh',
+                        overflow: 'auto',
+                        boxShadow: 'var(--glow-2)',
+                        position: 'relative',
+                        animation: 'popIn 0.4s',
+                    }}>
+                        {/* Close Button */}
+                        <button
+                            onClick={closePopup}
+                            style={{
+                                position: 'absolute',
+                                top: '15px',
+                                right: '15px',
+                                backgroundColor: 'var(--surface-3)',
+                                border: '1px solid var(--border-2)',
+                                borderRadius: '50%',
+                                width: '35px',
+                                height: '35px',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontSize: '18px',
+                                color: 'var(--text-1)',
+                                transition: 'all 0.2s',
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = 'var(--accent-1)';
+                                e.currentTarget.style.color = 'var(--bg-0)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = 'var(--surface-3)';
+                                e.currentTarget.style.color = 'var(--text-1)';
+                            }}
+                        >
+                            ×
+                        </button>
+
+                        {/* Popup Content */}
+                        <h2 style={{
+                            color: 'var(--accent-1)',
+                            fontSize: '24px',
+                            marginBottom: '20px',
+                            paddingRight: '40px'
+                        }}>
+                            {popupContent.title}
+                        </h2>
+
+                        <div style={{
+                            color: 'var(--text-1)',
+                            lineHeight: '1.6',
+                            marginBottom: '20px',
+                            fontSize: '16px'
+                        }}>
+                            {popupContent.content.split('\n').map((paragraph, index) => (
+                                <p key={index} style={{ marginBottom: '15px' }}>
+                                    {paragraph}
+                                </p>
+                            ))}
+                        </div>
+
+                        {/* Key Points */}
+                        {popupContent.keyPoints && (
+                            <div style={{ marginBottom: '25px' }}>
+                                <h3 style={{
+                                    color: 'var(--accent-2)',
+                                    fontSize: '18px',
+                                    marginBottom: '10px'
+                                }}>
+                                    📚 Key Points:
+                                </h3>
+                                <ul style={{
+                                    listStyle: 'none',
+                                    padding: 0,
+                                    margin: 0
+                                }}>
+                                    {popupContent.keyPoints.map((point, index) => (
+                                        <li
+                                            key={index}
+                                            style={{
+                                                backgroundColor: 'var(--surface-2)',
+                                                padding: '8px 12px',
+                                                marginBottom: '5px',
+                                                borderRadius: '6px',
+                                                border: '1px solid var(--border-1)',
+                                                color: 'var(--text-1)',
+                                                fontSize: '14px',
+                                                fontWeight: '500'
+                                            }}
+                                        >
+                                            • {point}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* Close Button */}
+                        <div style={{ textAlign: 'center' }}>
+                            <button
+                                onClick={closePopup}
+                                style={{
+                                    padding: '12px 24px',
+                                    backgroundColor: 'var(--accent-1)',
+                                    color: 'var(--bg-0)',
+                                    border: 'none',
+                                    borderRadius: '8px',
+                                    cursor: 'pointer',
+                                    fontSize: '16px',
+                                    fontWeight: 'bold',
+                                    transition: 'all 0.2s',
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'var(--accent-2)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'var(--accent-1)';
+                                }}
+                            >
+                                Got it! Continue Playing 🎮
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

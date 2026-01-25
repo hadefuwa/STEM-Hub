@@ -3087,222 +3087,118 @@ for i in range(3):
       emoji: '✏️',
       content: `# 3D Modeling Step 1: Sketching
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## What Is 3D Modeling?
 
-**Topic**: Creating a simple smartphone model using 2D sketches, extrusion, and fillets.
+3D modeling is building a digital object in three dimensions: width, height, and depth. You start with simple pieces and shape them into something complex, like digital LEGO.
+
+**The Geometry Trinity**
+
+- **Vertex**: a single point in space (X, Y, Z)
+- **Edge**: a straight line between two vertices
+- **Face**: a flat surface made by connecting edges
+
+Together, vertices, edges, and faces make a **mesh**, which is the "skin" of a 3D model.
 
 
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+## How Do Shapes Make Things?
+
+Most models begin as **basic shapes**:
+
+- **Cube** (boxy objects)
+- **Cylinder** (tubes, bottles)
+- **Sphere** (balls, wheels)
+
+Designers **add**, **subtract**, and **stretch** these shapes to make new forms.
+
+
+## What Is a Sketch?
+
+A **sketch** is a 2D drawing on a flat plane. Think of it as a blueprint.
+
+- **XY plane**: top view
+- **XZ plane**: front view
+- **YZ plane**: side view
+
+You sketch in 2D first, then turn it into 3D.
+
+
+## From Sketch to 3D
+
+The most common way to turn a sketch into a 3D object is **extrude**:
+
+1. Draw a 2D shape (rectangle, circle, triangle)
+2. Pull it out to give it **depth**
+
+That simple idea builds almost everything.
+
+
+**Interactive 3D Viewer**: Explore the model below and spot points, lines, and faces.
 
 <!-- MODEL_VIEWER src="/models/Astronaut.glb" alt="Astronaut model" auto-rotate="true" camera-controls="true" -->
 
 
 ### Mini Mission
 
-- Rotate the astronaut and find the helmet.
-- Zoom in on the backpack and spot a flat surface.
-- Pan the view and point out one small detail on the suit.
+- Find a **flat face** on the model.
+- Trace where two faces meet (that line is an **edge**).
+- Point to one tiny corner (that point is a **vertex**).
 
 
-This tutorial guides beginners through creating a simple smartphone model using 2D sketches, extrusion, and fillets.
+## Try It (No Software Needed)
 
+1. Draw a **square** on paper.
+2. Imagine pulling it upward to make a **cube**.
+3. Draw a **circle** on paper.
+4. Imagine pulling it upward to make a **cylinder**.
 
-
-## Initial Setup
-
-Before starting, restore default settings via the user profile icon (top right) > Preferences > Restore Defaults. The unit of measurement is set to millimeters using the Document Settings in the browser.
-
-
-
-<!-- QUESTION_START -->
-How do you restore default settings in 3D modeling software?
-<!-- OPTIONS -->
-Through the Data Panel|Through the user profile icon (top right) > Preferences > Restore Defaults|Through the Timeline|Through the Browser
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-You restore default settings via the user profile icon in the top right, then go to Preferences > Restore Defaults.
-<!-- QUESTION_END -->
-
-
-
-## Saving and Project Management
-
-Many 3D modeling tools are cloud-based. You start by opening the Data Panel, creating a new project named "smartphone," and entering that folder.
-
-
-
-### Components
-
-A new component named "smartphone" is created to contain the design. Components help organize your work and keep related parts together.
-
-
-
-### Saving
-
-The file is explicitly saved as "smartphone" to ensure progress is stored in the cloud.
-
+These are sketches becoming 3D.
 
 
 <!-- QUESTION_START -->
-Where are 3D modeling software files stored?
+What is a **vertex** in 3D modeling?
 <!-- OPTIONS -->
-Only on your local computer|In the cloud|On an external drive|In a separate folder on your desktop
+A flat surface|A straight line|A single point in space|A finished 3D object
 <!-- CORRECT -->
-1
+2
 <!-- EXPLANATION -->
-3D modeling software is cloud-based, so all files are stored in the cloud, allowing you to access your designs from anywhere.
+A vertex is a single point in 3D space, defined by X, Y, and Z coordinates.
 <!-- QUESTION_END -->
-
-
-
-## Creating the Base Shape (Sketching)
-
-A sketch is created on the XY plane (blue plane). A Center Rectangle is used, starting from the origin to constrain the model. Dimensions are typed in directly: 145 mm length and 70 mm width (using the Tab key to switch between dimensions).
-
 
 
 <!-- QUESTION_START -->
-What tool is used to create the base rectangle for the smartphone?
+What is a **sketch**?
 <!-- OPTIONS -->
-2-Point Rectangle|Center Rectangle|3-Point Rectangle|Line Tool
+A 3D model|A 2D drawing on a plane|A color palette|A saved file
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-A Center Rectangle is used, starting from the origin to constrain the model. This helps keep the design centered and properly positioned.
+A sketch is a 2D drawing on a flat plane that you can later turn into 3D.
 <!-- QUESTION_END -->
-
 
 
 <!-- QUESTION_START -->
-How do you switch between dimension fields when entering values?
+Which action turns a 2D sketch into a 3D form?
 <!-- OPTIONS -->
-Click with the mouse|Use the Tab key|Use the Enter key|Use the Space key
+Rotate|Extrude|Zoom|Pan
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-You use the Tab key to switch between dimension fields when entering values directly.
+Extrude pulls a 2D shape into the third dimension to create depth.
 <!-- QUESTION_END -->
-
-
-
-## 3D Extrusion
-
-The Extrude tool turns the 2D rectangle into a 3D body. A thickness of 7 mm is applied. This action creates "Body 1" in the browser and hides the original sketch. The timeline at the bottom records this history.
-
-
-
-<!-- QUESTION_START -->
-What happens to the original sketch when you extrude it?
-<!-- OPTIONS -->
-It is deleted|It is hidden|It remains visible|It is moved to a different location
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-When you extrude a sketch, the original sketch is hidden. The timeline records this action, and "Body 1" is created in the browser.
-<!-- QUESTION_END -->
-
-
-
-## Adding Fillets (Rounding Edges)
-
-The Fillet tool creates curved edges. All side edges of the smartphone body are selected. A radius of 2 mm is applied to round off the phone's corners.
-
-
-
-<!-- QUESTION_START -->
-What radius is used for the fillets on the smartphone edges?
-<!-- OPTIONS -->
-1 mm|2 mm|3 mm|5 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A radius of 2 mm is applied to round off the phone's corners, creating smooth, curved edges.
-<!-- QUESTION_END -->
-
-
-
-## Creating the Camera Bump
-
-A new sketch is added to the back face of the phone body. A Center Diameter Circle of 10 mm is drawn. Sketch Dimensions are used to position the circle 10 mm from the top edge and 10 mm from the side edge. The circle is extruded outwards by 2 mm to create the bump.
-
-
-
-<!-- QUESTION_START -->
-How far from the edges is the camera circle positioned?
-<!-- OPTIONS -->
-5 mm|10 mm|15 mm|20 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The camera circle is positioned 10 mm from the top edge and 10 mm from the side edge using Sketch Dimensions.
-<!-- QUESTION_END -->
-
-
-
-## Creating Patterns
-
-Instead of drawing multiple cameras manually, the Rectangular Pattern tool is used. The Object Type is changed to "Features" to select just the camera bump extrusion. The X-axis (red) is selected for direction. A spacing of 25 mm creates a row of three camera bumps.
-
-
-
-<!-- QUESTION_START -->
-What tool is used to create multiple camera bumps instead of drawing them manually?
-<!-- OPTIONS -->
-Circular Pattern|Rectangular Pattern|Mirror Tool|Copy Tool
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Rectangular Pattern tool is used to create multiple camera bumps efficiently. The Object Type is changed to "Features" to select just the camera bump extrusion.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What spacing is used between the camera bumps in the pattern?
-<!-- OPTIONS -->
-20 mm|25 mm|30 mm|35 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A spacing of 25 mm creates a row of three camera bumps using the Rectangular Pattern tool.
-<!-- QUESTION_END -->
-
-
-
-## Finishing Touches
-
-Small fillets of 0.3 mm are applied to the edges of the camera bumps to smooth them out. The design is saved to complete the tutorial.
-
-
-
-<!-- QUESTION_START -->
-What size fillets are applied to the camera bump edges?
-<!-- OPTIONS -->
-0.1 mm|0.3 mm|0.5 mm|1 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Small fillets of 0.3 mm are applied to the edges of the camera bumps to smooth them out as a finishing touch.
-<!-- QUESTION_END -->
-
 
 
 ## Key Concepts Learned
 
-- **Sketching**: Creating 2D shapes on planes
-- **Extrusion**: Turning 2D sketches into 3D bodies
-- **Fillets**: Rounding edges for a smoother appearance
-- **Patterns**: Creating multiple copies of features efficiently
-- **Dimensions**: Precise measurements for accurate modeling
+- **Vertex, Edge, Face**: the building blocks of 3D models
+- **Sketch**: a 2D blueprint on a plane
+- **Extrude**: turning 2D into 3D by adding depth
+- **Primitives**: basic shapes that combine into complex models
 
 ## Important Notes
 
-- Always save your work regularly
-- Use the Tab key to switch between dimension fields
-- The Timeline records all your design history
-- Patterns save time compared to manual copying
-- Small fillets add professional finishing touches`,
+- Start simple: a clean sketch makes a clean model
+- Every 3D object is made from vertices, edges, and faces
+- If you can sketch it, you can model it`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
