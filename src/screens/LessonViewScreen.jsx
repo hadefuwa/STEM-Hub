@@ -1356,6 +1356,141 @@ function LessonViewScreen() {
               <HTMLGameEmbed url="/html-games/3d-model-first-principle.html" height="100%" lesson={lesson} />
             </ErrorBoundary>
           </div>
+        ) : lesson.title === '3D Modeling Step 2: Planes and Sketching' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-2-planes.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.title === '3D Modeling Step 3: 2D to 3D (Extrude)' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-3-extrude.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.title === '3D Modeling Step 4: Add and Subtract' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-4-add-subtract.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.title === '3D Modeling Step 5: Move, Rotate, Scale' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-5-transform.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.title === '3D Modeling Step 6: Symmetry and Mirror' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-6-symmetry.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.title === '3D Modeling Step 7: Fillet and Chamfer' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-7-edges.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.title === '3D Modeling Step 8: Components and Parts' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-8-components.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.title === '3D Modeling Step 9: Dimensions and Constraints' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-9-dimensions.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
+        ) : lesson.title === '3D Modeling Step 10: Exporting & Manufacturing' ? (
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            backgroundColor: 'white',
+            padding: '20px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}>
+            <ErrorBoundary>
+              <HTMLGameEmbed url="/html-games/3d-model-step-10-capstone.html" height="100%" lesson={lesson} />
+            </ErrorBoundary>
+          </div>
         ) : lesson.title === 'Dinosaurs - Big and Small' ? (
           <div style={{
             flex: 1,

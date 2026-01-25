@@ -3209,250 +3209,61 @@ Extrude pulls a 2D shape into the third dimension to create depth.
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 13,
-      title: "3D Modeling Step 2: Coat Hanger (Sweeps)",
+      title: "3D Modeling Step 2: Planes and Sketching",
       emoji: '👔',
-      content: `# 3D Modeling Step 2: Coat Hanger (Sweeps)
+      content: `# 3D Modeling Step 2: Planes and Sketching
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+A **sketch** is a 2D drawing on a plane. Planes are like invisible sheets you draw on.
 
-**Topic**: Creating a coat hanger using sketching, curves, construction lines, and sweeping.
+**Planes**
+- **XY** = top view
+- **XZ** = front view
+- **YZ** = side view
 
+## Why It Matters
+If you choose the wrong plane, your model is rotated or misplaced.
 
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
+## Mini Mission
+- Point to the **top view** plane.
+- Point to the **front view** plane.
+- Which plane would you use to draw a face?
 
-<!-- MODEL_VIEWER src="/models/RobotExpressive.glb" alt="Robot model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the robot and find the face.
-- Zoom in on one arm and notice a joint.
-- Spin the model and see how the outline changes.
-
-
-This tutorial guides you through creating a coat hanger using the Sweep tool, which extrudes a profile along a path.
-
-
-
-## Project Setup and Saving
-
-The video starts by saving the new file. A new project folder named "coat hanger" is created via the drop-down menu, or by selecting "New Project" in the Data Panel. A new component named "coat hanger" is also created to contain the design.
-
-
+## Key Concepts
+- Sketch = 2D blueprint
+- Planes set the direction of your model
+- Good sketches are centered and simple
 
 <!-- QUESTION_START -->
-How do you create a new project in 3D modeling software?
+Which plane shows the **top view**?
 <!-- OPTIONS -->
-Through the Timeline|Through the Data Panel by selecting "New Project"|Through the Browser|Through the Toolbar
+XY|XZ|YZ|Any plane
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+The XY plane is the top view.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+A sketch is best described as:
+<!-- OPTIONS -->
+A 3D object|A 2D drawing on a plane|A camera|A texture
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-A new project folder can be created via the drop-down menu in the Data Panel, or by selecting "New Project" in the Data Panel. This helps organize your designs.
+A sketch is a 2D drawing on a plane.
 <!-- QUESTION_END -->
-
-
-
-## Sketching the Path
-
-A new sketch is started on the ZX plane. The Line Tool is used to draw the profile of the coat hanger.
-
-
-
-### Creating the Path Lines
-
-- A vertical line is drawn up from the center point, constrained to 90 degrees, and set to 60 mm in length. The line turns black, indicating it is fully defined/constrained.
-
-- A horizontal line is drawn at a right angle, 50 mm long.
-
-- A vertical line is drawn downwards, 140 mm long.
-
-- Another horizontal line is drawn outwards, 50 mm long.
-
-- A final vertical line is drawn upwards, 20 mm long.
-
-
 
 <!-- QUESTION_START -->
-What does it mean when a line turns black in a 3D modeling software sketch?
+If your model looks rotated, what did you likely pick wrong?
 <!-- OPTIONS -->
-The line is selected|The line is fully defined/constrained|The line is locked|The line is hidden
+The plane|The color|The zoom|The save file
 <!-- CORRECT -->
-1
+0
 <!-- EXPLANATION -->
-When a line turns black in 3D modeling software, it means the line is fully defined/constrained. This indicates that all dimensions and constraints have been applied, and the line cannot move.
+Choosing the wrong plane rotates the model.
 <!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the length of the first vertical line in the coat hanger path?
-<!-- OPTIONS -->
-50 mm|60 mm|140 mm|20 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The first vertical line is drawn up from the center point and set to 60 mm in length. This forms the top part of the coat hanger.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the length of the longest vertical line in the coat hanger path?
-<!-- OPTIONS -->
-60 mm|50 mm|140 mm|20 mm
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The longest vertical line in the path is 140 mm long, drawn downwards to form the main body of the coat hanger.
-<!-- QUESTION_END -->
-
-
-
-## Sketch Fillets
-
-The Sketch Fillet tool is used to round the sharp corners of the path. A 10 mm radius is applied to each corner. The presenter notes that while modeling fillets are generally preferred, sketch fillets are used here for the path.
-
-
-
-<!-- QUESTION_START -->
-What radius is used for the sketch fillets on the coat hanger path?
-<!-- OPTIONS -->
-5 mm|10 mm|15 mm|20 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A 10 mm radius is applied to each corner using the Sketch Fillet tool. This rounds the sharp corners of the path to create smoother transitions.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Why are sketch fillets used instead of modeling fillets for the path?
-<!-- OPTIONS -->
-Sketch fillets are faster|Sketch fillets are used here for the path, though modeling fillets are generally preferred|Sketch fillets are more accurate|Sketch fillets are required
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-While modeling fillets are generally preferred, sketch fillets are used here for the path. This is a design choice for this particular tutorial.
-<!-- QUESTION_END -->
-
-
-
-## Sketching the Profile
-
-A second sketch is created, this time on the XY plane. A Center Rectangle is drawn starting from the center point. The dimensions are set to 60 mm width and 5 mm height (using Tab to switch between fields).
-
-
-
-The sketches are renamed in the browser for clarity: "Path" for the first sketch and "Profile" for the second.
-
-
-
-<!-- QUESTION_START -->
-What plane is used for the profile sketch?
-<!-- OPTIONS -->
-ZX plane|XY plane|YZ plane|Any plane
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The profile sketch is created on the XY plane, while the path sketch was created on the ZX plane. This allows the profile to be swept along the path.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What tool is used to create the profile rectangle?
-<!-- OPTIONS -->
-2-Point Rectangle|Center Rectangle|3-Point Rectangle|Line Tool
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A Center Rectangle is drawn starting from the center point. This ensures the profile is centered and properly positioned for the sweep operation.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What are the dimensions of the profile rectangle?
-<!-- OPTIONS -->
-50 mm width and 5 mm height|60 mm width and 5 mm height|60 mm width and 10 mm height|50 mm width and 10 mm height
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The profile rectangle dimensions are set to 60 mm width and 5 mm height. The Tab key is used to switch between dimension fields when entering values.
-<!-- QUESTION_END -->
-
-
-
-## Sweeping the Profile
-
-The Sweep tool is selected from the Create menu. The rectangle (Profile sketch) is selected as the profile, and the line drawing (Path sketch) is selected as the path. This action extrudes the rectangle shape along the line path to create the 3D hanger shape.
-
-
-
-<!-- QUESTION_START -->
-What tool is used to create the 3D coat hanger shape?
-<!-- OPTIONS -->
-Extrude|Revolve|Sweep|Loft
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The Sweep tool is used to extrude the rectangle profile along the line path, creating the 3D coat hanger shape. This is the key operation that turns the 2D sketches into a 3D object.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is selected first when using the Sweep tool?
-<!-- OPTIONS -->
-The path|The profile|Either one|The plane
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-When using the Sweep tool, the profile (the rectangle) is selected first, then the path (the line drawing) is selected. This tells 3D modeling software to move the profile along the path.
-<!-- QUESTION_END -->
-
-
-
-## Finishing Touches
-
-The resulting body is renamed to "hanger" in the browser. Fillets of 0.5 mm are added to the end faces of the hanger to round off the sharp edges. The project is saved to complete the tutorial.
-
-
-
-<!-- QUESTION_START -->
-What size fillets are added to the end faces of the hanger?
-<!-- OPTIONS -->
-0.3 mm|0.5 mm|1 mm|2 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Fillets of 0.5 mm are added to the end faces of the hanger to round off the sharp edges, giving it a more finished appearance.
-<!-- QUESTION_END -->
-
-
-
-## Key Concepts Learned
-
-- **Sketching on Different Planes**: Creating sketches on ZX and XY planes for different purposes
-- **Line Tool**: Drawing connected lines to create a path
-- **Constraints**: Fully constraining sketches so lines turn black
-- **Sketch Fillets**: Rounding corners in 2D sketches
-- **Center Rectangle**: Creating centered profiles for sweeping
-- **Sweep Tool**: Extruding a profile along a path to create 3D shapes
-- **Modeling Fillets**: Adding finishing touches to 3D bodies
-- **Naming Sketches**: Organizing your work by renaming sketches in the browser
-
-
-
-## Important Notes
-
-- Always save your work regularly
-- Use the Tab key to switch between dimension fields
-- Fully constrain your sketches (lines should turn black)
-- Rename sketches and bodies for better organization
-- Sketch fillets can be used, but modeling fillets are generally preferred
-- The Sweep tool requires both a profile and a path`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
@@ -3463,311 +3274,56 @@ Fillets of 0.5 mm are added to the end faces of the hanger to round off the shar
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 14,
-      title: "3D Modeling Step 3: Greek Vase (Revolve & Splines)",
+      title: "3D Modeling Step 3: 2D to 3D (Extrude)",
       emoji: '🏺',
-      content: `# 3D Modeling Step 3: Greek Vase (Revolve & Splines)
+      content: `# 3D Modeling Step 3: 2D Shapes to 3D (Extrude)
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+Most 3D models start as **2D shapes** that are pulled into the third dimension.
 
-**Topic**: Creating a 3D model of a Greek vase using reference images, splines, and the revolve tool.
+**Examples**
+- Square -> Cube
+- Circle -> Cylinder
+- Triangle -> Prism
 
+## Mini Mission
+- Sketch a square and **extrude** it into a cube.
+- Sketch a circle and **extrude** it into a cylinder.
 
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
-
-<!-- MODEL_VIEWER src="/models/DamagedHelmet.glb" alt="Helmet model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the helmet and find the visor opening.
-- Zoom in and spot a shiny edge or highlight.
-- Look for symmetry: is the left side like the right side?
-
-
-This tutorial guides you through creating a Greek vase using reference images, splines for smooth curves, and the Revolve tool to create the 3D shape.
-
-
-
-## Setup and Saving
-
-The project is saved as "Greek vase" and a new component with the same name is created to house the design.
-
-
+## Key Concepts
+- **Extrude** adds depth
+- Simple shapes build complex objects
 
 <!-- QUESTION_START -->
-What is the project name for this tutorial?
+What 3D shape comes from extruding a circle?
 <!-- OPTIONS -->
-Vase|Greek vase|Ancient vase|Ceramic vase
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The project is saved as "Greek vase" and a new component with the same name is created to house the design. This helps organize your work.
-<!-- QUESTION_END -->
-
-
-
-## Inserting and Calibrating a Canvas
-
-An image of a Greek vase is inserted from the computer onto the ZX plane. This reference image helps guide the modeling process.
-
-
-
-### Calibration
-
-To ensure the model is the correct size, the canvas is calibrated. By right-clicking the canvas in the browser and selecting "Calibrate," two points (top and bottom of the vase) are clicked, and the distance is set to 300 mm.
-
-
-
-### Positioning
-
-The canvas is edited to align the center of the vase image with the vertical axis. This ensures the model will be centered correctly when revolved.
-
-
-
-<!-- QUESTION_START -->
-What plane is the canvas image inserted onto?
-<!-- OPTIONS -->
-XY plane|ZX plane|YZ plane|Any plane
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The image of the Greek vase is inserted onto the ZX plane. This plane is used because the vase profile will be revolved around a vertical axis.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How do you calibrate a canvas in 3D modeling software?
-<!-- OPTIONS -->
-Through the Toolbar|By right-clicking the canvas in the browser and selecting "Calibrate"|Through the Timeline|Through the Data Panel
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-To calibrate a canvas, you right-click the canvas in the browser and select "Calibrate." Then you click two points (top and bottom of the vase) and set the distance.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What distance is set when calibrating the vase canvas?
-<!-- OPTIONS -->
-200 mm|250 mm|300 mm|350 mm
+Cube|Sphere|Cylinder|Pyramid
 <!-- CORRECT -->
 2
 <!-- EXPLANATION -->
-When calibrating the canvas, the distance between the top and bottom of the vase is set to 300 mm. This ensures the model will be the correct size.
+Extruding a circle creates a cylinder.
 <!-- QUESTION_END -->
 
-
-
-## Sketching the Profile
-
-A new sketch is started on the same plane as the canvas. The profile of the vase is traced using different tools.
-
-
-
-### Line Tool
-
-Used for the straight sections at the base and top of the vase. These straight lines help create the flat surfaces.
-
-
-
-### Fit Point Spline
-
-Used to trace the curved outer edge of the vase. This tool creates smooth curves using control points, which can be adjusted with "handles" to match the reference image closely. Splines are perfect for creating organic, flowing curves.
-
-
-
 <!-- QUESTION_START -->
-What tool is used to trace the curved outer edge of the vase?
+Extrude means:
 <!-- OPTIONS -->
-Line Tool|Arc Tool|Fit Point Spline|Circle Tool
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The Fit Point Spline tool is used to trace the curved outer edge of the vase. This tool creates smooth curves using control points that can be adjusted with "handles" to match the reference image.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What are the control points on a spline called?
-<!-- OPTIONS -->
-Nodes|Handles|Points|Vertices
+Rotate|Add depth|Shrink|Color
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-The control points on a spline can be adjusted with "handles" to match the reference image closely. These handles allow you to fine-tune the curve shape.
+Extrude pulls a 2D sketch into 3D.
 <!-- QUESTION_END -->
-
-
-
-### Closing the Sketch
-
-Straight lines are drawn up the center axis (300 mm) and across the top and bottom to connect the profile. The shape turns blue, indicating it is a closed profile. A closed profile is required for the Revolve tool to work.
-
-
 
 <!-- QUESTION_START -->
-What does it mean when a sketch shape turns blue?
+Which starts most 3D models?
 <!-- OPTIONS -->
-The shape is selected|The shape is a closed profile|The shape is locked|The shape is hidden
+A sketch|A texture|A camera|A light
 <!-- CORRECT -->
-1
+0
 <!-- EXPLANATION -->
-When a sketch shape turns blue, it indicates it is a closed profile. A closed profile is required for operations like Revolve to create a solid 3D body.
+A sketch is the usual starting point.
 <!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the length of the center axis line?
-<!-- OPTIONS -->
-250 mm|300 mm|350 mm|400 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The center axis line is drawn 300 mm long, matching the calibrated height of the vase. This line will serve as the axis of revolution.
-<!-- QUESTION_END -->
-
-
-
-## Revolving the Profile
-
-The Revolve tool is selected from the Create menu. This tool rotates a 2D profile around an axis to create a 3D object.
-
-
-
-### Profile Selection
-
-The closed sketch region is selected as the profile to be revolved.
-
-
-
-### Axis Selection
-
-The vertical center line is selected as the axis of revolution. This is the line that was drawn up the center (300 mm long).
-
-
-
-### Revolution
-
-The profile is rotated 360 degrees to create the full 3D body of the vase. This creates a symmetrical, round object from the 2D profile.
-
-
-
-<!-- QUESTION_START -->
-What tool is used to create the 3D vase shape from the 2D profile?
-<!-- OPTIONS -->
-Extrude|Revolve|Sweep|Loft
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Revolve tool is used to rotate the 2D profile around an axis to create the 3D vase shape. This is perfect for creating symmetrical, round objects.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is selected as the axis of revolution?
-<!-- OPTIONS -->
-A horizontal line|The vertical center line|Any line|The top edge
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The vertical center line (the 300 mm line drawn up the center) is selected as the axis of revolution. This line determines how the profile will be rotated.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How many degrees is the profile rotated?
-<!-- OPTIONS -->
-180 degrees|270 degrees|360 degrees|90 degrees
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The profile is rotated 360 degrees to create the full 3D body of the vase. This creates a complete, symmetrical object.
-<!-- QUESTION_END -->
-
-
-
-## Hollowing and Finishing
-
-After creating the solid vase, it needs to be hollowed out and finished with fillets.
-
-
-
-### Shell Tool
-
-The Shell tool is selected to hollow out the solid body. The top face of the vase is clicked, and a thickness of 3 mm is applied. This creates a hollow interior while maintaining the outer shape.
-
-
-
-<!-- QUESTION_START -->
-What tool is used to hollow out the vase?
-<!-- OPTIONS -->
-Extrude|Revolve|Shell|Cut
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The Shell tool is used to hollow out the solid body. The top face is selected, and a thickness of 3 mm is applied to create the hollow interior.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What thickness is applied when using the Shell tool?
-<!-- OPTIONS -->
-2 mm|3 mm|4 mm|5 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A thickness of 3 mm is applied when using the Shell tool. This creates the wall thickness of the hollow vase.
-<!-- QUESTION_END -->
-
-
-
-### Fillets
-
-Small fillets (e.g., 0.3 mm) are added to the edges to smooth them out. This gives the vase a more polished, finished appearance.
-
-
-
-<!-- QUESTION_START -->
-What size fillets are typically added to the edges?
-<!-- OPTIONS -->
-0.1 mm|0.3 mm|0.5 mm|1 mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Small fillets of 0.3 mm are added to the edges to smooth them out. This gives the vase a more polished, finished appearance.
-<!-- QUESTION_END -->
-
-
-
-## Key Concepts Learned
-
-- **Canvas/Reference Images**: Using images as guides for modeling
-- **Canvas Calibration**: Setting the correct scale for reference images
-- **Line Tool**: Creating straight sections of a profile
-- **Fit Point Spline**: Creating smooth, organic curves
-- **Closed Profiles**: Ensuring sketches are closed for 3D operations
-- **Revolve Tool**: Rotating a 2D profile around an axis to create 3D objects
-- **Shell Tool**: Hollowing out solid bodies
-- **Fillets**: Adding finishing touches to smooth edges
-
-
-
-## Important Notes
-
-- Always calibrate reference images to ensure correct scale
-- Splines are perfect for creating organic, flowing curves
-- A closed profile is required for the Revolve tool
-- The axis of revolution determines how the profile rotates
-- Shell tool creates hollow objects with specified wall thickness
-- Small fillets add professional finishing touches
-- The Revolve tool is ideal for creating symmetrical, round objects`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
@@ -3778,305 +3334,55 @@ Small fillets of 0.3 mm are added to the edges to smooth them out. This gives th
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 15,
-      title: "3D Modeling Step 4: Engine Block (Extruded Cuts & Patterns)",
+      title: "3D Modeling Step 4: Add and Subtract",
       emoji: '🔧',
-      content: `# 3D Modeling Step 4: Engine Block (Extruded Cuts & Patterns)
+      content: `# 3D Modeling Step 4: Add and Subtract (Combine)
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+You can **add** shapes together or **cut** shapes away to make new forms.
 
-**Topic**: Creating an engine block shape using extruded cuts and pattern tools.
+**Additive** = join parts
+**Subtractive** = remove holes or slots
 
+## Mini Mission
+- Add a small cylinder to a block.
+- Cut a hole through the block.
 
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
-
-<!-- MODEL_VIEWER src="/models/SheenChair.glb" alt="Chair model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the chair and find the seat cushion.
-- Zoom in and notice a smooth curve.
-- Look for repeated parts (like legs) and count them.
-
-
-This tutorial demonstrates how to "sculpt" by removing material, creating an engine block using extruded cuts and pattern tools.
-
-
-
-## Setup and Base Shape
-
-The file is saved as "block" and a new component named "block" is created to house the design.
-
-
-
-### Sketch
-
-A Center Rectangle is drawn on the XY plane with dimensions 430mm x 600mm. This creates the base shape for the engine block.
-
-
-
-### Extrude
-
-The rectangle is extruded by 300mm to create a 3D block. This solid block will serve as the base material that will be "sculpted" by removing material.
-
-
+## Key Concepts
+- Combine = join
+- Cut = remove
+- Modeling is shape + shape - shape
 
 <!-- QUESTION_START -->
-What are the dimensions of the base rectangle?
+What does a **cut** do?
 <!-- OPTIONS -->
-400mm x 600mm|430mm x 600mm|430mm x 650mm|450mm x 600mm
+Adds a new part|Removes material|Changes color|Saves the file
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-A Center Rectangle is drawn on the XY plane with dimensions 430mm x 600mm. This creates the base shape for the engine block.
+Cut removes material from the model.
 <!-- QUESTION_END -->
 
-
-
 <!-- QUESTION_START -->
-How much is the rectangle extruded to create the 3D block?
+Which action is **additive**?
 <!-- OPTIONS -->
-250mm|300mm|350mm|400mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The rectangle is extruded by 300mm to create a 3D block. This solid block will serve as the base material for the engine block.
-<!-- QUESTION_END -->
-
-
-
-## Creating the First Cut (Extruded Cut)
-
-A sketch is created on the top surface of the block to begin removing material.
-
-
-
-### Construction Line
-
-A line is drawn from the center point to the top edge (90 degrees). Pressing 'X' toggles it to a dotted construction line, meaning it aids drawing but isn't part of the final geometry. Construction lines help position other sketch elements but don't create features.
-
-
-
-<!-- QUESTION_START -->
-How do you toggle a line to a construction line in 3D modeling software?
-<!-- OPTIONS -->
-Press 'X'|Press 'C'|Press 'L'|Right-click and select "Construction"
+Union|Cut|Hide|Zoom
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-Pressing 'X' toggles a line to a dotted construction line. Construction lines aid drawing but aren't part of the final geometry - they help position other elements.
+Union is an additive combine.
 <!-- QUESTION_END -->
 
-
-
 <!-- QUESTION_START -->
-What is the purpose of a construction line?
+Why use subtraction?
 <!-- OPTIONS -->
-It creates a feature|It aids drawing but isn't part of the final geometry|It cuts material|It adds material
+To add texture|To make holes|To rotate|To rename
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-Construction lines aid drawing but aren't part of the final geometry. They help position other sketch elements but don't create features when you finish the sketch.
+Subtraction is used to create holes and openings.
 <!-- QUESTION_END -->
-
-
-
-### Circle
-
-A 120mm circle is drawn at the center point of the construction line. This circle will be used to cut a hole in the block.
-
-
-
-<!-- QUESTION_START -->
-What is the diameter of the circle drawn for the first cut?
-<!-- OPTIONS -->
-100mm|120mm|140mm|160mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A 120mm circle is drawn at the center point of the construction line. This circle will be used to create the first cut in the engine block.
-<!-- QUESTION_END -->
-
-
-
-### Extrude Cut
-
-The Extrude tool is used on the circle profile. Dragging the handle downwards into the block turns the operation red, indicating a "Cut" operation. The cut is confirmed by clicking OK. This removes material from the block, creating the first hole.
-
-
-
-<!-- QUESTION_START -->
-What color does the extrude operation turn when it becomes a Cut operation?
-<!-- OPTIONS -->
-Blue|Red|Green|Yellow
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-When you drag the extrude handle downwards into the block, the operation turns red, indicating a "Cut" operation. This removes material instead of adding it.
-<!-- QUESTION_END -->
-
-
-
-## Rectangular Pattern
-
-To create multiple holes efficiently, the Rectangular Pattern tool is used instead of manually creating each hole.
-
-
-
-### Object Type
-
-Set to "Features" to select the cut extrusion from the timeline. This tells 3D modeling software to pattern the cut feature, not just the sketch.
-
-
-
-### Directions
-
-The axis is selected (edge of the block). The direction type is set to Symmetrical to pattern in both directions from the center. This creates a balanced pattern.
-
-
-
-### Configuration
-
-- **Axis 1**: Quantity 3 (total 3 in this row)
-
-- **Axis 2**: Quantity 2 (creates a second row)
-
-- **Distance**: Adjusted (e.g., 200mm) to space the holes evenly
-
-This creates a 3x2 grid of holes (3 columns, 2 rows).
-
-
-
-<!-- QUESTION_START -->
-What is the Object Type set to when using Rectangular Pattern?
-<!-- OPTIONS -->
-Bodies|Features|Sketches|Components
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Object Type is set to "Features" to select the cut extrusion from the timeline. This patterns the cut feature, creating multiple holes efficiently.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What direction type is used for the Rectangular Pattern?
-<!-- OPTIONS -->
-One Direction|Symmetrical|Asymmetric|Circular
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The direction type is set to Symmetrical to pattern in both directions from the center. This creates a balanced pattern of holes.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How many holes are created in the rectangular pattern?
-<!-- OPTIONS -->
-4 holes (2x2)|6 holes (3x2)|8 holes (4x2)|9 holes (3x3)
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The pattern creates a 3x2 grid of holes - 3 columns (Axis 1: Quantity 3) and 2 rows (Axis 2: Quantity 2), resulting in 6 total holes.
-<!-- QUESTION_END -->
-
-
-
-## Circular Pattern
-
-A new sketch is started on the surface to create a circular pattern of smaller holes around the larger ones.
-
-
-
-### Setup
-
-A construction line is drawn 90mm from the center, and a small 25mm circle is drawn at its end. This creates one small hole that will be patterned.
-
-
-
-<!-- QUESTION_START -->
-How far from the center is the construction line drawn for the circular pattern?
-<!-- OPTIONS -->
-80mm|90mm|100mm|110mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A construction line is drawn 90mm from the center, and a small 25mm circle is drawn at its end. This positions the first small hole for the circular pattern.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the diameter of the small circles in the circular pattern?
-<!-- OPTIONS -->
-20mm|25mm|30mm|35mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A small 25mm circle is drawn at the end of the construction line. This circle will be patterned around the larger hole.
-<!-- QUESTION_END -->
-
-
-
-### Circular Pattern Tool
-
-- **Object**: The small 25mm circle is selected
-
-- **Center Point**: The center of the previous large circle is selected
-
-- **Quantity**: Set to 7 to create a ring of 7 small circles around the larger one
-
-This creates a decorative pattern of small holes around each large hole.
-
-
-
-<!-- QUESTION_START -->
-How many small circles are created in the circular pattern?
-<!-- OPTIONS -->
-5|6|7|8
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The quantity is set to 7 to create a ring of 7 small circles around the larger hole. This creates a decorative pattern.
-<!-- QUESTION_END -->
-
-
-
-### Extrude Cut
-
-The new pattern of circles is selected and extruded downwards to cut them into the block. This creates the final pattern of holes in the engine block.
-
-
-
-## Finishing
-
-The model represents a rough engine block concept, demonstrating how to "sculpt" by removing material. The project is saved to finish the tutorial.
-
-
-
-## Key Concepts Learned
-
-- **Extruded Cuts**: Removing material from a solid body
-- **Construction Lines**: Helper lines that aid positioning but don't create features
-- **Rectangular Pattern**: Creating multiple copies in a grid pattern
-- **Circular Pattern**: Creating multiple copies arranged in a circle
-- **Sculpting by Subtraction**: Building complex shapes by removing material
-- **Feature Patterning**: Repeating features efficiently instead of manual copying
-- **Symmetrical Patterns**: Creating balanced designs
-
-
-
-## Important Notes
-
-- Press 'X' to toggle lines to construction lines
-- Red color indicates a Cut operation when extruding
-- Rectangular Pattern can create grids of features
-- Circular Pattern arranges features in a circle
-- Patterns save time compared to manual copying
-- The Object Type must be set to "Features" to pattern cuts
-- Symmetrical patterns create balanced designs
-- Construction lines help position elements but don't create features`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
@@ -4087,355 +3393,56 @@ The model represents a rough engine block concept, demonstrating how to "sculpt"
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 16,
-      title: "3D Modeling Step 5: Bottle (Lofts & Offset Planes)",
+      title: "3D Modeling Step 5: Move, Rotate, Scale",
       emoji: '🍾',
-      content: `# 3D Modeling Step 5: Bottle (Lofts & Offset Planes)
+      content: `# 3D Modeling Step 5: Move, Rotate, Scale
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+You can **move**, **rotate**, and **scale** shapes to position them perfectly.
 
-**Topic**: Creating a bottle shape using offset planes, lofts, and guide rails.
+- **Move**: slide along X, Y, or Z
+- **Rotate**: spin around an axis
+- **Scale**: resize
 
+## Mini Mission
+- Move a cube to the right.
+- Rotate it 90 degrees.
+- Scale it to be taller.
 
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
-
-<!-- MODEL_VIEWER src="/models/Astronaut.glb" alt="Astronaut model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the astronaut and find the visor.
-- Zoom in and spot a rounded edge.
-- Imagine which parts are made from simple shapes.
-
-
-This tutorial demonstrates creating a complex bottle shape by blending multiple profiles together using the Loft tool with guide rails.
-
-
-
-## Setup and Saving
-
-The file is saved as "bottle" and a new component named "bottle" is created to contain the design.
-
-
+## Key Concepts
+- X, Y, Z axes control direction
+- Small changes make big differences
 
 <!-- QUESTION_START -->
-What is the project name for this tutorial?
+Which tool changes **size**?
 <!-- OPTIONS -->
-Container|Bottle|bottle|Vessel
+Rotate|Move|Scale|Pan
 <!-- CORRECT -->
 2
 <!-- EXPLANATION -->
-The file is saved as "bottle" and a new component named "bottle" is created to contain the design. This helps organize your work.
+Scale changes size.
 <!-- QUESTION_END -->
 
-
-
-## Creating the Base Profiles (Offset Planes)
-
-The bottle is created using multiple profiles at different heights, connected by a loft. Offset planes are used to create these profiles at different levels.
-
-
-
-### Bottom Profile
-
-A Center Rectangle (60mm x 75mm) is drawn on the base plane. Sketch Fillets of 10mm are added to the corners to create rounded edges. This forms the base of the bottle.
-
-
-
 <!-- QUESTION_START -->
-What are the dimensions of the bottom rectangle?
+Rotate means:
 <!-- OPTIONS -->
-50mm x 75mm|60mm x 75mm|60mm x 80mm|70mm x 75mm
+Slide|Spin|Stretch|Copy
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-A Center Rectangle (60mm x 75mm) is drawn on the base plane. This forms the base profile of the bottle.
+Rotate spins an object around an axis.
 <!-- QUESTION_END -->
-
-
 
 <!-- QUESTION_START -->
-What size sketch fillets are added to the bottom rectangle corners?
+Move uses which directions?
 <!-- OPTIONS -->
-5mm|10mm|15mm|20mm
+X, Y, Z axes|Only left/right|Only up/down|Zoom
 <!-- CORRECT -->
-1
+0
 <!-- EXPLANATION -->
-Sketch Fillets of 10mm are added to the corners of the bottom rectangle. This creates rounded edges at the base of the bottle.
+Move uses the X, Y, Z axes.
 <!-- QUESTION_END -->
-
-
-
-### Middle Profile (Offset Plane)
-
-An Offset Plane is created 75mm above the base plane. On this new plane, a smaller Center Rectangle (40mm x 60mm) is drawn, also with fillets. This creates the middle section of the bottle, which is narrower than the base.
-
-
-
-<!-- QUESTION_START -->
-How high is the middle offset plane created?
-<!-- OPTIONS -->
-60mm|75mm|90mm|100mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-An Offset Plane is created 75mm above the base plane. This positions the middle profile at the correct height for the bottle shape.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What are the dimensions of the middle rectangle?
-<!-- OPTIONS -->
-35mm x 60mm|40mm x 60mm|40mm x 65mm|45mm x 60mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A smaller Center Rectangle (40mm x 60mm) is drawn on the middle offset plane. This creates a narrower middle section compared to the base.
-<!-- QUESTION_END -->
-
-
-
-### Top Profile (Offset Plane)
-
-Another Offset Plane is created at 140mm height. A Circle with a diameter of 35mm is drawn on this plane. This creates the top opening of the bottle, which transitions from rectangular to circular.
-
-
-
-<!-- QUESTION_START -->
-How high is the top offset plane created?
-<!-- OPTIONS -->
-120mm|140mm|160mm|180mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Another Offset Plane is created at 140mm height. This positions the top profile at the correct height for the bottle neck.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the diameter of the top circle?
-<!-- OPTIONS -->
-30mm|35mm|40mm|45mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A Circle with a diameter of 35mm is drawn on the top offset plane. This creates the circular opening at the top of the bottle.
-<!-- QUESTION_END -->
-
-
-
-## Creating Guide Rails
-
-A new sketch is started on a vertical plane (perpendicular to the profiles) to draw the side shape of the bottle. Guide rails control how the loft transitions between profiles.
-
-
-
-### Project Intersect
-
-The Project > Intersect tool is used to create reference points (purple dots) where the previous sketches (rectangles and circle) intersect with the current sketch plane. This ensures the rails connect perfectly to the profiles at the correct points.
-
-
-
-<!-- QUESTION_START -->
-What tool is used to create reference points where sketches intersect with the current plane?
-<!-- OPTIONS -->
-Project > Project|Project > Intersect|Project > Include|Project > Offset
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Project > Intersect tool is used to create reference points (purple dots) where the previous sketches intersect with the current sketch plane. This ensures perfect alignment.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What color are the reference points created by Project Intersect?
-<!-- OPTIONS -->
-Blue|Purple|Red|Green
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Project > Intersect tool creates reference points shown as purple dots. These points mark where the previous sketches intersect with the current sketch plane.
-<!-- QUESTION_END -->
-
-
-
-### Fit Point Spline
-
-A spline is drawn connecting these points to define the curved side of the bottle. Handles are adjusted to shape it like a shampoo bottle, creating a smooth, organic curve.
-
-
-
-<!-- QUESTION_START -->
-What tool is used to create the curved side shape of the bottle?
-<!-- OPTIONS -->
-Line Tool|Arc Tool|Fit Point Spline|Circle Tool
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-A Fit Point Spline is drawn connecting the reference points to define the curved side of the bottle. Handles are adjusted to create a smooth, organic curve.
-<!-- QUESTION_END -->
-
-
-
-### Mirroring
-
-A vertical construction line is drawn. The spline is then mirrored across this line to create an identical rail on the opposite side. This ensures the bottle is symmetrical.
-
-
-
-<!-- QUESTION_START -->
-Why is the spline mirrored?
-<!-- OPTIONS -->
-To create a different shape|To create an identical rail on the opposite side|To delete the original|To rotate it
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The spline is mirrored across a vertical construction line to create an identical rail on the opposite side. This ensures the bottle is symmetrical.
-<!-- QUESTION_END -->
-
-
-
-## Lofting the Shape
-
-The Loft tool is selected to blend the profiles together. The loft creates a smooth transition between the different shapes.
-
-
-
-### Profiles
-
-The bottom rectangle, middle rectangle, and top circle are selected in order from bottom to top. These are the cross-sections that will be blended together.
-
-
-
-### Rails
-
-The two mirrored spline curves are selected as rails. This forces the loft to follow the specific side curvature defined by the splines, rather than just connecting straight between profiles. The rails control the shape of the transition.
-
-
-
-<!-- QUESTION_START -->
-What tool is used to blend the profiles together?
-<!-- OPTIONS -->
-Extrude|Revolve|Sweep|Loft
-<!-- CORRECT -->
-3
-<!-- EXPLANATION -->
-The Loft tool is used to blend the bottom rectangle, middle rectangle, and top circle together. This creates a smooth transition between the different shapes.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-In what order are the profiles selected for the loft?
-<!-- OPTIONS -->
-Top to bottom|Bottom to top|Any order|Random order
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The bottom rectangle, middle rectangle, and top circle are selected in order from bottom to top. This ensures the loft transitions correctly.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the purpose of guide rails in a loft?
-<!-- OPTIONS -->
-To add material|To force the loft to follow specific curvature|To delete features|To create patterns
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The guide rails (the two mirrored splines) force the loft to follow the specific side curvature defined by the splines, rather than just connecting straight between profiles.
-<!-- QUESTION_END -->
-
-
-
-## Finishing Touches
-
-After creating the basic bottle shape, finishing touches are added to complete the design.
-
-
-
-### Fillet
-
-A 5mm fillet is added to the bottom edge. This rounds the bottom corner for a more finished appearance.
-
-
-
-<!-- QUESTION_START -->
-What size fillet is added to the bottom edge?
-<!-- OPTIONS -->
-3mm|5mm|7mm|10mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A 5mm fillet is added to the bottom edge. This rounds the bottom corner for a more finished appearance.
-<!-- QUESTION_END -->
-
-
-
-### Shell
-
-The Shell tool is used on the top face with a 2mm thickness to hollow out the bottle. This creates the interior cavity of the bottle.
-
-
-
-<!-- QUESTION_START -->
-What thickness is used when shelling the bottle?
-<!-- OPTIONS -->
-1mm|2mm|3mm|4mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Shell tool is used on the top face with a 2mm thickness to hollow out the bottle. This creates the interior cavity.
-<!-- QUESTION_END -->
-
-
-
-### Top Fillets
-
-Small 0.5mm fillets are added to the top edges for a smooth finish. This gives the bottle opening a polished appearance.
-
-
-
-<!-- QUESTION_START -->
-What size fillets are added to the top edges?
-<!-- OPTIONS -->
-0.3mm|0.5mm|0.7mm|1mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Small 0.5mm fillets are added to the top edges for a smooth finish. This gives the bottle opening a polished appearance.
-<!-- QUESTION_END -->
-
-
-
-## Key Concepts Learned
-
-- **Offset Planes**: Creating work planes at different heights
-- **Multiple Profiles**: Using different shapes at different levels
-- **Project Intersect**: Creating reference points from other sketches
-- **Fit Point Spline**: Creating smooth, organic curves
-- **Mirroring**: Creating symmetrical shapes
-- **Loft Tool**: Blending multiple profiles together
-- **Guide Rails**: Controlling the shape of loft transitions
-- **Shell Tool**: Hollowing out solid bodies
-- **Fillets**: Adding finishing touches to edges
-
-
-
-## Important Notes
-
-- Offset planes allow you to create profiles at different heights
-- Project Intersect creates reference points for alignment
-- Guide rails control how lofts transition between profiles
-- Profiles must be selected in order (bottom to top)
-- Lofts create smooth transitions between different shapes
-- Shell tool creates hollow objects with specified wall thickness
-- Multiple fillets can be applied for different finishing effects
-- The Loft tool is ideal for creating complex, organic shapes`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
@@ -4446,382 +3453,51 @@ Small 0.5mm fillets are added to the top edges for a smooth finish. This gives t
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 17,
-      title: "3D Modeling Step 6: Emboss & Deboss",
+      title: "3D Modeling Step 6: Symmetry and Mirror",
       emoji: '📝',
-      content: `# 3D Modeling Step 6: Emboss & Deboss
+      content: `# 3D Modeling Step 6: Symmetry and Mirroring
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+Many objects are **symmetrical**. You can model half and **mirror** it.
 
-**Topic**: Using the emboss and deboss features, including on curved surfaces.
+## Mini Mission
+- Model half a shape.
+- Mirror it across the middle plane.
 
-
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
-
-<!-- MODEL_VIEWER src="/models/RobotExpressive.glb" alt="Robot model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the robot and find a raised detail (emboss).
-- Zoom in and look for an indented panel (deboss).
-- Pan around and find the feet.
-
-
-This tutorial demonstrates how to add text and designs to both flat and curved surfaces using the Emboss and Deboss tools.
-
-
-
-## Setup and Base Shape (Shape 1)
-
-The file is saved as "emboss". A new component named "shape 1" is created to contain the design.
-
-
-
-### Sketch
-
-A Two Point Rectangle (instead of center) is drawn on the XY plane. This gives more control over the rectangle's position.
-
-
-
-### Dimensions
-
-The rectangle dimensions are set to 80mm width and 100mm height (using Tab to switch between fields). This creates the base block for the emboss examples.
-
-
-
-### Extrude
-
-The rectangle is extruded by 10mm to create a 3D block.
-
-
-
-### Taper Angle
-
-The presenter demonstrates tapering. A value of -5 degrees is used to taper the extrusion inwards. This creates a slightly narrower top than bottom, useful for certain manufacturing processes.
-
-
+## Key Concepts
+- Symmetry saves time
+- Mirror creates a perfect opposite
 
 <!-- QUESTION_START -->
-What type of rectangle is used for the base shape?
+Why use mirror?
 <!-- OPTIONS -->
-Center Rectangle|Two Point Rectangle|3-Point Rectangle|Square
+To add color|To save time|To zoom|To delete
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-A Two Point Rectangle (instead of center) is drawn on the XY plane. This gives more control over the rectangle's position.
+Mirror lets you build half and copy the other half.
 <!-- QUESTION_END -->
 
-
-
 <!-- QUESTION_START -->
-What are the dimensions of the base rectangle?
+Symmetry means:
 <!-- OPTIONS -->
-70mm x 100mm|80mm x 100mm|80mm x 110mm|90mm x 100mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The rectangle dimensions are set to 80mm width and 100mm height. The Tab key is used to switch between dimension fields.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How much is the rectangle extruded?
-<!-- OPTIONS -->
-8mm|10mm|12mm|15mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The rectangle is extruded by 10mm to create a 3D block. This provides a flat surface for embossing text.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What taper angle is used for the extrusion?
-<!-- OPTIONS -->
--3 degrees|-5 degrees|-7 degrees|-10 degrees
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A value of -5 degrees is used to taper the extrusion inwards. This creates a slightly narrower top than bottom.
-<!-- QUESTION_END -->
-
-
-
-## Embossing Text on a Flat Surface
-
-Text can be added to flat surfaces using the Emboss tool, which raises the text above the surface.
-
-
-
-### Text Sketch
-
-A sketch is created on the top surface. The Text tool is used to create a text box, and "HELLO" is typed in capitals. Alignment tools center the text, and the height is set to 10mm.
-
-
-
-<!-- QUESTION_START -->
-What text is used in the tutorial?
-<!-- OPTIONS -->
-HELLO|FUSION|DESIGN|TEXT
+Both halves match|Different sizes|Rotated parts|Hidden parts
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-"HELLO" is typed in capitals using the Text tool. Alignment tools are used to center the text on the surface.
+Symmetry means both halves match.
 <!-- QUESTION_END -->
 
-
-
 <!-- QUESTION_START -->
-What is the height of the text?
+Mirror uses which reference?
 <!-- OPTIONS -->
-8mm|10mm|12mm|15mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The text height is set to 10mm. This determines the size of the letters when embossed.
-<!-- QUESTION_END -->
-
-
-
-### Emboss Tool
-
-The Emboss tool is found under the "Create" menu. It can raise (emboss) or cut (deboss) text or shapes into surfaces.
-
-
-
-### Emboss Settings
-
-- **Profile**: The "HELLO" text is selected
-
-- **Face**: The top surface of the block is selected
-
-- **Depth**: 2mm is set to raise the text (Emboss). This creates raised letters on the surface.
-
-
-
-<!-- QUESTION_START -->
-Where is the Emboss tool located?
-<!-- OPTIONS -->
-Modify menu|Create menu|Sketch menu|Assemble menu
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Emboss tool is found under the "Create" menu. It can raise (emboss) or cut (deboss) text or shapes into surfaces.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What depth is used for embossing the text?
-<!-- OPTIONS -->
-1mm|2mm|3mm|4mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A depth of 2mm is set to raise the text (Emboss). This creates raised letters that stand out from the surface.
-<!-- QUESTION_END -->
-
-
-
-### Fillet
-
-A 0.5mm fillet is added to the top face of the letters and the base face to smooth the connection. This gives the embossed text a more polished appearance.
-
-
-
-<!-- QUESTION_START -->
-What size fillet is added to the embossed text?
-<!-- OPTIONS -->
-0.3mm|0.5mm|0.7mm|1mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A 0.5mm fillet is added to the top face of the letters and the base face to smooth the connection. This gives the text a more polished appearance.
-<!-- QUESTION_END -->
-
-
-
-## Embossing Text on a Curved Path
-
-Text can also follow a curved path, wrapping around curves instead of staying flat.
-
-
-
-### Path Sketch
-
-The previous features are deleted from the timeline to reset the block. A construction line (20mm) is drawn 90 degrees from the center. A Fit Point Spline connects the sides through the top of this construction line to create a curve. This curve will serve as the path for the text.
-
-
-
-<!-- QUESTION_START -->
-How long is the construction line for the curved path?
-<!-- OPTIONS -->
-15mm|20mm|25mm|30mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A construction line (20mm) is drawn 90 degrees from the center. A Fit Point Spline connects the sides through the top of this construction line to create a curve.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What tool is used to create the curved path?
-<!-- OPTIONS -->
-Line Tool|Arc Tool|Fit Point Spline|Circle Tool
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-A Fit Point Spline connects the sides through the top of the construction line to create a curve. This curve will serve as the path for the text.
-<!-- QUESTION_END -->
-
-
-
-### Text on Path
-
-The Text tool is used with "Text on Path" selected. The text wraps around the spline curve, following its shape instead of staying straight.
-
-
-
-<!-- QUESTION_START -->
-What option is selected to make text follow a curve?
-<!-- OPTIONS -->
-Text on Line|Text on Path|Text on Curve|Text on Spline
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Text tool is used with "Text on Path" selected. This makes the text wrap around the spline curve, following its shape.
-<!-- QUESTION_END -->
-
-
-
-### Deboss
-
-The Emboss tool is used again, but this time "Deboss" is selected to cut the text 2mm into the model. Deboss creates recessed text instead of raised text.
-
-
-
-<!-- QUESTION_START -->
-What is the difference between Emboss and Deboss?
-<!-- OPTIONS -->
-Emboss raises text, Deboss cuts text|Emboss cuts text, Deboss raises text|They are the same|Emboss is for flat surfaces only
+A plane|A color|A file|A texture
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-Emboss raises text above the surface, while Deboss cuts text into the surface. Both use the same tool, just with different settings.
+Mirror reflects across a plane.
 <!-- QUESTION_END -->
-
-
-
-## Embossing on a Curved Surface (Shape 2)
-
-A new component "shape 2" is created, and "shape 1" is hidden. This demonstrates embossing on a curved surface like a cylinder.
-
-
-
-### Cylinder
-
-A 60mm diameter circle is drawn and extruded by 100mm to create a cylinder. This provides a curved surface for embossing.
-
-
-
-<!-- QUESTION_START -->
-What is the diameter of the cylinder?
-<!-- OPTIONS -->
-50mm|60mm|70mm|80mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A 60mm diameter circle is drawn and extruded by 100mm to create a cylinder. This provides a curved surface for embossing.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How tall is the cylinder?
-<!-- OPTIONS -->
-80mm|100mm|120mm|150mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The circle is extruded by 100mm to create the cylinder. This provides enough height for the text to wrap around.
-<!-- QUESTION_END -->
-
-
-
-### Tangent Text
-
-A sketch is created on a plane tangent/perpendicular to the cylinder (likely the origin plane slicing through it). This ensures the text is properly oriented for wrapping around the curved surface.
-
-
-
-### Text
-
-"HELLO" is typed. The presenter notes that sometimes text must be mirrored/flipped in the sketch to appear correctly when wrapped around a curved surface.
-
-
-
-<!-- QUESTION_START -->
-Why might text need to be mirrored when embossing on a curved surface?
-<!-- OPTIONS -->
-To make it larger|To make it appear correctly when wrapped|To change the font|To add effects
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Sometimes text must be mirrored/flipped in the sketch to appear correctly when wrapped around a curved surface. This ensures the letters face the right direction.
-<!-- QUESTION_END -->
-
-
-
-### Emboss on Cylinder
-
-- **Profile**: The text is selected
-
-- **Face**: The curved surface of the cylinder is selected
-
-The text wraps around the curvature of the cylinder, embossed by 2mm. This demonstrates how emboss works on non-flat surfaces.
-
-
-
-<!-- QUESTION_START -->
-What depth is used when embossing on the cylinder?
-<!-- OPTIONS -->
-1mm|2mm|3mm|4mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The text is embossed by 2mm on the curved surface of the cylinder. The text wraps around the curvature, following the surface shape.
-<!-- QUESTION_END -->
-
-
-
-## Key Concepts Learned
-
-- **Emboss Tool**: Raising text or shapes above a surface
-- **Deboss Tool**: Cutting text or shapes into a surface
-- **Text Tool**: Creating text in sketches
-- **Text on Path**: Making text follow a curved path
-- **Fit Point Spline**: Creating curved paths for text
-- **Taper Angle**: Angling extrusions for manufacturing
-- **Curved Surface Embossing**: Applying text to non-flat surfaces
-- **Fillets on Text**: Smoothing the edges of embossed text
-- **Mirroring Text**: Flipping text for correct orientation on curves
-
-
-
-## Important Notes
-
-- Emboss raises material, Deboss cuts material
-- Text can follow curved paths using "Text on Path"
-- The Emboss tool works on both flat and curved surfaces
-- Text may need to be mirrored when wrapping around curves
-- Fillets can be added to embossed text for a polished look
-- The depth setting controls how much the text is raised or cut
-- Construction lines help position curved paths
-- Splines create smooth curves for text to follow
-- The Emboss tool is found in the Create menu`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
@@ -4832,324 +3508,54 @@ The text is embossed by 2mm on the curved surface of the cylinder. The text wrap
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 18,
-      title: "3D Modeling Step 7: Import/Export, Holes & Fasteners",
+      title: "3D Modeling Step 7: Fillet and Chamfer",
       emoji: '📎',
-      content: `# 3D Modeling Step 7: Import/Export, Holes & Fasteners
+      content: `# 3D Modeling Step 7: Edge Control (Fillet and Chamfer)
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+Edges can be **sharp** or **rounded**.
 
-**Topic**: Using import/export, the hole tool, and inserting fasteners.
+- **Fillet** = rounded edge
+- **Chamfer** = angled edge
 
+## Mini Mission
+- Round the edges of a cube.
+- Try a chamfer instead.
 
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
-
-<!-- MODEL_VIEWER src="/models/DamagedHelmet.glb" alt="Helmet model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the helmet and find the front opening.
-- Zoom in and spot a round detail or hole.
-- Pan to keep the helmet centered as you rotate.
-
-
-This tutorial demonstrates how to export and import files, create holes for fasteners, and insert screws and bolts from the fastener library.
-
-
-
-## Create Base Box
-
-The user creates a new component called "box" and sketches a center rectangle on a plane, setting dimensions to 50mm x 50mm. This rectangle is extruded by 50mm to create a cube. This cube will be used to demonstrate holes and fasteners.
-
-
+## Key Concepts
+- Fillets make models feel safe and real
+- Chamfers look crisp and engineered
 
 <!-- QUESTION_START -->
-What are the dimensions of the base rectangle?
+A fillet makes an edge:
 <!-- OPTIONS -->
-40mm x 40mm|50mm x 50mm|60mm x 60mm|50mm x 60mm
+Sharp|Rounded|Hidden|Longer
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-A center rectangle is sketched on a plane with dimensions set to 50mm x 50mm. This creates a square base for the box.
+A fillet rounds an edge.
 <!-- QUESTION_END -->
 
-
-
 <!-- QUESTION_START -->
-How much is the rectangle extruded to create the cube?
+A chamfer creates:
 <!-- OPTIONS -->
-40mm|50mm|60mm|70mm
+A curve|An angle|A hole|A mirror
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-The rectangle is extruded by 50mm to create a cube. This provides a solid block for demonstrating holes and fasteners.
+A chamfer cuts the edge into an angled face.
 <!-- QUESTION_END -->
 
-
-
-## Exporting Files
-
-This lesson explains how to export the design by going to File > Export. Different file types are used for different purposes.
-
-
-
-### File Types
-
-- **Native project file**: Best for reopening in your 3D modeling tool to keep design history. This is the app-specific format (e.g., .blend, .skp, .f3d).
-
-- **.fbx / .obj**: Best for rendering or animation (e.g., Blender). These formats preserve geometry for 3D graphics software.
-
-- **.step**: Best for other CAD programs (e.g., SolidWorks). This is a standard CAD exchange format.
-
-- **.stl**: Best for 3D printing. This format is used by most 3D printers and slicing software.
-
-The user demonstrates exporting as an STL file to the desktop.
-
-
-
 <!-- QUESTION_START -->
-Which file format is best for reopening in 3D modeling software to keep design history?
+Why add fillets?
 <!-- OPTIONS -->
-Native project file (app-specific)|.stl|.step|.obj
-<!-- CORRECT -->
-0
-<!-- EXPLANATION -->
-The native project file for your app is best for reopening a model with full history. Other formats may lose parametric features.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Which file format is best for 3D printing?
-<!-- OPTIONS -->
-Native project file|.stl|.step|.fbx
+To color|To smooth edges|To rename|To rotate
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-The .stl format is best for 3D printing. This format is used by most 3D printers and slicing software to create the layers for printing.
+Fillets smooth edges.
 <!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Which file format is best for other CAD programs like SolidWorks?
-<!-- OPTIONS -->
-Native project file|.stl|.step|.obj
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The .step format is best for other CAD programs (e.g., SolidWorks). This is a standard CAD exchange format that preserves geometry between different CAD systems.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Which file formats are best for rendering or animation (e.g., Blender)?
-<!-- OPTIONS -->
-Native project file and .stl|.fbx and .obj|.step and .stl|Native project file and .step
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The .fbx and .obj formats are best for rendering or animation (e.g., Blender). These formats preserve geometry for 3D graphics software.
-<!-- QUESTION_END -->
-
-
-
-## Importing Files
-
-To import, go to Insert > Insert Mesh and select the STL file. The imported mesh is moved to the side to compare with the original solid body.
-
-
-
-### Difference Between Solid and Mesh
-
-The solid body is filled (solid geometry), while the mesh is hollow (surface only). This is verified using Section Analysis, which cuts through the model to show the interior. The mesh is then deleted.
-
-
-
-<!-- QUESTION_START -->
-How do you import a mesh file in 3D modeling software?
-<!-- OPTIONS -->
-File > Import|Insert > Insert Mesh|Create > Import|Tools > Import
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-To import a mesh file, go to Insert > Insert Mesh and select the file. This allows you to bring in STL or other mesh formats.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the difference between a solid body and a mesh?
-<!-- OPTIONS -->
-Solid is hollow, mesh is filled|Solid is filled, mesh is surface only|They are the same|Solid is 2D, mesh is 3D
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The solid body is filled (solid geometry), while the mesh is hollow (surface only). A mesh is just the outer surface, while a solid has volume.
-<!-- QUESTION_END -->
-
-
-
-## Using the Hole Tool
-
-The Hole tool is selected from the Create menu and placed on the top surface of the box. The Hole tool creates precise holes for fasteners with various options.
-
-
-
-### Hole Settings
-
-- **Hole Type**: Options include Simple, Counterbore, and Countersink (allows screw heads to sit flush). Counterbore creates a larger diameter at the top for the screw head, while countersink creates an angled recess.
-
-- **Tap Type**: Options include Simple, Clearance, and Tapped (adds threads). Tapped holes have internal threads for screws.
-
-- **Drill Point**: Flat or Angled. Flat creates a flat bottom, while angled creates a pointed bottom like a drill bit.
-
-- **Modeled checkbox**: Must be selected for 3D printing threads; otherwise, they are just visual textures. This is important for 3D printing threaded parts.
-
-
-
-<!-- QUESTION_START -->
-Where is the Hole tool located?
-<!-- OPTIONS -->
-Modify menu|Create menu|Sketch menu|Assemble menu
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Hole tool is selected from the Create menu. It creates precise holes for fasteners with various options for different hole types.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-Which hole type allows screw heads to sit flush?
-<!-- OPTIONS -->
-Simple|Counterbore|Countersink|Both Counterbore and Countersink
-<!-- CORRECT -->
-3
-<!-- EXPLANATION -->
-Both Counterbore and Countersink allow screw heads to sit flush. Counterbore creates a larger diameter at the top, while countersink creates an angled recess.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What does the "Tapped" tap type do?
-<!-- OPTIONS -->
-Creates a larger hole|Adds threads to the hole|Creates a flat bottom|Creates an angled bottom
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Tapped option adds threads to the hole. This creates internal threads that match standard screw sizes.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What must be selected for 3D printing threads?
-<!-- OPTIONS -->
-The "threaded" checkbox|The "modeled" checkbox|The "printed" checkbox|The "solid" checkbox
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The "modeled" checkbox must be selected for 3D printing threads; otherwise, they are just visual textures. This ensures the threads are actually created in the geometry.
-<!-- QUESTION_END -->
-
-
-
-## Inserting Fasteners
-
-Go to Insert > Fastener to access a library of bolts, screws, nuts, etc. This provides standard fasteners that can be inserted into your design.
-
-
-
-### Selecting a Fastener
-
-The user selects a countersunk screw with size M3 and length 6mm. M3 refers to a metric screw with a 3mm diameter. The Hole Tool is adjusted to match: M3 size, countersunk type. This ensures the hole matches the fastener.
-
-
-
-<!-- QUESTION_START -->
-Where do you find the fastener library?
-<!-- OPTIONS -->
-File > Fastener|Insert > Fastener|Create > Fastener|Tools > Fastener
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Go to Insert > Fastener to access a library of bolts, screws, nuts, etc. This provides standard fasteners that can be inserted into your design.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What does M3 refer to in fastener sizing?
-<!-- OPTIONS -->
-3mm length|3mm diameter|3mm thread pitch|3mm head size
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-M3 refers to a metric screw with a 3mm diameter. The "M" stands for metric, and the number indicates the diameter in millimeters.
-<!-- QUESTION_END -->
-
-
-
-### Placing the Fastener
-
-The screw is inserted into the hole. Even if it doesn't fit perfectly (indicated by red highlighting), it can still be placed. A Joint is automatically created to position the screw within the assembly. This joint helps align and position the fastener correctly.
-
-
-
-<!-- QUESTION_START -->
-What color indicates that a fastener doesn't fit perfectly?
-<!-- OPTIONS -->
-Blue|Red|Green|Yellow
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Red highlighting indicates that a fastener doesn't fit perfectly. However, it can still be placed even with this warning.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is automatically created when inserting a fastener?
-<!-- OPTIONS -->
-A hole|A joint|A pattern|A sketch
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A Joint is automatically created to position the screw within the assembly. This joint helps align and position the fastener correctly.
-<!-- QUESTION_END -->
-
-
-
-## Key Concepts Learned
-
-- **File Export**: Saving designs in different formats for different purposes
-- **File Import**: Bringing mesh files into 3D modeling software
-- **Solid vs Mesh**: Understanding the difference between filled and surface-only geometry
-- **Hole Tool**: Creating precise holes with various types and options
-- **Hole Types**: Simple, Counterbore, and Countersink
-- **Tap Types**: Simple, Clearance, and Tapped (threaded)
-- **Fastener Library**: Accessing standard screws, bolts, and nuts
-- **Metric Sizing**: Understanding M3, M4, etc. fastener sizes
-- **Automatic Joints**: Fasteners automatically create joints for positioning
-- **3D Printing Threads**: Using the "modeled" checkbox for printable threads
-
-
-
-## Important Notes
-
-- Different file formats serve different purposes (native project file for editing, .stl for 3D printing, .step for CAD exchange)
-- Meshes are surface-only, while solids have volume
-- The Hole tool offers many options for different fastener types
-- Counterbore and Countersink allow screw heads to sit flush
-- Tapped holes have internal threads for screws
-- The "modeled" checkbox is essential for 3D printing threads
-- Fasteners can be inserted even if they don't fit perfectly (red highlighting)
-- Joints are automatically created when inserting fasteners
-- Metric sizing (M3, M4, etc.) refers to the diameter in millimeters
-- The fastener library provides standard sizes for common fasteners`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
@@ -5160,406 +3566,51 @@ A Joint is automatically created to position the screw within the assembly. This
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 19,
-      title: "3D Modeling Step 8: Hinged Box (Components & Joints)",
+      title: "3D Modeling Step 8: Components and Parts",
       emoji: '📦',
-      content: `# 3D Modeling Step 8: Hinged Box (Components & Joints)
+      content: `# 3D Modeling Step 8: Components and Parts
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+Complex models are made of **parts** grouped into **components**.
 
-**Topic**: Creating a box with a hinged lid using components and joints.
+## Mini Mission
+- Separate a model into 3 parts.
+- Name each part.
 
-
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
-
-<!-- MODEL_VIEWER src="/models/SheenChair.glb" alt="Chair model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the chair and identify the backrest.
-- Find where a joint could make the backrest move.
-- Zoom out and describe the whole shape in one sentence.
-
-
-This tutorial demonstrates how to create an assembly with moving parts by building a box with a hinged lid using components and joints.
-
-
-
-## Setting Up Components
-
-The file is saved as "fixings box". A new component named "box" is created to hold the base geometry. Later, the main assembly ("fixings box") is reactivated to create a separate "lid" component. This ensures the lid is not inside the box component, allowing them to move independently.
-
-
+## Key Concepts
+- Components keep designs organized
+- Names help you find parts fast
 
 <!-- QUESTION_START -->
-What is the project name for this tutorial?
+Why use components?
 <!-- OPTIONS -->
-Box|fixings box|Hinged Box|Storage Box
+To organize parts|To change color|To zoom|To delete
+<!-- CORRECT -->
+0
+<!-- EXPLANATION -->
+Components organize your model.
+<!-- QUESTION_END -->
+
+<!-- QUESTION_START -->
+A component is:
+<!-- OPTIONS -->
+A random shape|A named group of parts|A texture|A plane
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-The file is saved as "fixings box". This helps organize the project and identify the design.
+A component is a named group of parts.
 <!-- QUESTION_END -->
-
-
 
 <!-- QUESTION_START -->
-Why is the lid created as a separate component?
+Good naming helps you:
 <!-- OPTIONS -->
-To make it larger|To allow it to move independently|To change its color|To delete it easily
+Move faster|Lose files|Shrink models|Render less
 <!-- CORRECT -->
-1
+0
 <!-- EXPLANATION -->
-The lid is created as a separate component to ensure it is not inside the box component, allowing them to move independently. This is essential for creating joints.
+Good naming speeds up your work.
 <!-- QUESTION_END -->
-
-
-
-## Creating the Box Base
-
-The box base is created first, including the main body and hinge extension.
-
-
-
-### Sketch
-
-A center rectangle (90mm x 140mm) is drawn on the base plane. This creates the footprint of the box.
-
-
-
-### Extrude
-
-The rectangle is extruded by 50mm to create the main box body.
-
-
-
-### Shell
-
-The top surface is selected and shelled by 3mm to hollow out the box. This creates the interior cavity while maintaining the outer walls.
-
-
-
-<!-- QUESTION_START -->
-What are the dimensions of the base rectangle?
-<!-- OPTIONS -->
-80mm x 130mm|90mm x 140mm|100mm x 150mm|90mm x 150mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A center rectangle (90mm x 140mm) is drawn on the base plane. This creates the footprint of the box.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How much is the rectangle extruded?
-<!-- OPTIONS -->
-40mm|50mm|60mm|70mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The rectangle is extruded by 50mm to create the main box body. This provides the height of the box.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What thickness is used when shelling the box?
-<!-- OPTIONS -->
-2mm|3mm|4mm|5mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The top surface is selected and shelled by 3mm to hollow out the box. This creates the interior cavity while maintaining the outer walls.
-<!-- QUESTION_END -->
-
-
-
-### Hinge Extension
-
-A sketch is created on the back face. A 5mm line is drawn down from the top edge, converted to a construction line, and used to create a profile that is extruded out by 5mm (Join operation) to form the hinge base. This creates the attachment point for the hinge.
-
-
-
-<!-- QUESTION_START -->
-How long is the line drawn for the hinge extension?
-<!-- OPTIONS -->
-3mm|5mm|7mm|10mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A 5mm line is drawn down from the top edge, converted to a construction line, and used to create a profile that is extruded out by 5mm to form the hinge base.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What operation is used to create the hinge extension?
-<!-- OPTIONS -->
-New Body|Join|Cut|Intersect
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The profile is extruded out by 5mm using the Join operation. This adds the hinge base to the existing box body.
-<!-- QUESTION_END -->
-
-
-
-## Creating the Lid
-
-With the "lid" component active, the lid is created separately from the box.
-
-
-
-### Sketch
-
-A Two Point Rectangle is sketched on top of the box. This creates the lid profile that will cover the box opening.
-
-
-
-### Extrude
-
-The lid profile is extruded by 3mm as a "New Body". This creates a separate body for the lid component.
-
-
-
-<!-- QUESTION_START -->
-What type of rectangle is used for the lid?
-<!-- OPTIONS -->
-Center Rectangle|Two Point Rectangle|3-Point Rectangle|Square
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A Two Point Rectangle is sketched on top of the box. This gives more control over the lid's position.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How thick is the lid?
-<!-- OPTIONS -->
-2mm|3mm|4mm|5mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The lid profile is extruded by 3mm as a "New Body". This creates a separate body for the lid component.
-<!-- QUESTION_END -->
-
-
-
-### Hinge Part
-
-A sketch on the side of the lid draws a rectangle connecting the lid to the hinge base. This is extruded by 3mm (Join) to create the lid's part of the hinge mechanism.
-
-
-
-<!-- QUESTION_START -->
-How thick is the lid's hinge part?
-<!-- OPTIONS -->
-2mm|3mm|4mm|5mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The rectangle connecting the lid to the hinge base is extruded by 3mm (Join) to create the lid's part of the hinge mechanism.
-<!-- QUESTION_END -->
-
-
-
-## Creating the Hinge Pin/Hole
-
-A sketch is created on the side of the hinge area to create the hole for the hinge pin.
-
-
-
-### Positioning
-
-Construction lines are used to find the center (2.5mm in, 2.5mm up). This positions the hole precisely in the center of the hinge.
-
-
-
-### Hole
-
-A 1mm circle is drawn at this center point. This will be the hole for the hinge pin.
-
-
-
-### Extrude Cut
-
-This circle is extruded (cut) by -4mm through both the lid and box hinge parts. The negative value cuts through the material, creating the pin hole.
-
-
-
-<!-- QUESTION_START -->
-How far in and up is the hole positioned?
-<!-- OPTIONS -->
-2mm in, 2mm up|2.5mm in, 2.5mm up|3mm in, 3mm up|2.5mm in, 3mm up
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Construction lines are used to find the center (2.5mm in, 2.5mm up). This positions the hole precisely in the center of the hinge.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the diameter of the hinge pin hole?
-<!-- OPTIONS -->
-0.5mm|1mm|1.5mm|2mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-A 1mm circle is drawn at the center point. This will be the hole for the hinge pin.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-How deep is the hole cut?
-<!-- OPTIONS -->
--3mm|-4mm|-5mm|-6mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The circle is extruded (cut) by -4mm through both the lid and box hinge parts. The negative value cuts through the material, creating the pin hole.
-<!-- QUESTION_END -->
-
-
-
-## Adding the Joint
-
-The main assembly component is activated. The Joint Tool is selected from the menu to create a connection between the lid and box that allows rotation.
-
-
-
-### Snap Points
-
-- The outer edge of the hole on the lid (lid is active/visible, box is hidden)
-
-- The corresponding outer edge of the hole on the box (lid is hidden, box is active/visible)
-
-These snap points align the two components at the hinge axis.
-
-
-
-<!-- QUESTION_START -->
-What tool is used to create the connection between lid and box?
-<!-- OPTIONS -->
-Fastener Tool|Joint Tool|Align Tool|Connect Tool
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Joint Tool is selected from the menu to create a connection between the lid and box that allows rotation.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What are selected as snap points for the joint?
-<!-- OPTIONS -->
-The faces|The outer edges of the holes|The centers|The corners
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The outer edge of the hole on the lid and the corresponding outer edge of the hole on the box are selected as snap points. These align the two components at the hinge axis.
-<!-- QUESTION_END -->
-
-
-
-### Motion
-
-The motion type is set to Revolute to allow rotation. This creates a hinge joint that allows the lid to rotate around the hinge axis.
-
-
-
-<!-- QUESTION_START -->
-What motion type is used for the hinge joint?
-<!-- OPTIONS -->
-Rigid|Revolute|Slider|Cylindrical
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The motion type is set to Revolute to allow rotation. This creates a hinge joint that allows the lid to rotate around the hinge axis.
-<!-- QUESTION_END -->
-
-
-
-### Limits
-
-Joint limits are set to prevent clashing. Minimum is set to 0 degrees (closed) and Maximum to 180 degrees (fully open). This prevents the lid from rotating too far and colliding with other parts.
-
-
-
-<!-- QUESTION_START -->
-What is the minimum joint limit (closed position)?
-<!-- OPTIONS -->
--90 degrees|0 degrees|90 degrees|180 degrees
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The minimum joint limit is set to 0 degrees (closed). This defines the closed position of the lid.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the maximum joint limit (fully open position)?
-<!-- OPTIONS -->
-90 degrees|120 degrees|150 degrees|180 degrees
-<!-- CORRECT -->
-3
-<!-- EXPLANATION -->
-The maximum joint limit is set to 180 degrees (fully open). This prevents the lid from rotating too far and colliding with other parts.
-<!-- QUESTION_END -->
-
-
-
-### Testing the Joint
-
-The user can now double-click the flag icon on the joint to manually open and close the lid. This allows testing the joint motion and verifying it works correctly.
-
-
-
-<!-- QUESTION_START -->
-How do you test the joint motion?
-<!-- OPTIONS -->
-Right-click the joint|Double-click the flag icon on the joint|Press the spacebar|Use the timeline
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The user can double-click the flag icon on the joint to manually open and close the lid. This allows testing the joint motion and verifying it works correctly.
-<!-- QUESTION_END -->
-
-
-
-## Key Concepts Learned
-
-- **Components**: Creating separate parts that can move independently
-- **Component Activation**: Switching between components to work on different parts
-- **Shell Tool**: Hollowing out solid bodies
-- **Join Operation**: Adding material to existing bodies
-- **New Body Operation**: Creating separate bodies
-- **Construction Lines**: Positioning elements precisely
-- **Extrude Cut**: Removing material to create holes
-- **Joint Tool**: Creating connections between components
-- **Revolute Joint**: Allowing rotation around an axis
-- **Joint Limits**: Controlling the range of motion
-- **Snap Points**: Aligning components precisely
-
-
-
-## Important Notes
-
-- Components must be separate to create joints
-- The main assembly component must be activated to create joints
-- Snap points align components at the joint axis
-- Revolute joints allow rotation around one axis
-- Joint limits prevent unwanted movement and collisions
-- Construction lines help position holes precisely
-- Negative extrude values cut through material
-- The flag icon on joints allows manual testing
-- Shell tool creates hollow interiors
-- Join operation adds material to existing bodies
-- New Body operation creates separate bodies for different components`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
@@ -5570,356 +3621,54 @@ The user can double-click the flag icon on the joint to manually open and close 
       yearId: 'year4',
       subjectId: 'technology',
       lessonNumber: 20,
-      title: "3D Modeling Step 9: Aftershave Bottle (Primitives & Appearances)",
+      title: "3D Modeling Step 9: Dimensions and Constraints",
       emoji: '🧴',
-      content: `# 3D Modeling Step 9: Aftershave Bottle (Primitives & Appearances)
+      content: `# 3D Modeling Step 9: Dimensions and Constraints
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+Dimensions and constraints keep sketches accurate and stable.
 
-**Topic**: Creating an aftershave bottle using primitive shapes and appearances.
+- **Dimension** = exact size
+- **Constraint** = rule (parallel, perpendicular, equal)
 
+## Mini Mission
+- Make a rectangle exactly 50 mm wide.
+- Constrain two lines to be parallel.
 
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
-
-<!-- MODEL_VIEWER src="/models/Astronaut.glb" alt="Astronaut model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the helmet and identify the biggest shape.
-- Zoom in and notice different materials or colors.
-- Count two simple shapes you could use to rebuild it.
-
-
-This tutorial demonstrates using primitive shapes (Box and Cylinder) instead of sketches, and applying materials/appearances to create a realistic product design.
-
-
-
-## Setup and Saving
-
-The file is saved as "after shave". A new component named "after shave" is created to contain the design. This helps organize the project.
-
-
+## Key Concepts
+- Fully constrained sketches are predictable
+- Unconstrained sketches move by accident
 
 <!-- QUESTION_START -->
-What is the project name for this tutorial?
+What does a dimension control?
 <!-- OPTIONS -->
-Bottle|after shave|Aftershave|Container
+Color|Size|Camera|Light
 <!-- CORRECT -->
 1
 <!-- EXPLANATION -->
-The file is saved as "after shave". A new component named "after shave" is created to contain the design.
+Dimensions set the size.
 <!-- QUESTION_END -->
 
-
-
-## Using Primitives (The Box)
-
-Instead of sketching and extruding, the Primitive Box tool is used. Primitives are pre-made 3D shapes that can be created quickly without sketching.
-
-
-
-### Drawback Note
-
-The video highlights that primitives don't create sketches, which can make future editing harder compared to sketch-based modeling. However, they are faster for simple shapes.
-
-
-
-### Creation
-
-A box is drawn on the base plane using the Primitive Box tool. This creates a 3D box directly without needing to sketch a rectangle first.
-
-
-
-### Dimensions
-
-Length 25mm, Width 50mm, Height 70mm. The body is renamed to "bottle" for clarity.
-
-
-
 <!-- QUESTION_START -->
-What tool is used instead of sketching and extruding?
+A constraint is:
 <!-- OPTIONS -->
-Extrude Tool|Primitive Box tool|Revolve Tool|Sweep Tool
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Primitive Box tool is used instead of sketching and extruding. Primitives are pre-made 3D shapes that can be created quickly.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is a drawback of using primitives?
-<!-- OPTIONS -->
-They are slower|They don't create sketches, making future editing harder|They are more complex|They use more memory
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Primitives don't create sketches, which can make future editing harder compared to sketch-based modeling. However, they are faster for simple shapes.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What are the dimensions of the box?
-<!-- OPTIONS -->
-20mm x 50mm x 70mm|25mm x 50mm x 70mm|25mm x 45mm x 70mm|30mm x 50mm x 70mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The box dimensions are Length 25mm, Width 50mm, Height 70mm. The body is renamed to "bottle" for clarity.
-<!-- QUESTION_END -->
-
-
-
-## Adding the Neck (Cylinder Primitive)
-
-The Primitive Cylinder tool is used on the top surface of the box to create the bottle neck.
-
-
-
-### Positioning
-
-The center point is found by hovering to infer the center. This uses the 3D modeling software's inference system to automatically snap to the center of the face.
-
-
-
-### Dimensions
-
-Diameter 20mm, Height 4mm. This creates a short neck section.
-
-
-
-### Operation
-
-Important change to New Body (instead of Join) so it remains separate. This keeps the neck as a separate body from the bottle, which is useful for applying different materials later.
-
-
-
-The body is renamed to "neck".
-
-
-
-<!-- QUESTION_START -->
-How is the center point found for the cylinder?
-<!-- OPTIONS -->
-By measuring|By hovering to infer the center|By drawing construction lines|By guessing
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The center point is found by hovering to infer the center. This uses the 3D modeling software's inference system to automatically snap to the center of the face.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What are the dimensions of the neck cylinder?
-<!-- OPTIONS -->
-Diameter 18mm, Height 4mm|Diameter 20mm, Height 4mm|Diameter 20mm, Height 5mm|Diameter 22mm, Height 4mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The neck cylinder has a diameter of 20mm and height of 4mm. This creates a short neck section for the bottle.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What operation is used for the neck cylinder?
-<!-- OPTIONS -->
-Join|New Body|Cut|Intersect
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The operation is set to New Body (instead of Join) so it remains separate. This keeps the neck as a separate body from the bottle.
-<!-- QUESTION_END -->
-
-
-
-## Adding the Lid (Cylinder Primitive)
-
-Another Primitive Cylinder is created on top of the neck to form the lid.
-
-
-
-### Dimensions
-
-Diameter 22mm, Height 24mm. The lid is slightly larger in diameter than the neck to fit over it.
-
-
-
-### Operation
-
-Set to New Body. The body is renamed to "lid".
-
-
-
-<!-- QUESTION_START -->
-What are the dimensions of the lid cylinder?
-<!-- OPTIONS -->
-Diameter 20mm, Height 24mm|Diameter 22mm, Height 24mm|Diameter 22mm, Height 20mm|Diameter 24mm, Height 24mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The lid cylinder has a diameter of 22mm and height of 24mm. The lid is slightly larger in diameter than the neck to fit over it.
-<!-- QUESTION_END -->
-
-
-
-## Filleting
-
-Fillets are added to round the sharp edges and give the bottle a more polished appearance.
-
-
-
-### Side Edges
-
-The four vertical edges of the bottle are filleted by 5mm. This rounds the corners of the main body.
-
-
-
-### Top/Bottom Faces
-
-The top and bottom faces of the main bottle body are filleted by 2mm. This creates rounded edges on the top and bottom.
-
-
-
-### Lid
-
-The top edge of the lid is filleted by 3mm. This rounds the top of the lid for a finished look.
-
-
-
-<!-- QUESTION_START -->
-What size fillet is applied to the four vertical edges of the bottle?
-<!-- OPTIONS -->
-3mm|5mm|7mm|10mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The four vertical edges of the bottle are filleted by 5mm. This rounds the corners of the main body.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What size fillet is applied to the top and bottom faces of the bottle?
-<!-- OPTIONS -->
-1mm|2mm|3mm|4mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The top and bottom faces of the main bottle body are filleted by 2mm. This creates rounded edges on the top and bottom.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What size fillet is applied to the top edge of the lid?
-<!-- OPTIONS -->
-2mm|3mm|4mm|5mm
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The top edge of the lid is filleted by 3mm. This rounds the top of the lid for a finished look.
-<!-- QUESTION_END -->
-
-
-
-## Appearances and Materials
-
-The Appearance menu is opened (Shortcut: A) to change the visual appearance of the bottle. This allows you to apply different materials and colors.
-
-
-
-### Applying Material
-
-The library is browsed to find Paint > Enamel Gloss Black. The material is dragged onto the bottle to change its visual appearance from the default steel gray to black. This gives the bottle a glossy black finish.
-
-
-
-<!-- QUESTION_START -->
-What is the shortcut key to open the Appearance menu?
-<!-- OPTIONS -->
-A|M|P|S
+A rule|A texture|A file|A mesh
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-The Appearance menu is opened using the shortcut key A. This provides quick access to materials and appearances.
+A constraint is a rule on the sketch.
 <!-- QUESTION_END -->
 
-
-
 <!-- QUESTION_START -->
-What material is applied to the bottle?
+Why constrain sketches?
 <!-- OPTIONS -->
-Paint > Enamel Gloss Black|Paint > Matte Black|Metal > Steel|Plastic > ABS
+To keep shapes stable|To change color|To rotate|To delete
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-The library is browsed to find Paint > Enamel Gloss Black. The material is dragged onto the bottle to change its appearance from the default steel gray to black.
+Constraints stop sketches from moving by accident.
 <!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the default material color in 3D modeling software?
-<!-- OPTIONS -->
-White|Black|Steel gray|Blue
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-The default material in 3D modeling software is steel gray. Materials can be changed using the Appearance menu to apply different colors and finishes.
-<!-- QUESTION_END -->
-
-
-
-## Render Workspace Introduction
-
-The user switches from the Design workspace to the Render workspace. This view shows the material properties (like glossiness) more realistically, demonstrating how to create high-quality images of the product. The user switches back to Design and saves the file.
-
-
-
-<!-- QUESTION_START -->
-What workspace shows material properties more realistically?
-<!-- OPTIONS -->
-Design workspace|Render workspace|Animation workspace|Simulation workspace
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The Render workspace shows the material properties (like glossiness) more realistically, demonstrating how to create high-quality images of the product.
-<!-- QUESTION_END -->
-
-
-
-## Key Concepts Learned
-
-- **Primitive Shapes**: Pre-made 3D shapes (Box, Cylinder) that don't require sketching
-- **Primitive Box**: Creating boxes directly without sketching rectangles
-- **Primitive Cylinder**: Creating cylinders directly without sketching circles
-- **Inference System**: Using hover to automatically find center points
-- **New Body Operation**: Keeping parts separate for different materials
-- **Fillets**: Rounding edges for a polished appearance
-- **Appearance Menu**: Changing materials and colors (Shortcut: A)
-- **Material Library**: Browsing and applying different materials
-- **Render Workspace**: Viewing materials realistically for high-quality images
-- **Naming Bodies**: Organizing your design by renaming bodies
-
-
-
-## Important Notes
-
-- Primitives are faster but don't create sketches, making editing harder
-- Use New Body operation to keep parts separate for different materials
-- The inference system helps find center points automatically
-- Fillets add a polished, professional appearance
-- The Appearance menu (Shortcut: A) allows quick material changes
-- Materials can be dragged directly onto bodies
-- The Render workspace shows materials more realistically
-- Naming bodies helps organize complex designs
-- Primitives are great for quick prototyping but sketches offer more control
-- Different fillet sizes can be applied to different edges for varied effects`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
@@ -5932,460 +3681,55 @@ The Render workspace shows the material properties (like glossiness) more realis
       lessonNumber: 21,
       title: "3D Modeling Step 10: Exporting & Manufacturing",
       emoji: '📤',
-      content: `# 3D Modeling Step 10: Exporting & Manufacturing
+      content: `# 3D Modeling Step 10: Mini Project (Capstone)
 
-## Learn 3D Modeling in 10 Easy Steps (2025/2026)
+## Big Idea
+Use your skills to build a simple object from start to finish.
 
-**Topic**: Exporting your designs for 3D printing, manufacturing, and sharing.
+## Project
+Create a **key tag**:
+1. Sketch a rectangle.
+2. Extrude to make it 3D.
+3. Cut a small hole.
+4. Round the edges.
 
-
-**Interactive 3D Viewer**: Explore the model below (powered by the open-source model-viewer library).
-
-<!-- MODEL_VIEWER src="/models/RobotExpressive.glb" alt="Robot model" auto-rotate="true" camera-controls="true" -->
-
-
-### Mini Mission
-
-- Rotate the robot and find the front view you would export.
-- Zoom in and spot a small detail for high quality.
-- Zoom out and see how the full shape reads.
-
-
-
-
-## Exporting Your Designs
-
-Once your design is complete, you need to export it for manufacturing, sharing, or 3D printing.
-
-
-
-## File Formats
-
-
-
-### STL (Stereolithography)
-
-Most common for 3D printing.
-
-
-
-- **Mesh format**: Converts solid to triangles
-
-- **Universal**: Works with all 3D printers
-
-- **No color/texture**: Geometry only
-
-
+## Checklist
+- Sketch on the correct plane
+- Use dimensions
+- Extrude to thickness
+- Add a hole
+- Apply fillets
 
 <!-- QUESTION_START -->
-What file format is most common for 3D printing?
+Which step gives a sketch **depth**?
 <!-- OPTIONS -->
-STEP|STL|OBJ|DXF
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-STL (Stereolithography) is the most common format for 3D printing. It converts solid geometry to triangles and works with all 3D printers.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What does STL format contain?
-<!-- OPTIONS -->
-Geometry only|Colors and textures|Materials|Dimensions
+Extrude|Rotate|Mirror|Zoom
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-STL format contains geometry only - no color or texture information. It converts solid models to triangles for 3D printing.
+Extrude pulls a sketch into 3D.
 <!-- QUESTION_END -->
 
-
-
-### STEP
-
-For manufacturing and CAD exchange.
-
-
-
-- **Precise geometry**: Maintains exact dimensions
-
-- **Industry standard**: Works with other CAD software
-
-- **Assembly support**: Can export entire assemblies
-
-
-
 <!-- QUESTION_START -->
-What file format is best for manufacturing and CAD exchange?
+Which tool makes smooth edges?
 <!-- OPTIONS -->
-STL|STEP|OBJ|DXF
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-STEP format is best for manufacturing and CAD exchange. It maintains precise geometry and is an industry standard that works with other CAD software.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What advantage does STEP format have over STL?
-<!-- OPTIONS -->
-Smaller file size|Maintains exact dimensions|Includes colors|Works with all printers
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-STEP format maintains precise geometry and exact dimensions, making it better for manufacturing than STL, which converts to triangles.
-<!-- QUESTION_END -->
-
-
-
-### OBJ
-
-For rendering and visualization.
-
-
-
-- **Mesh format**: Like STL but with materials
-
-- **Texture support**: Can include colors
-
-- **Common in graphics**: Used in animation software
-
-
-
-<!-- QUESTION_START -->
-What file format is best for rendering and visualization?
-<!-- OPTIONS -->
-STL|STEP|OBJ|DXF
-<!-- CORRECT -->
-2
-<!-- EXPLANATION -->
-OBJ format is best for rendering and visualization. It's like STL but with materials and texture support, making it common in animation software.
-<!-- QUESTION_END -->
-
-
-
-### DXF/DWG
-
-For 2D drawings and laser cutting.
-
-
-
-- **2D format**: Flat drawings
-
-- **Laser cutting**: Perfect for CNC laser cutters
-
-- **Drawing views**: Technical drawings
-
-
-
-<!-- QUESTION_START -->
-What file format is best for laser cutting?
-<!-- OPTIONS -->
-STL|STEP|OBJ|DXF/DWG
-<!-- CORRECT -->
-3
-<!-- EXPLANATION -->
-DXF/DWG format is best for 2D drawings and laser cutting. It's a 2D format that's perfect for CNC laser cutters and technical drawings.
-<!-- QUESTION_END -->
-
-
-
-## Exporting for 3D Printing
-
-
-
-### Steps:
-
-1. Select the body or component
-
-2. Right-click → "Save As STL"
-
-3. Choose settings:
-
- - **Refinement**: Higher = smoother but larger file
-
- - **Units**: Millimeters (mm) is standard
-
-4. Click OK and save
-
-
-
-### Important Considerations:
-
-- **Watertight**: Model must be solid (no gaps)
-
-- **Manifold**: All surfaces must connect properly
-
-- **Orientation**: Consider how it will print
-
-- **Supports**: May need support material
-
-
-
-<!-- QUESTION_START -->
-What does "watertight" mean for 3D printing?
-<!-- OPTIONS -->
-The model is waterproof|The model must be solid with no gaps|The model floats|The model is transparent
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-"Watertight" means the model must be solid with no gaps. This is essential for 3D printing because gaps can cause printing failures.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What does "manifold" mean for 3D printing?
-<!-- OPTIONS -->
-The model is round|All surfaces must connect properly|The model is flat|The model has multiple parts
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-"Manifold" means all surfaces must connect properly. This ensures the 3D printer can create a valid solid object without errors.
-<!-- QUESTION_END -->
-
-
-
-## Exporting for Manufacturing
-
-
-
-### STEP Files:
-
-1. Select component or body
-
-2. File → Export → STEP
-
-3. Choose options
-
-4. Save
-
-
-
-### DXF for Laser Cutting:
-
-1. Create a sketch of the flat pattern
-
-2. File → Export → DXF
-
-3. Select the sketch
-
-4. Save
-
-
-
-## Manufacturing Workspace
-
-3D modeling software includes CAM (Computer-Aided Manufacturing) tools:
-
-
-
-- **2D Milling**: Flat cutting operations
-
-- **3D Milling**: Complex 3D shapes
-
-- **Turning**: For lathe operations
-
-- **Additive**: For 3D printing toolpaths
-
-
-
-<!-- QUESTION_START -->
-What does CAM stand for?
-<!-- OPTIONS -->
-Computer-Aided Manufacturing|Computer-Aided Modeling|Computer-Aided Machining|Computer-Aided Materials
+Fillet|Scale|Pan|Hide
 <!-- CORRECT -->
 0
 <!-- EXPLANATION -->
-CAM stands for Computer-Aided Manufacturing. 3D modeling software includes CAM tools for creating toolpaths for manufacturing machines.
+Fillet rounds edges.
 <!-- QUESTION_END -->
 
-
-
 <!-- QUESTION_START -->
-What CAM operation is used for lathe operations?
+Why use dimensions in a project?
 <!-- OPTIONS -->
-2D Milling|3D Milling|Turning|Additive
+For accuracy|For color|For sound|For speed only
 <!-- CORRECT -->
-2
+0
 <!-- EXPLANATION -->
-Turning is used for lathe operations. This creates toolpaths for machines that rotate the workpiece while cutting.
+Dimensions make sizes accurate.
 <!-- QUESTION_END -->
-
-
-
-## Creating Toolpaths
-
-
-
-1. Switch to Manufacture workspace
-
-2. Set up your machine
-
-3. Define stock (raw material)
-
-4. Create operations:
-
- - **2D Pocket**: Remove material from inside
-
- - **2D Contour**: Cut around edges
-
- - **3D Adaptive**: Efficient material removal
-
-5. Generate toolpaths
-
-6. Simulate the toolpath
-
-7. Post-process for your machine
-
-
-
-## Post-Processing
-
-Converts toolpaths to machine code (G-code):
-
-
-
-1. Select operations
-
-2. Click "Post Process"
-
-3. Choose your machine/controller
-
-4. Generate G-code file
-
-5. Send to machine
-
-
-
-<!-- QUESTION_START -->
-What does post-processing convert toolpaths into?
-<!-- OPTIONS -->
-STL files|G-code|STEP files|DXF files
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Post-processing converts toolpaths to machine code (G-code). This is the language that manufacturing machines understand.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What is the first step in post-processing?
-<!-- OPTIONS -->
-Choose your machine|Select operations|Generate G-code|Send to machine
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-The first step in post-processing is to select the operations you want to convert. Then you click "Post Process" and choose your machine/controller.
-<!-- QUESTION_END -->
-
-
-
-## Best Practices
-
-
-
-### For 3D Printing:
-
-- Check model is watertight
-
-- Consider print orientation
-
-- Add supports if needed
-
-- Export at appropriate resolution
-
-
-
-<!-- QUESTION_START -->
-What should you check before exporting for 3D printing?
-<!-- OPTIONS -->
-File size|Model is watertight|Colors|Materials
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Before exporting for 3D printing, you should check that the model is watertight (solid with no gaps). This prevents printing failures.
-<!-- QUESTION_END -->
-
-
-
-### For Manufacturing:
-
-- Choose correct file format
-
-- Include all necessary dimensions
-
-- Consider material properties
-
-- Test toolpaths before running
-
-
-
-## Common Export Issues
-
-
-
-- **Missing geometry**: Not all bodies selected
-
-- **Wrong units**: Check unit settings
-
-- **File too large**: Reduce refinement/quality
-
-- **Import errors**: Use standard formats (STEP, STL)
-
-
-
-## Important Notes
-
-
-
-- Always save your 3D modeling software file first
-
-- Export formats depend on your use case
-
-- STL for 3D printing, STEP for manufacturing
-
-- Test exports before sending to machines
-
-- Keep original 3D modeling software files for editing
-
-
-
-<!-- QUESTION_START -->
-What should you always do before exporting?
-<!-- OPTIONS -->
-Check file size|Save your 3D modeling software file first|Close other programs|Restart 3D modeling software
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-Always save your 3D modeling software file first before exporting. This ensures you have a backup of your work in case something goes wrong.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What format should you use for 3D printing?
-<!-- OPTIONS -->
-STEP|STL|OBJ|DXF
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-STL format should be used for 3D printing. STEP format is better for manufacturing and CAD exchange.
-<!-- QUESTION_END -->
-
-
-
-<!-- QUESTION_START -->
-What format should you use for manufacturing?
-<!-- OPTIONS -->
-STL|STEP|OBJ|DXF
-<!-- CORRECT -->
-1
-<!-- EXPLANATION -->
-STEP format should be used for manufacturing. It maintains precise geometry and is an industry standard for CAD exchange.
-<!-- QUESTION_END -->`,
+`,
       quizId: null,
       assessmentType: null,
       categoryId: '3d-modeling',
