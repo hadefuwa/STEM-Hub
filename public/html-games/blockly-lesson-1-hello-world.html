@@ -3,12 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Blockly Lesson 1 - Hello World</title>
+  <title>Blockly Lesson 1 - Hello World Adventure</title>
   <script src="https://unpkg.com/blockly/blockly.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
-    body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; flex-direction: column; }
+
+    /* Animated background */
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #43cea2 100%);
+      background-size: 300% 300%;
+      animation: gradientShift 12s ease infinite;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating bubbles */
+    .bubble { position: absolute; border-radius: 50%; opacity: 0.15; animation: floatUp 18s linear infinite; }
+    .bubble.b1 { width: 80px; height: 80px; left: 10%; animation-delay: 0s; background: #fff; }
+    .bubble.b2 { width: 50px; height: 50px; left: 30%; animation-delay: 4s; background: #fff; }
+    .bubble.b3 { width: 120px; height: 120px; left: 70%; animation-delay: 2s; background: #fff; }
+    .bubble.b4 { width: 60px; height: 60px; left: 85%; animation-delay: 7s; background: #fff; }
+    @keyframes floatUp {
+      0% { transform: translateY(120vh) scale(0.8); }
+      100% { transform: translateY(-20vh) scale(1.2); }
+    }
 
     /* Top Bar */
     .top-bar {
@@ -20,38 +44,47 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       z-index: 100;
     }
-    
+
     .lesson-title {
       font-size: 1.5em;
       font-weight: bold;
       color: #667eea;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    
+
+    .wiggle { display: inline-block; animation: wiggle 2.2s ease-in-out infinite; }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(4deg); }
+      75% { transform: rotate(-4deg); }
+    }
+
     .progress-bar {
       flex: 1;
-      max-width: 300px;
-      height: 30px;
+      max-width: 320px;
+      height: 32px;
       background: #e0e0e0;
-      border-radius: 15px;
+      border-radius: 16px;
       margin: 0 20px;
       overflow: hidden;
       position: relative;
     }
-    
+
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #667eea, #764ba2);
+      background: linear-gradient(90deg, #667eea, #43cea2);
       transition: width 0.5s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-weight: bold;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
-    
-    .stars {
-      font-size: 1.5em;
-    }
+
+    .stars { font-size: 1.5em; }
 
     /* Main Content */
     .main-content {
@@ -59,11 +92,16 @@
       display: flex;
       overflow: hidden;
       position: relative;
+      padding: 10px;
+      gap: 10px;
     }
-    
+
     #blocklyDiv {
       flex: 1;
       height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     /* Challenge Overlay */
@@ -73,72 +111,98 @@
       right: 20px;
       background: white;
       border-radius: 15px;
-      padding: 20px;
+      padding: 18px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      max-width: 350px;
+      max-width: 360px;
       z-index: 50;
-      animation: slideIn 0.3s ease-out;
+      animation: slideIn 0.35s ease-out;
     }
-    
+
     @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from { transform: translateX(100%) scale(0.9); opacity: 0; }
+      to { transform: translateX(0) scale(1); opacity: 1; }
     }
-    
+
     .challenge-header {
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
-      padding: 15px;
+      padding: 14px;
       border-radius: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       text-align: center;
     }
-    
-    .challenge-number {
-      font-size: 0.9em;
-      opacity: 0.9;
-      margin-bottom: 5px;
-    }
-    
-    .challenge-title {
-      font-size: 1.3em;
-      font-weight: bold;
-    }
-    
+
+    .challenge-number { font-size: 0.9em; opacity: 0.9; margin-bottom: 5px; }
+    .challenge-title { font-size: 1.2em; font-weight: bold; }
+
     .challenge-description {
       background: #f8f9fa;
-      padding: 15px;
+      padding: 12px;
       border-radius: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       border-left: 4px solid #667eea;
       line-height: 1.6;
     }
-    
+
     .expected-output {
       background: #e3f2fd;
-      padding: 10px 15px;
+      padding: 10px 12px;
       border-radius: 8px;
       font-weight: bold;
       text-align: center;
       color: #1976d2;
-      margin-bottom: 15px;
-      font-size: 1.1em;
+      margin-bottom: 10px;
+      font-size: 1.05em;
+    }
+
+    /* Buddy character */
+    .buddy {
+      position: absolute;
+      bottom: 90px;
+      left: 20px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .buddy .face {
+      width: 70px; height: 70px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #ffd166);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .buddy .eye { width: 10px; height: 10px; background: #333; border-radius: 50%; position: absolute; top: 24px; }
+    .buddy .eye.left { left: 18px; }
+    .buddy .eye.right { right: 18px; }
+    .buddy .mouth { width: 24px; height: 12px; border-bottom: 4px solid #333; border-radius: 0 0 24px 24px; position: absolute; bottom: 18px; left: 22px; }
+    .buddy .speech {
+      background: white;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     /* Bottom Controls */
     .bottom-controls {
       background: white;
-      padding: 15px 20px;
+      padding: 12px 16px;
       display: flex;
       gap: 10px;
       align-items: center;
       justify-content: center;
       box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
       flex-wrap: wrap;
+      z-index: 100;
     }
-    
+
     button {
-      padding: 12px 24px;
+      padding: 12px 22px;
       border: none;
       border-radius: 25px;
       font-size: 16px;
@@ -149,10 +213,10 @@
       align-items: center;
       gap: 8px;
     }
-    
+
     button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
     button:active { transform: translateY(0); }
-    
+
     .btn-primary { background: #667eea; color: white; }
     .btn-success { background: #28a745; color: white; }
     .btn-secondary { background: #6c757d; color: white; }
@@ -166,7 +230,7 @@
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
       background: white;
-      padding: 40px;
+      padding: 36px;
       border-radius: 20px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.3);
       text-align: center;
@@ -174,36 +238,24 @@
       min-width: 300px;
       animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
     }
-    
-    @keyframes popIn {
-      to { transform: translate(-50%, -50%) scale(1); }
-    }
-    
-    .feedback-icon {
-      font-size: 4em;
-      margin-bottom: 15px;
-    }
-    
-    .feedback-message {
-      font-size: 1.3em;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    
+
+    @keyframes popIn { to { transform: translate(-50%, -50%) scale(1); } }
+
+    .feedback-icon { font-size: 4em; margin-bottom: 10px; }
+    .feedback-message { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; }
+
     .feedback.success { border-top: 5px solid #28a745; }
     .feedback.error { border-top: 5px solid #dc3545; }
-    
+
     .backdrop {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.5);
       z-index: 999;
       display: none;
     }
-    
+
     .backdrop.active { display: block; }
 
     /* Hint Box */
@@ -211,31 +263,70 @@
       background: #fff3cd;
       border: 2px solid #ffc107;
       color: #856404;
-      padding: 15px;
+      padding: 12px;
       border-radius: 10px;
       margin-top: 10px;
       display: none;
       animation: slideDown 0.3s ease-out;
     }
-    
+
     .hint-box.show { display: block; }
-    
+
     @keyframes slideDown {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: red;
+      top: -10px;
+      z-index: 2000;
+      animation: confettiFall 2.6s linear forwards;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+    }
+
+    /* Output badge */
+    .output-badge {
+      position: absolute;
+      bottom: 90px;
+      right: 20px;
+      background: rgba(255,255,255,0.95);
+      padding: 10px 12px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      min-width: 180px;
+      text-align: center;
+      font-weight: 600;
+      color: #333;
+      z-index: 20;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.03); } }
+
     @media (max-width: 768px) {
-      .challenge-overlay { right: 10px; top: 10px; max-width: 300px; padding: 15px; }
+      .challenge-overlay { right: 10px; top: 10px; max-width: 300px; padding: 14px; }
       .top-bar { flex-wrap: wrap; padding: 10px; }
-      .lesson-title { font-size: 1.2em; }
+      .lesson-title { font-size: 1.1em; }
       button { padding: 10px 18px; font-size: 14px; }
+      .buddy { display: none; }
+      .output-badge { bottom: 70px; }
     }
   </style>
 </head>
 <body>
+  <div class="bubble b1"></div>
+  <div class="bubble b2"></div>
+  <div class="bubble b3"></div>
+  <div class="bubble b4"></div>
+
   <div class="top-bar">
-    <div class="lesson-title">👋 Hello World!</div>
+    <div class="lesson-title"><span class="wiggle">👋</span> Hello World Adventure</div>
     <div class="progress-bar">
       <div class="progress-fill" id="progressBar">0%</div>
     </div>
@@ -244,7 +335,7 @@
 
   <div class="main-content">
     <div id="blocklyDiv"></div>
-    
+
     <div class="challenge-overlay">
       <div class="challenge-header">
         <div class="challenge-number" id="challengeNumber">Challenge 1 of 3</div>
@@ -256,6 +347,17 @@
       <div class="expected-output" id="expectedOutput">Expected: Hello World</div>
       <div class="hint-box" id="hintBox"></div>
     </div>
+
+    <div class="buddy" id="buddy">
+      <div class="face">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="speech" id="buddySpeech">Let’s build something awesome!</div>
+    </div>
+
+    <div class="output-badge" id="outputBadge">Output: —</div>
   </div>
 
   <div class="bottom-controls">
@@ -326,6 +428,9 @@
       }
     ];
 
+    const buddySpeech = document.getElementById('buddySpeech');
+    const outputBadge = document.getElementById('outputBadge');
+
     function updateUI() {
       const challenge = challenges[currentChallenge];
       document.getElementById('challengeNumber').textContent = `Challenge ${currentChallenge + 1} of 3`;
@@ -336,6 +441,7 @@
       document.getElementById('nextBtn').disabled = currentChallenge === challenges.length - 1;
       updateProgress();
       document.getElementById('hintBox').classList.remove('show');
+      buddySpeech.textContent = currentChallenge === 0 ? 'Let’s build something awesome!' : (currentChallenge === 1 ? 'Nice! Try a name now!' : 'Final challenge—show 100!');
     }
 
     function updateProgress() {
@@ -344,7 +450,7 @@
       const progressBar = document.getElementById('progressBar');
       progressBar.style.width = percent + '%';
       progressBar.textContent = percent + '%';
-      
+
       const stars = ['⭐', '⭐', '⭐'].map((s, i) => i < completed ? '⭐' : '☆').join('');
       document.getElementById('starsDisplay').textContent = stars;
     }
@@ -353,7 +459,7 @@
       let output = [];
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
       let code = Blockly.JavaScript.workspaceToCode(workspace);
-      
+
       if (!code.trim()) {
         showFeedback('⚠️', 'Your workspace is empty!', 'Add some blocks first.', 'error');
         return;
@@ -366,8 +472,11 @@
         eval(code);
         if (output.length === 0) {
           showFeedback('⚠️', 'No output!', 'Did you use a print block?', 'error');
+          outputBadge.textContent = 'Output: —';
         } else {
-          showFeedback('✅', 'Code Ran!', output.join('\\n'), 'success');
+          showFeedback('✅', 'Code Ran!', output.join('\n'), 'success');
+          outputBadge.textContent = `Output: ${output.join(' ')}`;
+          pulseOutput();
         }
       } catch (e) {
         showFeedback('❌', 'Error!', e.message, 'error');
@@ -380,7 +489,7 @@
       let output = [];
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
       let code = Blockly.JavaScript.workspaceToCode(workspace);
-      
+
       if (!code.trim()) {
         showFeedback('⚠️', 'Empty Workspace!', 'Add some blocks first.', 'error');
         return;
@@ -392,22 +501,22 @@
       try {
         eval(code);
         const result = output.length > 0 ? output[0] : '';
-        
+
         if (challenges[currentChallenge].validate(result)) {
           completedChallenges[currentChallenge] = true;
           updateProgress();
-          
+          celebrate();
+
           if (currentChallenge < challenges.length - 1) {
             showFeedback('🎉', 'Correct!', 'Great job! Moving to next challenge...', 'success');
             setTimeout(() => {
               hideAllFeedback();
               currentChallenge++;
               updateUI();
-            }, 2000);
+            }, 1800);
           } else {
             showFeedback('🏆', 'Lesson Complete!', `You earned ${completedChallenges.filter(c=>c).length} stars! Amazing work!`, 'success');
-            
-            // Notify parent window that lesson is complete
+
             if (window.parent && window.parent !== window) {
               window.parent.postMessage({
                 type: 'html-game-complete',
@@ -464,13 +573,31 @@
       `;
       document.body.appendChild(feedback);
       document.getElementById('backdrop').classList.add('active');
-      
-      setTimeout(hideAllFeedback, 3000);
+
+      setTimeout(hideAllFeedback, 2600);
     }
 
     function hideAllFeedback() {
       document.querySelectorAll('.feedback').forEach(f => f.remove());
       document.getElementById('backdrop').classList.remove('active');
+    }
+
+    function pulseOutput() {
+      outputBadge.style.transform = 'scale(1.08)';
+      setTimeout(() => outputBadge.style.transform = 'scale(1)', 250);
+    }
+
+    function celebrate() {
+      for (let i = 0; i < 30; i++) {
+        const conf = document.createElement('div');
+        conf.className = 'confetti';
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        conf.style.transform = `rotate(${Math.random() * 360}deg)`;
+        conf.style.animationDelay = (Math.random() * 0.2) + 's';
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 3000);
+      }
     }
 
     document.getElementById('backdrop').addEventListener('click', hideAllFeedback);
